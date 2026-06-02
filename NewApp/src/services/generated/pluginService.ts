@@ -1,0 +1,8 @@
+// Auto-generated file. Do not edit manually.
+// Service generated for /Setup/Plugin.
+
+import { getAll, getById } from '@/api/crudClient'
+import { ENDPOINTS } from '@/generated/endpoints'
+
+export const getPlugins = () =>
+  getAll(ENDPOINTS.SETUP_PLUGIN)
