@@ -4,6 +4,14 @@
 </template>
 
 <script setup lang="ts">
+import { glpiConfig } from '@/api/glpiConfig'
+import { generateToken } from '@/api/tokenManager'
+
+console.log(glpiConfig)
+
+generateToken().then(token => {
+  console.log('TOKEN GLPI:', token)
+})
 
 </script>
 
