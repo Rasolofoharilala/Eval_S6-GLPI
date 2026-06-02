@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLPI API Control Room</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="loading-overlay" class="loading-overlay hidden" aria-hidden="true">
+      <div class="loading-card">
+        <div class="spinner"></div>
+        <p id="loading-text">Traitement en cours...</p>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <div id="placeholder-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-head">
+          <div>
+            <p class="overline">Paramètres requis</p>
+            <h3 id="modal-title">Compléter l'endpoint</h3>
+          </div>
+          <button id="close-modal" class="icon-btn" type="button" aria-label="Fermer">×</button>
+        </div>
+        <form id="placeholder-form" class="modal-form">
+          <div id="placeholder-fields" class="modal-fields"></div>
+          <div class="modal-actions">
+            <button id="cancel-modal" class="btn btn-ghost" type="button">Annuler</button>
+            <button class="btn btn-primary" type="submit">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <main class="app-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Interface locale</p>
+          <h1>GLPI API Control Room</h1>
+          <p>
+            Une interface de test plus propre pour générer les tokens, parcourir les endpoints,
+            injecter les paramètres et inspecter les réponses JSON rapidement.
+          </p>
+        </div>
+
+        <div class="hero-stats">
+          <article class="stat-card">
+            <span class="stat-label">Endpoints chargés</span>
+            <strong id="hero-endpoint-count">0</strong>
+            <span class="stat-help">Depuis `endpointDOC.json`</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Scopes du token</span>
+            <strong id="hero-scope-count">0</strong>
+            <span id="hero-scope-text" class="stat-help">Aucun token chargé</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Dernière action</span>
+            <strong id="hero-last-action">En attente</strong>
+            <span id="hero-last-endpoint" class="stat-help">Aucun endpoint exécuté</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel command-center">
+        <div class="toolbar">
+          <button id="generate-token" class="btn btn-primary">Générer le token</button>
+          <button id="test-common" class="btn btn-secondary">Tester les endpoints communs</button>
+          <label class="toggle">
+            <input id="refresh-token" type="checkbox" checked />
+            <span>Régénérer le token avant chaque test</span>
+          </label>
+        </div>
+
+        <div class="composer">
+          <div class="field-group">
+            <label for="endpoint-input">Endpoint à tester</label>
+            <div class="input-row">
+              <input id="endpoint-input" type="text" placeholder="/Administration/User/Me" />
+              <select id="method-select" class="method-select" aria-label="Méthode HTTP">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="PATCH">PATCH</option>
+                <option value="DELETE">DELETE</option>
+              </select>
+              <button id="run-endpoint" class="btn btn-accent">Lancer le test</button>
+            </div>
+          </div>
+
+          <div class="quick-actions">
+            <span class="quick-label">Raccourcis</span>
+            <button class="chip" data-endpoint="/status" type="button">/status</button>
+            <button class="chip" data-endpoint="/Administration/User/Me" type="button">/Administration/User/Me</button>
+            <button class="chip" data-endpoint="/Assistance/Ticket" type="button">/Assistance/Ticket</button>
+          </div>
+
+          <div class="crud-actions">
+            <span class="quick-label">Actions CRUD</span>
+            <button class="chip crud-chip" data-method="POST" type="button">Create</button>
+            <button class="chip crud-chip" data-method="GET" type="button">Read</button>
+            <button class="chip crud-chip" data-method="PUT" type="button">Update</button>
+            <button class="chip crud-chip" data-method="DELETE" type="button">Delete</button>
+          </div>
+        </div>
+
+        <div class="payload-box">
+          <label for="payload-input">Corps JSON pour POST / PUT / PATCH</label>
+          <textarea id="payload-input" class="payload-input" spellcheck="false" placeholder='{
+  "name": "Exemple"
+}'></textarea>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel sidebar-panel">
+          <div class="sidebar-head">
+            <div>
+              <p class="overline">Navigation</p>
+              <h2>Catalogue d'endpoints</h2>
+            </div>
+            <span id="endpoint-count" class="badge">0</span>
+          </div>
+
+          <div class="search-box">
+            <label for="endpoint-search">Recherche</label>
+            <input id="endpoint-search" type="text" placeholder="user, title, ticket, status..." />
+          </div>
+
+          <div id="selected-endpoint-card" class="selected-card">
+            <div class="selected-card-head">
+              <span class="selected-label">Sélection actuelle</span>
+              <button id="copy-endpoint" class="icon-btn" type="button" aria-label="Copier l'endpoint">Copier</button>
+            </div>
+            <strong id="selected-endpoint-text">/Administration/User/Me</strong>
+            <p id="selected-endpoint-meta" class="selected-meta">Endpoint prêt à être testé.</p>
+            <div class="selected-actions">
+              <button id="use-selected" class="btn btn-ghost" type="button">Utiliser</button>
+              <button id="run-selected" class="btn btn-primary" type="button">Tester la sélection</button>
+            </div>
+          </div>
+
+          <div id="endpoint-list" class="endpoint-list"></div>
+        </section>
+
+        <section class="panel workspace-panel">
+          <div class="workspace-head">
+            <div>
+              <p class="overline">Inspection</p>
+              <h2>Résultat du test</h2>
+            </div>
+            <div class="result-actions">
+              <span id="status-badge" class="badge badge-muted">En attente</span>
+              <button id="copy-json" class="icon-btn" type="button">Copier JSON</button>
+              <button id="clear-result" class="icon-btn" type="button">Vider</button>
+            </div>
+          </div>
+
+          <div id="summary" class="summary-grid"></div>
+
+          <div class="workspace-columns">
+            <section class="result-block">
+              <div class="block-head">
+                <h3>Réponse</h3>
+                <span id="result-file" class="muted-line">Aucun fichier de sortie</span>
+              </div>
+              <pre id="json-output" class="json-output">{}</pre>
+            </section>
+
+            <aside class="activity-block">
+              <div class="block-head">
+                <h3>Activité récente</h3>
+                <span id="activity-count" class="muted-line">0 action</span>
+              </div>
+              <div id="activity-list" class="activity-list">
+                <div class="empty-state">Aucune action récente.</div>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

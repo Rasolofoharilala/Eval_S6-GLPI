@@ -1,0 +1,126 @@
+[
+  {
+    "id": 1,
+    "name": "",
+    "content": "",
+    "is_deleted": false,
+    "urgency": 3,
+    "impact": 3,
+    "priority": 3,
+    "actiontime": 0,
+    "begin_waiting_date": null,
+    "waiting_duration": 0,
+    "resolution_duration": 0,
+    "close_duration": 0,
+    "resolution_date": null,
+    "date_creation": "2026-06-02T15:15:43+03:00",
+    "date_mod": "2026-06-02T15:15:43+03:00",
+    "date": "2026-06-02T15:15:43+03:00",
+    "date_solve": null,
+    "date_close": null,
+    "type": 1,
+    "external_id": null,
+    "take_into_account_date": null,
+    "take_into_account_duration": 0,
+    "sla_waiting_duration": 0,
+    "ola_waiting_duration": 0,
+    "ola_ttr_begin_date": null,
+    "ola_tto_begin_date": null,
+    "internal_resolution_date": null,
+    "internal_take_into_account_date": null,
+    "global_validation": 1,
+    "status": {
+      "id": 1,
+      "name": "New"
+    },
+    "user_recipient": {
+      "id": 2,
+      "name": "glpi"
+    },
+    "user_editor": {
+      "id": 2,
+      "name": "glpi"
+    },
+    "category": null,
+    "location": null,
+    "request_type": {
+      "id": 1,
+      "name": "Helpdesk"
+    },
+    "sla_ttr": null,
+    "sla_tto": null,
+    "ola_ttr": null,
+    "ola_tto": null,
+    "sla_level_ttr": null,
+    "ola_level_ttr": null,
+    "entity": {
+      "id": 0,
+      "name": "Root entity",
+      "completename": "Root entity"
+    },
+    "costs": [],
+    "team": []
+  },
+  {
+    "id": 2,
+    "name": "",
+    "content": "",
+    "is_deleted": false,
+    "urgency": 3,
+    "impact": 3,
+    "priority": 3,
+    "actiontime": 0,
+    "begin_waiting_date": null,
+    "waiting_duration": 0,
+    "resolution_duration": 0,
+    "close_duration": 0,
+    "resolution_date": null,
+    "date_creation": "2026-06-02T15:16:10+03:00",
+    "date_mod": "2026-06-02T15:16:10+03:00",
+    "date": "2026-06-02T15:16:10+03:00",
+    "date_solve": null,
+    "date_close": null,
+    "type": 1,
+    "external_id": null,
+    "take_into_account_date": null,
+    "take_into_account_duration": 0,
+    "sla_waiting_duration": 0,
+    "ola_waiting_duration": 0,
+    "ola_ttr_begin_date": null,
+    "ola_tto_begin_date": null,
+    "internal_resolution_date": null,
+    "internal_take_into_account_date": null,
+    "global_validation": 1,
+    "status": {
+      "id": 1,
+      "name": "New"
+    },
+    "user_recipient": {
+      "id": 2,
+      "name": "glpi"
+    },
+    "user_editor": {
+      "id": 2,
+      "name": "glpi"
+    },
+    "category": null,
+    "location": null,
+    "request_type": {
+      "id": 1,
+      "name": "Helpdesk"
+    },
+    "sla_ttr": null,
+    "sla_tto": null,
+    "ola_ttr": null,
+    "ola_tto": null,
+    "sla_level_ttr": null,
+    "ola_level_ttr": null,
+    "entity": {
+      "id": 0,
+      "name": "Root entity",
+      "completename": "Root entity"
+    },
+    "costs": [],
+    "team": []
+  }
+]

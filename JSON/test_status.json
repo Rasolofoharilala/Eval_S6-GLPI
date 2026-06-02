@@ -1,0 +1,5 @@
+{
+  "status": "ERROR_RIGHT_MISSING",
+  "title": "You don't have permission to perform this action.",
+  "detail": "You do not have the required scope(s) to access this endpoint."
+}
