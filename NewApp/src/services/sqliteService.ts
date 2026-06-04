@@ -19,6 +19,8 @@ export async function testDatabase() {
 }
 
 export async function getTableName() {
+    console.log("Appel de la fonction: getTableName()");
+    
     const db = await testDatabase()
     let tables: string[] = []
     const result = db.exec(
