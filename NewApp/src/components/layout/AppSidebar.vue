@@ -29,11 +29,15 @@
           </ul>
         </template>
       </li>
+      <deconnexionButton />
     </ul>
   </aside>
 </template>
 
 <script setup lang="ts">
+
+import deconnexionButton from '@/components/common/deconnexionButton.vue'
+
 const menus = [
   {
     label: 'Tableau de bord',

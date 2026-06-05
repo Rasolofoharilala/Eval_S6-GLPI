@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import { isAuthenticated } from '@/auth/authService.ts'
+
 import login from '@/pages/BackOffice/LoginBackOffice.vue'
 import accueil from '@/pages/BackOffice/AccueilBackOffice.vue'
 import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.vue'
@@ -6,6 +9,10 @@ import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      redirect: '/login'
+    },
     {
       path: '/login',
       name: login,
@@ -19,7 +26,8 @@ const router = createRouter({
       name: accueil,
       component: accueil,
       meta: {
-        title: 'Accueil'
+        title: 'Accueil',
+        requiresAuth: true
       }
     },
     {
@@ -27,10 +35,17 @@ const router = createRouter({
       name: reinitialisationBase,
       component: reinitialisationBase,
       meta: {
-        title: 'Reinitialisation'
+        title: 'Reinitialisation',
+        requiresAuth: true
       }
     }
   ],
+})
+
+router.beforeEach((to) => {
+  if (to.meta.requiresAuth && !isAuthenticated()) {
+    return '/login'
+  }
 })
 
 export default router
