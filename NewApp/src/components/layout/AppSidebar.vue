@@ -55,6 +55,10 @@ const menus = [
         path: '/reinitialisationBase'
       }
     ]
+  }, 
+  {
+    label: 'Import',
+    path: '/importFichier'
   }
 ]
 </script>

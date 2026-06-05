@@ -5,6 +5,7 @@ import { isAuthenticated } from '@/auth/authService.ts'
 import login from '@/pages/BackOffice/LoginBackOffice.vue'
 import accueil from '@/pages/BackOffice/AccueilBackOffice.vue'
 import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.vue'
+import importPages from '@/pages/BackOffice/ImportBackOffice.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,15 @@ const router = createRouter({
       component: reinitialisationBase,
       meta: {
         title: 'Reinitialisation',
+        requiresAuth: true
+      }
+    }, 
+    {
+      path: '/importFichier',
+      name: importPages,
+      component: importPages,
+      meta: {
+        title: 'importPages',
         requiresAuth: true
       }
     }
