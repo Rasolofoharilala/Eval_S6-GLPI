@@ -4,7 +4,9 @@
     <input type="text" v-model="form.nom" id="utilisateurInput" /> -->
 
     <label for="passwordInput">Mot de passe: </label>
-    <input type="password" v-model="form.password" id="passwordInput" />
+    <input type="text" :value="default_form.password" id="passwordInput" />
+
+    {{ default_form.password }}
 
     <button>Connexion</button>
   </form>
@@ -17,7 +19,7 @@ const router = useRouter()
 
 const form = ref<{ nom: string; password: string }>({
   // nom: '',
-  password: '',
+  password: 'pass',
 })
 
 const default_form = readonly<{ nom: string; password: string }>({
