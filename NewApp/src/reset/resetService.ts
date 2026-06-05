@@ -1,92 +1,135 @@
 import { httpClient } from '@/api/httpClient'
-import type { ResetPreview, ResetPreviewItem, ResetResult, ResetResultItem } from './resetTypes'
+import { RESETTABLE_ENDPOINTS } from './resetEndpointPolicy'
 
-function normalizeItems(data: unknown): ResetPreviewItem[] {
-  if (!Array.isArray(data)) {
-    return []
+function getResetPolicy(endpoint: string) {
+  const policy = RESETTABLE_ENDPOINTS.find((item) => item.endpoint === endpoint)
+
+  if (!policy) {
+    throw new Error(`Endpoint non autorisé : ${endpoint}`)
   }
 
-  return data
-    .filter((item) => item && typeof item === 'object' && 'id' in item)
-    .map((item: any) => {
-      const name = item.name || item.username || item.realname || item.title || ''
+  return policy
+}
 
-      return {
-        id: Number(item.id),
-        name,
-        displayName: name ? `#${item.id} - ${name}` : `#${item.id}`,
+function buildDeleteUrl(deleteTarget: string, id: number) {
+  return deleteTarget.replace(/\{[^}]+\}/g, String(id))
+}
+
+function getErrorMessage(error: unknown): string {
+  if (typeof error !== 'object' || error === null) {
+    return 'Erreur inconnue'
+  }
+
+  const err = error as {
+    response?: {
+      status?: number
+      data?: {
+        title?: string
+        detail?: string
+        message?: string
       }
-    })
+    }
+    message?: string
+  }
+
+  const status = err.response?.status
+  const title = err.response?.data?.title
+  const detail = err.response?.data?.detail
+  const message = err.response?.data?.message || err.message
+
+  return [status ? `HTTP ${status}` : null, title, detail, message].filter(Boolean).join(' - ')
 }
 
-function extractApiError(error: any): string {
-  return (
-    error?.response?.data?.title ||
-    error?.response?.data?.detail ||
-    error?.response?.data?.message ||
-    error?.message ||
-    'Erreur inconnue'
-  )
-}
+export async function previewReset(endpoint: string) {
+  console.log('Endpoint:', endpoint)
 
-function extractStatusCode(error: any): number | undefined {
-  return error?.response?.status
-}
-
-export async function previewReset(endpoint: string): Promise<ResetPreview> {
   const response = await httpClient.get(endpoint)
 
-  const items = normalizeItems(response.data)
+  if (Array.isArray(response.data)) {
+    return response.data
+  }
+
+  if (Array.isArray(response.data?.data)) {
+    return response.data.data
+  }
+
+  if (Array.isArray(response.data?.results)) {
+    return response.data.results
+  }
+
+  return []
+}
+
+export async function resetOneItem(endpoint: string, id: number) {
+  const policy = getResetPolicy(endpoint)
+
+  const deleteUrl = buildDeleteUrl(policy.deleteTarget, id)
+
+  await httpClient.delete(deleteUrl, {
+    params: {
+      force: true,
+    },
+  })
 
   return {
-    endpoint,
-    count: items.length,
-    items,
+    id,
+    status: 'deleted',
+  }
+}
+export async function resetEndpoint(endpoint: string) {
+  try {
+    const items = await previewReset(endpoint)
+    const results = []
+
+    for (const item of items) {
+      if (!item.id) {
+        continue
+      }
+
+      try {
+        const result = await resetOneItem(endpoint, Number(item.id))
+        results.push(result)
+      } catch (error) {
+        results.push({
+          id: item.id,
+          status: 'failed',
+          error: getErrorMessage(error),
+        })
+      }
+    }
+
+    const deleted = results.filter((item) => item.status === 'deleted').length
+
+    const failed = results.filter((item) => item.status === 'failed').length
+
+    return {
+      endpoint,
+      success: true,
+      total: results.length,
+      deleted,
+      failed,
+      results,
+    }
+  } catch (error) {
+    return {
+      endpoint,
+      success: false,
+      total: 0,
+      deleted: 0,
+      failed: 1,
+      results: [],
+      error: getErrorMessage(error),
+    }
   }
 }
 
-export async function resetEndpoint(endpoint: string, deleteTarget?: string): Promise<ResetResult> {
-  const preview = await previewReset(endpoint)
+export async function resetSelectedEndpoints(endpoints: string[]) {
+  const results = []
 
-  const results: ResetResultItem[] = []
-
-  for (const item of preview.items) {
-    try {
-      let deleteUrl = `${endpoint}/${item.id}`
-
-      if (deleteTarget) {
-        const hasPlaceholder = /\{[^}]+\}/.test(deleteTarget)
-        deleteUrl = hasPlaceholder
-          ? deleteTarget.replace(/\{[^}]+\}/g, String(item.id))
-          : `${deleteTarget.replace(/\/$/, '')}/${item.id}`
-      }
-
-      await httpClient.delete(deleteUrl)
-
-      results.push({
-        id: item.id,
-        name: item.name,
-        status: 'deleted',
-      })
-    } catch (error: any) {
-      results.push({
-        id: item.id,
-        name: item.name,
-        status: 'failed',
-        error: extractApiError(error),
-        statusCode: extractStatusCode(error),
-      })
-    }
+  for (const endpoint of endpoints) {
+    const result = await resetEndpoint(endpoint)
+    results.push(result)
   }
 
-  const deleted = results.filter((item) => item.status === 'deleted').length
-  const failed = results.filter((item) => item.status === 'failed').length
-
-  return {
-    endpoint,
-    total: results.length,
-    deleted,
-    failed,
-    results,
-  }
+  return results
 }
