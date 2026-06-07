@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getFilesystems, getFilesystemById } from '@/services/generated/filesystemService'
+import type { Filesystem } from '@/services/generated/filesystemService'
 
 export function useFilesystems() {
-  const filesystems = ref<any[]>([])
-  const selectedFilesystem = ref<any | null>(null)
+  const filesystems = ref<Filesystem[]>([])
+  const selectedFilesystem = ref<Filesystem | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

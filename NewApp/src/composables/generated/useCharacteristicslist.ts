@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCharacteristicslist } from '@/services/generated/characteristicsService'
+import type { ITILStats } from '@/services/generated/characteristicsService'
 
 export function useCharacteristicslist() {
-  const characteristicslist = ref<any[]>([])
-  const selectedCharacteristics = ref<any | null>(null)
+  const characteristicslist = ref<ITILStats[]>([])
+  const selectedCharacteristics = ref<ITILStats | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

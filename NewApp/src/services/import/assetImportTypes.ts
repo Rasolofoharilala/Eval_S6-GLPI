@@ -11,30 +11,6 @@ export type AssetCsvRow = CsvRow & {
   user: string
 }
 
-export type GlpiRelation = {
-  id: number
-}
-
-export type ComputerImportPayload = {
-  name: string
-  otherserial?: string
-  status?: GlpiRelation
-  location?: GlpiRelation
-  manufacturer?: GlpiRelation
-  model?: GlpiRelation
-  user?: GlpiRelation
-}
-
-export type MonitorImportPayload = {
-  name: string
-  otherserial?: string
-  status?: GlpiRelation
-  location?: GlpiRelation
-  manufacturer?: GlpiRelation
-  model?: GlpiRelation
-  user?: GlpiRelation
-}
-
 export type ImportResult = {
   name: string
   itemType: string

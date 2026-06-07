@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getTaskcategories, getTaskcategoryById } from '@/services/generated/taskcategoryService'
+import type { TaskCategory } from '@/services/generated/taskcategoryService'
 
 export function useTaskcategories() {
-  const taskcategories = ref<any[]>([])
-  const selectedTaskcategory = ref<any | null>(null)
+  const taskcategories = ref<TaskCategory[]>([])
+  const selectedTaskcategory = ref<TaskCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { BudgetType } from '@/types/generated'
 
-export const getBudgettypes = () => getAll(ENDPOINTS.DROPDOWNS_BUDGETTYPE)
+export type { BudgetType } from '@/types/generated'
 
-export const getBudgettypeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_BUDGETTYPE, id)
+export const getBudgettypes = () => getAll<BudgetType>(ENDPOINTS.DROPDOWNS_BUDGETTYPE)
+
+export const getBudgettypeById = (id: number) =>
+  getById<BudgetType>(ENDPOINTS.DROPDOWNS_BUDGETTYPE, id)

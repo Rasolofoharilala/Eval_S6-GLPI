@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPendingreasons, getPendingreasonById } from '@/services/generated/pendingreasonService'
+import type { PendingReason } from '@/services/generated/pendingreasonService'
 
 export function usePendingreasons() {
-  const pendingreasons = ref<any[]>([])
-  const selectedPendingreason = ref<any | null>(null)
+  const pendingreasons = ref<PendingReason[]>([])
+  const selectedPendingreason = ref<PendingReason | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

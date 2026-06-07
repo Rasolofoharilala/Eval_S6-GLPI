@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { CloseTime } from '@/types/generated'
 
-export const getClosetimes = () => getAll(ENDPOINTS.DROPDOWNS_CLOSETIME)
+export type { CloseTime } from '@/types/generated'
 
-export const getClosetimeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_CLOSETIME, id)
+export const getClosetimes = () => getAll<CloseTime>(ENDPOINTS.DROPDOWNS_CLOSETIME)
+
+export const getClosetimeById = (id: number) =>
+  getById<CloseTime>(ENDPOINTS.DROPDOWNS_CLOSETIME, id)

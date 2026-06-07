@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getChanges, getChangeById } from '@/services/generated/changeService'
+import type { Change } from '@/services/generated/changeService'
 
 export function useChanges() {
-  const changes = ref<any[]>([])
-  const selectedChange = ref<any | null>(null)
+  const changes = ref<Change[]>([])
+  const selectedChange = ref<Change | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -6,10 +6,11 @@ import {
   getCameraimageformats,
   getCameraimageformatById,
 } from '@/services/generated/cameraimageformatService'
+import type { CameraImageFormat } from '@/services/generated/cameraimageformatService'
 
 export function useCameraimageformats() {
-  const cameraimageformats = ref<any[]>([])
-  const selectedCameraimageformat = ref<any | null>(null)
+  const cameraimageformats = ref<CameraImageFormat[]>([])
+  const selectedCameraimageformat = ref<CameraImageFormat | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getConsumables, getConsumableById } from '@/services/generated/consumableService'
+import type { ConsumableItem } from '@/services/generated/consumableService'
 
 export function useConsumables() {
-  const consumables = ref<any[]>([])
-  const selectedConsumable = ref<any | null>(null)
+  const consumables = ref<ConsumableItem[]>([])
+  const selectedConsumable = ref<ConsumableItem | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

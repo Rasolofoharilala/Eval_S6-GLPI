@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getEntitytrees } from '@/services/generated/entitytreeService'
 
 export function useEntitytrees() {
-  const entitytrees = ref<any[]>([])
-  const selectedEntitytree = ref<any | null>(null)
+  const entitytrees = ref<unknown[]>([])
+  const selectedEntitytree = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getTransfers } from '@/services/generated/transferService'
 
 export function useTransfers() {
-  const transfers = ref<any[]>([])
-  const selectedTransfer = ref<any | null>(null)
+  const transfers = ref<unknown[]>([])
+  const selectedTransfer = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

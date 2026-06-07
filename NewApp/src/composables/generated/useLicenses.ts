@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getLicenses, getLicenseById } from '@/services/generated/licenseService'
+import type { License } from '@/services/generated/licenseService'
 
 export function useLicenses() {
-  const licenses = ref<any[]>([])
-  const selectedLicense = ref<any | null>(null)
+  const licenses = ref<License[]>([])
+  const selectedLicense = ref<License | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

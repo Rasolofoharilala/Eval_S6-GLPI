@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getActionfields } from '@/services/generated/actionfieldService'
+import type { RuleActionField } from '@/services/generated/actionfieldService'
 
 export function useActionfields() {
-  const actionfields = ref<any[]>([])
-  const selectedActionfield = ref<any | null>(null)
+  const actionfields = ref<RuleActionField[]>([])
+  const selectedActionfield = ref<RuleActionField | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { DenyList } from '@/types/generated'
 
-export const getDenylists = () => getAll(ENDPOINTS.DROPDOWNS_DENYLIST)
+export type { DenyList } from '@/types/generated'
 
-export const getDenylistById = (id: number) => getById(ENDPOINTS.DROPDOWNS_DENYLIST, id)
+export const getDenylists = () => getAll<DenyList>(ENDPOINTS.DROPDOWNS_DENYLIST)
+
+export const getDenylistById = (id: number) => getById<DenyList>(ENDPOINTS.DROPDOWNS_DENYLIST, id)

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getRacks, getRackById } from '@/services/generated/rackService'
+import type { Rack } from '@/services/generated/rackService'
 
 export function useRacks() {
-  const racks = ref<any[]>([])
-  const selectedRack = ref<any | null>(null)
+  const racks = ref<Rack[]>([])
+  const selectedRack = ref<Rack | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

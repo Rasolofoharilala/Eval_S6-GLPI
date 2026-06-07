@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { SLALevel } from '@/types/generated'
 
-export const getSlalevels = () => getAll(ENDPOINTS.SETUP_SLALEVEL)
+export type { SLALevel } from '@/types/generated'
 
-export const getSlalevelById = (id: number) => getById(ENDPOINTS.SETUP_SLALEVEL, id)
+export const getSlalevels = () => getAll<SLALevel>(ENDPOINTS.SETUP_SLALEVEL)
+
+export const getSlalevelById = (id: number) => getById<SLALevel>(ENDPOINTS.SETUP_SLALEVEL, id)

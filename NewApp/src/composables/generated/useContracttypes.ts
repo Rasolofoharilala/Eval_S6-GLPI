@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getContracttypes, getContracttypeById } from '@/services/generated/contracttypeService'
+import type { ContractType } from '@/services/generated/contracttypeService'
 
 export function useContracttypes() {
-  const contracttypes = ref<any[]>([])
-  const selectedContracttype = ref<any | null>(null)
+  const contracttypes = ref<ContractType[]>([])
+  const selectedContracttype = ref<ContractType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

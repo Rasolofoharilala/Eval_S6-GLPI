@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPhones, getPhoneById } from '@/services/generated/phoneService'
+import type { Phone } from '@/services/generated/phoneService'
 
 export function usePhones() {
-  const phones = ref<any[]>([])
-  const selectedPhone = ref<any | null>(null)
+  const phones = ref<Phone[]>([])
+  const selectedPhone = ref<Phone | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -6,10 +6,11 @@ import {
   getCalendarclosetimes,
   getCalendarclosetimeById,
 } from '@/services/generated/calendarclosetimeService'
+import type { CloseTime } from '@/services/generated/calendarclosetimeService'
 
 export function useCalendarclosetimes() {
-  const calendarclosetimes = ref<any[]>([])
-  const selectedCalendarclosetime = ref<any | null>(null)
+  const calendarclosetimes = ref<CloseTime[]>([])
+  const selectedCalendarclosetime = ref<CloseTime | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -6,10 +6,11 @@ import {
   getRecurringtickets,
   getRecurringticketById,
 } from '@/services/generated/recurringticketService'
+import type { RecurringTicket } from '@/services/generated/recurringticketService'
 
 export function useRecurringtickets() {
-  const recurringtickets = ref<any[]>([])
-  const selectedRecurringticket = ref<any | null>(null)
+  const recurringtickets = ref<RecurringTicket[]>([])
+  const selectedRecurringticket = ref<RecurringTicket | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

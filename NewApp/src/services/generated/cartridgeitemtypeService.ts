@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { CartridgeItemType } from '@/types/generated'
 
-export const getCartridgeitemtypes = () => getAll(ENDPOINTS.DROPDOWNS_CARTRIDGEITEMTYPE)
+export type { CartridgeItemType } from '@/types/generated'
+
+export const getCartridgeitemtypes = () =>
+  getAll<CartridgeItemType>(ENDPOINTS.DROPDOWNS_CARTRIDGEITEMTYPE)
 
 export const getCartridgeitemtypeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_CARTRIDGEITEMTYPE, id)
+  getById<CartridgeItemType>(ENDPOINTS.DROPDOWNS_CARTRIDGEITEMTYPE, id)

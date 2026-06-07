@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSoftwares, getSoftwareById } from '@/services/generated/softwareService'
+import type { Software } from '@/services/generated/softwareService'
 
 export function useSoftwares() {
-  const softwares = ref<any[]>([])
-  const selectedSoftware = ref<any | null>(null)
+  const softwares = ref<Software[]>([])
+  const selectedSoftware = ref<Software | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getProfiles, getProfileById } from '@/services/generated/profileService'
+import type { Profile } from '@/services/generated/profileService'
 
 export function useProfiles() {
-  const profiles = ref<any[]>([])
-  const selectedProfile = ref<any | null>(null)
+  const profiles = ref<Profile[]>([])
+  const selectedProfile = ref<Profile | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

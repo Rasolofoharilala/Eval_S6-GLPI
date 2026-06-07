@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPdus, getPduById } from '@/services/generated/pduService'
+import type { PDU } from '@/services/generated/pduService'
 
 export function usePdus() {
-  const pdus = ref<any[]>([])
-  const selectedPdu = ref<any | null>(null)
+  const pdus = ref<PDU[]>([])
+  const selectedPdu = ref<PDU | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

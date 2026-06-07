@@ -6,10 +6,11 @@ import {
   getPhonepowersupplies,
   getPhonepowersupplyById,
 } from '@/services/generated/phonepowersupplyService'
+import type { PhonePowerSupply } from '@/services/generated/phonepowersupplyService'
 
 export function usePhonepowersupplies() {
-  const phonepowersupplies = ref<any[]>([])
-  const selectedPhonepowersupply = ref<any | null>(null)
+  const phonepowersupplies = ref<PhonePowerSupply[]>([])
+  const selectedPhonepowersupply = ref<PhonePowerSupply | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

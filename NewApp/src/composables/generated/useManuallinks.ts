@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getManuallinks, getManuallinkById } from '@/services/generated/manuallinkService'
+import type { ManualLink } from '@/services/generated/manuallinkService'
 
 export function useManuallinks() {
-  const manuallinks = ref<any[]>([])
-  const selectedManuallink = ref<any | null>(null)
+  const manuallinks = ref<ManualLink[]>([])
+  const selectedManuallink = ref<ManualLink | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

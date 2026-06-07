@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { SoundCard } from '@/types/generated'
 
-export const getSoundcards = () => getAll(ENDPOINTS.COMPONENTS_SOUNDCARD)
+export type { SoundCard } from '@/types/generated'
 
-export const getSoundcardById = (id: number) => getById(ENDPOINTS.COMPONENTS_SOUNDCARD, id)
+export const getSoundcards = () => getAll<SoundCard>(ENDPOINTS.COMPONENTS_SOUNDCARD)
+
+export const getSoundcardById = (id: number) =>
+  getById<SoundCard>(ENDPOINTS.COMPONENTS_SOUNDCARD, id)

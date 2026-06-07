@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getMonitors, getMonitorById } from '@/services/generated/monitorService'
+import type { Monitor } from '@/services/generated/monitorService'
 
 export function useMonitors() {
-  const monitors = ref<any[]>([])
-  const selectedMonitor = ref<any | null>(null)
+  const monitors = ref<Monitor[]>([])
+  const selectedMonitor = ref<Monitor | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

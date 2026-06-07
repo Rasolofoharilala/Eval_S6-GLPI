@@ -6,10 +6,11 @@ import {
   getNetworkequipmenttypes,
   getNetworkequipmenttypeById,
 } from '@/services/generated/networkequipmenttypeService'
+import type { NetworkEquipmentType } from '@/services/generated/networkequipmenttypeService'
 
 export function useNetworkequipmenttypes() {
-  const networkequipmenttypes = ref<any[]>([])
-  const selectedNetworkequipmenttype = ref<any | null>(null)
+  const networkequipmenttypes = ref<NetworkEquipmentType[]>([])
+  const selectedNetworkequipmenttype = ref<NetworkEquipmentType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -6,10 +6,11 @@ import {
   getApprovalsubstitutes,
   getApprovalsubstituteById,
 } from '@/services/generated/approvalsubstituteService'
+import type { ApprovalSubstitute } from '@/services/generated/approvalsubstituteService'
 
 export function useApprovalsubstitutes() {
-  const approvalsubstitutes = ref<any[]>([])
-  const selectedApprovalsubstitute = ref<any | null>(null)
+  const approvalsubstitutes = ref<ApprovalSubstitute[]>([])
+  const selectedApprovalsubstitute = ref<ApprovalSubstitute | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

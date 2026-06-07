@@ -6,10 +6,11 @@ import {
   getApplianceenvironments,
   getApplianceenvironmentById,
 } from '@/services/generated/applianceenvironmentService'
+import type { ApplianceEnvironment } from '@/services/generated/applianceenvironmentService'
 
 export function useApplianceenvironments() {
-  const applianceenvironments = ref<any[]>([])
-  const selectedApplianceenvironment = ref<any | null>(null)
+  const applianceenvironments = ref<ApplianceEnvironment[]>([])
+  const selectedApplianceenvironment = ref<ApplianceEnvironment | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

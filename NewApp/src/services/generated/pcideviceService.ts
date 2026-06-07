@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { PCIDevice } from '@/types/generated'
 
-export const getPcidevices = () => getAll(ENDPOINTS.COMPONENTS_PCIDEVICE)
+export type { PCIDevice } from '@/types/generated'
 
-export const getPcideviceById = (id: number) => getById(ENDPOINTS.COMPONENTS_PCIDEVICE, id)
+export const getPcidevices = () => getAll<PCIDevice>(ENDPOINTS.COMPONENTS_PCIDEVICE)
+
+export const getPcideviceById = (id: number) =>
+  getById<PCIDevice>(ENDPOINTS.COMPONENTS_PCIDEVICE, id)

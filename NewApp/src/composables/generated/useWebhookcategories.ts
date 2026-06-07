@@ -6,10 +6,11 @@ import {
   getWebhookcategories,
   getWebhookcategoryById,
 } from '@/services/generated/webhookcategoryService'
+import type { WebhookCategory } from '@/services/generated/webhookcategoryService'
 
 export function useWebhookcategories() {
-  const webhookcategories = ref<any[]>([])
-  const selectedWebhookcategory = ref<any | null>(null)
+  const webhookcategories = ref<WebhookCategory[]>([])
+  const selectedWebhookcategory = ref<WebhookCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

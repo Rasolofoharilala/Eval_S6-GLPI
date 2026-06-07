@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ITILCategory } from '@/types/generated'
 
-export const getItilcategories = () => getAll(ENDPOINTS.DROPDOWNS_ITILCATEGORY)
+export type { ITILCategory } from '@/types/generated'
 
-export const getItilcategoryById = (id: number) => getById(ENDPOINTS.DROPDOWNS_ITILCATEGORY, id)
+export const getItilcategories = () => getAll<ITILCategory>(ENDPOINTS.DROPDOWNS_ITILCATEGORY)
+
+export const getItilcategoryById = (id: number) =>
+  getById<ITILCategory>(ENDPOINTS.DROPDOWNS_ITILCATEGORY, id)

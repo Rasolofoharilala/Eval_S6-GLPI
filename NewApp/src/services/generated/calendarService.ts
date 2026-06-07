@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Calendar } from '@/types/generated'
 
-export const getCalendars = () => getAll(ENDPOINTS.DROPDOWNS_CALENDAR)
+export type { Calendar } from '@/types/generated'
 
-export const getCalendarById = (id: number) => getById(ENDPOINTS.DROPDOWNS_CALENDAR, id)
+export const getCalendars = () => getAll<Calendar>(ENDPOINTS.DROPDOWNS_CALENDAR)
+
+export const getCalendarById = (id: number) => getById<Calendar>(ENDPOINTS.DROPDOWNS_CALENDAR, id)

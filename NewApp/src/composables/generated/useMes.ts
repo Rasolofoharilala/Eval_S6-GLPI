@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getMes } from '@/services/generated/meService'
+import type { User } from '@/services/generated/meService'
 
 export function useMes() {
-  const mes = ref<any[]>([])
-  const selectedMe = ref<any | null>(null)
+  const mes = ref<User[]>([])
+  const selectedMe = ref<User | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -6,10 +6,11 @@ import {
   getEmailauthservers,
   getEmailauthserverById,
 } from '@/services/generated/emailauthserverService'
+import type { EmailAuthServer } from '@/services/generated/emailauthserverService'
 
 export function useEmailauthservers() {
-  const emailauthservers = ref<any[]>([])
-  const selectedEmailauthserver = ref<any | null>(null)
+  const emailauthservers = ref<EmailAuthServer[]>([])
+  const selectedEmailauthserver = ref<EmailAuthServer | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

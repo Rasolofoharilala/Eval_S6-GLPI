@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getItemplugs, getItemPlugById } from '@/services/generated/itemPlugService'
+import type { ItemPlug } from '@/services/generated/itemPlugService'
 
 export function useItemplugs() {
-  const itemplugs = ref<any[]>([])
-  const selectedItemplug = ref<any | null>(null)
+  const itemplugs = ref<ItemPlug[]>([])
+  const selectedItemplug = ref<ItemPlug | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Drive } from '@/types/generated'
 
-export const getDrives = () => getAll(ENDPOINTS.COMPONENTS_DRIVE)
+export type { Drive } from '@/types/generated'
 
-export const getDriveById = (id: number) => getById(ENDPOINTS.COMPONENTS_DRIVE, id)
+export const getDrives = () => getAll<Drive>(ENDPOINTS.COMPONENTS_DRIVE)
+
+export const getDriveById = (id: number) => getById<Drive>(ENDPOINTS.COMPONENTS_DRIVE, id)

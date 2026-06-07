@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { DeniedMailContent } from '@/types/generated'
 
-export const getDeniedmailcontents = () => getAll(ENDPOINTS.DROPDOWNS_DENIEDMAILCONTENT)
+export type { DeniedMailContent } from '@/types/generated'
+
+export const getDeniedmailcontents = () =>
+  getAll<DeniedMailContent>(ENDPOINTS.DROPDOWNS_DENIEDMAILCONTENT)
 
 export const getDeniedmailcontentById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_DENIEDMAILCONTENT, id)
+  getById<DeniedMailContent>(ENDPOINTS.DROPDOWNS_DENIEDMAILCONTENT, id)

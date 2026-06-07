@@ -3,5 +3,9 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ITILStats } from '@/types/generated'
 
-export const getCharacteristicslist = () => getAll(ENDPOINTS.ASSISTANCE_STAT_TICKET_CHARACTERISTICS)
+export type { ITILStats } from '@/types/generated'
+
+export const getCharacteristicslist = () =>
+  getAll<ITILStats>(ENDPOINTS.ASSISTANCE_STAT_TICKET_CHARACTERISTICS)

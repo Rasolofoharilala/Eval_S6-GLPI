@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCameras, getCameraById } from '@/services/generated/cameraService'
+import type { Camera } from '@/services/generated/cameraService'
 
 export function useCameras() {
-  const cameras = ref<any[]>([])
-  const selectedCamera = ref<any | null>(null)
+  const cameras = ref<Camera[]>([])
+  const selectedCamera = ref<Camera | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

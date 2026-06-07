@@ -6,10 +6,11 @@ import {
   getValidationtemplates,
   getValidationtemplateById,
 } from '@/services/generated/validationtemplateService'
+import type { ValidationTemplate } from '@/services/generated/validationtemplateService'
 
 export function useValidationtemplates() {
-  const validationtemplates = ref<any[]>([])
-  const selectedValidationtemplate = ref<any | null>(null)
+  const validationtemplates = ref<ValidationTemplate[]>([])
+  const selectedValidationtemplate = ref<ValidationTemplate | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getReminders, getReminderById } from '@/services/generated/reminderService'
+import type { Reminder } from '@/services/generated/reminderService'
 
 export function useReminders() {
-  const reminders = ref<any[]>([])
-  const selectedReminder = ref<any | null>(null)
+  const reminders = ref<Reminder[]>([])
+  const selectedReminder = ref<Reminder | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

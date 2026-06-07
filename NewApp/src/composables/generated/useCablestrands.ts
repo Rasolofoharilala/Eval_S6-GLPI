@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCablestrands, getCablestrandById } from '@/services/generated/cablestrandService'
+import type { CableStrand } from '@/services/generated/cablestrandService'
 
 export function useCablestrands() {
-  const cablestrands = ref<any[]>([])
-  const selectedCablestrand = ref<any | null>(null)
+  const cablestrands = ref<CableStrand[]>([])
+  const selectedCablestrand = ref<CableStrand | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

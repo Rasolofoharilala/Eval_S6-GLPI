@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSolutiontypes, getSolutiontypeById } from '@/services/generated/solutiontypeService'
+import type { SolutionType } from '@/services/generated/solutiontypeService'
 
 export function useSolutiontypes() {
-  const solutiontypes = ref<any[]>([])
-  const selectedSolutiontype = ref<any | null>(null)
+  const solutiontypes = ref<SolutionType[]>([])
+  const selectedSolutiontype = ref<SolutionType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { WifiNetwork } from '@/types/generated'
 
-export const getWifinetworks = () => getAll(ENDPOINTS.DROPDOWNS_WIFINETWORK)
+export type { WifiNetwork } from '@/types/generated'
 
-export const getWifinetworkById = (id: number) => getById(ENDPOINTS.DROPDOWNS_WIFINETWORK, id)
+export const getWifinetworks = () => getAll<WifiNetwork>(ENDPOINTS.DROPDOWNS_WIFINETWORK)
+
+export const getWifinetworkById = (id: number) =>
+  getById<WifiNetwork>(ENDPOINTS.DROPDOWNS_WIFINETWORK, id)

@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Software } from '@/types/generated'
 
-export const getSoftwares = () => getAll(ENDPOINTS.ASSETS_SOFTWARE)
+export type { Software } from '@/types/generated'
 
-export const getSoftwareById = (id: number) => getById(ENDPOINTS.ASSETS_SOFTWARE, id)
+export const getSoftwares = () => getAll<Software>(ENDPOINTS.ASSETS_SOFTWARE)
+
+export const getSoftwareById = (id: number) => getById<Software>(ENDPOINTS.ASSETS_SOFTWARE, id)

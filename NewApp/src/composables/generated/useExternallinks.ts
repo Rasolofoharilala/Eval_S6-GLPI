@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getExternallinks, getExternallinkById } from '@/services/generated/externallinkService'
+import type { ExternalLink } from '@/services/generated/externallinkService'
 
 export function useExternallinks() {
-  const externallinks = ref<any[]>([])
-  const selectedExternallink = ref<any | null>(null)
+  const externallinks = ref<ExternalLink[]>([])
+  const selectedExternallink = ref<ExternalLink | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

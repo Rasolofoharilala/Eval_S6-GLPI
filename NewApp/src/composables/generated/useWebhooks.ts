@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getWebhooks, getWebhookById } from '@/services/generated/webhookService'
+import type { Webhook } from '@/services/generated/webhookService'
 
 export function useWebhooks() {
-  const webhooks = ref<any[]>([])
-  const selectedWebhook = ref<any | null>(null)
+  const webhooks = ref<Webhook[]>([])
+  const selectedWebhook = ref<Webhook | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

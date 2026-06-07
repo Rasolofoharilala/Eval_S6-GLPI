@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getHarddrives, getHarddriveById } from '@/services/generated/harddriveService'
+import type { HardDrive } from '@/services/generated/harddriveService'
 
 export function useHarddrives() {
-  const harddrives = ref<any[]>([])
-  const selectedHarddrive = ref<any | null>(null)
+  const harddrives = ref<HardDrive[]>([])
+  const selectedHarddrive = ref<HardDrive | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

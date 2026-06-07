@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPcidevices, getPcideviceById } from '@/services/generated/pcideviceService'
+import type { PCIDevice } from '@/services/generated/pcideviceService'
 
 export function usePcidevices() {
-  const pcidevices = ref<any[]>([])
-  const selectedPcidevice = ref<any | null>(null)
+  const pcidevices = ref<PCIDevice[]>([])
+  const selectedPcidevice = ref<PCIDevice | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

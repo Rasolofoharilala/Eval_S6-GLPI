@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getArticles } from '@/services/generated/articleService'
+import type { KBArticle } from '@/services/generated/articleService'
 
 export function useArticles() {
-  const articles = ref<any[]>([])
-  const selectedArticle = ref<any | null>(null)
+  const articles = ref<KBArticle[]>([])
+  const selectedArticle = ref<KBArticle | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

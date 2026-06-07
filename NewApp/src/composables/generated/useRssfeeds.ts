@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getRssfeeds, getRssfeedById } from '@/services/generated/rssfeedService'
+import type { RSSFeed } from '@/services/generated/rssfeedService'
 
 export function useRssfeeds() {
-  const rssfeeds = ref<any[]>([])
-  const selectedRssfeed = ref<any | null>(null)
+  const rssfeeds = ref<RSSFeed[]>([])
+  const selectedRssfeed = ref<RSSFeed | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

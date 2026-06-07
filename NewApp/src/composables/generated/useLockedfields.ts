@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getLockedfields, getLockedfieldById } from '@/services/generated/lockedfieldService'
+import type { LockedField } from '@/services/generated/lockedfieldService'
 
 export function useLockedfields() {
-  const lockedfields = ref<any[]>([])
-  const selectedLockedfield = ref<any | null>(null)
+  const lockedfields = ref<LockedField[]>([])
+  const selectedLockedfield = ref<LockedField | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

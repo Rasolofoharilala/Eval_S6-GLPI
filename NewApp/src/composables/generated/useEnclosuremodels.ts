@@ -6,10 +6,11 @@ import {
   getEnclosuremodels,
   getEnclosuremodelById,
 } from '@/services/generated/enclosuremodelService'
+import type { EnclosureModel } from '@/services/generated/enclosuremodelService'
 
 export function useEnclosuremodels() {
-  const enclosuremodels = ref<any[]>([])
-  const selectedEnclosuremodel = ref<any | null>(null)
+  const enclosuremodels = ref<EnclosureModel[]>([])
+  const selectedEnclosuremodel = ref<EnclosureModel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

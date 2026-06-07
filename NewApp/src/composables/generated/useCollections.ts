@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getCollections } from '@/services/generated/collectionService'
 
 export function useCollections() {
-  const collections = ref<any[]>([])
-  const selectedCollection = ref<any | null>(null)
+  const collections = ref<unknown[]>([])
+  const selectedCollection = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

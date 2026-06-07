@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getBatteries, getBatteryById } from '@/services/generated/batteryService'
+import type { Battery } from '@/services/generated/batteryService'
 
 export function useBatteries() {
-  const batteries = ref<any[]>([])
-  const selectedBattery = ref<any | null>(null)
+  const batteries = ref<Battery[]>([])
+  const selectedBattery = ref<Battery | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

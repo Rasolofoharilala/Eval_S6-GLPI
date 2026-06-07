@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getOlalevels, getOlalevelById } from '@/services/generated/olalevelService'
+import type { OLALevel } from '@/services/generated/olalevelService'
 
 export function useOlalevels() {
-  const olalevels = ref<any[]>([])
-  const selectedOlalevel = ref<any | null>(null)
+  const olalevels = ref<OLALevel[]>([])
+  const selectedOlalevel = ref<OLALevel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

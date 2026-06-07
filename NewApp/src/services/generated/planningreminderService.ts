@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { PlanningReminder } from '@/types/generated'
 
-export const getPlanningreminders = () => getAll(ENDPOINTS.ASSISTANCE_PLANNINGREMINDER)
+export type { PlanningReminder } from '@/types/generated'
+
+export const getPlanningreminders = () =>
+  getAll<PlanningReminder>(ENDPOINTS.ASSISTANCE_PLANNINGREMINDER)
 
 export const getPlanningreminderById = (id: number) =>
-  getById(ENDPOINTS.ASSISTANCE_PLANNINGREMINDER, id)
+  getById<PlanningReminder>(ENDPOINTS.ASSISTANCE_PLANNINGREMINDER, id)

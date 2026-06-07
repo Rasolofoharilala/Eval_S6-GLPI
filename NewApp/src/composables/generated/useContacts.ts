@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getContacts, getContactById } from '@/services/generated/contactService'
+import type { Contact } from '@/services/generated/contactService'
 
 export function useContacts() {
-  const contacts = ref<any[]>([])
-  const selectedContact = ref<any | null>(null)
+  const contacts = ref<Contact[]>([])
+  const selectedContact = ref<Contact | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

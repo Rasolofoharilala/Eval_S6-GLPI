@@ -6,10 +6,11 @@ import {
   getDocumentcategories,
   getDocumentcategoryById,
 } from '@/services/generated/documentcategoryService'
+import type { DocumentCategory } from '@/services/generated/documentcategoryService'
 
 export function useDocumentcategories() {
-  const documentcategories = ref<any[]>([])
-  const selectedDocumentcategory = ref<any | null>(null)
+  const documentcategories = ref<DocumentCategory[]>([])
+  const selectedDocumentcategory = ref<DocumentCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

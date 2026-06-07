@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { SLM } from '@/types/generated'
 
-export const getSlms = () => getAll(ENDPOINTS.SETUP_SLM)
+export type { SLM } from '@/types/generated'
 
-export const getSlmById = (id: number) => getById(ENDPOINTS.SETUP_SLM, id)
+export const getSlms = () => getAll<SLM>(ENDPOINTS.SETUP_SLM)
+
+export const getSlmById = (id: number) => getById<SLM>(ENDPOINTS.SETUP_SLM, id)

@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { RecurringTicket } from '@/types/generated'
 
-export const getRecurringtickets = () => getAll(ENDPOINTS.ASSISTANCE_RECURRINGTICKET)
+export type { RecurringTicket } from '@/types/generated'
+
+export const getRecurringtickets = () =>
+  getAll<RecurringTicket>(ENDPOINTS.ASSISTANCE_RECURRINGTICKET)
 
 export const getRecurringticketById = (id: number) =>
-  getById(ENDPOINTS.ASSISTANCE_RECURRINGTICKET, id)
+  getById<RecurringTicket>(ENDPOINTS.ASSISTANCE_RECURRINGTICKET, id)

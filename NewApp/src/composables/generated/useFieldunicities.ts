@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getFieldunicities, getFieldunicityById } from '@/services/generated/fieldunicityService'
+import type { FieldUnicity } from '@/services/generated/fieldunicityService'
 
 export function useFieldunicities() {
-  const fieldunicities = ref<any[]>([])
-  const selectedFieldunicity = ref<any | null>(null)
+  const fieldunicities = ref<FieldUnicity[]>([])
+  const selectedFieldunicity = ref<FieldUnicity | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

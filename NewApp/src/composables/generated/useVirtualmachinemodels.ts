@@ -6,10 +6,11 @@ import {
   getVirtualmachinemodels,
   getVirtualmachinemodelById,
 } from '@/services/generated/virtualmachinemodelService'
+import type { VirtualMachineModel } from '@/services/generated/virtualmachinemodelService'
 
 export function useVirtualmachinemodels() {
-  const virtualmachinemodels = ref<any[]>([])
-  const selectedVirtualmachinemodel = ref<any | null>(null)
+  const virtualmachinemodels = ref<VirtualMachineModel[]>([])
+  const selectedVirtualmachinemodel = ref<VirtualMachineModel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

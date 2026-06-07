@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getLinetypes, getLinetypeById } from '@/services/generated/linetypeService'
+import type { LineType } from '@/services/generated/linetypeService'
 
 export function useLinetypes() {
-  const linetypes = ref<any[]>([])
-  const selectedLinetype = ref<any | null>(null)
+  const linetypes = ref<LineType[]>([])
+  const selectedLinetype = ref<LineType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

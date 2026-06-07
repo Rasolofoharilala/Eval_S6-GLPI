@@ -6,10 +6,11 @@ import {
   getConsumableitemtypes,
   getConsumableitemtypeById,
 } from '@/services/generated/consumableitemtypeService'
+import type { ConsumableItemType } from '@/services/generated/consumableitemtypeService'
 
 export function useConsumableitemtypes() {
-  const consumableitemtypes = ref<any[]>([])
-  const selectedConsumableitemtype = ref<any | null>(null)
+  const consumableitemtypes = ref<ConsumableItemType[]>([])
+  const selectedConsumableitemtype = ref<ConsumableItemType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

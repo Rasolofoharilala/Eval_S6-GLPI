@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { RecurringChange } from '@/types/generated'
 
-export const getRecurringchanges = () => getAll(ENDPOINTS.ASSISTANCE_RECURRINGCHANGE)
+export type { RecurringChange } from '@/types/generated'
+
+export const getRecurringchanges = () =>
+  getAll<RecurringChange>(ENDPOINTS.ASSISTANCE_RECURRINGCHANGE)
 
 export const getRecurringchangeById = (id: number) =>
-  getById(ENDPOINTS.ASSISTANCE_RECURRINGCHANGE, id)
+  getById<RecurringChange>(ENDPOINTS.ASSISTANCE_RECURRINGCHANGE, id)

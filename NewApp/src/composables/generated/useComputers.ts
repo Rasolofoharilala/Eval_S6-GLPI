@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getComputers, getComputerById } from '@/services/generated/computerService'
+import type { Computer } from '@/services/generated/computerService'
 
 export function useComputers() {
-  const computers = ref<any[]>([])
-  const selectedComputer = ref<any | null>(null)
+  const computers = ref<Computer[]>([])
+  const selectedComputer = ref<Computer | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

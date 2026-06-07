@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getConfigs } from '@/services/generated/configService'
+import type { Config } from '@/services/generated/configService'
 
 export function useConfigs() {
-  const configs = ref<any[]>([])
-  const selectedConfig = ref<any | null>(null)
+  const configs = ref<Config[]>([])
+  const selectedConfig = ref<Config | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

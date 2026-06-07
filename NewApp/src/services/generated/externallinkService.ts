@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ExternalLink } from '@/types/generated'
 
-export const getExternallinks = () => getAll(ENDPOINTS.SETUP_EXTERNALLINK)
+export type { ExternalLink } from '@/types/generated'
 
-export const getExternallinkById = (id: number) => getById(ENDPOINTS.SETUP_EXTERNALLINK, id)
+export const getExternallinks = () => getAll<ExternalLink>(ENDPOINTS.SETUP_EXTERNALLINK)
+
+export const getExternallinkById = (id: number) =>
+  getById<ExternalLink>(ENDPOINTS.SETUP_EXTERNALLINK, id)

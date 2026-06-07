@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPhonemodels, getPhonemodelById } from '@/services/generated/phonemodelService'
+import type { PhoneModel } from '@/services/generated/phonemodelService'
 
 export function usePhonemodels() {
-  const phonemodels = ref<any[]>([])
-  const selectedPhonemodel = ref<any | null>(null)
+  const phonemodels = ref<PhoneModel[]>([])
+  const selectedPhonemodel = ref<PhoneModel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

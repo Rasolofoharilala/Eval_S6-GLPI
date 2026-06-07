@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getComputertypes, getComputertypeById } from '@/services/generated/computertypeService'
+import type { ComputerType } from '@/services/generated/computertypeService'
 
 export function useComputertypes() {
-  const computertypes = ref<any[]>([])
-  const selectedComputertype = ref<any | null>(null)
+  const computertypes = ref<ComputerType[]>([])
+  const selectedComputertype = ref<ComputerType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

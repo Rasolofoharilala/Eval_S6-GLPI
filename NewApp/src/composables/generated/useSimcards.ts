@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSimcards, getSimcardById } from '@/services/generated/simcardService'
+import type { SIMCard } from '@/services/generated/simcardService'
 
 export function useSimcards() {
-  const simcards = ref<any[]>([])
-  const selectedSimcard = ref<any | null>(null)
+  const simcards = ref<SIMCard[]>([])
+  const selectedSimcard = ref<SIMCard | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

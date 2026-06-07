@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPlugins } from '@/services/generated/pluginService'
+import type { Plugin } from '@/services/generated/pluginService'
 
 export function usePlugins() {
-  const plugins = ref<any[]>([])
-  const selectedPlugin = ref<any | null>(null)
+  const plugins = ref<Plugin[]>([])
+  const selectedPlugin = ref<Plugin | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

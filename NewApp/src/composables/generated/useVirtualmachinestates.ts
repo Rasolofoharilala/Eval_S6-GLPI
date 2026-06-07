@@ -6,10 +6,11 @@ import {
   getVirtualmachinestates,
   getVirtualmachinestateById,
 } from '@/services/generated/virtualmachinestateService'
+import type { VirtualMachineState } from '@/services/generated/virtualmachinestateService'
 
 export function useVirtualmachinestates() {
-  const virtualmachinestates = ref<any[]>([])
-  const selectedVirtualmachinestate = ref<any | null>(null)
+  const virtualmachinestates = ref<VirtualMachineState[]>([])
+  const selectedVirtualmachinestate = ref<VirtualMachineState | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

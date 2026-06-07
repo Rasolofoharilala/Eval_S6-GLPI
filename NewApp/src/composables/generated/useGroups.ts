@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getGroups, getGroupById } from '@/services/generated/groupService'
+import type { Group } from '@/services/generated/groupService'
 
 export function useGroups() {
-  const groups = ref<any[]>([])
-  const selectedGroup = ref<any | null>(null)
+  const groups = ref<Group[]>([])
+  const selectedGroup = ref<Group | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

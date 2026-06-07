@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getUnmanageds, getUnmanagedById } from '@/services/generated/unmanagedService'
+import type { Unmanaged } from '@/services/generated/unmanagedService'
 
 export function useUnmanageds() {
-  const unmanageds = ref<any[]>([])
-  const selectedUnmanaged = ref<any | null>(null)
+  const unmanageds = ref<Unmanaged[]>([])
+  const selectedUnmanaged = ref<Unmanaged | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

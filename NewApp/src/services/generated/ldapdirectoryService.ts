@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { LDAPDirectory } from '@/types/generated'
 
-export const getLdapdirectories = () => getAll(ENDPOINTS.SETUP_LDAPDIRECTORY)
+export type { LDAPDirectory } from '@/types/generated'
 
-export const getLdapdirectoryById = (id: number) => getById(ENDPOINTS.SETUP_LDAPDIRECTORY, id)
+export const getLdapdirectories = () => getAll<LDAPDirectory>(ENDPOINTS.SETUP_LDAPDIRECTORY)
+
+export const getLdapdirectoryById = (id: number) =>
+  getById<LDAPDirectory>(ENDPOINTS.SETUP_LDAPDIRECTORY, id)

@@ -6,10 +6,11 @@ import {
   getCalendartimeranges,
   getCalendartimerangeById,
 } from '@/services/generated/calendartimerangeService'
+import type { CalendarTimeRange } from '@/services/generated/calendartimerangeService'
 
 export function useCalendartimeranges() {
-  const calendartimeranges = ref<any[]>([])
-  const selectedCalendartimerange = ref<any | null>(null)
+  const calendartimeranges = ref<CalendarTimeRange[]>([])
+  const selectedCalendartimerange = ref<CalendarTimeRange | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

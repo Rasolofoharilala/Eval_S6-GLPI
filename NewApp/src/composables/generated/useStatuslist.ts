@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getStatuslist } from '@/services/generated/statusService'
 
 export function useStatuslist() {
-  const statuslist = ref<any[]>([])
-  const selectedStatus = ref<any | null>(null)
+  const statuslist = ref<unknown[]>([])
+  const selectedStatus = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

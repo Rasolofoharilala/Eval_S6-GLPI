@@ -6,10 +6,11 @@ import {
   getNetworkporttypes,
   getNetworkporttypeById,
 } from '@/services/generated/networkporttypeService'
+import type { NetworkPortType } from '@/services/generated/networkporttypeService'
 
 export function useNetworkporttypes() {
-  const networkporttypes = ref<any[]>([])
-  const selectedNetworkporttype = ref<any | null>(null)
+  const networkporttypes = ref<NetworkPortType[]>([])
+  const selectedNetworkporttype = ref<NetworkPortType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSockets, getSocketById } from '@/services/generated/socketService'
+import type { Socket } from '@/services/generated/socketService'
 
 export function useSockets() {
-  const sockets = ref<any[]>([])
-  const selectedSocket = ref<any | null>(null)
+  const sockets = ref<Socket[]>([])
+  const selectedSocket = ref<Socket | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

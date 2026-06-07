@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { CertificateType } from '@/types/generated'
 
-export const getCertificatetypes = () => getAll(ENDPOINTS.DROPDOWNS_CERTIFICATETYPE)
+export type { CertificateType } from '@/types/generated'
+
+export const getCertificatetypes = () =>
+  getAll<CertificateType>(ENDPOINTS.DROPDOWNS_CERTIFICATETYPE)
 
 export const getCertificatetypeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_CERTIFICATETYPE, id)
+  getById<CertificateType>(ENDPOINTS.DROPDOWNS_CERTIFICATETYPE, id)

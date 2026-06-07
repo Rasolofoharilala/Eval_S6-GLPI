@@ -7,73 +7,46 @@
     <div>
       <h2>Parc Informatique</h2>
 
-      <input
-        type="file"
-        accept=".csv"
-        @change="handleFileChange"
-      >
+      <input type="file" accept=".csv" @change="handleFileChange" />
     </div>
 
     <div>
       <h2>Aperçu</h2>
 
-      <p v-if="selectedFileName">
-        Fichier sélectionné : {{ selectedFileName }}
-      </p>
+      <p v-if="selectedFileName">Fichier sélectionné : {{ selectedFileName }}</p>
 
-      <p v-else>
-        Aucun fichier sélectionné.
-      </p>
+      <p v-else>Aucun fichier sélectionné.</p>
 
-      <p v-if="csvRows.length > 0">
-        {{ csvRows.length }} ligne(s) détectée(s).
-      </p>
+      <p v-if="csvRows.length > 0">{{ csvRows.length }} ligne(s) détectée(s).</p>
 
       <ul v-if="csvRows.length > 0">
-        <li
-          v-for="row in csvRows"
-          :key="row.inventory_number"
-        >
+        <li v-for="row in csvRows" :key="row.inventory_number">
           {{ row.name }} — {{ row.item_type }} — {{ row.inventory_number }}
         </li>
       </ul>
     </div>
 
     <div>
-      <button
-        type="button"
-        :disabled="csvRows.length === 0 || loading"
-        @click="handleImport"
-      >
+      <button type="button" :disabled="csvRows.length === 0 || loading" @click="handleImport">
         {{ loading ? 'Importation...' : 'Importer' }}
       </button>
     </div>
 
     <div v-if="importResults.length > 0">
-  <h2>Résultats</h2>
+      <h2>Résultats</h2>
 
-  <ul>
-    <li
-      v-for="result in importResults"
-      :key="result.name"
-    >
-      <strong>{{ result.name }}</strong>
+      <ul>
+        <li v-for="result in importResults" :key="result.name">
+          <strong>{{ result.name }}</strong>
 
-      <span v-if="result.skipped">
-        — Déjà existant, ignoré
-      </span>
+          <span v-if="result.skipped"> — Déjà existant, ignoré </span>
 
-      <span v-else-if="result.success">
-        — Importé
-      </span>
+          <span v-else-if="result.success"> — Importé </span>
 
-      <span v-else>
-        — Erreur : {{ result.error }}
-      </span>
-    </li>
-  </ul>
-</div>
-
+          <span v-else> — Erreur : {{ result.error }} </span>
+        </li>
+      </ul>
+    </div>
   </main>
 </template>
 
@@ -84,10 +57,7 @@ import AppSidebar from '@/components/layout/AppSidebar.vue'
 import { parseCsvFile } from '@/services/csv/csvParser'
 import { importAssetRows } from '@/services/import/assetImportService'
 
-import type {
-  AssetCsvRow,
-  ImportResult,
-} from '@/services/import/assetImportTypes'
+import type { AssetCsvRow, ImportResult } from '@/services/import/assetImportTypes'
 
 const selectedFileName = ref('')
 const csvRows = ref<AssetCsvRow[]>([])
@@ -137,5 +107,4 @@ async function handleImport() {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

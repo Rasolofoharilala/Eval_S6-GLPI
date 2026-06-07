@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCabletypes, getCabletypeById } from '@/services/generated/cabletypeService'
+import type { CableType } from '@/services/generated/cabletypeService'
 
 export function useCabletypes() {
-  const cabletypes = ref<any[]>([])
-  const selectedCabletype = ref<any | null>(null)
+  const cabletypes = ref<CableType[]>([])
+  const selectedCabletype = ref<CableType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

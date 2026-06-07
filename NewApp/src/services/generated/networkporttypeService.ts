@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { NetworkPortType } from '@/types/generated'
 
-export const getNetworkporttypes = () => getAll(ENDPOINTS.DROPDOWNS_NETWORKPORTTYPE)
+export type { NetworkPortType } from '@/types/generated'
+
+export const getNetworkporttypes = () =>
+  getAll<NetworkPortType>(ENDPOINTS.DROPDOWNS_NETWORKPORTTYPE)
 
 export const getNetworkporttypeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_NETWORKPORTTYPE, id)
+  getById<NetworkPortType>(ENDPOINTS.DROPDOWNS_NETWORKPORTTYPE, id)

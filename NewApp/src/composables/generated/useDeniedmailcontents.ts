@@ -6,10 +6,11 @@ import {
   getDeniedmailcontents,
   getDeniedmailcontentById,
 } from '@/services/generated/deniedmailcontentService'
+import type { DeniedMailContent } from '@/services/generated/deniedmailcontentService'
 
 export function useDeniedmailcontents() {
-  const deniedmailcontents = ref<any[]>([])
-  const selectedDeniedmailcontent = ref<any | null>(null)
+  const deniedmailcontents = ref<DeniedMailContent[]>([])
+  const selectedDeniedmailcontent = ref<DeniedMailContent | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

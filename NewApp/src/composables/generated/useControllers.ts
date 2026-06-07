@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getControllers, getControllerById } from '@/services/generated/controllerService'
+import type { Controller } from '@/services/generated/controllerService'
 
 export function useControllers() {
-  const controllers = ref<any[]>([])
-  const selectedController = ref<any | null>(null)
+  const controllers = ref<Controller[]>([])
+  const selectedController = ref<Controller | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

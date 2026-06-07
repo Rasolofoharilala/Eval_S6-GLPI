@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Change } from '@/types/generated'
 
-export const getChanges = () => getAll(ENDPOINTS.ASSISTANCE_CHANGE)
+export type { Change } from '@/types/generated'
 
-export const getChangeById = (id: number) => getById(ENDPOINTS.ASSISTANCE_CHANGE, id)
+export const getChanges = () => getAll<Change>(ENDPOINTS.ASSISTANCE_CHANGE)
+
+export const getChangeById = (id: number) => getById<Change>(ENDPOINTS.ASSISTANCE_CHANGE, id)

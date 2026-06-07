@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSystemboards, getSystemboardById } from '@/services/generated/systemboardService'
+import type { Systemboard } from '@/services/generated/systemboardService'
 
 export function useSystemboards() {
-  const systemboards = ref<any[]>([])
-  const selectedSystemboard = ref<any | null>(null)
+  const systemboards = ref<Systemboard[]>([])
+  const selectedSystemboard = ref<Systemboard | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

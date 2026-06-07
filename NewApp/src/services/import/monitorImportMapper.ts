@@ -1,12 +1,9 @@
-import type {
-  AssetCsvRow,
-  GlpiRelation,
-  MonitorImportPayload,
-} from './assetImportTypes'
+import type { MonitorInput } from '@/types/generated'
+import type { AssetCsvRow } from './assetImportTypes'
 import { ensureReferenceByName } from './glpiEnsureService'
 import { referenceConfig } from './glpiReferenceConfig'
 
-function toRelation(id?: number | null): GlpiRelation | undefined {
+function toRelation(id?: number | null) {
   if (!id) {
     return undefined
   }
@@ -16,9 +13,7 @@ function toRelation(id?: number | null): GlpiRelation | undefined {
   }
 }
 
-export async function mapCsvRowToMonitorPayload(
-  row: AssetCsvRow,
-): Promise<MonitorImportPayload> {
+export async function mapCsvRowToMonitorInput(row: AssetCsvRow): Promise<MonitorInput> {
   const status = await ensureReferenceByName(
     referenceConfig.status.endpoint,
     row.status,

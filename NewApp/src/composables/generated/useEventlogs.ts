@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getEventlogs, getEventlogById } from '@/services/generated/eventlogService'
+import type { EventLog } from '@/services/generated/eventlogService'
 
 export function useEventlogs() {
-  const eventlogs = ref<any[]>([])
-  const selectedEventlog = ref<any | null>(null)
+  const eventlogs = ref<EventLog[]>([])
+  const selectedEventlog = ref<EventLog | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

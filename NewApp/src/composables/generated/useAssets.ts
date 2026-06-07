@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getAssets } from '@/services/generated/assetService'
+import type { AssetStats } from '@/services/generated/assetService'
 
 export function useAssets() {
-  const assets = ref<any[]>([])
-  const selectedAsset = ref<any | null>(null)
+  const assets = ref<AssetStats[]>([])
+  const selectedAsset = ref<AssetStats | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

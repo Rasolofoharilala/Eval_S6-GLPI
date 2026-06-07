@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Memory } from '@/types/generated'
 
-export const getMemories = () => getAll(ENDPOINTS.COMPONENTS_MEMORY)
+export type { Memory } from '@/types/generated'
 
-export const getMemoryById = (id: number) => getById(ENDPOINTS.COMPONENTS_MEMORY, id)
+export const getMemories = () => getAll<Memory>(ENDPOINTS.COMPONENTS_MEMORY)
+
+export const getMemoryById = (id: number) => getById<Memory>(ENDPOINTS.COMPONENTS_MEMORY, id)

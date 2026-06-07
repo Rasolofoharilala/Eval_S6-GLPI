@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getWifinetworks, getWifinetworkById } from '@/services/generated/wifinetworkService'
+import type { WifiNetwork } from '@/services/generated/wifinetworkService'
 
 export function useWifinetworks() {
-  const wifinetworks = ref<any[]>([])
-  const selectedWifinetwork = ref<any | null>(null)
+  const wifinetworks = ref<WifiNetwork[]>([])
+  const selectedWifinetwork = ref<WifiNetwork | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPrinters, getPrinterById } from '@/services/generated/printerService'
+import type { Printer } from '@/services/generated/printerService'
 
 export function usePrinters() {
-  const printers = ref<any[]>([])
-  const selectedPrinter = ref<any | null>(null)
+  const printers = ref<Printer[]>([])
+  const selectedPrinter = ref<Printer | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

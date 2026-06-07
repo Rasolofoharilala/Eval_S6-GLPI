@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Socket } from '@/types/generated'
 
-export const getSockets = () => getAll(ENDPOINTS.ASSETS_SOCKET)
+export type { Socket } from '@/types/generated'
 
-export const getSocketById = (id: number) => getById(ENDPOINTS.ASSETS_SOCKET, id)
+export const getSockets = () => getAll<Socket>(ENDPOINTS.ASSETS_SOCKET)
+
+export const getSocketById = (id: number) => getById<Socket>(ENDPOINTS.ASSETS_SOCKET, id)

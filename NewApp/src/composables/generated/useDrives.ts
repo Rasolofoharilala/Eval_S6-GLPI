@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDrives, getDriveById } from '@/services/generated/driveService'
+import type { Drive } from '@/services/generated/driveService'
 
 export function useDrives() {
-  const drives = ref<any[]>([])
-  const selectedDrive = ref<any | null>(null)
+  const drives = ref<Drive[]>([])
+  const selectedDrive = ref<Drive | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

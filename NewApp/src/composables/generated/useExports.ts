@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getExports } from '@/services/generated/exportService'
 
 export function useExports() {
-  const exports = ref<any[]>([])
-  const selectedExport = ref<any | null>(null)
+  const exports = ref<unknown[]>([])
+  const selectedExport = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

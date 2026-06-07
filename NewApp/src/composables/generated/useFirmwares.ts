@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getFirmwares, getFirmwareById } from '@/services/generated/firmwareService'
+import type { Firmware } from '@/services/generated/firmwareService'
 
 export function useFirmwares() {
-  const firmwares = ref<any[]>([])
-  const selectedFirmware = ref<any | null>(null)
+  const firmwares = ref<Firmware[]>([])
+  const selectedFirmware = ref<Firmware | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

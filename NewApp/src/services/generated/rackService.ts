@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Rack } from '@/types/generated'
 
-export const getRacks = () => getAll(ENDPOINTS.ASSETS_RACK)
+export type { Rack } from '@/types/generated'
 
-export const getRackById = (id: number) => getById(ENDPOINTS.ASSETS_RACK, id)
+export const getRacks = () => getAll<Rack>(ENDPOINTS.ASSETS_RACK)
+
+export const getRackById = (id: number) => getById<Rack>(ENDPOINTS.ASSETS_RACK, id)

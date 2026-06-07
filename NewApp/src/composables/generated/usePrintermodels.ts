@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPrintermodels, getPrintermodelById } from '@/services/generated/printermodelService'
+import type { PrinterModel } from '@/services/generated/printermodelService'
 
 export function usePrintermodels() {
-  const printermodels = ref<any[]>([])
-  const selectedPrintermodel = ref<any | null>(null)
+  const printermodels = ref<PrinterModel[]>([])
+  const selectedPrintermodel = ref<PrinterModel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -6,10 +6,11 @@ import {
   getPeripheraltypes,
   getPeripheraltypeById,
 } from '@/services/generated/peripheraltypeService'
+import type { PeripheralType } from '@/services/generated/peripheraltypeService'
 
 export function usePeripheraltypes() {
-  const peripheraltypes = ref<any[]>([])
-  const selectedPeripheraltype = ref<any | null>(null)
+  const peripheraltypes = ref<PeripheralType[]>([])
+  const selectedPeripheraltype = ref<PeripheralType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

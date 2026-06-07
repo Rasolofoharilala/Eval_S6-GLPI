@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getGraphiccards, getGraphiccardById } from '@/services/generated/graphiccardService'
+import type { GraphicCard } from '@/services/generated/graphiccardService'
 
 export function useGraphiccards() {
-  const graphiccards = ref<any[]>([])
-  const selectedGraphiccard = ref<any | null>(null)
+  const graphiccards = ref<GraphicCard[]>([])
+  const selectedGraphiccard = ref<GraphicCard | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

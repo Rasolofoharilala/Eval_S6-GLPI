@@ -3,5 +3,8 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { GlobalStats } from '@/types/generated'
 
-export const getGlobals = () => getAll(ENDPOINTS.ASSISTANCE_STAT_TICKET_GLOBAL)
+export type { GlobalStats } from '@/types/generated'
+
+export const getGlobals = () => getAll<GlobalStats>(ENDPOINTS.ASSISTANCE_STAT_TICKET_GLOBAL)

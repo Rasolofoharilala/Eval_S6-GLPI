@@ -6,10 +6,11 @@ import {
   getDomainrecordtypes,
   getDomainrecordtypeById,
 } from '@/services/generated/domainrecordtypeService'
+import type { DomainRecordType } from '@/services/generated/domainrecordtypeService'
 
 export function useDomainrecordtypes() {
-  const domainrecordtypes = ref<any[]>([])
-  const selectedDomainrecordtype = ref<any | null>(null)
+  const domainrecordtypes = ref<DomainRecordType[]>([])
+  const selectedDomainrecordtype = ref<DomainRecordType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

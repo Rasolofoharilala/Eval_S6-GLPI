@@ -6,10 +6,11 @@ import {
   getPassivedcequipments,
   getPassivedcequipmentById,
 } from '@/services/generated/passivedcequipmentService'
+import type { PassiveDCEquipment } from '@/services/generated/passivedcequipmentService'
 
 export function usePassivedcequipments() {
-  const passivedcequipments = ref<any[]>([])
-  const selectedPassivedcequipment = ref<any | null>(null)
+  const passivedcequipments = ref<PassiveDCEquipment[]>([])
+  const selectedPassivedcequipment = ref<PassiveDCEquipment | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

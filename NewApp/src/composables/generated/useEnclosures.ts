@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getEnclosures, getEnclosureById } from '@/services/generated/enclosureService'
+import type { Enclosure } from '@/services/generated/enclosureService'
 
 export function useEnclosures() {
-  const enclosures = ref<any[]>([])
-  const selectedEnclosure = ref<any | null>(null)
+  const enclosures = ref<Enclosure[]>([])
+  const selectedEnclosure = ref<Enclosure | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

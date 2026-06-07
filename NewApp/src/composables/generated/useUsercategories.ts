@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getUsercategories, getUsercategoryById } from '@/services/generated/usercategoryService'
+import type { UserCategory } from '@/services/generated/usercategoryService'
 
 export function useUsercategories() {
-  const usercategories = ref<any[]>([])
-  const selectedUsercategory = ref<any | null>(null)
+  const usercategories = ref<UserCategory[]>([])
+  const selectedUsercategory = ref<UserCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

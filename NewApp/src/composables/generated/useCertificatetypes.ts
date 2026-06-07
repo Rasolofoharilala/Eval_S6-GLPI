@@ -6,10 +6,11 @@ import {
   getCertificatetypes,
   getCertificatetypeById,
 } from '@/services/generated/certificatetypeService'
+import type { CertificateType } from '@/services/generated/certificatetypeService'
 
 export function useCertificatetypes() {
-  const certificatetypes = ref<any[]>([])
-  const selectedCertificatetype = ref<any | null>(null)
+  const certificatetypes = ref<CertificateType[]>([])
+  const selectedCertificatetype = ref<CertificateType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

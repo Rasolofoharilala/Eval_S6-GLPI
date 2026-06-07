@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getClosetimes, getClosetimeById } from '@/services/generated/closetimeService'
+import type { CloseTime } from '@/services/generated/closetimeService'
 
 export function useClosetimes() {
-  const closetimes = ref<any[]>([])
-  const selectedClosetime = ref<any | null>(null)
+  const closetimes = ref<CloseTime[]>([])
+  const selectedClosetime = ref<CloseTime | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

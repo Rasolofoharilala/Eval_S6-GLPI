@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { DatabaseInstanceType } from '@/types/generated'
 
-export const getDatabaseinstancetypes = () => getAll(ENDPOINTS.DROPDOWNS_DATABASEINSTANCETYPE)
+export type { DatabaseInstanceType } from '@/types/generated'
+
+export const getDatabaseinstancetypes = () =>
+  getAll<DatabaseInstanceType>(ENDPOINTS.DROPDOWNS_DATABASEINSTANCETYPE)
 
 export const getDatabaseinstancetypeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_DATABASEINSTANCETYPE, id)
+  getById<DatabaseInstanceType>(ENDPOINTS.DROPDOWNS_DATABASEINSTANCETYPE, id)

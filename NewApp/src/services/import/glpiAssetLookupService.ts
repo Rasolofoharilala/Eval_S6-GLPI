@@ -16,15 +16,13 @@ function normalizeAssets(data: unknown): ExistingAsset[] {
   }
 
   return data
-    .filter(item => item && typeof item === 'object')
+    .filter((item) => item && typeof item === 'object')
     .map((item: any) => ({
       id: Number(item.id),
       name: String(item.name ?? ''),
-      otherserial: item.otherserial
-        ? String(item.otherserial)
-        : undefined,
+      otherserial: item.otherserial ? String(item.otherserial) : undefined,
     }))
-    .filter(item => item.id && item.name)
+    .filter((item) => item.id && item.name)
 }
 
 export async function findAssetByName(
@@ -35,9 +33,7 @@ export async function findAssetByName(
 
   const assets = normalizeAssets(response.data)
 
-  const found = assets.find(
-    asset => normalize(asset.name) === normalize(name),
-  )
+  const found = assets.find((asset) => normalize(asset.name) === normalize(name))
 
   return found ?? null
 }
@@ -55,9 +51,7 @@ export async function findAssetByInventoryNumber(
   const assets = normalizeAssets(response.data)
 
   const found = assets.find(
-    asset =>
-      asset.otherserial &&
-      normalize(asset.otherserial) === normalize(inventoryNumber),
+    (asset) => asset.otherserial && normalize(asset.otherserial) === normalize(inventoryNumber),
   )
 
   return found ?? null
@@ -68,10 +62,7 @@ export async function assetAlreadyExists(
   name: string,
   inventoryNumber: string,
 ): Promise<ExistingAsset | null> {
-  const foundByInventoryNumber = await findAssetByInventoryNumber(
-    endpoint,
-    inventoryNumber,
-  )
+  const foundByInventoryNumber = await findAssetByInventoryNumber(endpoint, inventoryNumber)
 
   if (foundByInventoryNumber) {
     return foundByInventoryNumber

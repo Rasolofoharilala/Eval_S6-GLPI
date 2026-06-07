@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { FollowupTemplate } from '@/types/generated'
 
-export const getFollowuptemplates = () => getAll(ENDPOINTS.DROPDOWNS_FOLLOWUPTEMPLATE)
+export type { FollowupTemplate } from '@/types/generated'
+
+export const getFollowuptemplates = () =>
+  getAll<FollowupTemplate>(ENDPOINTS.DROPDOWNS_FOLLOWUPTEMPLATE)
 
 export const getFollowuptemplateById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_FOLLOWUPTEMPLATE, id)
+  getById<FollowupTemplate>(ENDPOINTS.DROPDOWNS_FOLLOWUPTEMPLATE, id)

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getOauthclients, getOauthclientById } from '@/services/generated/oauthclientService'
+import type { OAuthClient } from '@/services/generated/oauthclientService'
 
 export function useOauthclients() {
-  const oauthclients = ref<any[]>([])
-  const selectedOauthclient = ref<any | null>(null)
+  const oauthclients = ref<OAuthClient[]>([])
+  const selectedOauthclient = ref<OAuthClient | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

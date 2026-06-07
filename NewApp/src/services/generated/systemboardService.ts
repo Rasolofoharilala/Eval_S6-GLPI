@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Systemboard } from '@/types/generated'
 
-export const getSystemboards = () => getAll(ENDPOINTS.COMPONENTS_SYSTEMBOARD)
+export type { Systemboard } from '@/types/generated'
 
-export const getSystemboardById = (id: number) => getById(ENDPOINTS.COMPONENTS_SYSTEMBOARD, id)
+export const getSystemboards = () => getAll<Systemboard>(ENDPOINTS.COMPONENTS_SYSTEMBOARD)
+
+export const getSystemboardById = (id: number) =>
+  getById<Systemboard>(ENDPOINTS.COMPONENTS_SYSTEMBOARD, id)

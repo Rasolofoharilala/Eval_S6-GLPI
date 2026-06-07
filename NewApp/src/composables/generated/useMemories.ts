@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getMemories, getMemoryById } from '@/services/generated/memoryService'
+import type { Memory } from '@/services/generated/memoryService'
 
 export function useMemories() {
-  const memories = ref<any[]>([])
-  const selectedMemory = ref<any | null>(null)
+  const memories = ref<Memory[]>([])
+  const selectedMemory = ref<Memory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

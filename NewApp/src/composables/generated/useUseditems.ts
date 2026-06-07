@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getUseditems } from '@/services/generated/useditemService'
 
 export function useUseditems() {
-  const useditems = ref<any[]>([])
-  const selectedUseditem = ref<any | null>(null)
+  const useditems = ref<unknown[]>([])
+  const selectedUseditem = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCategories, getCategoryById } from '@/services/generated/categoryService'
+import type { KBCategory } from '@/services/generated/categoryService'
 
 export function useCategories() {
-  const categories = ref<any[]>([])
-  const selectedCategory = ref<any | null>(null)
+  const categories = ref<KBCategory[]>([])
+  const selectedCategory = ref<KBCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

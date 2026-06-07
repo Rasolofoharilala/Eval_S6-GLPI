@@ -3,6 +3,9 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { AssetCharacteristicsStats } from '@/types/generated'
+
+export type { AssetCharacteristicsStats } from '@/types/generated'
 
 export const getAssetcharacteristicslist = () =>
-  getAll(ENDPOINTS.ASSISTANCE_STAT_TICKET_ASSETCHARACTERISTICS)
+  getAll<AssetCharacteristicsStats>(ENDPOINTS.ASSISTANCE_STAT_TICKET_ASSETCHARACTERISTICS)

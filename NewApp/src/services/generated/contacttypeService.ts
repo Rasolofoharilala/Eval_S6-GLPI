@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ContactType } from '@/types/generated'
 
-export const getContacttypes = () => getAll(ENDPOINTS.DROPDOWNS_CONTACTTYPE)
+export type { ContactType } from '@/types/generated'
 
-export const getContacttypeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_CONTACTTYPE, id)
+export const getContacttypes = () => getAll<ContactType>(ENDPOINTS.DROPDOWNS_CONTACTTYPE)
+
+export const getContacttypeById = (id: number) =>
+  getById<ContactType>(ENDPOINTS.DROPDOWNS_CONTACTTYPE, id)

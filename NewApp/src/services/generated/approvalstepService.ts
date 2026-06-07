@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ApprovalStep } from '@/types/generated'
 
-export const getApprovalsteps = () => getAll(ENDPOINTS.DROPDOWNS_APPROVALSTEP)
+export type { ApprovalStep } from '@/types/generated'
 
-export const getApprovalstepById = (id: number) => getById(ENDPOINTS.DROPDOWNS_APPROVALSTEP, id)
+export const getApprovalsteps = () => getAll<ApprovalStep>(ENDPOINTS.DROPDOWNS_APPROVALSTEP)
+
+export const getApprovalstepById = (id: number) =>
+  getById<ApprovalStep>(ENDPOINTS.DROPDOWNS_APPROVALSTEP, id)

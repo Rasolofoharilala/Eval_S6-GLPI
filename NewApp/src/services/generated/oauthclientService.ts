@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { OAuthClient } from '@/types/generated'
 
-export const getOauthclients = () => getAll(ENDPOINTS.SETUP_OAUTHCLIENT)
+export type { OAuthClient } from '@/types/generated'
 
-export const getOauthclientById = (id: number) => getById(ENDPOINTS.SETUP_OAUTHCLIENT, id)
+export const getOauthclients = () => getAll<OAuthClient>(ENDPOINTS.SETUP_OAUTHCLIENT)
+
+export const getOauthclientById = (id: number) =>
+  getById<OAuthClient>(ENDPOINTS.SETUP_OAUTHCLIENT, id)

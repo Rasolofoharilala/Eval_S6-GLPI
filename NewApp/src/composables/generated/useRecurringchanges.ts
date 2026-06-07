@@ -6,10 +6,11 @@ import {
   getRecurringchanges,
   getRecurringchangeById,
 } from '@/services/generated/recurringchangeService'
+import type { RecurringChange } from '@/services/generated/recurringchangeService'
 
 export function useRecurringchanges() {
-  const recurringchanges = ref<any[]>([])
-  const selectedRecurringchange = ref<any | null>(null)
+  const recurringchanges = ref<RecurringChange[]>([])
+  const selectedRecurringchange = ref<RecurringChange | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

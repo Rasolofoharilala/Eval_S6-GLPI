@@ -84,11 +84,20 @@ def find_get_by_id_function(functions: list[str], resource: str) -> str | None:
     return None
 
 
+def find_resource_type(service_content: str) -> str:
+    match = re.search(
+        r"export\s+type\s+\{\s*([A-Za-z0-9_]+)\s*\}\s+from\s+'@/types/generated'",
+        service_content,
+    )
+    return match.group(1) if match else "unknown"
+
+
 def generate_composable_content(
     service_file: Path,
     resource: str,
     get_all_function: str,
     get_by_id_function: str | None,
+    resource_type: str,
 ) -> str:
     plural_resource = pluralize(resource)
 
@@ -103,8 +112,11 @@ def generate_composable_content(
     imports = [
         "import { ref } from 'vue'",
         f"import {{ {get_all_function}{', ' + get_by_id_function if get_by_id_function else ''} }} from '@/services/generated/{service_module}'",
+        f"import type {{ {resource_type} }} from '@/services/generated/{service_module}'" if resource_type != "unknown" else "",
         "",
     ]
+    imports = [line for line in imports if line]
+    imports.append("")
 
     lines = [
         "// Auto-generated file. Do not edit manually.",
@@ -112,8 +124,8 @@ def generate_composable_content(
         "",
         *imports,
         f"export function use{pascal_plural}() {{",
-        f"  const {camel_plural} = ref<any[]>([])",
-        f"  const selected{pascal_resource} = ref<any | null>(null)",
+        f"  const {camel_plural} = ref<{resource_type}[]>([])",
+        f"  const selected{pascal_resource} = ref<{resource_type} | null>(null)",
         "  const loading = ref(false)",
         "  const error = ref<string | null>(null)",
         "",
@@ -363,6 +375,7 @@ class GlpiComposableGeneratorApp:
 
                 get_all_function = find_get_all_function(functions, resource)
                 get_by_id_function = find_get_by_id_function(functions, resource)
+                resource_type = find_resource_type(service_content)
 
                 if not get_all_function:
                     continue
@@ -375,6 +388,7 @@ class GlpiComposableGeneratorApp:
                     resource=resource,
                     get_all_function=get_all_function,
                     get_by_id_function=get_by_id_function,
+                    resource_type=resource_type,
                 )
 
                 output_path = output_dir / composable_name

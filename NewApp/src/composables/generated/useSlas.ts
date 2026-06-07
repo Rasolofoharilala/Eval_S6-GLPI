@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSlas, getSlaById } from '@/services/generated/slaService'
+import type { SLA } from '@/services/generated/slaService'
 
 export function useSlas() {
-  const slas = ref<any[]>([])
-  const selectedSla = ref<any | null>(null)
+  const slas = ref<SLA[]>([])
+  const selectedSla = ref<SLA | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

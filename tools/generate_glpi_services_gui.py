@@ -1,3 +1,4 @@
+import json
 import re
 from pathlib import Path
 import tkinter as tk
@@ -8,6 +9,11 @@ APP_TITLE = "GLPI Service Generator"
 
 
 EndpointMap = dict[str, str]
+Swagger = dict[str, object]
+
+SCHEMA_ALIASES = {
+    "CalendarCloseTime": "CloseTime",
+}
 
 
 def parse_endpoints_ts(file_path: Path) -> EndpointMap:
@@ -31,6 +37,79 @@ def parse_endpoints_ts(file_path: Path) -> EndpointMap:
 def to_pascal_case(value: str) -> str:
     parts = re.split(r"[^A-Za-z0-9]+", value)
     return "".join(part.capitalize() for part in parts if part)
+
+
+def schema_to_type_name(value: str) -> str:
+    parts = re.split(r"[^A-Za-z0-9]+", value)
+    return "".join(part[:1].upper() + part[1:] for part in parts if part)
+
+
+def load_swagger(file_path: Path) -> Swagger:
+    with file_path.open("r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    if not isinstance(data, dict):
+        raise ValueError("Le fichier swagger.json doit contenir un objet JSON.")
+
+    return data
+
+
+def extract_response_type(swagger: Swagger, endpoint: str) -> str | None:
+    paths = swagger.get("paths", {})
+
+    if not isinstance(paths, dict):
+        return None
+
+    path_data = paths.get(endpoint, {})
+    if not isinstance(path_data, dict):
+        return None
+
+    get_data = path_data.get("get", {})
+    if not isinstance(get_data, dict):
+        return None
+
+    responses = get_data.get("responses", {})
+    if not isinstance(responses, dict):
+        return None
+
+    response = responses.get("200", {})
+    if not isinstance(response, dict):
+        return None
+
+    content = response.get("content", {})
+    if not isinstance(content, dict):
+        return None
+
+    json_content = content.get("application/json", {})
+    if not isinstance(json_content, dict):
+        return None
+
+    schema = json_content.get("schema", {})
+    if not isinstance(schema, dict):
+        return None
+
+    if schema.get("type") == "array":
+        items = schema.get("items", {})
+        if isinstance(items, dict):
+            schema = items
+
+    ref = schema.get("$ref")
+    if not isinstance(ref, str):
+        return None
+
+    schema_name = ref.split("/")[-1]
+    schemas = swagger.get("components", {})
+    if isinstance(schemas, dict):
+        schemas = schemas.get("schemas", {})
+
+    if not isinstance(schemas, dict):
+        return None
+
+    resolved_name = SCHEMA_ALIASES.get(schema_name, schema_name)
+    if resolved_name not in schemas:
+        return None
+
+    return schema_to_type_name(resolved_name)
 
 
 def to_camel_case(value: str) -> str:
@@ -107,6 +186,7 @@ def generate_service_content(
     collection_endpoint: str,
     by_id_key: str | None,
     include_write_methods: bool,
+    response_type: str | None = None,
 ) -> str:
     resource_name = extract_resource_name(collection_endpoint)
 
@@ -119,6 +199,9 @@ def generate_service_content(
         "import { ENDPOINTS } from '@/generated/endpoints'",
     ]
 
+    if response_type:
+        imports.append(f"import type {{ {response_type} }} from '@/types/generated'")
+
     if include_write_methods:
         imports[0] = "import { getAll, getById, create, update, remove } from '@/api/crudClient'"
 
@@ -128,15 +211,16 @@ def generate_service_content(
         "",
         *imports,
         "",
+        *([f"export type {{ {response_type} }} from '@/types/generated'", ""] if response_type else []),
         f"export const get{to_pascal_case(plural_name)} = () =>",
-        f"  getAll(ENDPOINTS.{collection_key})",
+        f"  getAll<{response_type or 'unknown'}>(ENDPOINTS.{collection_key})",
         "",
     ]
 
     if by_id_key:
         lines.extend([
             f"export const get{pascal_name}ById = (id: number) =>",
-            f"  getById(ENDPOINTS.{collection_key}, id)",
+            f"  getById<{response_type or 'unknown'}>(ENDPOINTS.{collection_key}, id)",
             "",
         ])
 
@@ -182,6 +266,7 @@ class GlpiServiceGeneratorApp:
         self.root.minsize(860, 460)
 
         self.endpoints_file = tk.StringVar()
+        self.swagger_file = tk.StringVar()
         self.output_directory = tk.StringVar()
 
         self.include_write_methods = tk.BooleanVar(value=False)
@@ -221,10 +306,18 @@ class GlpiServiceGeneratorApp:
 
         self.add_directory_row(
             form,
-            row=1,
+            row=2,
             label="Dossier de sortie des services",
             variable=self.output_directory,
             command=self.choose_output_directory,
+        )
+
+        self.add_file_row(
+            form,
+            row=1,
+            label="Fichier swagger.json",
+            variable=self.swagger_file,
+            command=self.choose_swagger_file,
         )
 
         options = ttk.LabelFrame(main, text="Options", padding=14)
@@ -334,8 +427,22 @@ class GlpiServiceGeneratorApp:
         if directory:
             self.output_directory.set(directory)
 
-    def validate_inputs(self) -> tuple[Path, Path]:
+    def choose_swagger_file(self):
+        file_path = filedialog.askopenfilename(
+            title="Sélectionner swagger.json",
+            initialdir=str(Path.home()),
+            filetypes=[
+                ("JSON files", "*.json"),
+                ("All files", "*.*"),
+            ],
+        )
+
+        if file_path:
+            self.swagger_file.set(file_path)
+
+    def validate_inputs(self) -> tuple[Path, Path, Path]:
         endpoints_path = Path(self.endpoints_file.get())
+        swagger_path = Path(self.swagger_file.get())
         output_dir = Path(self.output_directory.get())
 
         if not endpoints_path.exists():
@@ -344,7 +451,10 @@ class GlpiServiceGeneratorApp:
         if not output_dir.exists():
             raise ValueError("Sélectionne un dossier de sortie valide.")
 
-        return endpoints_path, output_dir
+        if not swagger_path.exists():
+            raise ValueError("Sélectionne un fichier swagger.json valide.")
+
+        return endpoints_path, swagger_path, output_dir
 
     def get_generatable_services(self, endpoints: EndpointMap) -> list[tuple[str, str, str | None]]:
         services = []
@@ -384,9 +494,10 @@ class GlpiServiceGeneratorApp:
 
     def generate(self):
         try:
-            endpoints_path, output_dir = self.validate_inputs()
+            endpoints_path, swagger_path, output_dir = self.validate_inputs()
 
             endpoints = parse_endpoints_ts(endpoints_path)
+            swagger = load_swagger(swagger_path)
             services = self.get_generatable_services(endpoints)
 
             if not services:
@@ -404,6 +515,7 @@ class GlpiServiceGeneratorApp:
                     collection_endpoint=collection_endpoint,
                     by_id_key=by_id_key,
                     include_write_methods=self.include_write_methods.get(),
+                    response_type=extract_response_type(swagger, collection_endpoint),
                 )
 
                 output_path.write_text(content, encoding="utf-8")

@@ -3,5 +3,8 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { KBArticle } from '@/types/generated'
 
-export const getArticles = () => getAll(ENDPOINTS.KNOWLEDGEBASE_ARTICLE)
+export type { KBArticle } from '@/types/generated'
+
+export const getArticles = () => getAll<KBArticle>(ENDPOINTS.KNOWLEDGEBASE_ARTICLE)

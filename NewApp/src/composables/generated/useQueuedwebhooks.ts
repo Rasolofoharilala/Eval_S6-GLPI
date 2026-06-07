@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getQueuedwebhooks, getQueuedwebhookById } from '@/services/generated/queuedwebhookService'
+import type { QueuedWebhook } from '@/services/generated/queuedwebhookService'
 
 export function useQueuedwebhooks() {
-  const queuedwebhooks = ref<any[]>([])
-  const selectedQueuedwebhook = ref<any | null>(null)
+  const queuedwebhooks = ref<QueuedWebhook[]>([])
+  const selectedQueuedwebhook = ref<QueuedWebhook | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

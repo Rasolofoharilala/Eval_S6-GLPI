@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getTasks, getTaskById } from '@/services/generated/taskService'
+import type { ProjectTask } from '@/services/generated/taskService'
 
 export function useTasks() {
-  const tasks = ref<any[]>([])
-  const selectedTask = ref<any | null>(null)
+  const tasks = ref<ProjectTask[]>([])
+  const selectedTask = ref<ProjectTask | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

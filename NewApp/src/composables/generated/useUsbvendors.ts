@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getUsbvendors, getUsbvendorById } from '@/services/generated/usbvendorService'
+import type { USBVendor } from '@/services/generated/usbvendorService'
 
 export function useUsbvendors() {
-  const usbvendors = ref<any[]>([])
-  const selectedUsbvendor = ref<any | null>(null)
+  const usbvendors = ref<USBVendor[]>([])
+  const selectedUsbvendor = ref<USBVendor | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

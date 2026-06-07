@@ -3,5 +3,9 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { EmailAddress } from '@/types/generated'
 
-export const getDefaults = () => getAll(ENDPOINTS.ADMINISTRATION_USER_ME_EMAILS_DEFAULT)
+export type { EmailAddress } from '@/types/generated'
+
+export const getDefaults = () =>
+  getAll<EmailAddress>(ENDPOINTS.ADMINISTRATION_USER_ME_EMAILS_DEFAULT)

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCriteriaconditions } from '@/services/generated/criteriaconditionService'
+import type { RuleCriteriaCondition } from '@/services/generated/criteriaconditionService'
 
 export function useCriteriaconditions() {
-  const criteriaconditions = ref<any[]>([])
-  const selectedCriteriacondition = ref<any | null>(null)
+  const criteriaconditions = ref<RuleCriteriaCondition[]>([])
+  const selectedCriteriacondition = ref<RuleCriteriaCondition | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

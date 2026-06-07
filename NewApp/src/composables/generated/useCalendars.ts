@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCalendars, getCalendarById } from '@/services/generated/calendarService'
+import type { Calendar } from '@/services/generated/calendarService'
 
 export function useCalendars() {
-  const calendars = ref<any[]>([])
-  const selectedCalendar = ref<any | null>(null)
+  const calendars = ref<Calendar[]>([])
+  const selectedCalendar = ref<Calendar | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

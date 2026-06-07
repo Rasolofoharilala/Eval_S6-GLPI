@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Group } from '@/types/generated'
 
-export const getGroups = () => getAll(ENDPOINTS.ADMINISTRATION_GROUP)
+export type { Group } from '@/types/generated'
 
-export const getGroupById = (id: number) => getById(ENDPOINTS.ADMINISTRATION_GROUP, id)
+export const getGroups = () => getAll<Group>(ENDPOINTS.ADMINISTRATION_GROUP)
+
+export const getGroupById = (id: number) => getById<Group>(ENDPOINTS.ADMINISTRATION_GROUP, id)

@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getAlls } from '@/services/generated/allService'
 
 export function useAlls() {
-  const alls = ref<any[]>([])
-  const selectedAll = ref<any | null>(null)
+  const alls = ref<unknown[]>([])
+  const selectedAll = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

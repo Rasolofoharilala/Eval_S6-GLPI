@@ -6,10 +6,11 @@ import {
   getDatabaseinstancetypes,
   getDatabaseinstancetypeById,
 } from '@/services/generated/databaseinstancetypeService'
+import type { DatabaseInstanceType } from '@/services/generated/databaseinstancetypeService'
 
 export function useDatabaseinstancetypes() {
-  const databaseinstancetypes = ref<any[]>([])
-  const selectedDatabaseinstancetype = ref<any | null>(null)
+  const databaseinstancetypes = ref<DatabaseInstanceType[]>([])
+  const selectedDatabaseinstancetype = ref<DatabaseInstanceType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

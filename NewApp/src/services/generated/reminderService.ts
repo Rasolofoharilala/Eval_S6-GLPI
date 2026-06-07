@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Reminder } from '@/types/generated'
 
-export const getReminders = () => getAll(ENDPOINTS.TOOLS_REMINDER)
+export type { Reminder } from '@/types/generated'
 
-export const getReminderById = (id: number) => getById(ENDPOINTS.TOOLS_REMINDER, id)
+export const getReminders = () => getAll<Reminder>(ENDPOINTS.TOOLS_REMINDER)
+
+export const getReminderById = (id: number) => getById<Reminder>(ENDPOINTS.TOOLS_REMINDER, id)

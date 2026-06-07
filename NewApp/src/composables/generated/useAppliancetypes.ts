@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getAppliancetypes, getAppliancetypeById } from '@/services/generated/appliancetypeService'
+import type { ApplianceType } from '@/services/generated/appliancetypeService'
 
 export function useAppliancetypes() {
-  const appliancetypes = ref<any[]>([])
-  const selectedAppliancetype = ref<any | null>(null)
+  const appliancetypes = ref<ApplianceType[]>([])
+  const selectedAppliancetype = ref<ApplianceType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

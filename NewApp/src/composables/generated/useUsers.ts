@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getUsers, getUserById } from '@/services/generated/userService'
+import type { User } from '@/services/generated/userService'
 
 export function useUsers() {
-  const users = ref<any[]>([])
-  const selectedUser = ref<any | null>(null)
+  const users = ref<User[]>([])
+  const selectedUser = ref<User | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDefaults } from '@/services/generated/defaultService'
+import type { EmailAddress } from '@/services/generated/defaultService'
 
 export function useDefaults() {
-  const defaults = ref<any[]>([])
-  const selectedDefault = ref<any | null>(null)
+  const defaults = ref<EmailAddress[]>([])
+  const selectedDefault = ref<EmailAddress | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

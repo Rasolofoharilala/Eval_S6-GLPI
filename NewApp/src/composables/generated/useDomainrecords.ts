@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDomainrecords, getDomainrecordById } from '@/services/generated/domainrecordService'
+import type { DomainRecord } from '@/services/generated/domainrecordService'
 
 export function useDomainrecords() {
-  const domainrecords = ref<any[]>([])
-  const selectedDomainrecord = ref<any | null>(null)
+  const domainrecords = ref<DomainRecord[]>([])
+  const selectedDomainrecord = ref<DomainRecord | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

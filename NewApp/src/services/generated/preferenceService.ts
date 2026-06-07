@@ -3,5 +3,9 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { UserPreferences } from '@/types/generated'
 
-export const getPreferences = () => getAll(ENDPOINTS.ADMINISTRATION_USER_ME_PREFERENCE)
+export type { UserPreferences } from '@/types/generated'
+
+export const getPreferences = () =>
+  getAll<UserPreferences>(ENDPOINTS.ADMINISTRATION_USER_ME_PREFERENCE)

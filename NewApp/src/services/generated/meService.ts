@@ -3,5 +3,8 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { User } from '@/types/generated'
 
-export const getMes = () => getAll(ENDPOINTS.ADMINISTRATION_USER_ME)
+export type { User } from '@/types/generated'
+
+export const getMes = () => getAll<User>(ENDPOINTS.ADMINISTRATION_USER_ME)

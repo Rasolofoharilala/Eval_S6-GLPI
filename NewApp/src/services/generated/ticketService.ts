@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Ticket } from '@/types/generated'
 
-export const getTickets = () => getAll(ENDPOINTS.ASSISTANCE_TICKET)
+export type { Ticket } from '@/types/generated'
 
-export const getTicketById = (id: number) => getById(ENDPOINTS.ASSISTANCE_TICKET, id)
+export const getTickets = () => getAll<Ticket>(ENDPOINTS.ASSISTANCE_TICKET)
+
+export const getTicketById = (id: number) => getById<Ticket>(ENDPOINTS.ASSISTANCE_TICKET, id)

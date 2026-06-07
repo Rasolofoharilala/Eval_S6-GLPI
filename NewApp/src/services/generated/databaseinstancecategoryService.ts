@@ -3,9 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { DatabaseInstanceCategory } from '@/types/generated'
+
+export type { DatabaseInstanceCategory } from '@/types/generated'
 
 export const getDatabaseinstancecategories = () =>
-  getAll(ENDPOINTS.DROPDOWNS_DATABASEINSTANCECATEGORY)
+  getAll<DatabaseInstanceCategory>(ENDPOINTS.DROPDOWNS_DATABASEINSTANCECATEGORY)
 
 export const getDatabaseinstancecategoryById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_DATABASEINSTANCECATEGORY, id)
+  getById<DatabaseInstanceCategory>(ENDPOINTS.DROPDOWNS_DATABASEINSTANCECATEGORY, id)

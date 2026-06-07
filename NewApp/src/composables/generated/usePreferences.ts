@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPreferences } from '@/services/generated/preferenceService'
+import type { UserPreferences } from '@/services/generated/preferenceService'
 
 export function usePreferences() {
-  const preferences = ref<any[]>([])
-  const selectedPreference = ref<any | null>(null)
+  const preferences = ref<UserPreferences[]>([])
+  const selectedPreference = ref<UserPreferences | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

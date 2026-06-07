@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Case } from '@/types/generated'
 
-export const getCases = () => getAll(ENDPOINTS.COMPONENTS_CASE)
+export type { Case } from '@/types/generated'
 
-export const getCaseById = (id: number) => getById(ENDPOINTS.COMPONENTS_CASE, id)
+export const getCases = () => getAll<Case>(ENDPOINTS.COMPONENTS_CASE)
+
+export const getCaseById = (id: number) => getById<Case>(ENDPOINTS.COMPONENTS_CASE, id)

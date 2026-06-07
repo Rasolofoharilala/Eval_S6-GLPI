@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getItilcategories, getItilcategoryById } from '@/services/generated/itilcategoryService'
+import type { ITILCategory } from '@/services/generated/itilcategoryService'
 
 export function useItilcategories() {
-  const itilcategories = ref<any[]>([])
-  const selectedItilcategory = ref<any | null>(null)
+  const itilcategories = ref<ITILCategory[]>([])
+  const selectedItilcategory = ref<ITILCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

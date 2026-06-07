@@ -6,10 +6,11 @@ import {
   getAutoupdatesystems,
   getAutoupdatesystemById,
 } from '@/services/generated/autoupdatesystemService'
+import type { AutoUpdateSystem } from '@/services/generated/autoupdatesystemService'
 
 export function useAutoupdatesystems() {
-  const autoupdatesystems = ref<any[]>([])
-  const selectedAutoupdatesystem = ref<any | null>(null)
+  const autoupdatesystems = ref<AutoUpdateSystem[]>([])
+  const selectedAutoupdatesystem = ref<AutoUpdateSystem | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

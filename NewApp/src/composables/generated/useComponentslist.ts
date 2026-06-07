@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getComponentslist } from '@/services/generated/componentsService'
 
 export function useComponentslist() {
-  const componentslist = ref<any[]>([])
-  const selectedComponents = ref<any | null>(null)
+  const componentslist = ref<unknown[]>([])
+  const selectedComponents = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

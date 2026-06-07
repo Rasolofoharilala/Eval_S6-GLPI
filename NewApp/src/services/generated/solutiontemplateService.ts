@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { SolutionTemplate } from '@/types/generated'
 
-export const getSolutiontemplates = () => getAll(ENDPOINTS.DROPDOWNS_SOLUTIONTEMPLATE)
+export type { SolutionTemplate } from '@/types/generated'
+
+export const getSolutiontemplates = () =>
+  getAll<SolutionTemplate>(ENDPOINTS.DROPDOWNS_SOLUTIONTEMPLATE)
 
 export const getSolutiontemplateById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_SOLUTIONTEMPLATE, id)
+  getById<SolutionTemplate>(ENDPOINTS.DROPDOWNS_SOLUTIONTEMPLATE, id)

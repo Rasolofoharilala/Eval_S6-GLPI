@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getAssetcharacteristicslist } from '@/services/generated/assetcharacteristicsService'
+import type { AssetCharacteristicsStats } from '@/services/generated/assetcharacteristicsService'
 
 export function useAssetcharacteristicslist() {
-  const assetcharacteristicslist = ref<any[]>([])
-  const selectedAssetcharacteristics = ref<any | null>(null)
+  const assetcharacteristicslist = ref<AssetCharacteristicsStats[]>([])
+  const selectedAssetcharacteristics = ref<AssetCharacteristicsStats | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

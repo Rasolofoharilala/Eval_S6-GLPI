@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCases, getCaseById } from '@/services/generated/caseService'
+import type { Case } from '@/services/generated/caseService'
 
 export function useCases() {
-  const cases = ref<any[]>([])
-  const selectedCase = ref<any | null>(null)
+  const cases = ref<Case[]>([])
+  const selectedCase = ref<Case | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

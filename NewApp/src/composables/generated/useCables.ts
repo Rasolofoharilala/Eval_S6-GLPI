@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCables, getCableById } from '@/services/generated/cableService'
+import type { Cable } from '@/services/generated/cableService'
 
 export function useCables() {
-  const cables = ref<any[]>([])
-  const selectedCable = ref<any | null>(null)
+  const cables = ref<Cable[]>([])
+  const selectedCable = ref<Cable | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

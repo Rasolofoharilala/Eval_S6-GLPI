@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSlms, getSlmById } from '@/services/generated/slmService'
+import type { SLM } from '@/services/generated/slmService'
 
 export function useSlms() {
-  const slms = ref<any[]>([])
-  const selectedSlm = ref<any | null>(null)
+  const slms = ref<SLM[]>([])
+  const selectedSlm = ref<SLM | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

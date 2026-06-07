@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Sensor } from '@/types/generated'
 
-export const getSensors = () => getAll(ENDPOINTS.COMPONENTS_SENSOR)
+export type { Sensor } from '@/types/generated'
 
-export const getSensorById = (id: number) => getById(ENDPOINTS.COMPONENTS_SENSOR, id)
+export const getSensors = () => getAll<Sensor>(ENDPOINTS.COMPONENTS_SENSOR)
+
+export const getSensorById = (id: number) => getById<Sensor>(ENDPOINTS.COMPONENTS_SENSOR, id)

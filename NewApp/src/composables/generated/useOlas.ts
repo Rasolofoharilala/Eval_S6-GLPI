@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getOlas, getOlaById } from '@/services/generated/olaService'
+import type { OLA } from '@/services/generated/olaService'
 
 export function useOlas() {
-  const olas = ref<any[]>([])
-  const selectedOla = ref<any | null>(null)
+  const olas = ref<OLA[]>([])
+  const selectedOla = ref<OLA | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

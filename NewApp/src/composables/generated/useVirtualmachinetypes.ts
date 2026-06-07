@@ -6,10 +6,11 @@ import {
   getVirtualmachinetypes,
   getVirtualmachinetypeById,
 } from '@/services/generated/virtualmachinetypeService'
+import type { VirtualMachineType } from '@/services/generated/virtualmachinetypeService'
 
 export function useVirtualmachinetypes() {
-  const virtualmachinetypes = ref<any[]>([])
-  const selectedVirtualmachinetype = ref<any | null>(null)
+  const virtualmachinetypes = ref<VirtualMachineType[]>([])
+  const selectedVirtualmachinetype = ref<VirtualMachineType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

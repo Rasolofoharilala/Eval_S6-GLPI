@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getExternalevents, getExternaleventById } from '@/services/generated/externaleventService'
+import type { ExternalEvent } from '@/services/generated/externaleventService'
 
 export function useExternalevents() {
-  const externalevents = ref<any[]>([])
-  const selectedExternalevent = ref<any | null>(null)
+  const externalevents = ref<ExternalEvent[]>([])
+  const selectedExternalevent = ref<ExternalEvent | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Stencil } from '@/types/generated'
 
-export const getStencils = () => getAll(ENDPOINTS.DROPDOWNS_STENCIL)
+export type { Stencil } from '@/types/generated'
 
-export const getStencilById = (id: number) => getById(ENDPOINTS.DROPDOWNS_STENCIL, id)
+export const getStencils = () => getAll<Stencil>(ENDPOINTS.DROPDOWNS_STENCIL)
+
+export const getStencilById = (id: number) => getById<Stencil>(ENDPOINTS.DROPDOWNS_STENCIL, id)

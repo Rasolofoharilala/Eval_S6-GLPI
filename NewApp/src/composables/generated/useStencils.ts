@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getStencils, getStencilById } from '@/services/generated/stencilService'
+import type { Stencil } from '@/services/generated/stencilService'
 
 export function useStencils() {
-  const stencils = ref<any[]>([])
-  const selectedStencil = ref<any | null>(null)
+  const stencils = ref<Stencil[]>([])
+  const selectedStencil = ref<Stencil | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

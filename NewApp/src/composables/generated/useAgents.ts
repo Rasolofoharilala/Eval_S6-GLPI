@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getAgents, getAgentById } from '@/services/generated/agentService'
+import type { Agent } from '@/services/generated/agentService'
 
 export function useAgents() {
-  const agents = ref<any[]>([])
-  const selectedAgent = ref<any | null>(null)
+  const agents = ref<Agent[]>([])
+  const selectedAgent = ref<Agent | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

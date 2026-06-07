@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getEntities, getEntityById } from '@/services/generated/entityService'
+import type { Entity } from '@/services/generated/entityService'
 
 export function useEntities() {
-  const entities = ref<any[]>([])
-  const selectedEntity = ref<any | null>(null)
+  const entities = ref<Entity[]>([])
+  const selectedEntity = ref<Entity | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

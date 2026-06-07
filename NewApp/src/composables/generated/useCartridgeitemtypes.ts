@@ -6,10 +6,11 @@ import {
   getCartridgeitemtypes,
   getCartridgeitemtypeById,
 } from '@/services/generated/cartridgeitemtypeService'
+import type { CartridgeItemType } from '@/services/generated/cartridgeitemtypeService'
 
 export function useCartridgeitemtypes() {
-  const cartridgeitemtypes = ref<any[]>([])
-  const selectedCartridgeitemtype = ref<any | null>(null)
+  const cartridgeitemtypes = ref<CartridgeItemType[]>([])
+  const selectedCartridgeitemtype = ref<CartridgeItemType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { PassiveDCEquipment } from '@/types/generated'
 
-export const getPassivedcequipments = () => getAll(ENDPOINTS.ASSETS_PASSIVEDCEQUIPMENT)
+export type { PassiveDCEquipment } from '@/types/generated'
+
+export const getPassivedcequipments = () =>
+  getAll<PassiveDCEquipment>(ENDPOINTS.ASSETS_PASSIVEDCEQUIPMENT)
 
 export const getPassivedcequipmentById = (id: number) =>
-  getById(ENDPOINTS.ASSETS_PASSIVEDCEQUIPMENT, id)
+  getById<PassiveDCEquipment>(ENDPOINTS.ASSETS_PASSIVEDCEQUIPMENT, id)

@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { CameraImageResolution } from '@/types/generated'
 
-export const getCameraimageresolutions = () => getAll(ENDPOINTS.DROPDOWNS_CAMERAIMAGERESOLUTION)
+export type { CameraImageResolution } from '@/types/generated'
+
+export const getCameraimageresolutions = () =>
+  getAll<CameraImageResolution>(ENDPOINTS.DROPDOWNS_CAMERAIMAGERESOLUTION)
 
 export const getCameraimageresolutionById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_CAMERAIMAGERESOLUTION, id)
+  getById<CameraImageResolution>(ENDPOINTS.DROPDOWNS_CAMERAIMAGERESOLUTION, id)

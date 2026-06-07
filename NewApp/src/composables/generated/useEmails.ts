@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getEmails, getEmailById } from '@/services/generated/emailService'
+import type { EmailAddress } from '@/services/generated/emailService'
 
 export function useEmails() {
-  const emails = ref<any[]>([])
-  const selectedEmail = ref<any | null>(null)
+  const emails = ref<EmailAddress[]>([])
+  const selectedEmail = ref<EmailAddress | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -6,10 +6,11 @@ import {
   getNetworkportfiberchanneltypes,
   getNetworkportfiberchanneltypeById,
 } from '@/services/generated/networkportfiberchanneltypeService'
+import type { NetworkPortFiberchannelType } from '@/services/generated/networkportfiberchanneltypeService'
 
 export function useNetworkportfiberchanneltypes() {
-  const networkportfiberchanneltypes = ref<any[]>([])
-  const selectedNetworkportfiberchanneltype = ref<any | null>(null)
+  const networkportfiberchanneltypes = ref<NetworkPortFiberchannelType[]>([])
+  const selectedNetworkportfiberchanneltype = ref<NetworkPortFiberchannelType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

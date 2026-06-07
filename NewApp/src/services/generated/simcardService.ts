@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { SIMCard } from '@/types/generated'
 
-export const getSimcards = () => getAll(ENDPOINTS.COMPONENTS_SIMCARD)
+export type { SIMCard } from '@/types/generated'
 
-export const getSimcardById = (id: number) => getById(ENDPOINTS.COMPONENTS_SIMCARD, id)
+export const getSimcards = () => getAll<SIMCard>(ENDPOINTS.COMPONENTS_SIMCARD)
+
+export const getSimcardById = (id: number) => getById<SIMCard>(ENDPOINTS.COMPONENTS_SIMCARD, id)

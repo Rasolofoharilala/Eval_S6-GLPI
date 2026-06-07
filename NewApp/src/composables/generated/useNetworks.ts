@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getNetworks, getNetworkById } from '@/services/generated/networkService'
+import type { Network } from '@/services/generated/networkService'
 
 export function useNetworks() {
-  const networks = ref<any[]>([])
-  const selectedNetwork = ref<any | null>(null)
+  const networks = ref<Network[]>([])
+  const selectedNetwork = ref<Network | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

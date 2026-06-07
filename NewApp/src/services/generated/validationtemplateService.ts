@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ValidationTemplate } from '@/types/generated'
 
-export const getValidationtemplates = () => getAll(ENDPOINTS.DROPDOWNS_VALIDATIONTEMPLATE)
+export type { ValidationTemplate } from '@/types/generated'
+
+export const getValidationtemplates = () =>
+  getAll<ValidationTemplate>(ENDPOINTS.DROPDOWNS_VALIDATIONTEMPLATE)
 
 export const getValidationtemplateById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_VALIDATIONTEMPLATE, id)
+  getById<ValidationTemplate>(ENDPOINTS.DROPDOWNS_VALIDATIONTEMPLATE, id)

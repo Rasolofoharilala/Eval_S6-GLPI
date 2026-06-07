@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Printer } from '@/types/generated'
 
-export const getPrinters = () => getAll(ENDPOINTS.ASSETS_PRINTER)
+export type { Printer } from '@/types/generated'
 
-export const getPrinterById = (id: number) => getById(ENDPOINTS.ASSETS_PRINTER, id)
+export const getPrinters = () => getAll<Printer>(ENDPOINTS.ASSETS_PRINTER)
+
+export const getPrinterById = (id: number) => getById<Printer>(ENDPOINTS.ASSETS_PRINTER, id)

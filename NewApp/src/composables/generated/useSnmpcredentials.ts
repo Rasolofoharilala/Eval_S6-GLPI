@@ -6,10 +6,11 @@ import {
   getSnmpcredentials,
   getSnmpcredentialById,
 } from '@/services/generated/snmpcredentialService'
+import type { SNMPCredential } from '@/services/generated/snmpcredentialService'
 
 export function useSnmpcredentials() {
-  const snmpcredentials = ref<any[]>([])
-  const selectedSnmpcredential = ref<any | null>(null)
+  const snmpcredentials = ref<SNMPCredential[]>([])
+  const selectedSnmpcredential = ref<SNMPCredential | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

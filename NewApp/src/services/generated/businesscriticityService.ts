@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { BusinessCriticity } from '@/types/generated'
 
-export const getBusinesscriticities = () => getAll(ENDPOINTS.DROPDOWNS_BUSINESSCRITICITY)
+export type { BusinessCriticity } from '@/types/generated'
+
+export const getBusinesscriticities = () =>
+  getAll<BusinessCriticity>(ENDPOINTS.DROPDOWNS_BUSINESSCRITICITY)
 
 export const getBusinesscriticityById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_BUSINESSCRITICITY, id)
+  getById<BusinessCriticity>(ENDPOINTS.DROPDOWNS_BUSINESSCRITICITY, id)

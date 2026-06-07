@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { LineType } from '@/types/generated'
 
-export const getLinetypes = () => getAll(ENDPOINTS.DROPDOWNS_LINETYPE)
+export type { LineType } from '@/types/generated'
 
-export const getLinetypeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_LINETYPE, id)
+export const getLinetypes = () => getAll<LineType>(ENDPOINTS.DROPDOWNS_LINETYPE)
+
+export const getLinetypeById = (id: number) => getById<LineType>(ENDPOINTS.DROPDOWNS_LINETYPE, id)

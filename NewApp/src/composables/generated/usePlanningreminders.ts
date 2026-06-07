@@ -6,10 +6,11 @@ import {
   getPlanningreminders,
   getPlanningreminderById,
 } from '@/services/generated/planningreminderService'
+import type { PlanningReminder } from '@/services/generated/planningreminderService'
 
 export function usePlanningreminders() {
-  const planningreminders = ref<any[]>([])
-  const selectedPlanningreminder = ref<any | null>(null)
+  const planningreminders = ref<PlanningReminder[]>([])
+  const selectedPlanningreminder = ref<PlanningReminder | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

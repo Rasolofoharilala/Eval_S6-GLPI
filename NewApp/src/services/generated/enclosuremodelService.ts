@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { EnclosureModel } from '@/types/generated'
 
-export const getEnclosuremodels = () => getAll(ENDPOINTS.DROPDOWNS_ENCLOSUREMODEL)
+export type { EnclosureModel } from '@/types/generated'
 
-export const getEnclosuremodelById = (id: number) => getById(ENDPOINTS.DROPDOWNS_ENCLOSUREMODEL, id)
+export const getEnclosuremodels = () => getAll<EnclosureModel>(ENDPOINTS.DROPDOWNS_ENCLOSUREMODEL)
+
+export const getEnclosuremodelById = (id: number) =>
+  getById<EnclosureModel>(ENDPOINTS.DROPDOWNS_ENCLOSUREMODEL, id)

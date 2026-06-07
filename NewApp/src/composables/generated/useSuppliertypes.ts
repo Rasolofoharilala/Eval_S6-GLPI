@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSuppliertypes, getSuppliertypeById } from '@/services/generated/suppliertypeService'
+import type { SupplierType } from '@/services/generated/suppliertypeService'
 
 export function useSuppliertypes() {
-  const suppliertypes = ref<any[]>([])
-  const selectedSuppliertype = ref<any | null>(null)
+  const suppliertypes = ref<SupplierType[]>([])
+  const selectedSuppliertype = ref<SupplierType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

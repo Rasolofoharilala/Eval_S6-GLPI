@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDomains, getDomainById } from '@/services/generated/domainService'
+import type { Domain } from '@/services/generated/domainService'
 
 export function useDomains() {
-  const domains = ref<any[]>([])
-  const selectedDomain = ref<any | null>(null)
+  const domains = ref<Domain[]>([])
+  const selectedDomain = ref<Domain | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

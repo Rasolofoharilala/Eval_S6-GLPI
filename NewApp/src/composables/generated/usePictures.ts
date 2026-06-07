@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getPictures } from '@/services/generated/pictureService'
 
 export function usePictures() {
-  const pictures = ref<any[]>([])
-  const selectedPicture = ref<any | null>(null)
+  const pictures = ref<unknown[]>([])
+  const selectedPicture = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

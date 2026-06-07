@@ -6,10 +6,11 @@ import {
   getProjecttasktypes,
   getProjecttasktypeById,
 } from '@/services/generated/projecttasktypeService'
+import type { ProjectTaskType } from '@/services/generated/projecttasktypeService'
 
 export function useProjecttasktypes() {
-  const projecttasktypes = ref<any[]>([])
-  const selectedProjecttasktype = ref<any | null>(null)
+  const projecttasktypes = ref<ProjectTaskType[]>([])
+  const selectedProjecttasktype = ref<ProjectTaskType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -5,8 +5,8 @@ import { ref } from 'vue'
 import { getManageditems } from '@/services/generated/manageditemService'
 
 export function useManageditems() {
-  const manageditems = ref<any[]>([])
-  const selectedManageditem = ref<any | null>(null)
+  const manageditems = ref<unknown[]>([])
+  const selectedManageditem = ref<unknown | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { EventCategory } from '@/types/generated'
 
-export const getEventcategories = () => getAll(ENDPOINTS.DROPDOWNS_EVENTCATEGORY)
+export type { EventCategory } from '@/types/generated'
 
-export const getEventcategoryById = (id: number) => getById(ENDPOINTS.DROPDOWNS_EVENTCATEGORY, id)
+export const getEventcategories = () => getAll<EventCategory>(ENDPOINTS.DROPDOWNS_EVENTCATEGORY)
+
+export const getEventcategoryById = (id: number) =>
+  getById<EventCategory>(ENDPOINTS.DROPDOWNS_EVENTCATEGORY, id)

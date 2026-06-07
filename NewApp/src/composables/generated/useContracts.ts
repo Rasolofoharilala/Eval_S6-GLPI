@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getContracts, getContractById } from '@/services/generated/contractService'
+import type { Contract } from '@/services/generated/contractService'
 
 export function useContracts() {
-  const contracts = ref<any[]>([])
-  const selectedContract = ref<any | null>(null)
+  const contracts = ref<Contract[]>([])
+  const selectedContract = ref<Contract | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

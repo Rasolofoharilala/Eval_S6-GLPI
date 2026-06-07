@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ExternalEvent } from '@/types/generated'
 
-export const getExternalevents = () => getAll(ENDPOINTS.ASSISTANCE_EXTERNALEVENT)
+export type { ExternalEvent } from '@/types/generated'
 
-export const getExternaleventById = (id: number) => getById(ENDPOINTS.ASSISTANCE_EXTERNALEVENT, id)
+export const getExternalevents = () => getAll<ExternalEvent>(ENDPOINTS.ASSISTANCE_EXTERNALEVENT)
+
+export const getExternaleventById = (id: number) =>
+  getById<ExternalEvent>(ENDPOINTS.ASSISTANCE_EXTERNALEVENT, id)

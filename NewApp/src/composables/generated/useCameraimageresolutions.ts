@@ -6,10 +6,11 @@ import {
   getCameraimageresolutions,
   getCameraimageresolutionById,
 } from '@/services/generated/cameraimageresolutionService'
+import type { CameraImageResolution } from '@/services/generated/cameraimageresolutionService'
 
 export function useCameraimageresolutions() {
-  const cameraimageresolutions = ref<any[]>([])
-  const selectedCameraimageresolution = ref<any | null>(null)
+  const cameraimageresolutions = ref<CameraImageResolution[]>([])
+  const selectedCameraimageresolution = ref<CameraImageResolution | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

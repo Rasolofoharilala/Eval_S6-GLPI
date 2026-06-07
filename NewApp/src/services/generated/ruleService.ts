@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Rule } from '@/types/generated'
 
-export const getRules = () => getAll(ENDPOINTS.RULE_COLLECTION_TICKET_RULE)
+export type { Rule } from '@/types/generated'
 
-export const getRuleById = (id: number) => getById(ENDPOINTS.RULE_COLLECTION_TICKET_RULE, id)
+export const getRules = () => getAll<Rule>(ENDPOINTS.RULE_COLLECTION_TICKET_RULE)
+
+export const getRuleById = (id: number) => getById<Rule>(ENDPOINTS.RULE_COLLECTION_TICKET_RULE, id)

@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Firmware } from '@/types/generated'
 
-export const getFirmwares = () => getAll(ENDPOINTS.COMPONENTS_FIRMWARE)
+export type { Firmware } from '@/types/generated'
 
-export const getFirmwareById = (id: number) => getById(ENDPOINTS.COMPONENTS_FIRMWARE, id)
+export const getFirmwares = () => getAll<Firmware>(ENDPOINTS.COMPONENTS_FIRMWARE)
+
+export const getFirmwareById = (id: number) => getById<Firmware>(ENDPOINTS.COMPONENTS_FIRMWARE, id)

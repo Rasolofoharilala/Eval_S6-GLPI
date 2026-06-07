@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getProjecttypes, getProjecttypeById } from '@/services/generated/projecttypeService'
+import type { ProjectType } from '@/services/generated/projecttypeService'
 
 export function useProjecttypes() {
-  const projecttypes = ref<any[]>([])
-  const selectedProjecttype = ref<any | null>(null)
+  const projecttypes = ref<ProjectType[]>([])
+  const selectedProjecttype = ref<ProjectType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

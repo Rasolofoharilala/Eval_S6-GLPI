@@ -3,5 +3,9 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { RuleCriteriaCriteria } from '@/types/generated'
 
-export const getCriteriacriterias = () => getAll(ENDPOINTS.RULE_COLLECTION_TICKET_CRITERIACRITERIA)
+export type { RuleCriteriaCriteria } from '@/types/generated'
+
+export const getCriteriacriterias = () =>
+  getAll<RuleCriteriaCriteria>(ENDPOINTS.RULE_COLLECTION_TICKET_CRITERIACRITERIA)

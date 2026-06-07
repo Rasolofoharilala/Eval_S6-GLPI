@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { MonitorModel } from '@/types/generated'
 
-export const getMonitormodels = () => getAll(ENDPOINTS.DROPDOWNS_MONITORMODEL)
+export type { MonitorModel } from '@/types/generated'
 
-export const getMonitormodelById = (id: number) => getById(ENDPOINTS.DROPDOWNS_MONITORMODEL, id)
+export const getMonitormodels = () => getAll<MonitorModel>(ENDPOINTS.DROPDOWNS_MONITORMODEL)
+
+export const getMonitormodelById = (id: number) =>
+  getById<MonitorModel>(ENDPOINTS.DROPDOWNS_MONITORMODEL, id)

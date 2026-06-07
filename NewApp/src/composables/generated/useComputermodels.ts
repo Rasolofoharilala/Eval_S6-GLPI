@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getComputermodels, getComputermodelById } from '@/services/generated/computermodelService'
+import type { ComputerModel } from '@/services/generated/computermodelService'
 
 export function useComputermodels() {
-  const computermodels = ref<any[]>([])
-  const selectedComputermodel = ref<any | null>(null)
+  const computermodels = ref<ComputerModel[]>([])
+  const selectedComputermodel = ref<ComputerModel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

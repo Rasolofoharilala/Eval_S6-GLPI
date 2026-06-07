@@ -3,5 +3,8 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Config } from '@/types/generated'
 
-export const getConfigs = () => getAll(ENDPOINTS.SETUP_CONFIG)
+export type { Config } from '@/types/generated'
+
+export const getConfigs = () => getAll<Config>(ENDPOINTS.SETUP_CONFIG)

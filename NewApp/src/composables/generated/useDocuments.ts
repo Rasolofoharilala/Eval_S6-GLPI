@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDocuments, getDocumentById } from '@/services/generated/documentService'
+import type { Document } from '@/services/generated/documentService'
 
 export function useDocuments() {
-  const documents = ref<any[]>([])
-  const selectedDocument = ref<any | null>(null)
+  const documents = ref<Document[]>([])
+  const selectedDocument = ref<Document | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

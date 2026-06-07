@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ComputerType } from '@/types/generated'
 
-export const getComputertypes = () => getAll(ENDPOINTS.DROPDOWNS_COMPUTERTYPE)
+export type { ComputerType } from '@/types/generated'
 
-export const getComputertypeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_COMPUTERTYPE, id)
+export const getComputertypes = () => getAll<ComputerType>(ENDPOINTS.DROPDOWNS_COMPUTERTYPE)
+
+export const getComputertypeById = (id: number) =>
+  getById<ComputerType>(ENDPOINTS.DROPDOWNS_COMPUTERTYPE, id)

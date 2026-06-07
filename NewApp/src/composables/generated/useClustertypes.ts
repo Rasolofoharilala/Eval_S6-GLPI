@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getClustertypes, getClustertypeById } from '@/services/generated/clustertypeService'
+import type { ClusterType } from '@/services/generated/clustertypeService'
 
 export function useClustertypes() {
-  const clustertypes = ref<any[]>([])
-  const selectedClustertype = ref<any | null>(null)
+  const clustertypes = ref<ClusterType[]>([])
+  const selectedClustertype = ref<ClusterType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

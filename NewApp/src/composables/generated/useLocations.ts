@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getLocations, getLocationById } from '@/services/generated/locationService'
+import type { Location } from '@/services/generated/locationService'
 
 export function useLocations() {
-  const locations = ref<any[]>([])
-  const selectedLocation = ref<any | null>(null)
+  const locations = ref<Location[]>([])
+  const selectedLocation = ref<Location | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

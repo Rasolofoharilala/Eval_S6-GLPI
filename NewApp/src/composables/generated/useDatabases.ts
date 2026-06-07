@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDatabases, getDatabaseById } from '@/services/generated/databaseService'
+import type { Database } from '@/services/generated/databaseService'
 
 export function useDatabases() {
-  const databases = ref<any[]>([])
-  const selectedDatabase = ref<any | null>(null)
+  const databases = ref<Database[]>([])
+  const selectedDatabase = ref<Database | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

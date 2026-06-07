@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSlalevels, getSlalevelById } from '@/services/generated/slalevelService'
+import type { SLALevel } from '@/services/generated/slalevelService'
 
 export function useSlalevels() {
-  const slalevels = ref<any[]>([])
-  const selectedSlalevel = ref<any | null>(null)
+  const slalevels = ref<SLALevel[]>([])
+  const selectedSlalevel = ref<SLALevel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

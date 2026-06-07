@@ -6,10 +6,11 @@ import {
   getSoftwarelicenses,
   getSoftwarelicenseById,
 } from '@/services/generated/softwarelicenseService'
+import type { SoftwareLicense } from '@/services/generated/softwarelicenseService'
 
 export function useSoftwarelicenses() {
-  const softwarelicenses = ref<any[]>([])
-  const selectedSoftwarelicense = ref<any | null>(null)
+  const softwarelicenses = ref<SoftwareLicense[]>([])
+  const selectedSoftwarelicense = ref<SoftwareLicense | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

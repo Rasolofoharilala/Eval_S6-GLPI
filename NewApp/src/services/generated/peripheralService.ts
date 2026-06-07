@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Peripheral } from '@/types/generated'
 
-export const getPeripherals = () => getAll(ENDPOINTS.ASSETS_PERIPHERAL)
+export type { Peripheral } from '@/types/generated'
 
-export const getPeripheralById = (id: number) => getById(ENDPOINTS.ASSETS_PERIPHERAL, id)
+export const getPeripherals = () => getAll<Peripheral>(ENDPOINTS.ASSETS_PERIPHERAL)
+
+export const getPeripheralById = (id: number) =>
+  getById<Peripheral>(ENDPOINTS.ASSETS_PERIPHERAL, id)

@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { PendingReason } from '@/types/generated'
 
-export const getPendingreasons = () => getAll(ENDPOINTS.ASSISTANCE_PENDINGREASON)
+export type { PendingReason } from '@/types/generated'
 
-export const getPendingreasonById = (id: number) => getById(ENDPOINTS.ASSISTANCE_PENDINGREASON, id)
+export const getPendingreasons = () => getAll<PendingReason>(ENDPOINTS.ASSISTANCE_PENDINGREASON)
+
+export const getPendingreasonById = (id: number) =>
+  getById<PendingReason>(ENDPOINTS.ASSISTANCE_PENDINGREASON, id)

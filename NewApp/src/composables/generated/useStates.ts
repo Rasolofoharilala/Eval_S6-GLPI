@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getStates, getStateById } from '@/services/generated/stateService'
+import type { State } from '@/services/generated/stateService'
 
 export function useStates() {
-  const states = ref<any[]>([])
-  const selectedState = ref<any | null>(null)
+  const states = ref<State[]>([])
+  const selectedState = ref<State | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

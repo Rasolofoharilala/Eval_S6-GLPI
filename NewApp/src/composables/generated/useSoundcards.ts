@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSoundcards, getSoundcardById } from '@/services/generated/soundcardService'
+import type { SoundCard } from '@/services/generated/soundcardService'
 
 export function useSoundcards() {
-  const soundcards = ref<any[]>([])
-  const selectedSoundcard = ref<any | null>(null)
+  const soundcards = ref<SoundCard[]>([])
+  const selectedSoundcard = ref<SoundCard | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

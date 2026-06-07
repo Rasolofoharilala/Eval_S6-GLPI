@@ -6,10 +6,11 @@ import {
   getSolutiontemplates,
   getSolutiontemplateById,
 } from '@/services/generated/solutiontemplateService'
+import type { SolutionTemplate } from '@/services/generated/solutiontemplateService'
 
 export function useSolutiontemplates() {
-  const solutiontemplates = ref<any[]>([])
-  const selectedSolutiontemplate = ref<any | null>(null)
+  const solutiontemplates = ref<SolutionTemplate[]>([])
+  const selectedSolutiontemplate = ref<SolutionTemplate | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

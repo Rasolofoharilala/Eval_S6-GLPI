@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getSensors, getSensorById } from '@/services/generated/sensorService'
+import type { Sensor } from '@/services/generated/sensorService'
 
 export function useSensors() {
-  const sensors = ref<any[]>([])
-  const selectedSensor = ref<any | null>(null)
+  const sensors = ref<Sensor[]>([])
+  const selectedSensor = ref<Sensor | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

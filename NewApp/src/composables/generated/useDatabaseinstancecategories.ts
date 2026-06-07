@@ -6,10 +6,11 @@ import {
   getDatabaseinstancecategories,
   getDatabaseinstancecategoryById,
 } from '@/services/generated/databaseinstancecategoryService'
+import type { DatabaseInstanceCategory } from '@/services/generated/databaseinstancecategoryService'
 
 export function useDatabaseinstancecategories() {
-  const databaseinstancecategories = ref<any[]>([])
-  const selectedDatabaseinstancecategory = ref<any | null>(null)
+  const databaseinstancecategories = ref<DatabaseInstanceCategory[]>([])
+  const selectedDatabaseinstancecategory = ref<DatabaseInstanceCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

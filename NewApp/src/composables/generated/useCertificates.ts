@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCertificates, getCertificateById } from '@/services/generated/certificateService'
+import type { Certificate } from '@/services/generated/certificateService'
 
 export function useCertificates() {
-  const certificates = ref<any[]>([])
-  const selectedCertificate = ref<any | null>(null)
+  const certificates = ref<Certificate[]>([])
+  const selectedCertificate = ref<Certificate | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

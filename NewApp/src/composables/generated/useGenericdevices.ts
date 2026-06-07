@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getGenericdevices, getGenericdeviceById } from '@/services/generated/genericdeviceService'
+import type { GenericDevice } from '@/services/generated/genericdeviceService'
 
 export function useGenericdevices() {
-  const genericdevices = ref<any[]>([])
-  const selectedGenericdevice = ref<any | null>(null)
+  const genericdevices = ref<GenericDevice[]>([])
+  const selectedGenericdevice = ref<GenericDevice | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

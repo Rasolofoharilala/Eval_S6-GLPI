@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDomaintypes, getDomaintypeById } from '@/services/generated/domaintypeService'
+import type { DomainType } from '@/services/generated/domaintypeService'
 
 export function useDomaintypes() {
-  const domaintypes = ref<any[]>([])
-  const selectedDomaintype = ref<any | null>(null)
+  const domaintypes = ref<DomainType[]>([])
+  const selectedDomaintype = ref<DomainType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

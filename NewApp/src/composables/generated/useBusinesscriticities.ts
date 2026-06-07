@@ -6,10 +6,11 @@ import {
   getBusinesscriticities,
   getBusinesscriticityById,
 } from '@/services/generated/businesscriticityService'
+import type { BusinessCriticity } from '@/services/generated/businesscriticityService'
 
 export function useBusinesscriticities() {
-  const businesscriticities = ref<any[]>([])
-  const selectedBusinesscriticity = ref<any | null>(null)
+  const businesscriticities = ref<BusinessCriticity[]>([])
+  const selectedBusinesscriticity = ref<BusinessCriticity | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

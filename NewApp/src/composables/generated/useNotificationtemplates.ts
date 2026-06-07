@@ -6,10 +6,11 @@ import {
   getNotificationtemplates,
   getNotificationtemplateById,
 } from '@/services/generated/notificationtemplateService'
+import type { NotificationTemplate } from '@/services/generated/notificationtemplateService'
 
 export function useNotificationtemplates() {
-  const notificationtemplates = ref<any[]>([])
-  const selectedNotificationtemplate = ref<any | null>(null)
+  const notificationtemplates = ref<NotificationTemplate[]>([])
+  const selectedNotificationtemplate = ref<NotificationTemplate | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

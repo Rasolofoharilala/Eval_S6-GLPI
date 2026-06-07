@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getClusters, getClusterById } from '@/services/generated/clusterService'
+import type { Cluster } from '@/services/generated/clusterService'
 
 export function useClusters() {
-  const clusters = ref<any[]>([])
-  const selectedCluster = ref<any | null>(null)
+  const clusters = ref<Cluster[]>([])
+  const selectedCluster = ref<Cluster | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getLdapdirectories, getLdapdirectoryById } from '@/services/generated/ldapdirectoryService'
+import type { LDAPDirectory } from '@/services/generated/ldapdirectoryService'
 
 export function useLdapdirectories() {
-  const ldapdirectories = ref<any[]>([])
-  const selectedLdapdirectory = ref<any | null>(null)
+  const ldapdirectories = ref<LDAPDirectory[]>([])
+  const selectedLdapdirectory = ref<LDAPDirectory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

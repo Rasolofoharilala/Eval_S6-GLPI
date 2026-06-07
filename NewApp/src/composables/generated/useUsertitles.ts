@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getUsertitles, getUsertitleById } from '@/services/generated/usertitleService'
+import type { UserTitle } from '@/services/generated/usertitleService'
 
 export function useUsertitles() {
-  const usertitles = ref<any[]>([])
-  const selectedUsertitle = ref<any | null>(null)
+  const usertitles = ref<UserTitle[]>([])
+  const selectedUsertitle = ref<UserTitle | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

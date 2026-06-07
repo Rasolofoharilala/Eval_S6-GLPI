@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { LockedField } from '@/types/generated'
 
-export const getLockedfields = () => getAll(ENDPOINTS.INVENTORY_LOCKEDFIELD)
+export type { LockedField } from '@/types/generated'
 
-export const getLockedfieldById = (id: number) => getById(ENDPOINTS.INVENTORY_LOCKEDFIELD, id)
+export const getLockedfields = () => getAll<LockedField>(ENDPOINTS.INVENTORY_LOCKEDFIELD)
+
+export const getLockedfieldById = (id: number) =>
+  getById<LockedField>(ENDPOINTS.INVENTORY_LOCKEDFIELD, id)

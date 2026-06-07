@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { EmailAddress } from '@/types/generated'
 
-export const getEmails = () => getAll(ENDPOINTS.ADMINISTRATION_USER_ME_EMAIL)
+export type { EmailAddress } from '@/types/generated'
 
-export const getEmailById = (id: number) => getById(ENDPOINTS.ADMINISTRATION_USER_ME_EMAIL, id)
+export const getEmails = () => getAll<EmailAddress>(ENDPOINTS.ADMINISTRATION_USER_ME_EMAIL)
+
+export const getEmailById = (id: number) =>
+  getById<EmailAddress>(ENDPOINTS.ADMINISTRATION_USER_ME_EMAIL, id)

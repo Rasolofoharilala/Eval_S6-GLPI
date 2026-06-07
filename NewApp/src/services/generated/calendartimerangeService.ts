@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { CalendarTimeRange } from '@/types/generated'
 
-export const getCalendartimeranges = () => getAll(ENDPOINTS.DROPDOWNS_CALENDARTIMERANGE)
+export type { CalendarTimeRange } from '@/types/generated'
+
+export const getCalendartimeranges = () =>
+  getAll<CalendarTimeRange>(ENDPOINTS.DROPDOWNS_CALENDARTIMERANGE)
 
 export const getCalendartimerangeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_CALENDARTIMERANGE, id)
+  getById<CalendarTimeRange>(ENDPOINTS.DROPDOWNS_CALENDARTIMERANGE, id)

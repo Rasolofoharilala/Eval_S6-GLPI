@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDenylists, getDenylistById } from '@/services/generated/denylistService'
+import type { DenyList } from '@/services/generated/denylistService'
 
 export function useDenylists() {
-  const denylists = ref<any[]>([])
-  const selectedDenylist = ref<any | null>(null)
+  const denylists = ref<DenyList[]>([])
+  const selectedDenylist = ref<DenyList | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

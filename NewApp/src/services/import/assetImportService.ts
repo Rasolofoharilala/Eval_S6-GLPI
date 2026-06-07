@@ -1,11 +1,10 @@
-import { httpClient } from '@/api/httpClient'
-import type {
-  AssetCsvRow,
-  ImportResult,
-} from './assetImportTypes'
-import { mapCsvRowToComputerPayload } from './computerImportMapper'
-import { mapCsvRowToMonitorPayload } from './monitorImportMapper'
+import { createComputer } from '@/services/generated/computerService'
+import { createMonitor } from '@/services/generated/monitorService'
+
+import type { AssetCsvRow, ImportResult } from './assetImportTypes'
+import { mapCsvRowToComputerInput } from './computerImportMapper'
 import { assetAlreadyExists } from './glpiAssetLookupService'
+import { mapCsvRowToMonitorInput } from './monitorImportMapper'
 
 function getErrorMessage(error: unknown): string {
   if (typeof error !== 'object' || error === null) {
@@ -55,17 +54,17 @@ async function createAssetByType(row: AssetCsvRow): Promise<void> {
   const itemType = normalizeItemType(row.item_type)
 
   if (itemType === 'computer') {
-    const payload = await mapCsvRowToComputerPayload(row)
+    const payload = await mapCsvRowToComputerInput(row)
 
-    await httpClient.post('/Assets/Computer', payload)
+    await createComputer(payload)
 
     return
   }
 
   if (itemType === 'monitor') {
-    const payload = await mapCsvRowToMonitorPayload(row)
+    const payload = await mapCsvRowToMonitorInput(row)
 
-    await httpClient.post('/Assets/Monitor', payload)
+    await createMonitor(payload)
 
     return
   }
@@ -73,9 +72,7 @@ async function createAssetByType(row: AssetCsvRow): Promise<void> {
   throw new Error(`Type non encore supporté : ${row.item_type}`)
 }
 
-export async function importAssetRows(
-  rows: AssetCsvRow[],
-): Promise<ImportResult[]> {
+export async function importAssetRows(rows: AssetCsvRow[]): Promise<ImportResult[]> {
   const results: ImportResult[] = []
 
   for (const row of rows) {
@@ -93,11 +90,7 @@ export async function importAssetRows(
         continue
       }
 
-      const existingAsset = await assetAlreadyExists(
-        endpoint,
-        row.name,
-        row.inventory_number,
-      )
+      const existingAsset = await assetAlreadyExists(endpoint, row.name, row.inventory_number)
 
       if (existingAsset) {
         results.push({

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getTasktemplates, getTasktemplateById } from '@/services/generated/tasktemplateService'
+import type { TaskTemplate } from '@/services/generated/tasktemplateService'
 
 export function useTasktemplates() {
-  const tasktemplates = ref<any[]>([])
-  const selectedTasktemplate = ref<any | null>(null)
+  const tasktemplates = ref<TaskTemplate[]>([])
+  const selectedTasktemplate = ref<TaskTemplate | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getRequesttypes, getRequesttypeById } from '@/services/generated/requesttypeService'
+import type { RequestType } from '@/services/generated/requesttypeService'
 
 export function useRequesttypes() {
-  const requesttypes = ref<any[]>([])
-  const selectedRequesttype = ref<any | null>(null)
+  const requesttypes = ref<RequestType[]>([])
+  const selectedRequesttype = ref<RequestType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

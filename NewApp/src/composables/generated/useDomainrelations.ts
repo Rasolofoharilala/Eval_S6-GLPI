@@ -6,10 +6,11 @@ import {
   getDomainrelations,
   getDomainrelationById,
 } from '@/services/generated/domainrelationService'
+import type { DomainRelation } from '@/services/generated/domainrelationService'
 
 export function useDomainrelations() {
-  const domainrelations = ref<any[]>([])
-  const selectedDomainrelation = ref<any | null>(null)
+  const domainrelations = ref<DomainRelation[]>([])
+  const selectedDomainrelation = ref<DomainRelation | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

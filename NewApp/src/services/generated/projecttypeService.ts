@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ProjectType } from '@/types/generated'
 
-export const getProjecttypes = () => getAll(ENDPOINTS.DROPDOWNS_PROJECTTYPE)
+export type { ProjectType } from '@/types/generated'
 
-export const getProjecttypeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_PROJECTTYPE, id)
+export const getProjecttypes = () => getAll<ProjectType>(ENDPOINTS.DROPDOWNS_PROJECTTYPE)
+
+export const getProjecttypeById = (id: number) =>
+  getById<ProjectType>(ENDPOINTS.DROPDOWNS_PROJECTTYPE, id)

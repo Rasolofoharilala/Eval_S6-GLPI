@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Entity } from '@/types/generated'
 
-export const getEntities = () => getAll(ENDPOINTS.ADMINISTRATION_ENTITY)
+export type { Entity } from '@/types/generated'
 
-export const getEntityById = (id: number) => getById(ENDPOINTS.ADMINISTRATION_ENTITY, id)
+export const getEntities = () => getAll<Entity>(ENDPOINTS.ADMINISTRATION_ENTITY)
+
+export const getEntityById = (id: number) => getById<Entity>(ENDPOINTS.ADMINISTRATION_ENTITY, id)

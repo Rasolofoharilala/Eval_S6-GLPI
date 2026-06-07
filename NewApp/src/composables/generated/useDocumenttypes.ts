@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDocumenttypes, getDocumenttypeById } from '@/services/generated/documenttypeService'
+import type { DocumentType } from '@/services/generated/documenttypeService'
 
 export function useDocumenttypes() {
-  const documenttypes = ref<any[]>([])
-  const selectedDocumenttype = ref<any | null>(null)
+  const documenttypes = ref<DocumentType[]>([])
+  const selectedDocumenttype = ref<DocumentType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

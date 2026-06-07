@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getStats } from '@/services/generated/statService'
+import type { StatReport } from '@/services/generated/statService'
 
 export function useStats() {
-  const stats = ref<any[]>([])
-  const selectedStat = ref<any | null>(null)
+  const stats = ref<StatReport[]>([])
+  const selectedStat = ref<StatReport | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getGlobals } from '@/services/generated/globalService'
+import type { GlobalStats } from '@/services/generated/globalService'
 
 export function useGlobals() {
-  const globals = ref<any[]>([])
-  const selectedGlobal = ref<any | null>(null)
+  const globals = ref<GlobalStats[]>([])
+  const selectedGlobal = ref<GlobalStats | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

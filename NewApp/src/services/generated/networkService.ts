@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Network } from '@/types/generated'
 
-export const getNetworks = () => getAll(ENDPOINTS.DROPDOWNS_NETWORK)
+export type { Network } from '@/types/generated'
 
-export const getNetworkById = (id: number) => getById(ENDPOINTS.DROPDOWNS_NETWORK, id)
+export const getNetworks = () => getAll<Network>(ENDPOINTS.DROPDOWNS_NETWORK)
+
+export const getNetworkById = (id: number) => getById<Network>(ENDPOINTS.DROPDOWNS_NETWORK, id)

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getEventcategories, getEventcategoryById } from '@/services/generated/eventcategoryService'
+import type { EventCategory } from '@/services/generated/eventcategoryService'
 
 export function useEventcategories() {
-  const eventcategories = ref<any[]>([])
-  const selectedEventcategory = ref<any | null>(null)
+  const eventcategories = ref<EventCategory[]>([])
+  const selectedEventcategory = ref<EventCategory | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPowersupplies, getPowersupplyById } from '@/services/generated/powersupplyService'
+import type { PowerSupply } from '@/services/generated/powersupplyService'
 
 export function usePowersupplies() {
-  const powersupplies = ref<any[]>([])
-  const selectedPowersupply = ref<any | null>(null)
+  const powersupplies = ref<PowerSupply[]>([])
+  const selectedPowersupply = ref<PowerSupply | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

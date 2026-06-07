@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getLines, getLineById } from '@/services/generated/lineService'
+import type { Line } from '@/services/generated/lineService'
 
 export function useLines() {
-  const lines = ref<any[]>([])
-  const selectedLine = ref<any | null>(null)
+  const lines = ref<Line[]>([])
+  const selectedLine = ref<Line | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

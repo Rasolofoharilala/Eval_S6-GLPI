@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { DataCenter } from '@/types/generated'
 
-export const getDatacenters = () => getAll(ENDPOINTS.MANAGEMENT_DATACENTER)
+export type { DataCenter } from '@/types/generated'
 
-export const getDatacenterById = (id: number) => getById(ENDPOINTS.MANAGEMENT_DATACENTER, id)
+export const getDatacenters = () => getAll<DataCenter>(ENDPOINTS.MANAGEMENT_DATACENTER)
+
+export const getDatacenterById = (id: number) =>
+  getById<DataCenter>(ENDPOINTS.MANAGEMENT_DATACENTER, id)

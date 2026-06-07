@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Notification } from '@/types/generated'
 
-export const getNotifications = () => getAll(ENDPOINTS.NOTIFICATIONS_NOTIFICATION)
+export type { Notification } from '@/types/generated'
 
-export const getNotificationById = (id: number) => getById(ENDPOINTS.NOTIFICATIONS_NOTIFICATION, id)
+export const getNotifications = () => getAll<Notification>(ENDPOINTS.NOTIFICATIONS_NOTIFICATION)
+
+export const getNotificationById = (id: number) =>
+  getById<Notification>(ENDPOINTS.NOTIFICATIONS_NOTIFICATION, id)

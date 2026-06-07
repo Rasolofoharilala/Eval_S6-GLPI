@@ -3,7 +3,11 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Filesystem } from '@/types/generated'
 
-export const getFilesystems = () => getAll(ENDPOINTS.DROPDOWNS_FILESYSTEM)
+export type { Filesystem } from '@/types/generated'
 
-export const getFilesystemById = (id: number) => getById(ENDPOINTS.DROPDOWNS_FILESYSTEM, id)
+export const getFilesystems = () => getAll<Filesystem>(ENDPOINTS.DROPDOWNS_FILESYSTEM)
+
+export const getFilesystemById = (id: number) =>
+  getById<Filesystem>(ENDPOINTS.DROPDOWNS_FILESYSTEM, id)

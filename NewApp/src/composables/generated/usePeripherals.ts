@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPeripherals, getPeripheralById } from '@/services/generated/peripheralService'
+import type { Peripheral } from '@/services/generated/peripheralService'
 
 export function usePeripherals() {
-  const peripherals = ref<any[]>([])
-  const selectedPeripheral = ref<any | null>(null)
+  const peripherals = ref<Peripheral[]>([])
+  const selectedPeripheral = ref<Peripheral | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

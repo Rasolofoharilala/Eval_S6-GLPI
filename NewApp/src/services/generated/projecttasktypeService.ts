@@ -3,8 +3,12 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { ProjectTaskType } from '@/types/generated'
 
-export const getProjecttasktypes = () => getAll(ENDPOINTS.DROPDOWNS_PROJECTTASKTYPE)
+export type { ProjectTaskType } from '@/types/generated'
+
+export const getProjecttasktypes = () =>
+  getAll<ProjectTaskType>(ENDPOINTS.DROPDOWNS_PROJECTTASKTYPE)
 
 export const getProjecttasktypeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_PROJECTTASKTYPE, id)
+  getById<ProjectTaskType>(ENDPOINTS.DROPDOWNS_PROJECTTASKTYPE, id)

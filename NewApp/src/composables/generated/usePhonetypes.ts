@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPhonetypes, getPhonetypeById } from '@/services/generated/phonetypeService'
+import type { PhoneType } from '@/services/generated/phonetypeService'
 
 export function usePhonetypes() {
-  const phonetypes = ref<any[]>([])
-  const selectedPhonetype = ref<any | null>(null)
+  const phonetypes = ref<PhoneType[]>([])
+  const selectedPhonetype = ref<PhoneType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

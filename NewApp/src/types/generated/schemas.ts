@@ -5,20 +5,20 @@ export type JsonPrimitive = string | number | boolean | null
 
 export type APIInformation = {
   message?: string
-  api_versions?: ({
-  api_version?: string
-  version?: string
-  endpoint?: string
-})[]
+  api_versions?: {
+    api_version?: string
+    version?: string
+    endpoint?: string
+  }[]
 }
 
 export type APIInformationInput = {
   message?: string
-  api_versions?: ({
-  api_version?: string
-  version?: string
-  endpoint?: string
-})[]
+  api_versions?: {
+    api_version?: string
+    version?: string
+    endpoint?: string
+  }[]
 }
 
 export type Agent = {
@@ -121,8 +121,8 @@ export type Appliance = {
   date_mod?: string
   location?: Location
   type?: ApplianceType
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   environment?: ApplianceEnvironment
   external_id?: string
   is_helpdesk_visible?: boolean
@@ -146,8 +146,8 @@ export type ApplianceInput = {
   date_mod?: string
   location?: LocationInput
   type?: ApplianceTypeInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   environment?: ApplianceEnvironmentInput
   external_id?: string
   is_helpdesk_visible?: boolean
@@ -186,20 +186,20 @@ export type ApplianceItem = {
   appliance?: Appliance
   itemtype?: string
   items_id?: number
-  environment?: (ApplianceEnvironment)[]
-  domain?: (Domain)[]
-  location?: (Location)[]
-  network?: (Network)[]
+  environment?: ApplianceEnvironment[]
+  domain?: Domain[]
+  location?: Location[]
+  network?: Network[]
 }
 
 export type ApplianceItemInput = {
   appliance?: ApplianceInput
   itemtype?: string
   items_id?: number
-  environment?: (ApplianceEnvironmentInput)[]
-  domain?: (DomainInput)[]
-  location?: (LocationInput)[]
-  network?: (NetworkInput)[]
+  environment?: ApplianceEnvironmentInput[]
+  domain?: DomainInput[]
+  location?: LocationInput[]
+  network?: NetworkInput[]
 }
 
 export type ApprovalStep = {
@@ -262,22 +262,22 @@ export type AssetCharacteristicsStatsInput = {
 
 export type AssetStats = {
   item?: {
-  itemtype?: string
-  readonly id?: number
-  name?: string
-  entity?: Entity
-  is_deleted?: boolean
-}
+    itemtype?: string
+    readonly id?: number
+    name?: string
+    entity?: Entity
+    is_deleted?: boolean
+  }
   number_open?: number
 }
 
 export type AssetStatsInput = {
   item?: {
-  itemtype?: string
-  name?: string
-  entity?: EntityInput
-  is_deleted?: boolean
-}
+    itemtype?: string
+    name?: string
+    entity?: EntityInput
+    is_deleted?: boolean
+  }
   number_open?: number
 }
 
@@ -298,7 +298,7 @@ export type AutomaticAction = {
   readonly name?: string
   frequency?: number
   param?: number
-  state?: "01" | 2
+  state?: '01' | 2
   mode?: 1 | 2
   readonly allow_mode?: 1 | 2 | 3
   min_hour?: number
@@ -313,7 +313,7 @@ export type AutomaticAction = {
 export type AutomaticActionInput = {
   frequency?: number
   param?: number
-  state?: "01" | 2
+  state?: '01' | 2
   mode?: 1 | 2
   min_hour?: number
   max_hour?: number
@@ -327,8 +327,8 @@ export type AutomaticActionLog = {
   readonly id?: number
   readonly automatic_action?: AutomaticAction
   readonly previous?: {
-  readonly id?: number
-}
+    readonly id?: number
+  }
   readonly date?: string
   readonly state?: 0 | 1 | 2 | 3
   readonly elapsed_time?: number
@@ -336,8 +336,7 @@ export type AutomaticActionLog = {
   readonly message?: string
 }
 
-export type AutomaticActionLogInput = {
-}
+export type AutomaticActionLogInput = {}
 
 export type Battery = {
   readonly id?: number
@@ -482,9 +481,9 @@ export type BusinessCriticity = {
   entity?: Entity
   is_recursive?: boolean
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   date_creation?: string
   date_mod?: string
 }
@@ -495,8 +494,8 @@ export type BusinessCriticityInput = {
   entity?: EntityInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   date_creation?: string
   date_mod?: string
 }
@@ -510,9 +509,9 @@ export type Cable = {
   otherserial?: string
   state?: State
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   is_deleted?: boolean
   itemtype_endpoint_a?: string
   items_id_endpoint_a?: number
@@ -539,9 +538,9 @@ export type CableInput = {
   otherserial?: string
   state?: StateInput
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   is_deleted?: boolean
   itemtype_endpoint_a?: string
   items_id_endpoint_a?: number
@@ -598,8 +597,8 @@ export type Calendar = {
   is_recursive?: boolean
   date_creation?: string
   date_mod?: string
-  close_times?: (CloseTime)[]
-  time_ranges?: (CalendarTimeRange)[]
+  close_times?: CloseTime[]
+  time_ranges?: CalendarTimeRange[]
 }
 
 export type CalendarInput = {
@@ -609,8 +608,8 @@ export type CalendarInput = {
   is_recursive?: boolean
   date_creation?: string
   date_mod?: string
-  close_times?: (CloseTimeInput)[]
-  time_ranges?: (CalendarTimeRangeInput)[]
+  close_times?: CloseTimeInput[]
+  time_ranges?: CalendarTimeRangeInput[]
 }
 
 export type CalendarTimeRange = {
@@ -767,8 +766,8 @@ export type CartridgeItem = {
   date_mod?: string
   user?: User
   user_tech?: User
-  printer_models?: (PrinterModel)[]
-  cartridges?: (Cartridge)[]
+  printer_models?: PrinterModel[]
+  cartridges?: Cartridge[]
 }
 
 export type CartridgeItemInput = {
@@ -778,8 +777,8 @@ export type CartridgeItemInput = {
   date_mod?: string
   user?: UserInput
   user_tech?: UserInput
-  printer_models?: (PrinterModelInput)[]
-  cartridges?: (CartridgeInput)[]
+  printer_models?: PrinterModelInput[]
+  cartridges?: CartridgeInput[]
 }
 
 export type CartridgeItemType = {
@@ -898,8 +897,8 @@ export type Certificate = {
   date_mod?: string
   location?: Location
   type?: CertificateType
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   template_name?: string
   is_template?: boolean
   dns_name?: string
@@ -929,8 +928,8 @@ export type CertificateInput = {
   date_mod?: string
   location?: LocationInput
   type?: CertificateTypeInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   template_name?: string
   is_template?: boolean
   dns_name?: string
@@ -1003,12 +1002,12 @@ export type Change = {
   date_close?: string
   global_validation?: 1 | 2 | 3 | 4
   status?: {
-  readonly id?: 1 | 9 | 10 | 7 | 4 | 11 | 12 | 5 | 8 | 6 | 14 | 13
-  readonly name?: string
-}
+    readonly id?: 1 | 9 | 10 | 7 | 4 | 11 | 12 | 5 | 8 | 6 | 14 | 13
+    readonly name?: string
+  }
   entity?: Entity
-  team?: (TeamMember)[]
-  costs?: (ChangeCost)[]
+  team?: TeamMember[]
+  costs?: ChangeCost[]
 }
 
 export type ChangeInput = {
@@ -1029,11 +1028,10 @@ export type ChangeInput = {
   date_solve?: string
   date_close?: string
   global_validation?: 1 | 2 | 3 | 4
-  status?: {
-}
+  status?: {}
   entity?: EntityInput
-  team?: (TeamMemberInput)[]
-  costs?: (ChangeCostInput)[]
+  team?: TeamMemberInput[]
+  costs?: ChangeCostInput[]
 }
 
 export type ChangeCost = {
@@ -1145,7 +1143,7 @@ export type ChangeValidation = {
   readonly id?: number
   requester?: User
   approver?: User
-  requested_approver_type?: "User" | "Group"
+  requested_approver_type?: 'User' | 'Group'
   requested_approver_id?: number
   submission_comment?: string
   approval_comment?: string
@@ -1159,7 +1157,7 @@ export type ChangeValidation = {
 export type ChangeValidationInput = {
   requester?: UserInput
   approver?: UserInput
-  requested_approver_type?: "User" | "Group"
+  requested_approver_type?: 'User' | 'Group'
   requested_approver_id?: number
   submission_comment?: string
   approval_comment?: string
@@ -1257,9 +1255,9 @@ export type Cluster = {
   date_mod?: string
   type?: ClusterType
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   readonly uuid?: string
   autoupdatesystem?: AutoUpdateSystem
   is_deleted?: boolean
@@ -1274,9 +1272,9 @@ export type ClusterInput = {
   date_mod?: string
   type?: ClusterTypeInput
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   autoupdatesystem?: AutoUpdateSystemInput
   is_deleted?: boolean
 }
@@ -1317,8 +1315,8 @@ export type CommonAsset = {
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
 }
 
 export type CommonAssetInput = {
@@ -1337,8 +1335,8 @@ export type CommonAssetInput = {
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
 }
 
 export type Computer = {
@@ -1361,8 +1359,8 @@ export type Computer = {
   location?: Location
   type?: ComputerType
   model?: ComputerModel
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   readonly uuid?: string
   network?: Network
   autoupdatesystem?: AutoUpdateSystem
@@ -1393,8 +1391,8 @@ export type ComputerInput = {
   location?: LocationInput
   type?: ComputerTypeInput
   model?: ComputerModelInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   network?: NetworkInput
   autoupdatesystem?: AutoUpdateSystemInput
   is_template?: boolean
@@ -1416,7 +1414,7 @@ export type ComputerModel = {
   is_half_rack?: boolean
   readonly picture_front?: string
   readonly picture_rear?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -1431,7 +1429,7 @@ export type ComputerModelInput = {
   power_connections?: number
   power_consumption?: number
   is_half_rack?: boolean
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -1491,7 +1489,7 @@ export type ConsumableItem = {
   date_mod?: string
   user?: User
   user_tech?: User
-  consumables?: (Consumable)[]
+  consumables?: Consumable[]
 }
 
 export type ConsumableItemInput = {
@@ -1501,7 +1499,7 @@ export type ConsumableItemInput = {
   date_mod?: string
   user?: UserInput
   user_tech?: UserInput
-  consumables?: (ConsumableInput)[]
+  consumables?: ConsumableInput[]
 }
 
 export type ConsumableItemType = {
@@ -1565,7 +1563,7 @@ export type Contract = {
   date_mod?: string
   type?: ContractType
   is_deleted?: boolean
-  costs?: (ContractCost)[]
+  costs?: ContractCost[]
   number?: string
   location?: Location
   date_begin?: string
@@ -1598,7 +1596,7 @@ export type ContractInput = {
   date_mod?: string
   type?: ContractTypeInput
   is_deleted?: boolean
-  costs?: (ContractCostInput)[]
+  costs?: ContractCostInput[]
   number?: string
   location?: LocationInput
   date_begin?: string
@@ -1777,36 +1775,60 @@ export type Dashboard = {
   readonly id?: number
   readonly key?: string
   name?: string
-  context?: "core" | "mini_core"
+  context?: 'core' | 'mini_core'
   user?: User
-  filters?: (DashboardFilter)[]
-  items?: (DashboardItem)[]
+  filters?: DashboardFilter[]
+  items?: DashboardItem[]
 }
 
 export type DashboardInput = {
   name?: string
-  context?: "core" | "mini_core"
+  context?: 'core' | 'mini_core'
   user?: UserInput
-  filters?: (DashboardFilterInput)[]
-  items?: (DashboardItemInput)[]
+  filters?: DashboardFilterInput[]
+  items?: DashboardItemInput[]
 }
 
 export type DashboardCard = {
   card?: string
-  widget?: (string)[]
+  widget?: string[]
   group?: string
   itemtype?: string
   label?: string
-  filters?: ("dates" | "dates_mod" | "itilcategory" | "location" | "manufacturer" | "requesttype" | "state" | "tickettype" | "group_requester" | "group_tech" | "user_tech")[]
+  filters?: (
+    | 'dates'
+    | 'dates_mod'
+    | 'itilcategory'
+    | 'location'
+    | 'manufacturer'
+    | 'requesttype'
+    | 'state'
+    | 'tickettype'
+    | 'group_requester'
+    | 'group_tech'
+    | 'user_tech'
+  )[]
 }
 
 export type DashboardCardInput = {
   card?: string
-  widget?: (string)[]
+  widget?: string[]
   group?: string
   itemtype?: string
   label?: string
-  filters?: ("dates" | "dates_mod" | "itilcategory" | "location" | "manufacturer" | "requesttype" | "state" | "tickettype" | "group_requester" | "group_tech" | "user_tech")[]
+  filters?: (
+    | 'dates'
+    | 'dates_mod'
+    | 'itilcategory'
+    | 'location'
+    | 'manufacturer'
+    | 'requesttype'
+    | 'state'
+    | 'tickettype'
+    | 'group_requester'
+    | 'group_tech'
+    | 'user_tech'
+  )[]
 }
 
 export type DashboardFilter = {
@@ -1848,13 +1870,13 @@ export type DashboardItemInput = {
 export type DashboardRight = {
   readonly id?: number
   dashboard?: Dashboard
-  itemtype?: "User" | "Group" | "Entity" | "Profile"
+  itemtype?: 'User' | 'Group' | 'Entity' | 'Profile'
   items_id?: number
 }
 
 export type DashboardRightInput = {
   dashboard?: DashboardInput
-  itemtype?: "User" | "Group" | "Entity" | "Profile"
+  itemtype?: 'User' | 'Group' | 'Entity' | 'Profile'
   items_id?: number
 }
 
@@ -1922,7 +1944,7 @@ export type DatabaseInstance = {
   date_mod?: string
   date_lastboot?: string
   date_lastbackup?: string
-  database?: (Database)[]
+  database?: Database[]
 }
 
 export type DatabaseInstanceInput = {
@@ -1950,7 +1972,7 @@ export type DatabaseInstanceInput = {
   date_mod?: string
   date_lastboot?: string
   date_lastbackup?: string
-  database?: (DatabaseInput)[]
+  database?: DatabaseInput[]
 }
 
 export type DatabaseInstanceCategory = {
@@ -2063,9 +2085,9 @@ export type DocumentCategory = {
   readonly level?: number
   comment?: string
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   date_creation?: string
   date_mod?: string
 }
@@ -2074,8 +2096,8 @@ export type DocumentCategoryInput = {
   name?: string
   comment?: string
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   date_creation?: string
   date_mod?: string
 }
@@ -2131,9 +2153,9 @@ export type Domain = {
   date_mod?: string
   type?: DomainType
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   is_deleted?: boolean
   date_domain_creation?: string
   date_expiration?: string
@@ -2151,9 +2173,9 @@ export type DomainInput = {
   date_mod?: string
   type?: DomainTypeInput
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   is_deleted?: boolean
   date_domain_creation?: string
   date_expiration?: string
@@ -2428,9 +2450,9 @@ export type Enclosure = {
   manufacturer?: Manufacturer
   state?: State
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   is_deleted?: boolean
   orientation?: number
   power_supplies?: number
@@ -2452,9 +2474,9 @@ export type EnclosureInput = {
   manufacturer?: ManufacturerInput
   state?: StateInput
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   is_deleted?: boolean
   orientation?: number
   power_supplies?: number
@@ -2477,7 +2499,7 @@ export type EnclosureModel = {
   is_half_rack?: boolean
   readonly picture_front?: string
   readonly picture_rear?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -2492,7 +2514,7 @@ export type EnclosureModelInput = {
   power_connections?: number
   power_consumption?: number
   is_half_rack?: boolean
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -2503,9 +2525,9 @@ export type Entity = {
   comment?: string
   readonly completename?: string
   parent?: {
-  id?: number
-  name?: string
-}
+    id?: number
+    name?: string
+  }
   readonly level?: number
   registration_number?: string
   address?: string
@@ -2544,9 +2566,9 @@ export type EntityInput = {
   name?: string
   comment?: string
   parent?: {
-  id?: number
-  name?: string
-}
+    id?: number
+    name?: string
+  }
   registration_number?: string
   address?: string
   postcode?: string
@@ -2585,40 +2607,40 @@ export type EntityTransferRecord = {
   items_id?: number
   entity?: number
   options?: {
-  keep_ticket?: 0 | 1 | 2
-  keep_networklink?: 0 | 1 | 2
-  keep_reservation?: 0 | 1
-  keep_history?: 0 | 1
-  keep_device?: 0 | 1
-  keep_infocom?: 0 | 1
-  keep_dc_monitor?: 0 | 1
-  clean_dc_monitor?: 0 | 1 | 2
-  keep_dc_phone?: 0 | 1
-  clean_dc_phone?: 0 | 1 | 2
-  keep_dc_peripheral?: 0 | 1
-  clean_dc_peripheral?: 0 | 1 | 2
-  keep_dc_printer?: 0 | 1
-  clean_dc_printer?: 0 | 1 | 2
-  keep_supplier?: 0 | 1
-  clean_supplier?: 0 | 1 | 2
-  keep_contact?: 0 | 1
-  clean_contact?: 0 | 1 | 2
-  keep_contract?: 0 | 1
-  clean_contract?: 0 | 1 | 2
-  keep_disk?: 0 | 1
-  keep_software?: 0 | 1
-  clean_software?: 0 | 1 | 2
-  keep_document?: 0 | 1
-  clean_document?: 0 | 1 | 2
-  keep_cartridgeitem?: 0 | 1
-  clean_cartridgeitem?: 0 | 1 | 2
-  keep_cartridge?: 0 | 1
-  keep_consumable?: 0 | 1
-  keep_certificate?: 0 | 1
-  clean_certificate?: 0 | 1 | 2
-  lock_updated_fields?: boolean
-  keep_location?: 0 | 1
-}
+    keep_ticket?: 0 | 1 | 2
+    keep_networklink?: 0 | 1 | 2
+    keep_reservation?: 0 | 1
+    keep_history?: 0 | 1
+    keep_device?: 0 | 1
+    keep_infocom?: 0 | 1
+    keep_dc_monitor?: 0 | 1
+    clean_dc_monitor?: 0 | 1 | 2
+    keep_dc_phone?: 0 | 1
+    clean_dc_phone?: 0 | 1 | 2
+    keep_dc_peripheral?: 0 | 1
+    clean_dc_peripheral?: 0 | 1 | 2
+    keep_dc_printer?: 0 | 1
+    clean_dc_printer?: 0 | 1 | 2
+    keep_supplier?: 0 | 1
+    clean_supplier?: 0 | 1 | 2
+    keep_contact?: 0 | 1
+    clean_contact?: 0 | 1 | 2
+    keep_contract?: 0 | 1
+    clean_contract?: 0 | 1 | 2
+    keep_disk?: 0 | 1
+    keep_software?: 0 | 1
+    clean_software?: 0 | 1 | 2
+    keep_document?: 0 | 1
+    clean_document?: 0 | 1 | 2
+    keep_cartridgeitem?: 0 | 1
+    clean_cartridgeitem?: 0 | 1 | 2
+    keep_cartridge?: 0 | 1
+    keep_consumable?: 0 | 1
+    keep_certificate?: 0 | 1
+    clean_certificate?: 0 | 1 | 2
+    lock_updated_fields?: boolean
+    keep_location?: 0 | 1
+  }
 }
 
 export type EntityTransferRecordInput = {
@@ -2626,40 +2648,40 @@ export type EntityTransferRecordInput = {
   items_id?: number
   entity?: number
   options?: {
-  keep_ticket?: 0 | 1 | 2
-  keep_networklink?: 0 | 1 | 2
-  keep_reservation?: 0 | 1
-  keep_history?: 0 | 1
-  keep_device?: 0 | 1
-  keep_infocom?: 0 | 1
-  keep_dc_monitor?: 0 | 1
-  clean_dc_monitor?: 0 | 1 | 2
-  keep_dc_phone?: 0 | 1
-  clean_dc_phone?: 0 | 1 | 2
-  keep_dc_peripheral?: 0 | 1
-  clean_dc_peripheral?: 0 | 1 | 2
-  keep_dc_printer?: 0 | 1
-  clean_dc_printer?: 0 | 1 | 2
-  keep_supplier?: 0 | 1
-  clean_supplier?: 0 | 1 | 2
-  keep_contact?: 0 | 1
-  clean_contact?: 0 | 1 | 2
-  keep_contract?: 0 | 1
-  clean_contract?: 0 | 1 | 2
-  keep_disk?: 0 | 1
-  keep_software?: 0 | 1
-  clean_software?: 0 | 1 | 2
-  keep_document?: 0 | 1
-  clean_document?: 0 | 1 | 2
-  keep_cartridgeitem?: 0 | 1
-  clean_cartridgeitem?: 0 | 1 | 2
-  keep_cartridge?: 0 | 1
-  keep_consumable?: 0 | 1
-  keep_certificate?: 0 | 1
-  clean_certificate?: 0 | 1 | 2
-  lock_updated_fields?: boolean
-  keep_location?: 0 | 1
-}
+    keep_ticket?: 0 | 1 | 2
+    keep_networklink?: 0 | 1 | 2
+    keep_reservation?: 0 | 1
+    keep_history?: 0 | 1
+    keep_device?: 0 | 1
+    keep_infocom?: 0 | 1
+    keep_dc_monitor?: 0 | 1
+    clean_dc_monitor?: 0 | 1 | 2
+    keep_dc_phone?: 0 | 1
+    clean_dc_phone?: 0 | 1 | 2
+    keep_dc_peripheral?: 0 | 1
+    clean_dc_peripheral?: 0 | 1 | 2
+    keep_dc_printer?: 0 | 1
+    clean_dc_printer?: 0 | 1 | 2
+    keep_supplier?: 0 | 1
+    clean_supplier?: 0 | 1 | 2
+    keep_contact?: 0 | 1
+    clean_contact?: 0 | 1 | 2
+    keep_contract?: 0 | 1
+    clean_contract?: 0 | 1 | 2
+    keep_disk?: 0 | 1
+    keep_software?: 0 | 1
+    clean_software?: 0 | 1 | 2
+    keep_document?: 0 | 1
+    clean_document?: 0 | 1 | 2
+    keep_cartridgeitem?: 0 | 1
+    clean_cartridgeitem?: 0 | 1 | 2
+    keep_cartridge?: 0 | 1
+    keep_consumable?: 0 | 1
+    keep_certificate?: 0 | 1
+    clean_certificate?: 0 | 1 | 2
+    lock_updated_fields?: boolean
+    keep_location?: 0 | 1
+  }
 }
 
 export type EventCategory = {
@@ -2689,8 +2711,7 @@ export type EventLog = {
   readonly message?: string
 }
 
-export type EventLogInput = {
-}
+export type EventLogInput = {}
 
 export type ExternalEvent = {
   readonly id?: number
@@ -2763,7 +2784,7 @@ export type ExternalEventTemplateInput = {
 
 export type ExternalLink = {
   readonly id?: number
-  itemtype?: (string)[]
+  itemtype?: string[]
   name?: string
   link?: string
   data?: string
@@ -2775,7 +2796,7 @@ export type ExternalLink = {
 }
 
 export type ExternalLinkInput = {
-  itemtype?: (string)[]
+  itemtype?: string[]
   name?: string
   link?: string
   data?: string
@@ -3055,31 +3076,31 @@ export type GenericDeviceTypeInput = {
 }
 
 export type GlobalStats = {
-  sample_dates?: (string)[]
-  number_open?: (number)[]
-  number_solved?: (number)[]
-  number_late?: (number)[]
-  number_closed?: (number)[]
-  satisfaction_surveys_open?: (number)[]
-  satisfaction_surveys_answered?: (number)[]
-  satisfaction_surveys_avg_rating?: (number)[]
-  time_solve_avg?: (number)[]
-  time_close_avg?: (number)[]
-  time_treatment_avg?: (number)[]
+  sample_dates?: string[]
+  number_open?: number[]
+  number_solved?: number[]
+  number_late?: number[]
+  number_closed?: number[]
+  satisfaction_surveys_open?: number[]
+  satisfaction_surveys_answered?: number[]
+  satisfaction_surveys_avg_rating?: number[]
+  time_solve_avg?: number[]
+  time_close_avg?: number[]
+  time_treatment_avg?: number[]
 }
 
 export type GlobalStatsInput = {
-  sample_dates?: (string)[]
-  number_open?: (number)[]
-  number_solved?: (number)[]
-  number_late?: (number)[]
-  number_closed?: (number)[]
-  satisfaction_surveys_open?: (number)[]
-  satisfaction_surveys_answered?: (number)[]
-  satisfaction_surveys_avg_rating?: (number)[]
-  time_solve_avg?: (number)[]
-  time_close_avg?: (number)[]
-  time_treatment_avg?: (number)[]
+  sample_dates?: string[]
+  number_open?: number[]
+  number_solved?: number[]
+  number_late?: number[]
+  number_closed?: number[]
+  satisfaction_surveys_open?: number[]
+  satisfaction_surveys_answered?: number[]
+  satisfaction_surveys_avg_rating?: number[]
+  time_solve_avg?: number[]
+  time_close_avg?: number[]
+  time_treatment_avg?: number[]
 }
 
 export type GraphicCard = {
@@ -3163,9 +3184,9 @@ export type Group = {
   comment?: string
   readonly completename?: string
   parent?: {
-  id?: number
-  name?: string
-}
+    id?: number
+    name?: string
+  }
   readonly level?: number
   entity?: Entity
   code?: string
@@ -3190,9 +3211,9 @@ export type GroupInput = {
   name?: string
   comment?: string
   parent?: {
-  id?: number
-  name?: string
-}
+    id?: number
+    name?: string
+  }
   entity?: EntityInput
   code?: string
   ldap_field?: string
@@ -3309,9 +3330,9 @@ export type ITILCategory = {
   entity?: Entity
   is_recursive?: boolean
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   user?: User
   group?: Group
   code?: string
@@ -3335,8 +3356,8 @@ export type ITILCategoryInput = {
   entity?: EntityInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   user?: UserInput
   group?: GroupInput
   code?: string
@@ -3376,9 +3397,9 @@ export type ITILReminderInput = {
 
 export type ITILStats = {
   item?: {
-  readonly id?: number
-  name?: string
-}
+    readonly id?: number
+    name?: string
+  }
   number_open?: number
   number_solved?: number
   number_late?: number
@@ -3395,8 +3416,8 @@ export type ITILStats = {
 
 export type ITILStatsInput = {
   item?: {
-  name?: string
-}
+    name?: string
+  }
   number_open?: number
   number_solved?: number
   number_late?: number
@@ -3414,13 +3435,13 @@ export type ITILStatsInput = {
 export type ITILProject = {
   readonly id?: number
   project?: Project
-  itemtype?: "Ticket" | "Change" | "Problem"
+  itemtype?: 'Ticket' | 'Change' | 'Problem'
   items_id?: number
 }
 
 export type ITILProjectInput = {
   project?: ProjectInput
-  itemtype?: "Ticket" | "Change" | "Problem"
+  itemtype?: 'Ticket' | 'Change' | 'Problem'
   items_id?: number
 }
 
@@ -3543,7 +3564,7 @@ export type KBArticle = {
   readonly id?: number
   name?: string
   content?: string
-  categories?: (KBCategory)[]
+  categories?: KBCategory[]
   is_faq?: boolean
   entity?: Entity
   is_recursive?: boolean
@@ -3551,20 +3572,193 @@ export type KBArticle = {
   views?: number
   show_in_service_catalog?: boolean
   description?: string
-  illustration?: "advanced-dashboards" | "advanced-forms" | "agent-config" | "alert" | "anonymise" | "anonymize-alt" | "ansible" | "antivirus" | "application" | "application-altenative" | "application-edit" | "approval-by-mail" | "approve-requests" | "asset-cartridge" | "asset-desktop-1" | "asset-desktop-2" | "asset-laptop" | "asset-lost" | "asset-network-equipment" | "asset-peripheral" | "asset-phone" | "asset-printer" | "asset-server" | "asset-smartphone" | "backup-restoration-1" | "backup-restoration-2" | "bank" | "bi-reporting-1" | "bi-reporting-2" | "bi-reporting-3" | "bi-reporting-4" | "bookmark" | "branding" | "browse-kb" | "building" | "calendar" | "car" | "carbon" | "centreon" | "chart-area" | "chart-bar" | "chart-donut" | "chart-line" | "chart-multiple" | "chart-pie" | "chart-search" | "chat-1" | "chat-2" | "cloud" | "cloud-instance" | "cloud-inventory" | "cloud-network-1" | "cloud-network-2" | "cloud-usage" | "collaborative-tools" | "connectivity-issue" | "container" | "containers" | "contract-signing-1" | "contract-signing-2" | "credit" | "data-export" | "data-injection" | "database" | "database-add" | "delivery" | "diagnostic" | "doc-developer" | "documentation" | "download" | "error-404" | "escalade" | "factory" | "faq" | "fields" | "file-sheet" | "firewall" | "fixing-bug" | "fixing-bug-2" | "folder" | "formcreator" | "gantt" | "gdpr-tools" | "gear" | "gear-hand" | "generic-objects" | "glpi-ai" | "glpi-cloud-support-1" | "glpi-cloud-support-2" | "group" | "group-alternative-1" | "group-alternative-2" | "group-web" | "helpdesk" | "hierarchy" | "holiday" | "inbox" | "inventory" | "inventory-numbers" | "items-export" | "kb-faq" | "ldap-diagnostic" | "ldap-inventory" | "ldap-manage" | "legal" | "license" | "location-1" | "location-2" | "locations" | "lock" | "mobility" | "monitoring" | "more-options" | "more-satisfaction" | "network-inventory" | "new-user-1" | "new-user-2" | "new-user-3" | "new-user-4" | "newspaper" | "notes" | "oauth-imap" | "oauth-sso" | "on-premise" | "order-management" | "order-supplies" | "partner" | "pdf-export" | "phone-inventory" | "presentation" | "print-job" | "printer-inventory" | "question" | "rename-glpi-strings" | "report-issue" | "request-service" | "request-support" | "reservation" | "reset-password-1" | "reset-password-2" | "reset-password-3" | "rss-feeds" | "scim" | "security" | "settings" | "settings-search" | "shaking-hands" | "shared-folder" | "shared-inbox" | "software-deployment" | "splitcat" | "tag" | "technical-assistance-1" | "technical-assistance-2" | "ticket" | "tickets" | "time" | "training" | "translation" | "tutorial" | "uninstall" | "unread-messages" | "update-1" | "update-2" | "user-laptop" | "user-offboarding" | "virus" | "vpn" | "web" | "webinar" | "wharehouse" | "world" | "youtube"
+  illustration?:
+    | 'advanced-dashboards'
+    | 'advanced-forms'
+    | 'agent-config'
+    | 'alert'
+    | 'anonymise'
+    | 'anonymize-alt'
+    | 'ansible'
+    | 'antivirus'
+    | 'application'
+    | 'application-altenative'
+    | 'application-edit'
+    | 'approval-by-mail'
+    | 'approve-requests'
+    | 'asset-cartridge'
+    | 'asset-desktop-1'
+    | 'asset-desktop-2'
+    | 'asset-laptop'
+    | 'asset-lost'
+    | 'asset-network-equipment'
+    | 'asset-peripheral'
+    | 'asset-phone'
+    | 'asset-printer'
+    | 'asset-server'
+    | 'asset-smartphone'
+    | 'backup-restoration-1'
+    | 'backup-restoration-2'
+    | 'bank'
+    | 'bi-reporting-1'
+    | 'bi-reporting-2'
+    | 'bi-reporting-3'
+    | 'bi-reporting-4'
+    | 'bookmark'
+    | 'branding'
+    | 'browse-kb'
+    | 'building'
+    | 'calendar'
+    | 'car'
+    | 'carbon'
+    | 'centreon'
+    | 'chart-area'
+    | 'chart-bar'
+    | 'chart-donut'
+    | 'chart-line'
+    | 'chart-multiple'
+    | 'chart-pie'
+    | 'chart-search'
+    | 'chat-1'
+    | 'chat-2'
+    | 'cloud'
+    | 'cloud-instance'
+    | 'cloud-inventory'
+    | 'cloud-network-1'
+    | 'cloud-network-2'
+    | 'cloud-usage'
+    | 'collaborative-tools'
+    | 'connectivity-issue'
+    | 'container'
+    | 'containers'
+    | 'contract-signing-1'
+    | 'contract-signing-2'
+    | 'credit'
+    | 'data-export'
+    | 'data-injection'
+    | 'database'
+    | 'database-add'
+    | 'delivery'
+    | 'diagnostic'
+    | 'doc-developer'
+    | 'documentation'
+    | 'download'
+    | 'error-404'
+    | 'escalade'
+    | 'factory'
+    | 'faq'
+    | 'fields'
+    | 'file-sheet'
+    | 'firewall'
+    | 'fixing-bug'
+    | 'fixing-bug-2'
+    | 'folder'
+    | 'formcreator'
+    | 'gantt'
+    | 'gdpr-tools'
+    | 'gear'
+    | 'gear-hand'
+    | 'generic-objects'
+    | 'glpi-ai'
+    | 'glpi-cloud-support-1'
+    | 'glpi-cloud-support-2'
+    | 'group'
+    | 'group-alternative-1'
+    | 'group-alternative-2'
+    | 'group-web'
+    | 'helpdesk'
+    | 'hierarchy'
+    | 'holiday'
+    | 'inbox'
+    | 'inventory'
+    | 'inventory-numbers'
+    | 'items-export'
+    | 'kb-faq'
+    | 'ldap-diagnostic'
+    | 'ldap-inventory'
+    | 'ldap-manage'
+    | 'legal'
+    | 'license'
+    | 'location-1'
+    | 'location-2'
+    | 'locations'
+    | 'lock'
+    | 'mobility'
+    | 'monitoring'
+    | 'more-options'
+    | 'more-satisfaction'
+    | 'network-inventory'
+    | 'new-user-1'
+    | 'new-user-2'
+    | 'new-user-3'
+    | 'new-user-4'
+    | 'newspaper'
+    | 'notes'
+    | 'oauth-imap'
+    | 'oauth-sso'
+    | 'on-premise'
+    | 'order-management'
+    | 'order-supplies'
+    | 'partner'
+    | 'pdf-export'
+    | 'phone-inventory'
+    | 'presentation'
+    | 'print-job'
+    | 'printer-inventory'
+    | 'question'
+    | 'rename-glpi-strings'
+    | 'report-issue'
+    | 'request-service'
+    | 'request-support'
+    | 'reservation'
+    | 'reset-password-1'
+    | 'reset-password-2'
+    | 'reset-password-3'
+    | 'rss-feeds'
+    | 'scim'
+    | 'security'
+    | 'settings'
+    | 'settings-search'
+    | 'shaking-hands'
+    | 'shared-folder'
+    | 'shared-inbox'
+    | 'software-deployment'
+    | 'splitcat'
+    | 'tag'
+    | 'technical-assistance-1'
+    | 'technical-assistance-2'
+    | 'ticket'
+    | 'tickets'
+    | 'time'
+    | 'training'
+    | 'translation'
+    | 'tutorial'
+    | 'uninstall'
+    | 'unread-messages'
+    | 'update-1'
+    | 'update-2'
+    | 'user-laptop'
+    | 'user-offboarding'
+    | 'virus'
+    | 'vpn'
+    | 'web'
+    | 'webinar'
+    | 'wharehouse'
+    | 'world'
+    | 'youtube'
   is_pinned?: boolean
   date_creation?: string
   date_mod?: string
   date_begin?: string
   date_end?: string
-  revisions?: (KBArticleRevision)[]
-  translations?: (KBArticleTranslation)[]
+  revisions?: KBArticleRevision[]
+  translations?: KBArticleTranslation[]
 }
 
 export type KBArticleInput = {
   name?: string
   content?: string
-  categories?: (KBCategoryInput)[]
+  categories?: KBCategoryInput[]
   is_faq?: boolean
   entity?: EntityInput
   is_recursive?: boolean
@@ -3572,14 +3766,187 @@ export type KBArticleInput = {
   views?: number
   show_in_service_catalog?: boolean
   description?: string
-  illustration?: "advanced-dashboards" | "advanced-forms" | "agent-config" | "alert" | "anonymise" | "anonymize-alt" | "ansible" | "antivirus" | "application" | "application-altenative" | "application-edit" | "approval-by-mail" | "approve-requests" | "asset-cartridge" | "asset-desktop-1" | "asset-desktop-2" | "asset-laptop" | "asset-lost" | "asset-network-equipment" | "asset-peripheral" | "asset-phone" | "asset-printer" | "asset-server" | "asset-smartphone" | "backup-restoration-1" | "backup-restoration-2" | "bank" | "bi-reporting-1" | "bi-reporting-2" | "bi-reporting-3" | "bi-reporting-4" | "bookmark" | "branding" | "browse-kb" | "building" | "calendar" | "car" | "carbon" | "centreon" | "chart-area" | "chart-bar" | "chart-donut" | "chart-line" | "chart-multiple" | "chart-pie" | "chart-search" | "chat-1" | "chat-2" | "cloud" | "cloud-instance" | "cloud-inventory" | "cloud-network-1" | "cloud-network-2" | "cloud-usage" | "collaborative-tools" | "connectivity-issue" | "container" | "containers" | "contract-signing-1" | "contract-signing-2" | "credit" | "data-export" | "data-injection" | "database" | "database-add" | "delivery" | "diagnostic" | "doc-developer" | "documentation" | "download" | "error-404" | "escalade" | "factory" | "faq" | "fields" | "file-sheet" | "firewall" | "fixing-bug" | "fixing-bug-2" | "folder" | "formcreator" | "gantt" | "gdpr-tools" | "gear" | "gear-hand" | "generic-objects" | "glpi-ai" | "glpi-cloud-support-1" | "glpi-cloud-support-2" | "group" | "group-alternative-1" | "group-alternative-2" | "group-web" | "helpdesk" | "hierarchy" | "holiday" | "inbox" | "inventory" | "inventory-numbers" | "items-export" | "kb-faq" | "ldap-diagnostic" | "ldap-inventory" | "ldap-manage" | "legal" | "license" | "location-1" | "location-2" | "locations" | "lock" | "mobility" | "monitoring" | "more-options" | "more-satisfaction" | "network-inventory" | "new-user-1" | "new-user-2" | "new-user-3" | "new-user-4" | "newspaper" | "notes" | "oauth-imap" | "oauth-sso" | "on-premise" | "order-management" | "order-supplies" | "partner" | "pdf-export" | "phone-inventory" | "presentation" | "print-job" | "printer-inventory" | "question" | "rename-glpi-strings" | "report-issue" | "request-service" | "request-support" | "reservation" | "reset-password-1" | "reset-password-2" | "reset-password-3" | "rss-feeds" | "scim" | "security" | "settings" | "settings-search" | "shaking-hands" | "shared-folder" | "shared-inbox" | "software-deployment" | "splitcat" | "tag" | "technical-assistance-1" | "technical-assistance-2" | "ticket" | "tickets" | "time" | "training" | "translation" | "tutorial" | "uninstall" | "unread-messages" | "update-1" | "update-2" | "user-laptop" | "user-offboarding" | "virus" | "vpn" | "web" | "webinar" | "wharehouse" | "world" | "youtube"
+  illustration?:
+    | 'advanced-dashboards'
+    | 'advanced-forms'
+    | 'agent-config'
+    | 'alert'
+    | 'anonymise'
+    | 'anonymize-alt'
+    | 'ansible'
+    | 'antivirus'
+    | 'application'
+    | 'application-altenative'
+    | 'application-edit'
+    | 'approval-by-mail'
+    | 'approve-requests'
+    | 'asset-cartridge'
+    | 'asset-desktop-1'
+    | 'asset-desktop-2'
+    | 'asset-laptop'
+    | 'asset-lost'
+    | 'asset-network-equipment'
+    | 'asset-peripheral'
+    | 'asset-phone'
+    | 'asset-printer'
+    | 'asset-server'
+    | 'asset-smartphone'
+    | 'backup-restoration-1'
+    | 'backup-restoration-2'
+    | 'bank'
+    | 'bi-reporting-1'
+    | 'bi-reporting-2'
+    | 'bi-reporting-3'
+    | 'bi-reporting-4'
+    | 'bookmark'
+    | 'branding'
+    | 'browse-kb'
+    | 'building'
+    | 'calendar'
+    | 'car'
+    | 'carbon'
+    | 'centreon'
+    | 'chart-area'
+    | 'chart-bar'
+    | 'chart-donut'
+    | 'chart-line'
+    | 'chart-multiple'
+    | 'chart-pie'
+    | 'chart-search'
+    | 'chat-1'
+    | 'chat-2'
+    | 'cloud'
+    | 'cloud-instance'
+    | 'cloud-inventory'
+    | 'cloud-network-1'
+    | 'cloud-network-2'
+    | 'cloud-usage'
+    | 'collaborative-tools'
+    | 'connectivity-issue'
+    | 'container'
+    | 'containers'
+    | 'contract-signing-1'
+    | 'contract-signing-2'
+    | 'credit'
+    | 'data-export'
+    | 'data-injection'
+    | 'database'
+    | 'database-add'
+    | 'delivery'
+    | 'diagnostic'
+    | 'doc-developer'
+    | 'documentation'
+    | 'download'
+    | 'error-404'
+    | 'escalade'
+    | 'factory'
+    | 'faq'
+    | 'fields'
+    | 'file-sheet'
+    | 'firewall'
+    | 'fixing-bug'
+    | 'fixing-bug-2'
+    | 'folder'
+    | 'formcreator'
+    | 'gantt'
+    | 'gdpr-tools'
+    | 'gear'
+    | 'gear-hand'
+    | 'generic-objects'
+    | 'glpi-ai'
+    | 'glpi-cloud-support-1'
+    | 'glpi-cloud-support-2'
+    | 'group'
+    | 'group-alternative-1'
+    | 'group-alternative-2'
+    | 'group-web'
+    | 'helpdesk'
+    | 'hierarchy'
+    | 'holiday'
+    | 'inbox'
+    | 'inventory'
+    | 'inventory-numbers'
+    | 'items-export'
+    | 'kb-faq'
+    | 'ldap-diagnostic'
+    | 'ldap-inventory'
+    | 'ldap-manage'
+    | 'legal'
+    | 'license'
+    | 'location-1'
+    | 'location-2'
+    | 'locations'
+    | 'lock'
+    | 'mobility'
+    | 'monitoring'
+    | 'more-options'
+    | 'more-satisfaction'
+    | 'network-inventory'
+    | 'new-user-1'
+    | 'new-user-2'
+    | 'new-user-3'
+    | 'new-user-4'
+    | 'newspaper'
+    | 'notes'
+    | 'oauth-imap'
+    | 'oauth-sso'
+    | 'on-premise'
+    | 'order-management'
+    | 'order-supplies'
+    | 'partner'
+    | 'pdf-export'
+    | 'phone-inventory'
+    | 'presentation'
+    | 'print-job'
+    | 'printer-inventory'
+    | 'question'
+    | 'rename-glpi-strings'
+    | 'report-issue'
+    | 'request-service'
+    | 'request-support'
+    | 'reservation'
+    | 'reset-password-1'
+    | 'reset-password-2'
+    | 'reset-password-3'
+    | 'rss-feeds'
+    | 'scim'
+    | 'security'
+    | 'settings'
+    | 'settings-search'
+    | 'shaking-hands'
+    | 'shared-folder'
+    | 'shared-inbox'
+    | 'software-deployment'
+    | 'splitcat'
+    | 'tag'
+    | 'technical-assistance-1'
+    | 'technical-assistance-2'
+    | 'ticket'
+    | 'tickets'
+    | 'time'
+    | 'training'
+    | 'translation'
+    | 'tutorial'
+    | 'uninstall'
+    | 'unread-messages'
+    | 'update-1'
+    | 'update-2'
+    | 'user-laptop'
+    | 'user-offboarding'
+    | 'virus'
+    | 'vpn'
+    | 'web'
+    | 'webinar'
+    | 'wharehouse'
+    | 'world'
+    | 'youtube'
   is_pinned?: boolean
   date_creation?: string
   date_mod?: string
   date_begin?: string
   date_end?: string
-  revisions?: (KBArticleRevisionInput)[]
-  translations?: (KBArticleTranslationInput)[]
+  revisions?: KBArticleRevisionInput[]
+  translations?: KBArticleTranslationInput[]
 }
 
 export type KBArticleComment = {
@@ -3589,8 +3956,8 @@ export type KBArticleComment = {
   language?: string
   comment?: string
   parent?: {
-  readonly id?: number
-}
+    readonly id?: number
+  }
   date_creation?: string
   date_mod?: string
 }
@@ -3600,8 +3967,7 @@ export type KBArticleCommentInput = {
   user?: UserInput
   language?: string
   comment?: string
-  parent?: {
-}
+  parent?: {}
   date_creation?: string
   date_mod?: string
 }
@@ -3727,9 +4093,9 @@ export type KBCategory = {
   entity?: Entity
   is_recursive?: boolean
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   readonly level?: number
   date_creation?: string
   date_mod?: string
@@ -3741,8 +4107,8 @@ export type KBCategoryInput = {
   entity?: EntityInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   date_creation?: string
   date_mod?: string
 }
@@ -3809,9 +4175,9 @@ export type License = {
   type?: LicenseType
   manufacturer?: Manufacturer
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   contact?: string
   contact_num?: string
   serial?: string
@@ -3832,9 +4198,9 @@ export type LicenseInput = {
   type?: LicenseTypeInput
   manufacturer?: ManufacturerInput
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   contact?: string
   contact_num?: string
   serial?: string
@@ -3849,9 +4215,9 @@ export type LicenseType = {
   entity?: Entity
   is_recursive?: boolean
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   readonly level?: number
   readonly completename?: string
   date_creation?: string
@@ -3864,8 +4230,8 @@ export type LicenseTypeInput = {
   entity?: EntityInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   date_creation?: string
   date_mod?: string
 }
@@ -3881,9 +4247,9 @@ export type Line = {
   date_mod?: string
   type?: LineType
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   is_deleted?: boolean
   caller_num?: string
   caller_name?: string
@@ -3900,9 +4266,9 @@ export type LineInput = {
   date_mod?: string
   type?: LineTypeInput
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   is_deleted?: boolean
   caller_num?: string
   caller_name?: string
@@ -3957,9 +4323,9 @@ export type Location = {
   entity?: Entity
   is_recursive?: boolean
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   readonly level?: number
   room?: string
   building?: string
@@ -3983,8 +4349,8 @@ export type LocationInput = {
   entity?: EntityInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   room?: string
   building?: string
   address?: string
@@ -4168,8 +4534,8 @@ export type Monitor = {
   location?: Location
   type?: MonitorType
   model?: MonitorModel
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   readonly uuid?: string
   autoupdatesystem?: AutoUpdateSystem
   size?: number
@@ -4207,8 +4573,8 @@ export type MonitorInput = {
   location?: LocationInput
   type?: MonitorTypeInput
   model?: MonitorModelInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   autoupdatesystem?: AutoUpdateSystemInput
   size?: number
   has_microphone?: boolean
@@ -4239,7 +4605,7 @@ export type MonitorModel = {
   is_half_rack?: boolean
   readonly picture_front?: string
   readonly picture_rear?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -4254,7 +4620,7 @@ export type MonitorModelInput = {
   power_connections?: number
   power_consumption?: number
   is_half_rack?: boolean
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -4382,8 +4748,8 @@ export type NetworkEquipment = {
   location?: Location
   type?: NetworkEquipmentType
   model?: NetworkEquipmentModel
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   readonly uuid?: string
   network?: Network
   autoupdatesystem?: AutoUpdateSystem
@@ -4417,8 +4783,8 @@ export type NetworkEquipmentInput = {
   location?: LocationInput
   type?: NetworkEquipmentTypeInput
   model?: NetworkEquipmentModelInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   network?: NetworkInput
   autoupdatesystem?: AutoUpdateSystemInput
   ram?: number
@@ -4444,7 +4810,7 @@ export type NetworkEquipmentModel = {
   is_half_rack?: boolean
   readonly picture_front?: string
   readonly picture_rear?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -4459,7 +4825,7 @@ export type NetworkEquipmentModelInput = {
   power_connections?: number
   power_consumption?: number
   is_half_rack?: boolean
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -4487,7 +4853,14 @@ export type NetworkPort = {
   is_recursive?: boolean
   readonly itemtype?: string
   readonly items_id?: number
-  instantiation_type?: "NetworkPortEthernet" | "NetworkPortWifi" | "NetworkPortAggregate" | "NetworkPortAlias" | "NetworkPortDialup" | "NetworkPortLocal" | "NetworkPortFiberchannel"
+  instantiation_type?:
+    | 'NetworkPortEthernet'
+    | 'NetworkPortWifi'
+    | 'NetworkPortAggregate'
+    | 'NetworkPortAlias'
+    | 'NetworkPortDialup'
+    | 'NetworkPortLocal'
+    | 'NetworkPortFiberchannel'
   logical_number?: number
   mac?: string
   is_deleted?: boolean
@@ -4515,7 +4888,14 @@ export type NetworkPortInput = {
   comment?: string
   entity?: EntityInput
   is_recursive?: boolean
-  instantiation_type?: "NetworkPortEthernet" | "NetworkPortWifi" | "NetworkPortAggregate" | "NetworkPortAlias" | "NetworkPortDialup" | "NetworkPortLocal" | "NetworkPortFiberchannel"
+  instantiation_type?:
+    | 'NetworkPortEthernet'
+    | 'NetworkPortWifi'
+    | 'NetworkPortAggregate'
+    | 'NetworkPortAlias'
+    | 'NetworkPortDialup'
+    | 'NetworkPortLocal'
+    | 'NetworkPortFiberchannel'
   logical_number?: number
   mac?: string
   is_deleted?: boolean
@@ -4585,7 +4965,7 @@ export type NetworkPortEthernet = {
   readonly id?: number
   network_port?: NetworkPort
   network_card?: NetworkCardItem
-  type?: "" | "T" | "SX" | "LX"
+  type?: '' | 'T' | 'SX' | 'LX'
   speed?: number
   date_creation?: string
   date_mod?: string
@@ -4594,7 +4974,7 @@ export type NetworkPortEthernet = {
 export type NetworkPortEthernetInput = {
   network_port?: NetworkPortInput
   network_card?: NetworkCardItemInput
-  type?: "" | "T" | "SX" | "LX"
+  type?: '' | 'T' | 'SX' | 'LX'
   speed?: number
   date_creation?: string
   date_mod?: string
@@ -4657,7 +5037,14 @@ export type NetworkPortType = {
   is_recursive?: boolean
   iftype: number
   is_importable?: boolean
-  instantiation_type?: "NetworkPortEthernet" | "NetworkPortWifi" | "NetworkPortAggregate" | "NetworkPortAlias" | "NetworkPortDialup" | "NetworkPortLocal" | "NetworkPortFiberchannel"
+  instantiation_type?:
+    | 'NetworkPortEthernet'
+    | 'NetworkPortWifi'
+    | 'NetworkPortAggregate'
+    | 'NetworkPortAlias'
+    | 'NetworkPortDialup'
+    | 'NetworkPortLocal'
+    | 'NetworkPortFiberchannel'
   date_creation?: string
   date_mod?: string
 }
@@ -4669,7 +5056,14 @@ export type NetworkPortTypeInput = {
   is_recursive?: boolean
   iftype: number
   is_importable?: boolean
-  instantiation_type?: "NetworkPortEthernet" | "NetworkPortWifi" | "NetworkPortAggregate" | "NetworkPortAlias" | "NetworkPortDialup" | "NetworkPortLocal" | "NetworkPortFiberchannel"
+  instantiation_type?:
+    | 'NetworkPortEthernet'
+    | 'NetworkPortWifi'
+    | 'NetworkPortAggregate'
+    | 'NetworkPortAlias'
+    | 'NetworkPortDialup'
+    | 'NetworkPortLocal'
+    | 'NetworkPortFiberchannel'
   date_creation?: string
   date_mod?: string
 }
@@ -4679,8 +5073,8 @@ export type NetworkPortWifi = {
   network_port?: NetworkPort
   network_card?: NetworkCardItem
   wifinetwork?: WifiNetwork
-  version?: "" | "a" | "b" | "a/b" | "a/b/g" | "a/b/g/n" | "a/b/g/n/y" | "ac" | "ax" | "be" | "bn"
-  mode?: "" | "ad-hoc" | "managed" | "master" | "repeater" | "secondary" | "monitor" | "auto"
+  version?: '' | 'a' | 'b' | 'a/b' | 'a/b/g' | 'a/b/g/n' | 'a/b/g/n/y' | 'ac' | 'ax' | 'be' | 'bn'
+  mode?: '' | 'ad-hoc' | 'managed' | 'master' | 'repeater' | 'secondary' | 'monitor' | 'auto'
   date_creation?: string
   date_mod?: string
 }
@@ -4689,8 +5083,8 @@ export type NetworkPortWifiInput = {
   network_port?: NetworkPortInput
   network_card?: NetworkCardItemInput
   wifinetwork?: WifiNetworkInput
-  version?: "" | "a" | "b" | "a/b" | "a/b/g" | "a/b/g/n" | "a/b/g/n/y" | "ac" | "ax" | "be" | "bn"
-  mode?: "" | "ad-hoc" | "managed" | "master" | "repeater" | "secondary" | "monitor" | "auto"
+  version?: '' | 'a' | 'b' | 'a/b' | 'a/b/g' | 'a/b/g/n' | 'a/b/g/n/y' | 'ac' | 'ax' | 'be' | 'bn'
+  mode?: '' | 'ad-hoc' | 'managed' | 'master' | 'repeater' | 'secondary' | 'monitor' | 'auto'
   date_creation?: string
   date_mod?: string
 }
@@ -4707,8 +5101,7 @@ export type NotImportedEmail = {
   readonly user?: User
 }
 
-export type NotImportedEmailInput = {
-}
+export type NotImportedEmailInput = {}
 
 export type Note = {
   readonly id?: number
@@ -4746,7 +5139,7 @@ export type Notification = {
   attach_documents?: -2 | 0 | 1 | 2
   readonly date_creation?: string
   readonly date_mod?: string
-  recipients?: (NotificationRecipient)[]
+  recipients?: NotificationRecipient[]
 }
 
 export type NotificationInput = {
@@ -4759,7 +5152,7 @@ export type NotificationInput = {
   comment?: string
   allow_reply?: boolean
   attach_documents?: -2 | 0 | 1 | 2
-  recipients?: (NotificationRecipientInput)[]
+  recipients?: NotificationRecipientInput[]
 }
 
 export type NotificationRecipient = {
@@ -4785,7 +5178,7 @@ export type NotificationTemplate = {
   css?: string
   readonly date_creation?: string
   readonly date_mod?: string
-  translations?: (NotificationTemplateTranslation)[]
+  translations?: NotificationTemplateTranslation[]
 }
 
 export type NotificationTemplateInput = {
@@ -4793,7 +5186,7 @@ export type NotificationTemplateInput = {
   itemtype?: string
   comment?: string
   css?: string
-  translations?: (NotificationTemplateTranslationInput)[]
+  translations?: NotificationTemplateTranslationInput[]
 }
 
 export type NotificationTemplateTranslation = {
@@ -4817,13 +5210,13 @@ export type NotificationNotificationTemplate = {
   readonly id?: number
   notification?: Notification
   notification_template?: NotificationTemplate
-  mode?: "mailing" | "ajax" | "websocket" | "sms" | "xmpp" | "irc"
+  mode?: 'mailing' | 'ajax' | 'websocket' | 'sms' | 'xmpp' | 'irc'
 }
 
 export type NotificationNotificationTemplateInput = {
   notification?: NotificationInput
   notification_template?: NotificationTemplateInput
-  mode?: "mailing" | "ajax" | "websocket" | "sms" | "xmpp" | "irc"
+  mode?: 'mailing' | 'ajax' | 'websocket' | 'sms' | 'xmpp' | 'irc'
 }
 
 export type OAuthClient = {
@@ -4860,7 +5253,7 @@ export type OLA = {
   type?: 0 | 1
   comment?: string
   time?: number
-  time_unit?: "minute" | "hour" | "day" | "month"
+  time_unit?: 'minute' | 'hour' | 'day' | 'month'
   use_ticket_calendar?: boolean
   calendar?: Calendar
   end_of_working_day?: boolean
@@ -4876,7 +5269,7 @@ export type OLAInput = {
   type?: 0 | 1
   comment?: string
   time?: number
-  time_unit?: "minute" | "hour" | "day" | "month"
+  time_unit?: 'minute' | 'hour' | 'day' | 'month'
   use_ticket_calendar?: boolean
   calendar?: CalendarInput
   end_of_working_day?: boolean
@@ -4891,7 +5284,7 @@ export type OLALevel = {
   entity?: Entity
   is_recursive?: boolean
   execution_time?: number
-  operator?: "AND" | "OR"
+  operator?: 'AND' | 'OR'
   ola?: OLA
 }
 
@@ -4900,7 +5293,7 @@ export type OLALevelInput = {
   entity?: EntityInput
   is_recursive?: boolean
   execution_time?: number
-  operator?: "AND" | "OR"
+  operator?: 'AND' | 'OR'
   ola?: OLAInput
 }
 
@@ -5160,9 +5553,9 @@ export type PDU = {
   type?: PDUType
   state?: State
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
@@ -5183,9 +5576,9 @@ export type PDUInput = {
   type?: PDUTypeInput
   state?: StateInput
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
@@ -5257,9 +5650,9 @@ export type PassiveDCEquipment = {
   type?: PassiveDCEquipmentType
   state?: State
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
@@ -5280,9 +5673,9 @@ export type PassiveDCEquipmentInput = {
   type?: PassiveDCEquipmentTypeInput
   state?: StateInput
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
@@ -5402,8 +5795,8 @@ export type Peripheral = {
   location?: Location
   type?: PeripheralType
   model?: PeripheralModel
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   readonly uuid?: string
   autoupdatesystem?: AutoUpdateSystem
   brand?: string
@@ -5433,8 +5826,8 @@ export type PeripheralInput = {
   location?: LocationInput
   type?: PeripheralTypeInput
   model?: PeripheralModelInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   autoupdatesystem?: AutoUpdateSystemInput
   brand?: string
   is_global?: boolean
@@ -5476,7 +5869,7 @@ export type PeripheralModel = {
   is_half_rack?: boolean
   readonly picture_front?: string
   readonly picture_rear?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -5491,7 +5884,7 @@ export type PeripheralModelInput = {
   power_connections?: number
   power_consumption?: number
   is_half_rack?: boolean
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -5531,8 +5924,8 @@ export type Phone = {
   location?: Location
   type?: PhoneType
   model?: PhoneModel
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   readonly uuid?: string
   autoupdatesystem?: AutoUpdateSystem
   brand?: string
@@ -5567,8 +5960,8 @@ export type PhoneInput = {
   location?: LocationInput
   type?: PhoneTypeInput
   model?: PhoneModelInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   autoupdatesystem?: AutoUpdateSystemInput
   brand?: string
   power_supply?: PhonePowerSupplyInput
@@ -5590,7 +5983,7 @@ export type PhoneModel = {
   product_number?: string
   readonly picture_front?: string
   readonly picture_rear?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -5599,7 +5992,7 @@ export type PhoneModelInput = {
   name?: string
   comment?: string
   product_number?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -5673,8 +6066,7 @@ export type Plugin = {
   readonly license?: string
 }
 
-export type PluginInput = {
-}
+export type PluginInput = {}
 
 export type PowerSupply = {
   readonly id?: number
@@ -5765,8 +6157,8 @@ export type Printer = {
   location?: Location
   type?: PrinterType
   model?: PrinterModel
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   readonly uuid?: string
   network?: Network
   autoupdatesystem?: AutoUpdateSystem
@@ -5804,8 +6196,8 @@ export type PrinterInput = {
   location?: LocationInput
   type?: PrinterTypeInput
   model?: PrinterModelInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   network?: NetworkInput
   autoupdatesystem?: AutoUpdateSystemInput
   has_serial?: boolean
@@ -5829,7 +6221,7 @@ export type PrinterModel = {
   product_number?: string
   readonly picture_front?: string
   readonly picture_rear?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -5838,7 +6230,7 @@ export type PrinterModelInput = {
   name?: string
   comment?: string
   product_number?: string
-  pictures?: (string)[]
+  pictures?: string[]
   date_creation?: string
   date_mod?: string
 }
@@ -5882,12 +6274,12 @@ export type Problem = {
   date_solve?: string
   date_close?: string
   status?: {
-  readonly id?: 1 | 7 | 2 | 3 | 4 | 5 | 8 | 6
-  readonly name?: string
-}
+    readonly id?: 1 | 7 | 2 | 3 | 4 | 5 | 8 | 6
+    readonly name?: string
+  }
   entity?: Entity
-  team?: (TeamMember)[]
-  costs?: (ProblemCost)[]
+  team?: TeamMember[]
+  costs?: ProblemCost[]
 }
 
 export type ProblemInput = {
@@ -5907,11 +6299,10 @@ export type ProblemInput = {
   date?: string
   date_solve?: string
   date_close?: string
-  status?: {
-}
+  status?: {}
   entity?: EntityInput
-  team?: (TeamMemberInput)[]
-  costs?: (ProblemCostInput)[]
+  team?: TeamMemberInput[]
+  costs?: ProblemCostInput[]
 }
 
 export type ProblemCost = {
@@ -6147,14 +6538,14 @@ export type Project = {
   code?: string
   priority?: 1 | 2 | 3 | 4 | 5 | 6
   entity?: Entity
-  tasks?: (ProjectTask)[]
-  costs?: (ProjectCost)[]
+  tasks?: ProjectTask[]
+  costs?: ProjectCost[]
   status?: ProjectState
   is_recursive?: boolean
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   type?: ProjectType
   date?: string
   date_creation?: string
@@ -6171,10 +6562,10 @@ export type Project = {
   is_deleted?: boolean
   template_name?: string
   is_template?: boolean
-  tickets?: (Ticket)[]
-  changes?: (Change)[]
-  problems?: (Problem)[]
-  team?: (ProjectTeamMember)[]
+  tickets?: Ticket[]
+  changes?: Change[]
+  problems?: Problem[]
+  team?: ProjectTeamMember[]
 }
 
 export type ProjectInput = {
@@ -6184,13 +6575,13 @@ export type ProjectInput = {
   code?: string
   priority?: 1 | 2 | 3 | 4 | 5 | 6
   entity?: EntityInput
-  tasks?: (ProjectTaskInput)[]
-  costs?: (ProjectCostInput)[]
+  tasks?: ProjectTaskInput[]
+  costs?: ProjectCostInput[]
   status?: ProjectStateInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   type?: ProjectTypeInput
   date?: string
   date_creation?: string
@@ -6207,10 +6598,10 @@ export type ProjectInput = {
   is_deleted?: boolean
   template_name?: string
   is_template?: boolean
-  tickets?: (TicketInput)[]
-  changes?: (ChangeInput)[]
-  problems?: (ProblemInput)[]
-  team?: (ProjectTeamMemberInput)[]
+  tickets?: TicketInput[]
+  changes?: ChangeInput[]
+  problems?: ProblemInput[]
+  team?: ProjectTeamMemberInput[]
 }
 
 export type ProjectCost = {
@@ -6264,9 +6655,9 @@ export type ProjectTask = {
   content?: string
   project?: Project
   parent_task?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   status?: ProjectState
   entity?: Entity
   is_recursive?: boolean
@@ -6285,7 +6676,7 @@ export type ProjectTask = {
   percent_done?: number
   auto_percent_done?: boolean
   is_milestone?: boolean
-  team?: (ProjectTaskTeamMember)[]
+  team?: ProjectTaskTeamMember[]
 }
 
 export type ProjectTaskInput = {
@@ -6294,8 +6685,8 @@ export type ProjectTaskInput = {
   content?: string
   project?: ProjectInput
   parent_task?: {
-  id?: number
-}
+    id?: number
+  }
   status?: ProjectStateInput
   entity?: EntityInput
   is_recursive?: boolean
@@ -6314,19 +6705,19 @@ export type ProjectTaskInput = {
   percent_done?: number
   auto_percent_done?: boolean
   is_milestone?: boolean
-  team?: (ProjectTaskTeamMemberInput)[]
+  team?: ProjectTaskTeamMemberInput[]
 }
 
 export type ProjectTaskTeamMember = {
   readonly id?: number
   task: ProjectTask
-  itemtype: "User" | "Group" | "Supplier" | "Contact"
+  itemtype: 'User' | 'Group' | 'Supplier' | 'Contact'
   items_id: number
 }
 
 export type ProjectTaskTeamMemberInput = {
   task: ProjectTaskInput
-  itemtype: "User" | "Group" | "Supplier" | "Contact"
+  itemtype: 'User' | 'Group' | 'Supplier' | 'Contact'
   items_id: number
 }
 
@@ -6348,13 +6739,13 @@ export type ProjectTaskTypeInput = {
 export type ProjectTeamMember = {
   readonly id?: number
   project: Project
-  itemtype: "User" | "Group" | "Supplier" | "Contact"
+  itemtype: 'User' | 'Group' | 'Supplier' | 'Contact'
   items_id: number
 }
 
 export type ProjectTeamMemberInput = {
   project: ProjectInput
-  itemtype: "User" | "Group" | "Supplier" | "Contact"
+  itemtype: 'User' | 'Group' | 'Supplier' | 'Contact'
   items_id: number
 }
 
@@ -6396,7 +6787,7 @@ export type QueuedNotification = {
   body_html?: string
   message_id?: string
   documents?: string
-  mode?: "mailing" | "ajax" | "websocket" | "sms" | "xmpp" | "irc"
+  mode?: 'mailing' | 'ajax' | 'websocket' | 'sms' | 'xmpp' | 'irc'
   event?: string
   attach_documents?: 0 | 1 | 2
   itemtype_trigger?: string
@@ -6422,7 +6813,7 @@ export type QueuedNotificationInput = {
   body_html?: string
   message_id?: string
   documents?: string
-  mode?: "mailing" | "ajax" | "websocket" | "sms" | "xmpp" | "irc"
+  mode?: 'mailing' | 'ajax' | 'websocket' | 'sms' | 'xmpp' | 'irc'
   event?: string
   attach_documents?: 0 | 1 | 2
   itemtype_trigger?: string
@@ -6445,7 +6836,7 @@ export type QueuedWebhook = {
   readonly body?: string
   readonly event?: string
   readonly last_status_code?: number
-  readonly http_method?: "POST" | "GET" | "PUT" | "PATCH"
+  readonly http_method?: 'POST' | 'GET' | 'PUT' | 'PATCH'
 }
 
 export type QueuedWebhookInput = {
@@ -6491,9 +6882,9 @@ export type Rack = {
   type?: RackType
   state?: State
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   width?: number
   height?: number
   depth?: number
@@ -6506,7 +6897,7 @@ export type Rack = {
   max_power?: number
   measured_power?: number
   max_weight?: number
-  items?: (RackItem)[]
+  items?: RackItem[]
   date_creation?: string
   date_mod?: string
 }
@@ -6524,9 +6915,9 @@ export type RackInput = {
   type?: RackTypeInput
   state?: StateInput
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   width?: number
   height?: number
   depth?: number
@@ -6539,7 +6930,7 @@ export type RackInput = {
   max_power?: number
   measured_power?: number
   max_weight?: number
-  items?: (RackItemInput)[]
+  items?: RackItemInput[]
   date_creation?: string
   date_mod?: string
 }
@@ -6702,7 +7093,7 @@ export type RemoteManagement = {
   itemtype?: string
   items_id?: number
   remoteid?: string
-  type?: "teamviewer" | "litemanager" | "anydesk" | "meshcentral" | "supremo" | "rustdesk"
+  type?: 'teamviewer' | 'litemanager' | 'anydesk' | 'meshcentral' | 'supremo' | 'rustdesk'
   is_deleted?: boolean
   is_dynamic?: boolean
 }
@@ -6711,7 +7102,7 @@ export type RemoteManagementInput = {
   itemtype?: string
   items_id?: number
   remoteid?: string
-  type?: "teamviewer" | "litemanager" | "anydesk" | "meshcentral" | "supremo" | "rustdesk"
+  type?: 'teamviewer' | 'litemanager' | 'anydesk' | 'meshcentral' | 'supremo' | 'rustdesk'
   is_deleted?: boolean
   is_dynamic?: boolean
 }
@@ -6767,10 +7158,10 @@ export type ReservableItemInput = {
 export type Reservation = {
   readonly id?: number
   reservable_item?: {
-  readonly id?: number
-  itemtype?: string
-  items_id?: number
-}
+    readonly id?: number
+    itemtype?: string
+    items_id?: number
+  }
   comment?: string
   user?: User
   group?: number
@@ -6780,9 +7171,9 @@ export type Reservation = {
 
 export type ReservationInput = {
   reservable_item?: {
-  itemtype?: string
-  items_id?: number
-}
+    itemtype?: string
+    items_id?: number
+  }
   comment?: string
   user?: UserInput
   group?: number
@@ -6799,11 +7190,11 @@ export type Rule = {
   description?: string
   comment?: string
   is_active?: boolean
-  match?: "AND" | "OR"
+  match?: 'AND' | 'OR'
   condition?: number
   ranking?: number
-  readonly criteria?: (RuleCriteria)[]
-  readonly actions?: (RuleAction)[]
+  readonly criteria?: RuleCriteria[]
+  readonly actions?: RuleAction[]
   readonly date_creation?: string
   readonly date_mod?: string
 }
@@ -6816,7 +7207,7 @@ export type RuleInput = {
   description?: string
   comment?: string
   is_active?: boolean
-  match?: "AND" | "OR"
+  match?: 'AND' | 'OR'
   condition?: number
   ranking?: number
 }
@@ -6838,23 +7229,23 @@ export type RuleActionInput = {
 export type RuleActionField = {
   readonly id?: string
   name?: string
-  action_types?: (string)[]
+  action_types?: string[]
 }
 
 export type RuleActionFieldInput = {
   name?: string
-  action_types?: (string)[]
+  action_types?: string[]
 }
 
 export type RuleActionType = {
   readonly id?: string
   name?: string
-  fields?: (string)[]
+  fields?: string[]
 }
 
 export type RuleActionTypeInput = {
   name?: string
-  fields?: (string)[]
+  fields?: string[]
 }
 
 export type RuleCriteria = {
@@ -6874,12 +7265,12 @@ export type RuleCriteriaInput = {
 export type RuleCriteriaCondition = {
   readonly id?: number
   description?: string
-  fields?: (string)[]
+  fields?: string[]
 }
 
 export type RuleCriteriaConditionInput = {
   description?: string
-  fields?: (string)[]
+  fields?: string[]
 }
 
 export type RuleCriteriaCriteria = {
@@ -6989,7 +7380,7 @@ export type SLA = {
   type?: 0 | 1
   comment?: string
   time?: number
-  time_unit?: "minute" | "hour" | "day" | "month"
+  time_unit?: 'minute' | 'hour' | 'day' | 'month'
   use_ticket_calendar?: boolean
   calendar?: Calendar
   end_of_working_day?: boolean
@@ -7005,7 +7396,7 @@ export type SLAInput = {
   type?: 0 | 1
   comment?: string
   time?: number
-  time_unit?: "minute" | "hour" | "day" | "month"
+  time_unit?: 'minute' | 'hour' | 'day' | 'month'
   use_ticket_calendar?: boolean
   calendar?: CalendarInput
   end_of_working_day?: boolean
@@ -7020,7 +7411,7 @@ export type SLALevel = {
   entity?: Entity
   is_recursive?: boolean
   execution_time?: number
-  operator?: "AND" | "OR"
+  operator?: 'AND' | 'OR'
   sla?: SLA
 }
 
@@ -7029,7 +7420,7 @@ export type SLALevelInput = {
   entity?: EntityInput
   is_recursive?: boolean
   execution_time?: number
-  operator?: "AND" | "OR"
+  operator?: 'AND' | 'OR'
   sla?: SLAInput
 }
 
@@ -7059,7 +7450,7 @@ export type SLMInput = {
 export type SNMPCredential = {
   readonly id?: number
   name?: string
-  snmp_version: "1" | "2c" | "3"
+  snmp_version: '1' | '2c' | '3'
   community?: string
   username?: string
   authentication?: 1 | 2 | 3 | 4 | 5 | 6
@@ -7069,7 +7460,7 @@ export type SNMPCredential = {
 
 export type SNMPCredentialInput = {
   name?: string
-  snmp_version: "1" | "2c" | "3"
+  snmp_version: '1' | '2c' | '3'
   community?: string
   username?: string
   authentication?: 1 | 2 | 3 | 4 | 5 | 6
@@ -7168,129 +7559,143 @@ export type Session = {
   real_name?: string
   first_name?: string
   default_entity?: number
-  profiles?: (number)[]
-  active_entities?: (number)[]
+  profiles?: number[]
+  active_entities?: number[]
   active_profile?: {
-  readonly id?: number
-  name?: string
-  interface?: string
-  rights?: {
-  agent?: 1 | 2 | 16
-  appliance?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  backup?: number
-  bookmark_public?: 1 | 2 | 4 | 16
-  budget?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  cable_management?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
-  calendar?: 1 | 2 | 4 | 16
-  cartridge?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  certificate?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  change?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024 | 131072
-  changevalidation?: 4 | 16 | 1024
-  cluster?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
-  computer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  config?: 1 | 2
-  consumable?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  contact_enterprise?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  contract?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  dashboard?: 1 | 2 | 4 | 16
-  database?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  datacenter?: 1 | 2 | 4 | 8 | 16
-  device?: 1 | 2 | 4 | 16
-  devicesimcard_pinpuk?: 1 | 2
-  document?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  domain?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  dropdown?: 1 | 2 | 4 | 16
-  entity?: 1 | 2 | 4 | 16 | 32 | 64 | 1024 | 2048
-  externalevent?: 1 | 2 | 4 | 16 | 1024
-  followup?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
-  form?: 1 | 2 | 4 | 8 | 16
-  global_validation?: number
-  group?: 1 | 2 | 4 | 16 | 32 | 64
-  infocom?: 1 | 2 | 4 | 16
-  internet?: 1 | 2 | 4 | 8 | 16
-  inventory?: 1 | 1024 | 2048
-  itilcategory?: 1 | 2 | 4 | 16
-  itilfollowuptemplate?: 1 | 2 | 4 | 16
-  itiltemplate?: 1 | 2 | 4 | 16
-  itilvalidationtemplate?: 1 | 2 | 4 | 16
-  knowbase?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192
-  knowbasecategory?: 1 | 2 | 4 | 16
-  license?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  line?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  lineoperator?: 1 | 2 | 4 | 16
-  link?: 1 | 2 | 4 | 16
-  location?: 1 | 2 | 4 | 16
-  locked_field?: 2 | 4
-  logs?: 1
-  monitor?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  networking?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  notification?: 1 | 2 | 4 | 16
-  oauth_client?: 1 | 2 | 4 | 16
-  password_update?: number
-  pendingreason?: 1 | 2 | 4 | 16
-  peripheral?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  personalization?: 1 | 2
-  phone?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  planning?: 1 | 1024 | 2048
-  printer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  problem?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
-  profile?: 1 | 2 | 4 | 16
-  project?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
-  projecttask?: 1 | 8 | 16 | 32 | 64 | 1024
-  queuednotification?: 1 | 2 | 4 | 8 | 16
-  recurrentchange?: 1 | 2 | 4 | 16
-  refusedequipment?: 1 | 2 | 16
-  reminder_public?: 1 | 2 | 4 | 16 | 128
-  reports?: 1
-  reservation?: 1 | 2 | 4 | 16 | 1024
-  rssfeed_public?: 1 | 2 | 4 | 16 | 128
-  rule_asset?: 1 | 2 | 4 | 16 | 1024
-  rule_change?: 1 | 2 | 4 | 16 | 1024
-  rule_dictionnary_dropdown?: 1 | 2 | 4 | 16
-  rule_dictionnary_printer?: 1 | 2 | 4 | 16
-  rule_dictionnary_software?: 1 | 2 | 4 | 16
-  rule_import?: 1 | 2 | 4 | 16
-  rule_ldap?: 1 | 2 | 4 | 16
-  rule_location?: 1 | 2 | 4 | 16
-  rule_mailcollector?: 1 | 2 | 4 | 16
-  rule_problem?: 1 | 2 | 4 | 16 | 1024
-  rule_softwarecategories?: 1 | 2 | 4 | 16
-  rule_ticket?: 1 | 2 | 4 | 16 | 1024
-  search_config?: 1024 | 2048
-  show_group_hardware?: number
-  slm?: 1 | 2 | 4 | 16 | 256
-  snmpcredential?: 1 | 2 | 4 | 8 | 16
-  software?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  solutiontemplate?: 1 | 2 | 4 | 16
-  state?: 1 | 2 | 4 | 16
-  statistic?: 1
-  system_logs?: 1
-  task?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
-  taskcategory?: 1 | 2 | 4 | 16
-  tasktemplate?: 1 | 2 | 4 | 16
-  ticket?: 1 | 2 | 4 | 8 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536 | 131072 | 262144
-  ticketcost?: 1 | 2 | 4 | 16
-  ticketrecurrent?: 1 | 2 | 4 | 16
-  ticketvalidation?: 16 | 1024 | 2048 | 4096 | 8192
-  transfer?: 1 | 2 | 4 | 16
-  typedoc?: 1 | 2 | 4 | 16
-  unmanaged?: 1 | 2 | 8 | 16
-  user?: 1 | 2 | 4 | 8 | 16 | 1024 | 2048 | 4096 | 8192
-}
-  helpdesk_hardware?: 0 | 1 | 2 | 3
-  helpdesk_item_type?: string
-  managed_domainrecordtypes?: string
-  ticket_status?: string
-  change_status?: string
-  problem_status?: string
-}
+    readonly id?: number
+    name?: string
+    interface?: string
+    rights?: {
+      agent?: 1 | 2 | 16
+      appliance?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      backup?: number
+      bookmark_public?: 1 | 2 | 4 | 16
+      budget?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      cable_management?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
+      calendar?: 1 | 2 | 4 | 16
+      cartridge?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      certificate?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      change?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024 | 131072
+      changevalidation?: 4 | 16 | 1024
+      cluster?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
+      computer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      config?: 1 | 2
+      consumable?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      contact_enterprise?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      contract?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      dashboard?: 1 | 2 | 4 | 16
+      database?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      datacenter?: 1 | 2 | 4 | 8 | 16
+      device?: 1 | 2 | 4 | 16
+      devicesimcard_pinpuk?: 1 | 2
+      document?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      domain?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      dropdown?: 1 | 2 | 4 | 16
+      entity?: 1 | 2 | 4 | 16 | 32 | 64 | 1024 | 2048
+      externalevent?: 1 | 2 | 4 | 16 | 1024
+      followup?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
+      form?: 1 | 2 | 4 | 8 | 16
+      global_validation?: number
+      group?: 1 | 2 | 4 | 16 | 32 | 64
+      infocom?: 1 | 2 | 4 | 16
+      internet?: 1 | 2 | 4 | 8 | 16
+      inventory?: 1 | 1024 | 2048
+      itilcategory?: 1 | 2 | 4 | 16
+      itilfollowuptemplate?: 1 | 2 | 4 | 16
+      itiltemplate?: 1 | 2 | 4 | 16
+      itilvalidationtemplate?: 1 | 2 | 4 | 16
+      knowbase?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192
+      knowbasecategory?: 1 | 2 | 4 | 16
+      license?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      line?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      lineoperator?: 1 | 2 | 4 | 16
+      link?: 1 | 2 | 4 | 16
+      location?: 1 | 2 | 4 | 16
+      locked_field?: 2 | 4
+      logs?: 1
+      monitor?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      networking?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      notification?: 1 | 2 | 4 | 16
+      oauth_client?: 1 | 2 | 4 | 16
+      password_update?: number
+      pendingreason?: 1 | 2 | 4 | 16
+      peripheral?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      personalization?: 1 | 2
+      phone?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      planning?: 1 | 1024 | 2048
+      printer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      problem?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
+      profile?: 1 | 2 | 4 | 16
+      project?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
+      projecttask?: 1 | 8 | 16 | 32 | 64 | 1024
+      queuednotification?: 1 | 2 | 4 | 8 | 16
+      recurrentchange?: 1 | 2 | 4 | 16
+      refusedequipment?: 1 | 2 | 16
+      reminder_public?: 1 | 2 | 4 | 16 | 128
+      reports?: 1
+      reservation?: 1 | 2 | 4 | 16 | 1024
+      rssfeed_public?: 1 | 2 | 4 | 16 | 128
+      rule_asset?: 1 | 2 | 4 | 16 | 1024
+      rule_change?: 1 | 2 | 4 | 16 | 1024
+      rule_dictionnary_dropdown?: 1 | 2 | 4 | 16
+      rule_dictionnary_printer?: 1 | 2 | 4 | 16
+      rule_dictionnary_software?: 1 | 2 | 4 | 16
+      rule_import?: 1 | 2 | 4 | 16
+      rule_ldap?: 1 | 2 | 4 | 16
+      rule_location?: 1 | 2 | 4 | 16
+      rule_mailcollector?: 1 | 2 | 4 | 16
+      rule_problem?: 1 | 2 | 4 | 16 | 1024
+      rule_softwarecategories?: 1 | 2 | 4 | 16
+      rule_ticket?: 1 | 2 | 4 | 16 | 1024
+      search_config?: 1024 | 2048
+      show_group_hardware?: number
+      slm?: 1 | 2 | 4 | 16 | 256
+      snmpcredential?: 1 | 2 | 4 | 8 | 16
+      software?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      solutiontemplate?: 1 | 2 | 4 | 16
+      state?: 1 | 2 | 4 | 16
+      statistic?: 1
+      system_logs?: 1
+      task?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
+      taskcategory?: 1 | 2 | 4 | 16
+      tasktemplate?: 1 | 2 | 4 | 16
+      ticket?:
+        | 1
+        | 2
+        | 4
+        | 8
+        | 16
+        | 1024
+        | 2048
+        | 4096
+        | 8192
+        | 16384
+        | 32768
+        | 65536
+        | 131072
+        | 262144
+      ticketcost?: 1 | 2 | 4 | 16
+      ticketrecurrent?: 1 | 2 | 4 | 16
+      ticketvalidation?: 16 | 1024 | 2048 | 4096 | 8192
+      transfer?: 1 | 2 | 4 | 16
+      typedoc?: 1 | 2 | 4 | 16
+      unmanaged?: 1 | 2 | 8 | 16
+      user?: 1 | 2 | 4 | 8 | 16 | 1024 | 2048 | 4096 | 8192
+    }
+    helpdesk_hardware?: 0 | 1 | 2 | 3
+    helpdesk_item_type?: string
+    managed_domainrecordtypes?: string
+    ticket_status?: string
+    change_status?: string
+    problem_status?: string
+  }
   active_entity?: {
-  readonly id?: number
-  short_name?: string
-  complete_name?: string
-  recursive?: number
-}
-  groups?: (number)[]
+    readonly id?: number
+    short_name?: string
+    complete_name?: string
+    recursive?: number
+  }
+  groups?: number[]
 }
 
 export type SessionInput = {
@@ -7302,127 +7707,141 @@ export type SessionInput = {
   real_name?: string
   first_name?: string
   default_entity?: number
-  profiles?: (number)[]
-  active_entities?: (number)[]
+  profiles?: number[]
+  active_entities?: number[]
   active_profile?: {
-  name?: string
-  interface?: string
-  rights?: {
-  agent?: 1 | 2 | 16
-  appliance?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  backup?: number
-  bookmark_public?: 1 | 2 | 4 | 16
-  budget?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  cable_management?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
-  calendar?: 1 | 2 | 4 | 16
-  cartridge?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  certificate?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  change?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024 | 131072
-  changevalidation?: 4 | 16 | 1024
-  cluster?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
-  computer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  config?: 1 | 2
-  consumable?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  contact_enterprise?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  contract?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  dashboard?: 1 | 2 | 4 | 16
-  database?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  datacenter?: 1 | 2 | 4 | 8 | 16
-  device?: 1 | 2 | 4 | 16
-  devicesimcard_pinpuk?: 1 | 2
-  document?: 1 | 2 | 4 | 8 | 16 | 32 | 64
-  domain?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  dropdown?: 1 | 2 | 4 | 16
-  entity?: 1 | 2 | 4 | 16 | 32 | 64 | 1024 | 2048
-  externalevent?: 1 | 2 | 4 | 16 | 1024
-  followup?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
-  form?: 1 | 2 | 4 | 8 | 16
-  global_validation?: number
-  group?: 1 | 2 | 4 | 16 | 32 | 64
-  infocom?: 1 | 2 | 4 | 16
-  internet?: 1 | 2 | 4 | 8 | 16
-  inventory?: 1 | 1024 | 2048
-  itilcategory?: 1 | 2 | 4 | 16
-  itilfollowuptemplate?: 1 | 2 | 4 | 16
-  itiltemplate?: 1 | 2 | 4 | 16
-  itilvalidationtemplate?: 1 | 2 | 4 | 16
-  knowbase?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192
-  knowbasecategory?: 1 | 2 | 4 | 16
-  license?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  line?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  lineoperator?: 1 | 2 | 4 | 16
-  link?: 1 | 2 | 4 | 16
-  location?: 1 | 2 | 4 | 16
-  locked_field?: 2 | 4
-  logs?: 1
-  monitor?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  networking?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  notification?: 1 | 2 | 4 | 16
-  oauth_client?: 1 | 2 | 4 | 16
-  password_update?: number
-  pendingreason?: 1 | 2 | 4 | 16
-  peripheral?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  personalization?: 1 | 2
-  phone?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  planning?: 1 | 1024 | 2048
-  printer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  problem?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
-  profile?: 1 | 2 | 4 | 16
-  project?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
-  projecttask?: 1 | 8 | 16 | 32 | 64 | 1024
-  queuednotification?: 1 | 2 | 4 | 8 | 16
-  recurrentchange?: 1 | 2 | 4 | 16
-  refusedequipment?: 1 | 2 | 16
-  reminder_public?: 1 | 2 | 4 | 16 | 128
-  reports?: 1
-  reservation?: 1 | 2 | 4 | 16 | 1024
-  rssfeed_public?: 1 | 2 | 4 | 16 | 128
-  rule_asset?: 1 | 2 | 4 | 16 | 1024
-  rule_change?: 1 | 2 | 4 | 16 | 1024
-  rule_dictionnary_dropdown?: 1 | 2 | 4 | 16
-  rule_dictionnary_printer?: 1 | 2 | 4 | 16
-  rule_dictionnary_software?: 1 | 2 | 4 | 16
-  rule_import?: 1 | 2 | 4 | 16
-  rule_ldap?: 1 | 2 | 4 | 16
-  rule_location?: 1 | 2 | 4 | 16
-  rule_mailcollector?: 1 | 2 | 4 | 16
-  rule_problem?: 1 | 2 | 4 | 16 | 1024
-  rule_softwarecategories?: 1 | 2 | 4 | 16
-  rule_ticket?: 1 | 2 | 4 | 16 | 1024
-  search_config?: 1024 | 2048
-  show_group_hardware?: number
-  slm?: 1 | 2 | 4 | 16 | 256
-  snmpcredential?: 1 | 2 | 4 | 8 | 16
-  software?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
-  solutiontemplate?: 1 | 2 | 4 | 16
-  state?: 1 | 2 | 4 | 16
-  statistic?: 1
-  system_logs?: 1
-  task?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
-  taskcategory?: 1 | 2 | 4 | 16
-  tasktemplate?: 1 | 2 | 4 | 16
-  ticket?: 1 | 2 | 4 | 8 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536 | 131072 | 262144
-  ticketcost?: 1 | 2 | 4 | 16
-  ticketrecurrent?: 1 | 2 | 4 | 16
-  ticketvalidation?: 16 | 1024 | 2048 | 4096 | 8192
-  transfer?: 1 | 2 | 4 | 16
-  typedoc?: 1 | 2 | 4 | 16
-  unmanaged?: 1 | 2 | 8 | 16
-  user?: 1 | 2 | 4 | 8 | 16 | 1024 | 2048 | 4096 | 8192
-}
-  helpdesk_hardware?: 0 | 1 | 2 | 3
-  helpdesk_item_type?: string
-  managed_domainrecordtypes?: string
-  ticket_status?: string
-  change_status?: string
-  problem_status?: string
-}
+    name?: string
+    interface?: string
+    rights?: {
+      agent?: 1 | 2 | 16
+      appliance?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      backup?: number
+      bookmark_public?: 1 | 2 | 4 | 16
+      budget?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      cable_management?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
+      calendar?: 1 | 2 | 4 | 16
+      cartridge?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      certificate?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      change?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024 | 131072
+      changevalidation?: 4 | 16 | 1024
+      cluster?: 1 | 2 | 4 | 8 | 16 | 256 | 512 | 1024 | 2048
+      computer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      config?: 1 | 2
+      consumable?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      contact_enterprise?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      contract?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      dashboard?: 1 | 2 | 4 | 16
+      database?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      datacenter?: 1 | 2 | 4 | 8 | 16
+      device?: 1 | 2 | 4 | 16
+      devicesimcard_pinpuk?: 1 | 2
+      document?: 1 | 2 | 4 | 8 | 16 | 32 | 64
+      domain?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      dropdown?: 1 | 2 | 4 | 16
+      entity?: 1 | 2 | 4 | 16 | 32 | 64 | 1024 | 2048
+      externalevent?: 1 | 2 | 4 | 16 | 1024
+      followup?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
+      form?: 1 | 2 | 4 | 8 | 16
+      global_validation?: number
+      group?: 1 | 2 | 4 | 16 | 32 | 64
+      infocom?: 1 | 2 | 4 | 16
+      internet?: 1 | 2 | 4 | 8 | 16
+      inventory?: 1 | 1024 | 2048
+      itilcategory?: 1 | 2 | 4 | 16
+      itilfollowuptemplate?: 1 | 2 | 4 | 16
+      itiltemplate?: 1 | 2 | 4 | 16
+      itilvalidationtemplate?: 1 | 2 | 4 | 16
+      knowbase?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192
+      knowbasecategory?: 1 | 2 | 4 | 16
+      license?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      line?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      lineoperator?: 1 | 2 | 4 | 16
+      link?: 1 | 2 | 4 | 16
+      location?: 1 | 2 | 4 | 16
+      locked_field?: 2 | 4
+      logs?: 1
+      monitor?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      networking?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      notification?: 1 | 2 | 4 | 16
+      oauth_client?: 1 | 2 | 4 | 16
+      password_update?: number
+      pendingreason?: 1 | 2 | 4 | 16
+      peripheral?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      personalization?: 1 | 2
+      phone?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      planning?: 1 | 1024 | 2048
+      printer?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      problem?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
+      profile?: 1 | 2 | 4 | 16
+      project?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024
+      projecttask?: 1 | 8 | 16 | 32 | 64 | 1024
+      queuednotification?: 1 | 2 | 4 | 8 | 16
+      recurrentchange?: 1 | 2 | 4 | 16
+      refusedequipment?: 1 | 2 | 16
+      reminder_public?: 1 | 2 | 4 | 16 | 128
+      reports?: 1
+      reservation?: 1 | 2 | 4 | 16 | 1024
+      rssfeed_public?: 1 | 2 | 4 | 16 | 128
+      rule_asset?: 1 | 2 | 4 | 16 | 1024
+      rule_change?: 1 | 2 | 4 | 16 | 1024
+      rule_dictionnary_dropdown?: 1 | 2 | 4 | 16
+      rule_dictionnary_printer?: 1 | 2 | 4 | 16
+      rule_dictionnary_software?: 1 | 2 | 4 | 16
+      rule_import?: 1 | 2 | 4 | 16
+      rule_ldap?: 1 | 2 | 4 | 16
+      rule_location?: 1 | 2 | 4 | 16
+      rule_mailcollector?: 1 | 2 | 4 | 16
+      rule_problem?: 1 | 2 | 4 | 16 | 1024
+      rule_softwarecategories?: 1 | 2 | 4 | 16
+      rule_ticket?: 1 | 2 | 4 | 16 | 1024
+      search_config?: 1024 | 2048
+      show_group_hardware?: number
+      slm?: 1 | 2 | 4 | 16 | 256
+      snmpcredential?: 1 | 2 | 4 | 8 | 16
+      software?: 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+      solutiontemplate?: 1 | 2 | 4 | 16
+      state?: 1 | 2 | 4 | 16
+      statistic?: 1
+      system_logs?: 1
+      task?: 1 | 2 | 4 | 16 | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536
+      taskcategory?: 1 | 2 | 4 | 16
+      tasktemplate?: 1 | 2 | 4 | 16
+      ticket?:
+        | 1
+        | 2
+        | 4
+        | 8
+        | 16
+        | 1024
+        | 2048
+        | 4096
+        | 8192
+        | 16384
+        | 32768
+        | 65536
+        | 131072
+        | 262144
+      ticketcost?: 1 | 2 | 4 | 16
+      ticketrecurrent?: 1 | 2 | 4 | 16
+      ticketvalidation?: 16 | 1024 | 2048 | 4096 | 8192
+      transfer?: 1 | 2 | 4 | 16
+      typedoc?: 1 | 2 | 4 | 16
+      unmanaged?: 1 | 2 | 8 | 16
+      user?: 1 | 2 | 4 | 8 | 16 | 1024 | 2048 | 4096 | 8192
+    }
+    helpdesk_hardware?: 0 | 1 | 2 | 3
+    helpdesk_item_type?: string
+    managed_domainrecordtypes?: string
+    ticket_status?: string
+    change_status?: string
+    problem_status?: string
+  }
   active_entity?: {
-  short_name?: string
-  complete_name?: string
-  recursive?: number
-}
-  groups?: (number)[]
+    short_name?: string
+    complete_name?: string
+    recursive?: number
+  }
+  groups?: number[]
 }
 
 export type Socket = {
@@ -7477,14 +7896,14 @@ export type Software = {
   category?: SoftwareCategory
   manufacturer?: Manufacturer
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   is_helpdesk_visible?: boolean
   user?: User
-  group?: (Group)[]
+  group?: Group[]
   user_tech?: User
-  group_tech?: (Group)[]
+  group_tech?: Group[]
   is_deleted?: boolean
   is_update?: boolean
   readonly is_valid?: boolean
@@ -7504,13 +7923,13 @@ export type SoftwareInput = {
   category?: SoftwareCategoryInput
   manufacturer?: ManufacturerInput
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   is_helpdesk_visible?: boolean
   user?: UserInput
-  group?: (GroupInput)[]
+  group?: GroupInput[]
   user_tech?: UserInput
-  group_tech?: (GroupInput)[]
+  group_tech?: GroupInput[]
   is_deleted?: boolean
   is_update?: boolean
   date_creation?: string
@@ -7526,9 +7945,9 @@ export type SoftwareCategory = {
   readonly completename?: string
   comment?: string
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   readonly level?: number
 }
 
@@ -7536,8 +7955,8 @@ export type SoftwareCategoryInput = {
   name?: string
   comment?: string
   parent?: {
-  id?: number
-}
+    id?: number
+  }
 }
 
 export type SoftwareInstallation = {
@@ -7578,8 +7997,8 @@ export type SoftwareLicense = {
   date_mod?: string
   location?: Location
   type?: LicenseType
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   readonly completename?: string
   readonly level?: number
 }
@@ -7602,8 +8021,8 @@ export type SoftwareLicenseInput = {
   date_mod?: string
   location?: LocationInput
   type?: LicenseTypeInput
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
 }
 
 export type SoftwareVersion = {
@@ -7785,14 +8204,14 @@ export type StatReport = {
   assistance_type?: string
   report_type?: string
   report_title?: string
-  report_group_fields?: (string)[]
+  report_group_fields?: string[]
 }
 
 export type StatReportInput = {
   assistance_type?: string
   report_type?: string
   report_title?: string
-  report_group_fields?: (string)[]
+  report_group_fields?: string[]
 }
 
 export type State = {
@@ -7803,9 +8222,9 @@ export type State = {
   entity?: Entity
   is_recursive?: boolean
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   readonly level?: number
   is_visible_helpdesk?: boolean
   date_creation?: string
@@ -7819,8 +8238,8 @@ export type StateInput = {
   entity?: EntityInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   is_visible_helpdesk?: boolean
   date_creation?: string
   date_mod?: string
@@ -8003,9 +8422,9 @@ export type TaskCategory = {
   is_recursive?: boolean
   readonly completename?: string
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   readonly level?: number
   is_helpdesk_visible?: boolean
   date_creation?: string
@@ -8018,8 +8437,8 @@ export type TaskCategoryInput = {
   entity?: EntityInput
   is_recursive?: boolean
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   is_helpdesk_visible?: boolean
   date_creation?: string
   date_mod?: string
@@ -8115,12 +8534,12 @@ export type Ticket = {
   internal_take_into_account_date?: string
   global_validation?: 1 | 2 | 3 | 4
   status?: {
-  readonly id?: 1 | 10 | 2 | 3 | 4 | 5 | 6
-  readonly name?: string
-}
+    readonly id?: 1 | 10 | 2 | 3 | 4 | 5 | 6
+    readonly name?: string
+  }
   entity?: Entity
-  team?: (TeamMember)[]
-  costs?: (TicketCost)[]
+  team?: TeamMember[]
+  costs?: TicketCost[]
 }
 
 export type TicketInput = {
@@ -8153,11 +8572,10 @@ export type TicketInput = {
   internal_resolution_date?: string
   internal_take_into_account_date?: string
   global_validation?: 1 | 2 | 3 | 4
-  status?: {
-}
+  status?: {}
   entity?: EntityInput
-  team?: (TeamMemberInput)[]
-  costs?: (TicketCostInput)[]
+  team?: TeamMemberInput[]
+  costs?: TicketCostInput[]
 }
 
 export type TicketCost = {
@@ -8273,7 +8691,7 @@ export type TicketValidation = {
   readonly id?: number
   requester?: User
   approver?: User
-  requested_approver_type?: "User" | "Group"
+  requested_approver_type?: 'User' | 'Group'
   requested_approver_id?: number
   submission_comment?: string
   approval_comment?: string
@@ -8287,7 +8705,7 @@ export type TicketValidation = {
 export type TicketValidationInput = {
   requester?: UserInput
   approver?: UserInput
-  requested_approver_type?: "User" | "Group"
+  requested_approver_type?: 'User' | 'Group'
   requested_approver_id?: number
   submission_comment?: string
   approval_comment?: string
@@ -8364,8 +8782,8 @@ export type Unmanaged = {
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
-  group?: (Group)[]
-  group_tech?: (Group)[]
+  group?: Group[]
+  group_tech?: Group[]
   network?: Network
   autoupdatesystem?: AutoUpdateSystem
   is_dynamic?: boolean
@@ -8395,8 +8813,8 @@ export type UnmanagedInput = {
   is_deleted?: boolean
   date_creation?: string
   date_mod?: string
-  group?: (GroupInput)[]
-  group_tech?: (GroupInput)[]
+  group?: GroupInput[]
+  group_tech?: GroupInput[]
   network?: NetworkInput
   autoupdatesystem?: AutoUpdateSystemInput
   is_dynamic?: boolean
@@ -8417,7 +8835,7 @@ export type User = {
   phone?: string
   phone2?: string
   mobile?: string
-  emails?: (EmailAddress)[]
+  emails?: EmailAddress[]
   comment?: string
   is_active?: boolean
   is_deleted?: boolean
@@ -8448,7 +8866,7 @@ export type UserInput = {
   phone?: string
   phone2?: string
   mobile?: string
-  emails?: (EmailAddressInput)[]
+  emails?: EmailAddressInput[]
   comment?: string
   is_active?: boolean
   is_deleted?: boolean
@@ -8494,7 +8912,7 @@ export type UserPreferences = {
   date_format?: 0 | 1 | 2
   number_format?: 0 | 1 | 2 | 3 | 4
   name_format?: 0 | 1
-  csv_delimiter?: ";" | ","
+  csv_delimiter?: ';' | ','
   is_ids_visible?: boolean
   use_flat_dropdowntree?: boolean
   use_flat_dropdowntree_on_search_result?: boolean
@@ -8520,23 +8938,71 @@ export type UserPreferences = {
   duedate_color_warning?: string
   duedate_color_critical?: string
   duedate_threshold_warning?: number
-  duedate_threshold_warning_unit?: "%" | "hours" | "days"
+  duedate_threshold_warning_unit?: '%' | 'hours' | 'days'
   duedate_threshold_critical?: number
-  duedate_threshold_critical_unit?: "%" | "hours" | "days"
-  pdf_font?: "aealarabiya" | "aefurat" | "cid0cs" | "cid0ct" | "cid0jp" | "cid0kr" | "courier" | "dejavusans" | "dejavusanscondensed" | "dejavusansextralight" | "dejavusansmono" | "dejavuserif" | "dejavuserifcondensed" | "freemono" | "freesans" | "freeserif" | "helvetica" | "hysmyeongjostdmedium" | "kozgopromedium" | "kozminproregular" | "msungstdlight" | "pdfacourier" | "pdfahelvetica" | "pdfasymbol" | "pdfatimes" | "pdfazapfdingbats" | "stsongstdlight" | "symbol" | "times" | "zapfdingbats"
+  duedate_threshold_critical_unit?: '%' | 'hours' | 'days'
+  pdf_font?:
+    | 'aealarabiya'
+    | 'aefurat'
+    | 'cid0cs'
+    | 'cid0ct'
+    | 'cid0jp'
+    | 'cid0kr'
+    | 'courier'
+    | 'dejavusans'
+    | 'dejavusanscondensed'
+    | 'dejavusansextralight'
+    | 'dejavusansmono'
+    | 'dejavuserif'
+    | 'dejavuserifcondensed'
+    | 'freemono'
+    | 'freesans'
+    | 'freeserif'
+    | 'helvetica'
+    | 'hysmyeongjostdmedium'
+    | 'kozgopromedium'
+    | 'kozminproregular'
+    | 'msungstdlight'
+    | 'pdfacourier'
+    | 'pdfahelvetica'
+    | 'pdfasymbol'
+    | 'pdfatimes'
+    | 'pdfazapfdingbats'
+    | 'stsongstdlight'
+    | 'symbol'
+    | 'times'
+    | 'zapfdingbats'
   keep_devices_when_purging_item?: boolean
   show_new_item_after_creation?: boolean
   default_task_state?: 0 | 1 | 2
   default_task_state_planned?: 0 | 1 | 2
-  palette?: "aerialgreen" | "auror" | "auror_dark" | "automn" | "classic" | "clockworkorange" | "dark" | "darker" | "flood" | "greenflat" | "hipster" | "icecream" | "lightblue" | "midnight" | "premiumred" | "purplehaze" | "teclib" | "vintage"
-  page_layout?: "horizontal" | "vertical"
-  timeline_order?: "natural" | "reverse"
-  richtext_layout?: "inline" | "classic"
+  palette?:
+    | 'aerialgreen'
+    | 'auror'
+    | 'auror_dark'
+    | 'automn'
+    | 'classic'
+    | 'clockworkorange'
+    | 'dark'
+    | 'darker'
+    | 'flood'
+    | 'greenflat'
+    | 'hipster'
+    | 'icecream'
+    | 'lightblue'
+    | 'midnight'
+    | 'premiumred'
+    | 'purplehaze'
+    | 'teclib'
+    | 'vintage'
+  page_layout?: 'horizontal' | 'vertical'
+  timeline_order?: 'natural' | 'reverse'
+  richtext_layout?: 'inline' | 'classic'
   autolock_mode?: boolean
   directunlock_notification?: boolean
   highcontrast_css?: boolean
   default_homepage_tab?: 0 | 1 | 2 | 3 | 4
-  toast_location?: "top-left" | "top-right" | "bottom-left" | "bottom-right"
+  toast_location?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   timeline_action_button_layout?: 0 | 1
   timeline_date_format?: 0 | 1
   default_is_notifications_enabled?: boolean
@@ -8552,7 +9018,7 @@ export type UserPreferencesInput = {
   date_format?: 0 | 1 | 2
   number_format?: 0 | 1 | 2 | 3 | 4
   name_format?: 0 | 1
-  csv_delimiter?: ";" | ","
+  csv_delimiter?: ';' | ','
   is_ids_visible?: boolean
   use_flat_dropdowntree?: boolean
   use_flat_dropdowntree_on_search_result?: boolean
@@ -8578,23 +9044,71 @@ export type UserPreferencesInput = {
   duedate_color_warning?: string
   duedate_color_critical?: string
   duedate_threshold_warning?: number
-  duedate_threshold_warning_unit?: "%" | "hours" | "days"
+  duedate_threshold_warning_unit?: '%' | 'hours' | 'days'
   duedate_threshold_critical?: number
-  duedate_threshold_critical_unit?: "%" | "hours" | "days"
-  pdf_font?: "aealarabiya" | "aefurat" | "cid0cs" | "cid0ct" | "cid0jp" | "cid0kr" | "courier" | "dejavusans" | "dejavusanscondensed" | "dejavusansextralight" | "dejavusansmono" | "dejavuserif" | "dejavuserifcondensed" | "freemono" | "freesans" | "freeserif" | "helvetica" | "hysmyeongjostdmedium" | "kozgopromedium" | "kozminproregular" | "msungstdlight" | "pdfacourier" | "pdfahelvetica" | "pdfasymbol" | "pdfatimes" | "pdfazapfdingbats" | "stsongstdlight" | "symbol" | "times" | "zapfdingbats"
+  duedate_threshold_critical_unit?: '%' | 'hours' | 'days'
+  pdf_font?:
+    | 'aealarabiya'
+    | 'aefurat'
+    | 'cid0cs'
+    | 'cid0ct'
+    | 'cid0jp'
+    | 'cid0kr'
+    | 'courier'
+    | 'dejavusans'
+    | 'dejavusanscondensed'
+    | 'dejavusansextralight'
+    | 'dejavusansmono'
+    | 'dejavuserif'
+    | 'dejavuserifcondensed'
+    | 'freemono'
+    | 'freesans'
+    | 'freeserif'
+    | 'helvetica'
+    | 'hysmyeongjostdmedium'
+    | 'kozgopromedium'
+    | 'kozminproregular'
+    | 'msungstdlight'
+    | 'pdfacourier'
+    | 'pdfahelvetica'
+    | 'pdfasymbol'
+    | 'pdfatimes'
+    | 'pdfazapfdingbats'
+    | 'stsongstdlight'
+    | 'symbol'
+    | 'times'
+    | 'zapfdingbats'
   keep_devices_when_purging_item?: boolean
   show_new_item_after_creation?: boolean
   default_task_state?: 0 | 1 | 2
   default_task_state_planned?: 0 | 1 | 2
-  palette?: "aerialgreen" | "auror" | "auror_dark" | "automn" | "classic" | "clockworkorange" | "dark" | "darker" | "flood" | "greenflat" | "hipster" | "icecream" | "lightblue" | "midnight" | "premiumred" | "purplehaze" | "teclib" | "vintage"
-  page_layout?: "horizontal" | "vertical"
-  timeline_order?: "natural" | "reverse"
-  richtext_layout?: "inline" | "classic"
+  palette?:
+    | 'aerialgreen'
+    | 'auror'
+    | 'auror_dark'
+    | 'automn'
+    | 'classic'
+    | 'clockworkorange'
+    | 'dark'
+    | 'darker'
+    | 'flood'
+    | 'greenflat'
+    | 'hipster'
+    | 'icecream'
+    | 'lightblue'
+    | 'midnight'
+    | 'premiumred'
+    | 'purplehaze'
+    | 'teclib'
+    | 'vintage'
+  page_layout?: 'horizontal' | 'vertical'
+  timeline_order?: 'natural' | 'reverse'
+  richtext_layout?: 'inline' | 'classic'
   autolock_mode?: boolean
   directunlock_notification?: boolean
   highcontrast_css?: boolean
   default_homepage_tab?: 0 | 1 | 2 | 3 | 4
-  toast_location?: "top-left" | "top-right" | "bottom-left" | "bottom-right"
+  toast_location?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   timeline_action_button_layout?: 0 | 1
   timeline_date_format?: 0 | 1
   default_is_notifications_enabled?: boolean
@@ -8779,7 +9293,7 @@ export type Webhook = {
   url?: string
   secret?: string
   use_cra_challenge?: boolean
-  http_method?: "POST" | "GET" | "PUT" | "PATCH"
+  http_method?: 'POST' | 'GET' | 'PUT' | 'PATCH'
   sent_try?: number
   is_active?: boolean
   save_response_body?: boolean
@@ -8805,7 +9319,7 @@ export type WebhookInput = {
   url?: string
   secret?: string
   use_cra_challenge?: boolean
-  http_method?: "POST" | "GET" | "PUT" | "PATCH"
+  http_method?: 'POST' | 'GET' | 'PUT' | 'PATCH'
   sent_try?: number
   is_active?: boolean
   save_response_body?: boolean
@@ -8824,9 +9338,9 @@ export type WebhookCategory = {
   readonly completename?: string
   comment?: string
   parent?: {
-  id?: number
-  readonly name?: string
-}
+    id?: number
+    readonly name?: string
+  }
   readonly level?: number
   date_creation?: string
   date_mod?: string
@@ -8836,8 +9350,8 @@ export type WebhookCategoryInput = {
   name?: string
   comment?: string
   parent?: {
-  id?: number
-}
+    id?: number
+  }
   date_creation?: string
   date_mod?: string
 }

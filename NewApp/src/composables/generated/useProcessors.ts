@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getProcessors, getProcessorById } from '@/services/generated/processorService'
+import type { Processor } from '@/services/generated/processorService'
 
 export function useProcessors() {
-  const processors = ref<any[]>([])
-  const selectedProcessor = ref<any | null>(null)
+  const processors = ref<Processor[]>([])
+  const selectedProcessor = ref<Processor | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

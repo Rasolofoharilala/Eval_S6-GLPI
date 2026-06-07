@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getContacttypes, getContacttypeById } from '@/services/generated/contacttypeService'
+import type { ContactType } from '@/services/generated/contacttypeService'
 
 export function useContacttypes() {
-  const contacttypes = ref<any[]>([])
-  const selectedContacttype = ref<any | null>(null)
+  const contacttypes = ref<ContactType[]>([])
+  const selectedContacttype = ref<ContactType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

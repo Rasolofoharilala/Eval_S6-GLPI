@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getBudgettypes, getBudgettypeById } from '@/services/generated/budgettypeService'
+import type { BudgetType } from '@/services/generated/budgettypeService'
 
 export function useBudgettypes() {
-  const budgettypes = ref<any[]>([])
-  const selectedBudgettype = ref<any | null>(null)
+  const budgettypes = ref<BudgetType[]>([])
+  const selectedBudgettype = ref<BudgetType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getDatacenters, getDatacenterById } from '@/services/generated/datacenterService'
+import type { DataCenter } from '@/services/generated/datacenterService'
 
 export function useDatacenters() {
-  const datacenters = ref<any[]>([])
-  const selectedDatacenter = ref<any | null>(null)
+  const datacenters = ref<DataCenter[]>([])
+  const selectedDatacenter = ref<DataCenter | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

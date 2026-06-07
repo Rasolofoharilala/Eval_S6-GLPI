@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getCartridges, getCartridgeById } from '@/services/generated/cartridgeService'
+import type { CartridgeItem } from '@/services/generated/cartridgeService'
 
 export function useCartridges() {
-  const cartridges = ref<any[]>([])
-  const selectedCartridge = ref<any | null>(null)
+  const cartridges = ref<CartridgeItem[]>([])
+  const selectedCartridge = ref<CartridgeItem | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

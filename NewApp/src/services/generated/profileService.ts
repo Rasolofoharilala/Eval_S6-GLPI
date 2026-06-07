@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Profile } from '@/types/generated'
 
-export const getProfiles = () => getAll(ENDPOINTS.ADMINISTRATION_PROFILE)
+export type { Profile } from '@/types/generated'
 
-export const getProfileById = (id: number) => getById(ENDPOINTS.ADMINISTRATION_PROFILE, id)
+export const getProfiles = () => getAll<Profile>(ENDPOINTS.ADMINISTRATION_PROFILE)
+
+export const getProfileById = (id: number) => getById<Profile>(ENDPOINTS.ADMINISTRATION_PROFILE, id)

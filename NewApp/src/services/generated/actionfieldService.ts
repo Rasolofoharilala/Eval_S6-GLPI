@@ -3,5 +3,9 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { RuleActionField } from '@/types/generated'
 
-export const getActionfields = () => getAll(ENDPOINTS.RULE_COLLECTION_TICKET_ACTIONFIELD)
+export type { RuleActionField } from '@/types/generated'
+
+export const getActionfields = () =>
+  getAll<RuleActionField>(ENDPOINTS.RULE_COLLECTION_TICKET_ACTIONFIELD)

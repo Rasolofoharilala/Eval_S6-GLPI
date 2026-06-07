@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getActiontypes } from '@/services/generated/actiontypeService'
+import type { RuleActionType } from '@/services/generated/actiontypeService'
 
 export function useActiontypes() {
-  const actiontypes = ref<any[]>([])
-  const selectedActiontype = ref<any | null>(null)
+  const actiontypes = ref<RuleActionType[]>([])
+  const selectedActiontype = ref<RuleActionType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

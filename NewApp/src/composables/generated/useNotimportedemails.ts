@@ -6,10 +6,11 @@ import {
   getNotimportedemails,
   getNotimportedemailById,
 } from '@/services/generated/notimportedemailService'
+import type { NotImportedEmail } from '@/services/generated/notimportedemailService'
 
 export function useNotimportedemails() {
-  const notimportedemails = ref<any[]>([])
-  const selectedNotimportedemail = ref<any | null>(null)
+  const notimportedemails = ref<NotImportedEmail[]>([])
+  const selectedNotimportedemail = ref<NotImportedEmail | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

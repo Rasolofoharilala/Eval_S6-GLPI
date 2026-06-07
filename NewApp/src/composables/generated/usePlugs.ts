@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPlugs, getPlugById } from '@/services/generated/plugService'
+import type { Plug } from '@/services/generated/plugService'
 
 export function usePlugs() {
-  const plugs = ref<any[]>([])
-  const selectedPlug = ref<any | null>(null)
+  const plugs = ref<Plug[]>([])
+  const selectedPlug = ref<Plug | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

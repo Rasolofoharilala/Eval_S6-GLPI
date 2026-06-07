@@ -6,10 +6,11 @@ import {
   getFollowuptemplates,
   getFollowuptemplateById,
 } from '@/services/generated/followuptemplateService'
+import type { FollowupTemplate } from '@/services/generated/followuptemplateService'
 
 export function useFollowuptemplates() {
-  const followuptemplates = ref<any[]>([])
-  const selectedFollowuptemplate = ref<any | null>(null)
+  const followuptemplates = ref<FollowupTemplate[]>([])
+  const selectedFollowuptemplate = ref<FollowupTemplate | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

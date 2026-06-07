@@ -14,27 +14,19 @@ function buildCacheKey(endpoint: string, name: string): string {
 function normalizeResponse(data: unknown): GlpiReferenceItem[] {
   if (Array.isArray(data)) {
     return data
-      .filter(item => item && typeof item === 'object')
+      .filter((item) => item && typeof item === 'object')
       .map((item: any) => ({
         id: Number(item.id),
         name: String(item.name ?? ''),
       }))
-      .filter(item => item.id && item.name)
+      .filter((item) => item.id && item.name)
   }
 
-  if (
-    typeof data === 'object' &&
-    data !== null &&
-    Array.isArray((data as any).data)
-  ) {
+  if (typeof data === 'object' && data !== null && Array.isArray((data as any).data)) {
     return normalizeResponse((data as any).data)
   }
 
-  if (
-    typeof data === 'object' &&
-    data !== null &&
-    Array.isArray((data as any).results)
-  ) {
+  if (typeof data === 'object' && data !== null && Array.isArray((data as any).results)) {
     return normalizeResponse((data as any).results)
   }
 
@@ -55,9 +47,7 @@ async function findReferenceByName(
 
   const items = normalizeResponse(response.data)
 
-  const found = items.find(
-    item => normalize(item.name) === normalize(name),
-  )
+  const found = items.find((item) => normalize(item.name) === normalize(name))
 
   if (!found) {
     return null
@@ -68,17 +58,12 @@ async function findReferenceByName(
   return found
 }
 
-async function createReferenceByName(
-  endpoint: string,
-  name: string,
-): Promise<GlpiReferenceItem> {
+async function createReferenceByName(endpoint: string, name: string): Promise<GlpiReferenceItem> {
   const response = await httpClient.post(endpoint, {
     name,
   })
 
-  const id =
-    response.data?.id ??
-    response.data?.data?.id
+  const id = response.data?.id ?? response.data?.data?.id
 
   if (!id) {
     throw new Error(`Impossible de récupérer l'id créé pour ${name}`)

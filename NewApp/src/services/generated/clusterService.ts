@@ -3,7 +3,10 @@
 
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
+import type { Cluster } from '@/types/generated'
 
-export const getClusters = () => getAll(ENDPOINTS.MANAGEMENT_CLUSTER)
+export type { Cluster } from '@/types/generated'
 
-export const getClusterById = (id: number) => getById(ENDPOINTS.MANAGEMENT_CLUSTER, id)
+export const getClusters = () => getAll<Cluster>(ENDPOINTS.MANAGEMENT_CLUSTER)
+
+export const getClusterById = (id: number) => getById<Cluster>(ENDPOINTS.MANAGEMENT_CLUSTER, id)

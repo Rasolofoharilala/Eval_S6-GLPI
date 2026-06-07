@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getNotifications, getNotificationById } from '@/services/generated/notificationService'
+import type { Notification } from '@/services/generated/notificationService'
 
 export function useNotifications() {
-  const notifications = ref<any[]>([])
-  const selectedNotification = ref<any | null>(null)
+  const notifications = ref<Notification[]>([])
+  const selectedNotification = ref<Notification | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

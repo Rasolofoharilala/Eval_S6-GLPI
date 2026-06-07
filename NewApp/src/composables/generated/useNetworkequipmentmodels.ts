@@ -6,10 +6,11 @@ import {
   getNetworkequipmentmodels,
   getNetworkequipmentmodelById,
 } from '@/services/generated/networkequipmentmodelService'
+import type { NetworkEquipmentModel } from '@/services/generated/networkequipmentmodelService'
 
 export function useNetworkequipmentmodels() {
-  const networkequipmentmodels = ref<any[]>([])
-  const selectedNetworkequipmentmodel = ref<any | null>(null)
+  const networkequipmentmodels = ref<NetworkEquipmentModel[]>([])
+  const selectedNetworkequipmentmodel = ref<NetworkEquipmentModel | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

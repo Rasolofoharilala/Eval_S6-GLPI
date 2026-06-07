@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getPcivendors, getPcivendorById } from '@/services/generated/pcivendorService'
+import type { PCIVendor } from '@/services/generated/pcivendorService'
 
 export function usePcivendors() {
-  const pcivendors = ref<any[]>([])
-  const selectedPcivendor = ref<any | null>(null)
+  const pcivendors = ref<PCIVendor[]>([])
+  const selectedPcivendor = ref<PCIVendor | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

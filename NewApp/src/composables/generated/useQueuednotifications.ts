@@ -6,10 +6,11 @@ import {
   getQueuednotifications,
   getQueuednotificationById,
 } from '@/services/generated/queuednotificationService'
+import type { QueuedNotification } from '@/services/generated/queuednotificationService'
 
 export function useQueuednotifications() {
-  const queuednotifications = ref<any[]>([])
-  const selectedQueuednotification = ref<any | null>(null)
+  const queuednotifications = ref<QueuedNotification[]>([])
+  const selectedQueuednotification = ref<QueuedNotification | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

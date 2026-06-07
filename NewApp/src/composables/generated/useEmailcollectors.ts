@@ -6,10 +6,11 @@ import {
   getEmailcollectors,
   getEmailcollectorById,
 } from '@/services/generated/emailcollectorService'
+import type { EmailCollector } from '@/services/generated/emailcollectorService'
 
 export function useEmailcollectors() {
-  const emailcollectors = ref<any[]>([])
-  const selectedEmailcollector = ref<any | null>(null)
+  const emailcollectors = ref<EmailCollector[]>([])
+  const selectedEmailcollector = ref<EmailCollector | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

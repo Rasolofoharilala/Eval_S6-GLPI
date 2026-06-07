@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getBudgets, getBudgetById } from '@/services/generated/budgetService'
+import type { Budget } from '@/services/generated/budgetService'
 
 export function useBudgets() {
-  const budgets = ref<any[]>([])
-  const selectedBudget = ref<any | null>(null)
+  const budgets = ref<Budget[]>([])
+  const selectedBudget = ref<Budget | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

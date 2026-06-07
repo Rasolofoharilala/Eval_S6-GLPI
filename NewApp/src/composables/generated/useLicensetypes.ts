@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getLicensetypes, getLicensetypeById } from '@/services/generated/licensetypeService'
+import type { LicenseType } from '@/services/generated/licensetypeService'
 
 export function useLicensetypes() {
-  const licensetypes = ref<any[]>([])
-  const selectedLicensetype = ref<any | null>(null)
+  const licensetypes = ref<LicenseType[]>([])
+  const selectedLicensetype = ref<LicenseType | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

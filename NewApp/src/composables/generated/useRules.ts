@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getRules, getRuleById } from '@/services/generated/ruleService'
+import type { Rule } from '@/services/generated/ruleService'
 
 export function useRules() {
-  const rules = ref<any[]>([])
-  const selectedRule = ref<any | null>(null)
+  const rules = ref<Rule[]>([])
+  const selectedRule = ref<Rule | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 

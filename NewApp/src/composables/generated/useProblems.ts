@@ -3,10 +3,11 @@
 
 import { ref } from 'vue'
 import { getProblems, getProblemById } from '@/services/generated/problemService'
+import type { Problem } from '@/services/generated/problemService'
 
 export function useProblems() {
-  const problems = ref<any[]>([])
-  const selectedProblem = ref<any | null>(null)
+  const problems = ref<Problem[]>([])
+  const selectedProblem = ref<Problem | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 
