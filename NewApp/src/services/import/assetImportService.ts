@@ -1,10 +1,11 @@
 import { createComputer } from '@/services/generated/computerService'
 import { createMonitor } from '@/services/generated/monitorService'
 
-import type { AssetCsvRow, ImportResult } from './assetImportTypes'
 import { mapCsvRowToComputerInput } from './computerImportMapper'
-import { assetAlreadyExists } from './glpiAssetLookupService'
 import { mapCsvRowToMonitorInput } from './monitorImportMapper'
+
+import type { AssetCsvRow, ImportResult } from './assetImportTypes'
+import { assetAlreadyExists } from './glpiAssetLookupService'
 
 function getErrorMessage(error: unknown): string {
   if (typeof error !== 'object' || error === null) {

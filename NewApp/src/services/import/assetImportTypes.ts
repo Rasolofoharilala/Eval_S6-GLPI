@@ -1,5 +1,6 @@
 import type { CsvRow } from '@/services/csv/csvTypes'
 
+// AssetCsvRow: CSV1
 export type AssetCsvRow = CsvRow & {
   name: string
   status: string
