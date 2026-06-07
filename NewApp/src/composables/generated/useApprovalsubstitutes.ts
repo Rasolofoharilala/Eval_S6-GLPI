@@ -2,7 +2,10 @@
 // Composable generated from approvalsubstituteService.ts.
 
 import { ref } from 'vue'
-import { getApprovalsubstitutes, getApprovalsubstituteById } from '@/services/generated/approvalsubstituteService'
+import {
+  getApprovalsubstitutes,
+  getApprovalsubstituteById,
+} from '@/services/generated/approvalsubstituteService'
 
 export function useApprovalsubstitutes() {
   const approvalsubstitutes = ref<any[]>([])

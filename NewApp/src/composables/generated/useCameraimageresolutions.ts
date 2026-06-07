@@ -2,7 +2,10 @@
 // Composable generated from cameraimageresolutionService.ts.
 
 import { ref } from 'vue'
-import { getCameraimageresolutions, getCameraimageresolutionById } from '@/services/generated/cameraimageresolutionService'
+import {
+  getCameraimageresolutions,
+  getCameraimageresolutionById,
+} from '@/services/generated/cameraimageresolutionService'
 
 export function useCameraimageresolutions() {
   const cameraimageresolutions = ref<any[]>([])

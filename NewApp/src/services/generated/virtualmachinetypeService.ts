@@ -4,8 +4,7 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getVirtualmachinetypes = () =>
-  getAll(ENDPOINTS.DROPDOWNS_VIRTUALMACHINETYPE)
+export const getVirtualmachinetypes = () => getAll(ENDPOINTS.DROPDOWNS_VIRTUALMACHINETYPE)
 
 export const getVirtualmachinetypeById = (id: number) =>
   getById(ENDPOINTS.DROPDOWNS_VIRTUALMACHINETYPE, id)

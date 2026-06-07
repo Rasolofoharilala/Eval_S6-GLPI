@@ -2,7 +2,10 @@
 // Composable generated from databaseinstancecategoryService.ts.
 
 import { ref } from 'vue'
-import { getDatabaseinstancecategories, getDatabaseinstancecategoryById } from '@/services/generated/databaseinstancecategoryService'
+import {
+  getDatabaseinstancecategories,
+  getDatabaseinstancecategoryById,
+} from '@/services/generated/databaseinstancecategoryService'
 
 export function useDatabaseinstancecategories() {
   const databaseinstancecategories = ref<any[]>([])

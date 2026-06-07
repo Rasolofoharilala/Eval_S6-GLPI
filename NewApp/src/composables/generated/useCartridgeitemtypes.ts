@@ -2,7 +2,10 @@
 // Composable generated from cartridgeitemtypeService.ts.
 
 import { ref } from 'vue'
-import { getCartridgeitemtypes, getCartridgeitemtypeById } from '@/services/generated/cartridgeitemtypeService'
+import {
+  getCartridgeitemtypes,
+  getCartridgeitemtypeById,
+} from '@/services/generated/cartridgeitemtypeService'
 
 export function useCartridgeitemtypes() {
   const cartridgeitemtypes = ref<any[]>([])

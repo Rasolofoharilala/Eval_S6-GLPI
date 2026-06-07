@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getGraphiccards = () =>
-  getAll(ENDPOINTS.COMPONENTS_GRAPHICCARD)
+export const getGraphiccards = () => getAll(ENDPOINTS.COMPONENTS_GRAPHICCARD)
 
-export const getGraphiccardById = (id: number) =>
-  getById(ENDPOINTS.COMPONENTS_GRAPHICCARD, id)
+export const getGraphiccardById = (id: number) => getById(ENDPOINTS.COMPONENTS_GRAPHICCARD, id)

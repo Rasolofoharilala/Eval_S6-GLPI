@@ -2,7 +2,10 @@
 // Composable generated from autoupdatesystemService.ts.
 
 import { ref } from 'vue'
-import { getAutoupdatesystems, getAutoupdatesystemById } from '@/services/generated/autoupdatesystemService'
+import {
+  getAutoupdatesystems,
+  getAutoupdatesystemById,
+} from '@/services/generated/autoupdatesystemService'
 
 export function useAutoupdatesystems() {
   const autoupdatesystems = ref<any[]>([])

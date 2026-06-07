@@ -2,7 +2,10 @@
 // Composable generated from notimportedemailService.ts.
 
 import { ref } from 'vue'
-import { getNotimportedemails, getNotimportedemailById } from '@/services/generated/notimportedemailService'
+import {
+  getNotimportedemails,
+  getNotimportedemailById,
+} from '@/services/generated/notimportedemailService'
 
 export function useNotimportedemails() {
   const notimportedemails = ref<any[]>([])

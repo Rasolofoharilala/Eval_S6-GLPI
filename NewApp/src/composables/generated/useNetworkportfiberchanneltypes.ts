@@ -2,7 +2,10 @@
 // Composable generated from networkportfiberchanneltypeService.ts.
 
 import { ref } from 'vue'
-import { getNetworkportfiberchanneltypes, getNetworkportfiberchanneltypeById } from '@/services/generated/networkportfiberchanneltypeService'
+import {
+  getNetworkportfiberchanneltypes,
+  getNetworkportfiberchanneltypeById,
+} from '@/services/generated/networkportfiberchanneltypeService'
 
 export function useNetworkportfiberchanneltypes() {
   const networkportfiberchanneltypes = ref<any[]>([])

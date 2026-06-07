@@ -2,7 +2,10 @@
 // Composable generated from peripheralmodelService.ts.
 
 import { ref } from 'vue'
-import { getPeripheralmodels, getPeripheralmodelById } from '@/services/generated/peripheralmodelService'
+import {
+  getPeripheralmodels,
+  getPeripheralmodelById,
+} from '@/services/generated/peripheralmodelService'
 
 export function usePeripheralmodels() {
   const peripheralmodels = ref<any[]>([])

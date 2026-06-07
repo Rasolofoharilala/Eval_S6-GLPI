@@ -2,7 +2,10 @@
 // Composable generated from ldapdirectoryreplicateService.ts.
 
 import { ref } from 'vue'
-import { getLdapdirectoryreplicates, getLdapdirectoryreplicateById } from '@/services/generated/ldapdirectoryreplicateService'
+import {
+  getLdapdirectoryreplicates,
+  getLdapdirectoryreplicateById,
+} from '@/services/generated/ldapdirectoryreplicateService'
 
 export function useLdapdirectoryreplicates() {
   const ldapdirectoryreplicates = ref<any[]>([])

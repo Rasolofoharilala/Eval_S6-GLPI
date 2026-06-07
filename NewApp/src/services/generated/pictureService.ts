@@ -4,5 +4,4 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getPictures = () =>
-  getAll(ENDPOINTS.ADMINISTRATION_USER_ME_PICTURE)
+export const getPictures = () => getAll(ENDPOINTS.ADMINISTRATION_USER_ME_PICTURE)

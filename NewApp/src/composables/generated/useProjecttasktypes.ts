@@ -2,7 +2,10 @@
 // Composable generated from projecttasktypeService.ts.
 
 import { ref } from 'vue'
-import { getProjecttasktypes, getProjecttasktypeById } from '@/services/generated/projecttasktypeService'
+import {
+  getProjecttasktypes,
+  getProjecttasktypeById,
+} from '@/services/generated/projecttasktypeService'
 
 export function useProjecttasktypes() {
   const projecttasktypes = ref<any[]>([])

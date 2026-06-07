@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getCalendars = () =>
-  getAll(ENDPOINTS.DROPDOWNS_CALENDAR)
+export const getCalendars = () => getAll(ENDPOINTS.DROPDOWNS_CALENDAR)
 
-export const getCalendarById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_CALENDAR, id)
+export const getCalendarById = (id: number) => getById(ENDPOINTS.DROPDOWNS_CALENDAR, id)

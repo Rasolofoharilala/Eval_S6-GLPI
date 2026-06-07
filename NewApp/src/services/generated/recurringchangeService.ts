@@ -4,8 +4,7 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getRecurringchanges = () =>
-  getAll(ENDPOINTS.ASSISTANCE_RECURRINGCHANGE)
+export const getRecurringchanges = () => getAll(ENDPOINTS.ASSISTANCE_RECURRINGCHANGE)
 
 export const getRecurringchangeById = (id: number) =>
   getById(ENDPOINTS.ASSISTANCE_RECURRINGCHANGE, id)

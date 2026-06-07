@@ -2,7 +2,10 @@
 // Composable generated from recurringchangeService.ts.
 
 import { ref } from 'vue'
-import { getRecurringchanges, getRecurringchangeById } from '@/services/generated/recurringchangeService'
+import {
+  getRecurringchanges,
+  getRecurringchangeById,
+} from '@/services/generated/recurringchangeService'
 
 export function useRecurringchanges() {
   const recurringchanges = ref<any[]>([])

@@ -25,14 +25,8 @@ function handleSubmit() {
   <form @submit.prevent="handleSubmit">
     <label for="passwordInput">Mot de passe :</label>
 
-    <input
-      id="passwordInput"
-      v-model="form.password"
-      type="password"
-    >
+    <input id="passwordInput" v-model="form.password" type="password" />
 
-    <button type="submit">
-      Connexion
-    </button>
+    <button type="submit">Connexion</button>
   </form>
-</template> 
+</template>

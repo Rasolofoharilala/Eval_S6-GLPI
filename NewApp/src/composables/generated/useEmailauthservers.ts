@@ -2,7 +2,10 @@
 // Composable generated from emailauthserverService.ts.
 
 import { ref } from 'vue'
-import { getEmailauthservers, getEmailauthserverById } from '@/services/generated/emailauthserverService'
+import {
+  getEmailauthservers,
+  getEmailauthserverById,
+} from '@/services/generated/emailauthserverService'
 
 export function useEmailauthservers() {
   const emailauthservers = ref<any[]>([])

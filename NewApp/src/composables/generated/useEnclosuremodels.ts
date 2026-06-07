@@ -2,7 +2,10 @@
 // Composable generated from enclosuremodelService.ts.
 
 import { ref } from 'vue'
-import { getEnclosuremodels, getEnclosuremodelById } from '@/services/generated/enclosuremodelService'
+import {
+  getEnclosuremodels,
+  getEnclosuremodelById,
+} from '@/services/generated/enclosuremodelService'
 
 export function useEnclosuremodels() {
   const enclosuremodels = ref<any[]>([])

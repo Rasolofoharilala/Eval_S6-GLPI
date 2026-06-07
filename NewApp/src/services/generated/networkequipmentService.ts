@@ -4,8 +4,7 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getNetworkequipments = () =>
-  getAll(ENDPOINTS.ASSETS_NETWORKEQUIPMENT)
+export const getNetworkequipments = () => getAll(ENDPOINTS.ASSETS_NETWORKEQUIPMENT)
 
 export const getNetworkequipmentById = (id: number) =>
   getById(ENDPOINTS.ASSETS_NETWORKEQUIPMENT, id)

@@ -2,7 +2,10 @@
 // Composable generated from applianceenvironmentService.ts.
 
 import { ref } from 'vue'
-import { getApplianceenvironments, getApplianceenvironmentById } from '@/services/generated/applianceenvironmentService'
+import {
+  getApplianceenvironments,
+  getApplianceenvironmentById,
+} from '@/services/generated/applianceenvironmentService'
 
 export function useApplianceenvironments() {
   const applianceenvironments = ref<any[]>([])

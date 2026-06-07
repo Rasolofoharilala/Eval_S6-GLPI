@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getSuppliers = () =>
-  getAll(ENDPOINTS.MANAGEMENT_SUPPLIER)
+export const getSuppliers = () => getAll(ENDPOINTS.MANAGEMENT_SUPPLIER)
 
-export const getSupplierById = (id: number) =>
-  getById(ENDPOINTS.MANAGEMENT_SUPPLIER, id)
+export const getSupplierById = (id: number) => getById(ENDPOINTS.MANAGEMENT_SUPPLIER, id)

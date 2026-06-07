@@ -4,8 +4,7 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getDomainrecordtypes = () =>
-  getAll(ENDPOINTS.DROPDOWNS_DOMAINRECORDTYPE)
+export const getDomainrecordtypes = () => getAll(ENDPOINTS.DROPDOWNS_DOMAINRECORDTYPE)
 
 export const getDomainrecordtypeById = (id: number) =>
   getById(ENDPOINTS.DROPDOWNS_DOMAINRECORDTYPE, id)

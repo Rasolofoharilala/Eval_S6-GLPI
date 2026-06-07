@@ -4,5 +4,4 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getGlobals = () =>
-  getAll(ENDPOINTS.ASSISTANCE_STAT_TICKET_GLOBAL)
+export const getGlobals = () => getAll(ENDPOINTS.ASSISTANCE_STAT_TICKET_GLOBAL)

@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getPeripherals = () =>
-  getAll(ENDPOINTS.ASSETS_PERIPHERAL)
+export const getPeripherals = () => getAll(ENDPOINTS.ASSETS_PERIPHERAL)
 
-export const getPeripheralById = (id: number) =>
-  getById(ENDPOINTS.ASSETS_PERIPHERAL, id)
+export const getPeripheralById = (id: number) => getById(ENDPOINTS.ASSETS_PERIPHERAL, id)

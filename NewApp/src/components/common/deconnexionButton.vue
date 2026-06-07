@@ -11,7 +11,5 @@ function handleLogout() {
 </script>
 
 <template>
-  <button type="button" @click="handleLogout">
-    Déconnexion
-  </button>
+  <button type="button" @click="handleLogout">Déconnexion</button>
 </template>

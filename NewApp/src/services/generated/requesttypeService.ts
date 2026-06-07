@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getRequesttypes = () =>
-  getAll(ENDPOINTS.DROPDOWNS_REQUESTTYPE)
+export const getRequesttypes = () => getAll(ENDPOINTS.DROPDOWNS_REQUESTTYPE)
 
-export const getRequesttypeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_REQUESTTYPE, id)
+export const getRequesttypeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_REQUESTTYPE, id)

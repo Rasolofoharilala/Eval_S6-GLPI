@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getSensors = () =>
-  getAll(ENDPOINTS.COMPONENTS_SENSOR)
+export const getSensors = () => getAll(ENDPOINTS.COMPONENTS_SENSOR)
 
-export const getSensorById = (id: number) =>
-  getById(ENDPOINTS.COMPONENTS_SENSOR, id)
+export const getSensorById = (id: number) => getById(ENDPOINTS.COMPONENTS_SENSOR, id)

@@ -2,7 +2,10 @@
 // Composable generated from calendarclosetimeService.ts.
 
 import { ref } from 'vue'
-import { getCalendarclosetimes, getCalendarclosetimeById } from '@/services/generated/calendarclosetimeService'
+import {
+  getCalendarclosetimes,
+  getCalendarclosetimeById,
+} from '@/services/generated/calendarclosetimeService'
 
 export function useCalendarclosetimes() {
   const calendarclosetimes = ref<any[]>([])

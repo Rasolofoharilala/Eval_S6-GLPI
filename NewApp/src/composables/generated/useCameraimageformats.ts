@@ -2,7 +2,10 @@
 // Composable generated from cameraimageformatService.ts.
 
 import { ref } from 'vue'
-import { getCameraimageformats, getCameraimageformatById } from '@/services/generated/cameraimageformatService'
+import {
+  getCameraimageformats,
+  getCameraimageformatById,
+} from '@/services/generated/cameraimageformatService'
 
 export function useCameraimageformats() {
   const cameraimageformats = ref<any[]>([])

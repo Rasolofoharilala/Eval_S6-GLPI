@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getPcidevices = () =>
-  getAll(ENDPOINTS.COMPONENTS_PCIDEVICE)
+export const getPcidevices = () => getAll(ENDPOINTS.COMPONENTS_PCIDEVICE)
 
-export const getPcideviceById = (id: number) =>
-  getById(ENDPOINTS.COMPONENTS_PCIDEVICE, id)
+export const getPcideviceById = (id: number) => getById(ENDPOINTS.COMPONENTS_PCIDEVICE, id)

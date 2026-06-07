@@ -8,7 +8,7 @@ export async function testDatabase() {
   }
 
   const SQL = await initSqlJs({
-    locateFile: file => `/node_modules/sql.js/dist/${file}`,
+    locateFile: (file) => `/node_modules/sql.js/dist/${file}`,
   })
 
   const response = await fetch(import.meta.env.VITE_DATABASE)
@@ -24,15 +24,13 @@ export async function testDatabase() {
 export async function getTableName(): Promise<string[]> {
   const db = await testDatabase()
 
-  const result = db.exec(
-    "SELECT name FROM sqlite_master WHERE type='table'"
-  )
+  const result = db.exec("SELECT name FROM sqlite_master WHERE type='table'")
 
   if (!result[0]) {
     return []
   }
 
-  return result[0].values.map(row => String(row[0]))
+  return result[0].values.map((row) => String(row[0]))
 }
 
 export async function deleteDatabase() {
@@ -42,18 +40,14 @@ export async function deleteDatabase() {
 
   const tableNames = await getTableName()
 
-  const tablesToDelete = tableNames.filter(
-    table => table !== 'sqlite_sequence'
-  )
+  const tablesToDelete = tableNames.filter((table) => table !== 'sqlite_sequence')
 
   for (const table of tablesToDelete) {
     console.log(`==> Vidange de la table ${table}`)
 
     db.exec(`DELETE FROM "${table}"`)
 
-    db.exec(
-      `DELETE FROM sqlite_sequence WHERE name = '${table}'`
-    )
+    db.exec(`DELETE FROM sqlite_sequence WHERE name = '${table}'`)
 
     console.log(`=> Table ${table} vidée avec succès`)
   }

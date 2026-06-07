@@ -12,15 +12,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/login',
     },
     {
       path: '/login',
       name: login,
       component: login,
       meta: {
-        title: 'Login'
-      }
+        title: 'Login',
+      },
     },
     {
       path: '/accueil',
@@ -28,8 +28,8 @@ const router = createRouter({
       component: accueil,
       meta: {
         title: 'Accueil',
-        requiresAuth: true
-      }
+        requiresAuth: true,
+      },
     },
     {
       path: '/reinitialisationBase',
@@ -37,18 +37,18 @@ const router = createRouter({
       component: reinitialisationBase,
       meta: {
         title: 'Reinitialisation',
-        requiresAuth: true
-      }
-    }, 
+        requiresAuth: true,
+      },
+    },
     {
       path: '/importFichier',
       name: importPages,
       component: importPages,
       meta: {
         title: 'importPages',
-        requiresAuth: true
-      }
-    }
+        requiresAuth: true,
+      },
+    },
   ],
 })
 

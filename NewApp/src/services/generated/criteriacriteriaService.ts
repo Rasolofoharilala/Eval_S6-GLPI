@@ -4,5 +4,4 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getCriteriacriterias = () =>
-  getAll(ENDPOINTS.RULE_COLLECTION_TICKET_CRITERIACRITERIA)
+export const getCriteriacriterias = () => getAll(ENDPOINTS.RULE_COLLECTION_TICKET_CRITERIACRITERIA)

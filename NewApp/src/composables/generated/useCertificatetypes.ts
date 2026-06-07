@@ -2,7 +2,10 @@
 // Composable generated from certificatetypeService.ts.
 
 import { ref } from 'vue'
-import { getCertificatetypes, getCertificatetypeById } from '@/services/generated/certificatetypeService'
+import {
+  getCertificatetypes,
+  getCertificatetypeById,
+} from '@/services/generated/certificatetypeService'
 
 export function useCertificatetypes() {
   const certificatetypes = ref<any[]>([])

@@ -2,7 +2,10 @@
 // Composable generated from deniedmailcontentService.ts.
 
 import { ref } from 'vue'
-import { getDeniedmailcontents, getDeniedmailcontentById } from '@/services/generated/deniedmailcontentService'
+import {
+  getDeniedmailcontents,
+  getDeniedmailcontentById,
+} from '@/services/generated/deniedmailcontentService'
 
 export function useDeniedmailcontents() {
   const deniedmailcontents = ref<any[]>([])

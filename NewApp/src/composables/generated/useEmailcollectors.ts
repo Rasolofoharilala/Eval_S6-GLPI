@@ -2,7 +2,10 @@
 // Composable generated from emailcollectorService.ts.
 
 import { ref } from 'vue'
-import { getEmailcollectors, getEmailcollectorById } from '@/services/generated/emailcollectorService'
+import {
+  getEmailcollectors,
+  getEmailcollectorById,
+} from '@/services/generated/emailcollectorService'
 
 export function useEmailcollectors() {
   const emailcollectors = ref<any[]>([])

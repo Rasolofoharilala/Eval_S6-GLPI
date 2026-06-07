@@ -10,10 +10,7 @@ export async function getById<T>(endpoint: string, id: number): Promise<T> {
   return response.data
 }
 
-export async function create<T, Payload>(
-  endpoint: string,
-  payload: Payload,
-): Promise<T> {
+export async function create<T, Payload>(endpoint: string, payload: Payload): Promise<T> {
   const response = await httpClient.post<T>(endpoint, payload)
   return response.data
 }
@@ -27,10 +24,7 @@ export async function update<T, Payload>(
   return response.data
 }
 
-export async function remove<T>(
-  endpoint: string,
-  id: number,
-): Promise<T> {
+export async function remove<T>(endpoint: string, id: number): Promise<T> {
   const response = await httpClient.delete<T>(`${endpoint}/${id}`)
   return response.data
 }

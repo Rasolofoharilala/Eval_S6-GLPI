@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getWebhooks = () =>
-  getAll(ENDPOINTS.SETUP_WEBHOOK)
+export const getWebhooks = () => getAll(ENDPOINTS.SETUP_WEBHOOK)
 
-export const getWebhookById = (id: number) =>
-  getById(ENDPOINTS.SETUP_WEBHOOK, id)
+export const getWebhookById = (id: number) => getById(ENDPOINTS.SETUP_WEBHOOK, id)

@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getHarddrivetypes = () =>
-  getAll(ENDPOINTS.DROPDOWNS_HARDDRIVETYPE)
+export const getHarddrivetypes = () => getAll(ENDPOINTS.DROPDOWNS_HARDDRIVETYPE)
 
-export const getHarddrivetypeById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_HARDDRIVETYPE, id)
+export const getHarddrivetypeById = (id: number) => getById(ENDPOINTS.DROPDOWNS_HARDDRIVETYPE, id)

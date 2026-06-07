@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getWifinetworks = () =>
-  getAll(ENDPOINTS.DROPDOWNS_WIFINETWORK)
+export const getWifinetworks = () => getAll(ENDPOINTS.DROPDOWNS_WIFINETWORK)
 
-export const getWifinetworkById = (id: number) =>
-  getById(ENDPOINTS.DROPDOWNS_WIFINETWORK, id)
+export const getWifinetworkById = (id: number) => getById(ENDPOINTS.DROPDOWNS_WIFINETWORK, id)

@@ -2,7 +2,10 @@
 // Composable generated from documentcategoryService.ts.
 
 import { ref } from 'vue'
-import { getDocumentcategories, getDocumentcategoryById } from '@/services/generated/documentcategoryService'
+import {
+  getDocumentcategories,
+  getDocumentcategoryById,
+} from '@/services/generated/documentcategoryService'
 
 export function useDocumentcategories() {
   const documentcategories = ref<any[]>([])

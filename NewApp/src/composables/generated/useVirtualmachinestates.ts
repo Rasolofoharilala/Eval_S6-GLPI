@@ -2,7 +2,10 @@
 // Composable generated from virtualmachinestateService.ts.
 
 import { ref } from 'vue'
-import { getVirtualmachinestates, getVirtualmachinestateById } from '@/services/generated/virtualmachinestateService'
+import {
+  getVirtualmachinestates,
+  getVirtualmachinestateById,
+} from '@/services/generated/virtualmachinestateService'
 
 export function useVirtualmachinestates() {
   const virtualmachinestates = ref<any[]>([])

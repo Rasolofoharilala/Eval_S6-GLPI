@@ -2,7 +2,10 @@
 // Composable generated from calendartimerangeService.ts.
 
 import { ref } from 'vue'
-import { getCalendartimeranges, getCalendartimerangeById } from '@/services/generated/calendartimerangeService'
+import {
+  getCalendartimeranges,
+  getCalendartimerangeById,
+} from '@/services/generated/calendartimerangeService'
 
 export function useCalendartimeranges() {
   const calendartimeranges = ref<any[]>([])

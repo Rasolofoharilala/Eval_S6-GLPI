@@ -68,7 +68,7 @@ export async function resetOneItem(endpoint: string, id: number) {
   await httpClient.delete(deleteUrl, {
     params: {
       force: true,
-      history: false
+      history: false,
     },
   })
 

@@ -8,7 +8,8 @@ export const ENDPOINTS = {
   ADMINISTRATION_ENTITY: '/Administration/Entity',
   ADMINISTRATION_ENTITY_BY_ID: '/Administration/Entity/{id}',
   ADMINISTRATION_ENTITY_BY_ITEMS_ID_KBARTICLE: '/Administration/Entity/{items_id}/KBArticle',
-  ADMINISTRATION_ENTITY_BY_ITEMS_ID_KBARTICLE_BY_ID: '/Administration/Entity/{items_id}/KBArticle/{id}',
+  ADMINISTRATION_ENTITY_BY_ITEMS_ID_KBARTICLE_BY_ID:
+    '/Administration/Entity/{items_id}/KBArticle/{id}',
   ADMINISTRATION_EVENTLOG: '/Administration/EventLog',
   ADMINISTRATION_EVENTLOG_BY_ID: '/Administration/EventLog/{id}',
   ADMINISTRATION_GROUP: '/Administration/Group',
@@ -25,9 +26,12 @@ export const ENDPOINTS = {
   ADMINISTRATION_USER_ME_PREFERENCE: '/Administration/User/Me/Preference',
   ADMINISTRATION_USER_ME_USEDITEM: '/Administration/User/Me/UsedItem',
   ADMINISTRATION_USER_USERNAME_BY_USERNAME: '/Administration/User/username/{username}',
-  ADMINISTRATION_USER_USERNAME_BY_USERNAME_MANAGEDITEM: '/Administration/User/username/{username}/ManagedItem',
-  ADMINISTRATION_USER_USERNAME_BY_USERNAME_PICTURE: '/Administration/User/username/{username}/Picture',
-  ADMINISTRATION_USER_USERNAME_BY_USERNAME_USEDITEM: '/Administration/User/username/{username}/UsedItem',
+  ADMINISTRATION_USER_USERNAME_BY_USERNAME_MANAGEDITEM:
+    '/Administration/User/username/{username}/ManagedItem',
+  ADMINISTRATION_USER_USERNAME_BY_USERNAME_PICTURE:
+    '/Administration/User/username/{username}/Picture',
+  ADMINISTRATION_USER_USERNAME_BY_USERNAME_USEDITEM:
+    '/Administration/User/username/{username}/UsedItem',
   ADMINISTRATION_USER_BY_ID: '/Administration/User/{id}',
   ADMINISTRATION_USER_BY_ID_MANAGEDITEM: '/Administration/User/{id}/ManagedItem',
   ADMINISTRATION_USER_BY_ID_PICTURE: '/Administration/User/{id}/Picture',
@@ -35,7 +39,8 @@ export const ENDPOINTS = {
   ADMINISTRATION_USER_BY_ID_USEDITEM: '/Administration/User/{id}/UsedItem',
   ADMINISTRATION_USER_BY_USERNAME_PREFERENCE: '/Administration/User/{username}/Preference',
   ADMINISTRATION_USER_BY_USERS_ID_CERTIFICATE: '/Administration/User/{users_id}/Certificate',
-  ADMINISTRATION_USER_BY_USERS_ID_CERTIFICATE_BY_ID: '/Administration/User/{users_id}/Certificate/{id}',
+  ADMINISTRATION_USER_BY_USERS_ID_CERTIFICATE_BY_ID:
+    '/Administration/User/{users_id}/Certificate/{id}',
   ADMINISTRATION_USERCATEGORY: '/Administration/UserCategory',
   ADMINISTRATION_USERCATEGORY_BY_ID: '/Administration/UserCategory/{id}',
   ADMINISTRATION_USERTITLE: '/Administration/UserTitle',
@@ -56,16 +61,22 @@ export const ENDPOINTS = {
   ASSETS_APPLIANCE_BY_ASSET_ID_DOMAIN_BY_ID: '/Assets/Appliance/{asset_id}/Domain/{id}',
   ASSETS_APPLIANCE_BY_ASSET_ID_KBARTICLE: '/Assets/Appliance/{asset_id}/KBArticle',
   ASSETS_APPLIANCE_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/Appliance/{asset_id}/KBArticle/{id}',
-  ASSETS_APPLIANCE_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Appliance/{asset_id}/PeripheralConnection',
-  ASSETS_APPLIANCE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Appliance/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_APPLIANCE_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/Appliance/{asset_id}/PeripheralConnection',
+  ASSETS_APPLIANCE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Appliance/{asset_id}/PeripheralConnection/{id}',
   ASSETS_APPLIANCE_BY_ASSET_ID_PROJECT: '/Assets/Appliance/{asset_id}/Project',
   ASSETS_APPLIANCE_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/Appliance/{asset_id}/Project/{id}',
   ASSETS_APPLIANCE_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Appliance/{asset_id}/RemoteManagement',
-  ASSETS_APPLIANCE_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Appliance/{asset_id}/RemoteManagement/{id}',
-  ASSETS_APPLIANCE_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Appliance/{asset_id}/SoftwareInstallation',
-  ASSETS_APPLIANCE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Appliance/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_APPLIANCE_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/Appliance/{asset_id}/RemoteManagement/{id}',
+  ASSETS_APPLIANCE_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/Appliance/{asset_id}/SoftwareInstallation',
+  ASSETS_APPLIANCE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Appliance/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_APPLIANCE_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Appliance/{asset_id}/VirtualMachine',
-  ASSETS_APPLIANCE_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Appliance/{asset_id}/VirtualMachine/{id}',
+  ASSETS_APPLIANCE_BY_ASSET_ID_VIRTUALMACHINE_BY_ID:
+    '/Assets/Appliance/{asset_id}/VirtualMachine/{id}',
   ASSETS_APPLIANCE_BY_ASSET_ID_VOLUME: '/Assets/Appliance/{asset_id}/Volume',
   ASSETS_APPLIANCE_BY_ASSET_ID_VOLUME_BY_ID: '/Assets/Appliance/{asset_id}/Volume/{id}',
   ASSETS_APPLIANCE_BY_ID: '/Assets/Appliance/{id}',
@@ -108,16 +119,23 @@ export const ENDPOINTS = {
   ASSETS_CERTIFICATE_BY_ASSET_ID_DOMAIN_BY_ID: '/Assets/Certificate/{asset_id}/Domain/{id}',
   ASSETS_CERTIFICATE_BY_ASSET_ID_KBARTICLE: '/Assets/Certificate/{asset_id}/KBArticle',
   ASSETS_CERTIFICATE_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/Certificate/{asset_id}/KBArticle/{id}',
-  ASSETS_CERTIFICATE_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Certificate/{asset_id}/PeripheralConnection',
-  ASSETS_CERTIFICATE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Certificate/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_CERTIFICATE_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/Certificate/{asset_id}/PeripheralConnection',
+  ASSETS_CERTIFICATE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Certificate/{asset_id}/PeripheralConnection/{id}',
   ASSETS_CERTIFICATE_BY_ASSET_ID_PROJECT: '/Assets/Certificate/{asset_id}/Project',
   ASSETS_CERTIFICATE_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/Certificate/{asset_id}/Project/{id}',
-  ASSETS_CERTIFICATE_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Certificate/{asset_id}/RemoteManagement',
-  ASSETS_CERTIFICATE_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Certificate/{asset_id}/RemoteManagement/{id}',
-  ASSETS_CERTIFICATE_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Certificate/{asset_id}/SoftwareInstallation',
-  ASSETS_CERTIFICATE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Certificate/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_CERTIFICATE_BY_ASSET_ID_REMOTEMANAGEMENT:
+    '/Assets/Certificate/{asset_id}/RemoteManagement',
+  ASSETS_CERTIFICATE_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/Certificate/{asset_id}/RemoteManagement/{id}',
+  ASSETS_CERTIFICATE_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/Certificate/{asset_id}/SoftwareInstallation',
+  ASSETS_CERTIFICATE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Certificate/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_CERTIFICATE_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Certificate/{asset_id}/VirtualMachine',
-  ASSETS_CERTIFICATE_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Certificate/{asset_id}/VirtualMachine/{id}',
+  ASSETS_CERTIFICATE_BY_ASSET_ID_VIRTUALMACHINE_BY_ID:
+    '/Assets/Certificate/{asset_id}/VirtualMachine/{id}',
   ASSETS_CERTIFICATE_BY_ASSET_ID_VOLUME: '/Assets/Certificate/{asset_id}/Volume',
   ASSETS_CERTIFICATE_BY_ASSET_ID_VOLUME_BY_ID: '/Assets/Certificate/{asset_id}/Volume/{id}',
   ASSETS_CERTIFICATE_BY_ID: '/Assets/Certificate/{id}',
@@ -127,7 +145,8 @@ export const ENDPOINTS = {
   ASSETS_CERTIFICATE_BY_ID_COMPONENT_CONTROLLER: '/Assets/Certificate/{id}/Component/Controller',
   ASSETS_CERTIFICATE_BY_ID_COMPONENT_DRIVE: '/Assets/Certificate/{id}/Component/Drive',
   ASSETS_CERTIFICATE_BY_ID_COMPONENT_FIRMWARE: '/Assets/Certificate/{id}/Component/Firmware',
-  ASSETS_CERTIFICATE_BY_ID_COMPONENT_GENERICDEVICE: '/Assets/Certificate/{id}/Component/GenericDevice',
+  ASSETS_CERTIFICATE_BY_ID_COMPONENT_GENERICDEVICE:
+    '/Assets/Certificate/{id}/Component/GenericDevice',
   ASSETS_CERTIFICATE_BY_ID_COMPONENT_GRAPHICCARD: '/Assets/Certificate/{id}/Component/GraphicCard',
   ASSETS_CERTIFICATE_BY_ID_COMPONENT_HARDDRIVE: '/Assets/Certificate/{id}/Component/HardDrive',
   ASSETS_CERTIFICATE_BY_ID_COMPONENT_MEMORY: '/Assets/Certificate/{id}/Component/Memory',
@@ -155,16 +174,22 @@ export const ENDPOINTS = {
   ASSETS_COMPUTER_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/Computer/{asset_id}/KBArticle/{id}',
   ASSETS_COMPUTER_BY_ASSET_ID_LINE: '/Assets/Computer/{asset_id}/Line',
   ASSETS_COMPUTER_BY_ASSET_ID_LINE_BY_ID: '/Assets/Computer/{asset_id}/Line/{id}',
-  ASSETS_COMPUTER_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Computer/{asset_id}/PeripheralConnection',
-  ASSETS_COMPUTER_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Computer/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_COMPUTER_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/Computer/{asset_id}/PeripheralConnection',
+  ASSETS_COMPUTER_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Computer/{asset_id}/PeripheralConnection/{id}',
   ASSETS_COMPUTER_BY_ASSET_ID_PROJECT: '/Assets/Computer/{asset_id}/Project',
   ASSETS_COMPUTER_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/Computer/{asset_id}/Project/{id}',
   ASSETS_COMPUTER_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Computer/{asset_id}/RemoteManagement',
-  ASSETS_COMPUTER_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Computer/{asset_id}/RemoteManagement/{id}',
-  ASSETS_COMPUTER_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Computer/{asset_id}/SoftwareInstallation',
-  ASSETS_COMPUTER_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Computer/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_COMPUTER_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/Computer/{asset_id}/RemoteManagement/{id}',
+  ASSETS_COMPUTER_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/Computer/{asset_id}/SoftwareInstallation',
+  ASSETS_COMPUTER_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Computer/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_COMPUTER_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Computer/{asset_id}/VirtualMachine',
-  ASSETS_COMPUTER_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Computer/{asset_id}/VirtualMachine/{id}',
+  ASSETS_COMPUTER_BY_ASSET_ID_VIRTUALMACHINE_BY_ID:
+    '/Assets/Computer/{asset_id}/VirtualMachine/{id}',
   ASSETS_COMPUTER_BY_ASSET_ID_VOLUME: '/Assets/Computer/{asset_id}/Volume',
   ASSETS_COMPUTER_BY_ASSET_ID_VOLUME_BY_ID: '/Assets/Computer/{asset_id}/Volume/{id}',
   ASSETS_COMPUTER_BY_ID: '/Assets/Computer/{id}',
@@ -219,14 +244,19 @@ export const ENDPOINTS = {
   ASSETS_MONITOR_BY_ASSET_ID_DOMAIN_BY_ID: '/Assets/Monitor/{asset_id}/Domain/{id}',
   ASSETS_MONITOR_BY_ASSET_ID_KBARTICLE: '/Assets/Monitor/{asset_id}/KBArticle',
   ASSETS_MONITOR_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/Monitor/{asset_id}/KBArticle/{id}',
-  ASSETS_MONITOR_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Monitor/{asset_id}/PeripheralConnection',
-  ASSETS_MONITOR_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Monitor/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_MONITOR_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/Monitor/{asset_id}/PeripheralConnection',
+  ASSETS_MONITOR_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Monitor/{asset_id}/PeripheralConnection/{id}',
   ASSETS_MONITOR_BY_ASSET_ID_PROJECT: '/Assets/Monitor/{asset_id}/Project',
   ASSETS_MONITOR_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/Monitor/{asset_id}/Project/{id}',
   ASSETS_MONITOR_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Monitor/{asset_id}/RemoteManagement',
-  ASSETS_MONITOR_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Monitor/{asset_id}/RemoteManagement/{id}',
-  ASSETS_MONITOR_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Monitor/{asset_id}/SoftwareInstallation',
-  ASSETS_MONITOR_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Monitor/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_MONITOR_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/Monitor/{asset_id}/RemoteManagement/{id}',
+  ASSETS_MONITOR_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/Monitor/{asset_id}/SoftwareInstallation',
+  ASSETS_MONITOR_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Monitor/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_MONITOR_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Monitor/{asset_id}/VirtualMachine',
   ASSETS_MONITOR_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Monitor/{asset_id}/VirtualMachine/{id}',
   ASSETS_MONITOR_BY_ASSET_ID_VOLUME: '/Assets/Monitor/{asset_id}/Volume',
@@ -253,50 +283,80 @@ export const ENDPOINTS = {
   ASSETS_MONITOR_BY_ID_INFOCOM: '/Assets/Monitor/{id}/Infocom',
   ASSETS_NETWORKEQUIPMENT: '/Assets/NetworkEquipment',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_ANTIVIRUS: '/Assets/NetworkEquipment/{asset_id}/Antivirus',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_ANTIVIRUS_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Antivirus/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_ANTIVIRUS_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/Antivirus/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_APPLIANCE: '/Assets/NetworkEquipment/{asset_id}/Appliance',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_APPLIANCE_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Appliance/{id}',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_CERTIFICATE: '/Assets/NetworkEquipment/{asset_id}/Certificate',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_CERTIFICATE_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Certificate/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_APPLIANCE_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/Appliance/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_CERTIFICATE:
+    '/Assets/NetworkEquipment/{asset_id}/Certificate',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_CERTIFICATE_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/Certificate/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_CONTRACT: '/Assets/NetworkEquipment/{asset_id}/Contract',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_CONTRACT_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Contract/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_CONTRACT_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/Contract/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_DOMAIN: '/Assets/NetworkEquipment/{asset_id}/Domain',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_DOMAIN_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Domain/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_DOMAIN_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/Domain/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_KBARTICLE: '/Assets/NetworkEquipment/{asset_id}/KBArticle',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/NetworkEquipment/{asset_id}/KBArticle/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_KBARTICLE_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/KBArticle/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_LINE: '/Assets/NetworkEquipment/{asset_id}/Line',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_LINE_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Line/{id}',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/NetworkEquipment/{asset_id}/PeripheralConnection',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/NetworkEquipment/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/NetworkEquipment/{asset_id}/PeripheralConnection',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/PeripheralConnection/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_PROJECT: '/Assets/NetworkEquipment/{asset_id}/Project',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Project/{id}',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/NetworkEquipment/{asset_id}/RemoteManagement',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/NetworkEquipment/{asset_id}/RemoteManagement/{id}',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation/{id}',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/NetworkEquipment/{asset_id}/VirtualMachine',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/NetworkEquipment/{asset_id}/VirtualMachine/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_PROJECT_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/Project/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_REMOTEMANAGEMENT:
+    '/Assets/NetworkEquipment/{asset_id}/RemoteManagement',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/RemoteManagement/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_VIRTUALMACHINE:
+    '/Assets/NetworkEquipment/{asset_id}/VirtualMachine',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_VIRTUALMACHINE_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/VirtualMachine/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_VOLUME: '/Assets/NetworkEquipment/{asset_id}/Volume',
-  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_VOLUME_BY_ID: '/Assets/NetworkEquipment/{asset_id}/Volume/{id}',
+  ASSETS_NETWORKEQUIPMENT_BY_ASSET_ID_VOLUME_BY_ID:
+    '/Assets/NetworkEquipment/{asset_id}/Volume/{id}',
   ASSETS_NETWORKEQUIPMENT_BY_ID: '/Assets/NetworkEquipment/{id}',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_BATTERY: '/Assets/NetworkEquipment/{id}/Component/Battery',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_BATTERY:
+    '/Assets/NetworkEquipment/{id}/Component/Battery',
   ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_CAMERA: '/Assets/NetworkEquipment/{id}/Component/Camera',
   ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_CASE: '/Assets/NetworkEquipment/{id}/Component/Case',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_CONTROLLER: '/Assets/NetworkEquipment/{id}/Component/Controller',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_CONTROLLER:
+    '/Assets/NetworkEquipment/{id}/Component/Controller',
   ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_DRIVE: '/Assets/NetworkEquipment/{id}/Component/Drive',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_FIRMWARE: '/Assets/NetworkEquipment/{id}/Component/Firmware',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_GENERICDEVICE: '/Assets/NetworkEquipment/{id}/Component/GenericDevice',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_GRAPHICCARD: '/Assets/NetworkEquipment/{id}/Component/GraphicCard',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_HARDDRIVE: '/Assets/NetworkEquipment/{id}/Component/HardDrive',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_FIRMWARE:
+    '/Assets/NetworkEquipment/{id}/Component/Firmware',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_GENERICDEVICE:
+    '/Assets/NetworkEquipment/{id}/Component/GenericDevice',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_GRAPHICCARD:
+    '/Assets/NetworkEquipment/{id}/Component/GraphicCard',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_HARDDRIVE:
+    '/Assets/NetworkEquipment/{id}/Component/HardDrive',
   ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_MEMORY: '/Assets/NetworkEquipment/{id}/Component/Memory',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_NETWORKCARD: '/Assets/NetworkEquipment/{id}/Component/NetworkCard',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_PCIDEVICE: '/Assets/NetworkEquipment/{id}/Component/PCIDevice',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_POWERSUPPLY: '/Assets/NetworkEquipment/{id}/Component/PowerSupply',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_PROCESSOR: '/Assets/NetworkEquipment/{id}/Component/Processor',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_SIMCARD: '/Assets/NetworkEquipment/{id}/Component/SIMCard',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_NETWORKCARD:
+    '/Assets/NetworkEquipment/{id}/Component/NetworkCard',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_PCIDEVICE:
+    '/Assets/NetworkEquipment/{id}/Component/PCIDevice',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_POWERSUPPLY:
+    '/Assets/NetworkEquipment/{id}/Component/PowerSupply',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_PROCESSOR:
+    '/Assets/NetworkEquipment/{id}/Component/Processor',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_SIMCARD:
+    '/Assets/NetworkEquipment/{id}/Component/SIMCard',
   ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_SENSOR: '/Assets/NetworkEquipment/{id}/Component/Sensor',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_SOUNDCARD: '/Assets/NetworkEquipment/{id}/Component/SoundCard',
-  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_SYSTEMBOARD: '/Assets/NetworkEquipment/{id}/Component/Systemboard',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_SOUNDCARD:
+    '/Assets/NetworkEquipment/{id}/Component/SoundCard',
+  ASSETS_NETWORKEQUIPMENT_BY_ID_COMPONENT_SYSTEMBOARD:
+    '/Assets/NetworkEquipment/{id}/Component/Systemboard',
   ASSETS_NETWORKEQUIPMENT_BY_ID_INFOCOM: '/Assets/NetworkEquipment/{id}/Infocom',
   ASSETS_PDU: '/Assets/PDU',
   ASSETS_PDU_BY_ASSET_ID_CONTRACT: '/Assets/PDU/{asset_id}/Contract',
@@ -321,16 +381,22 @@ export const ENDPOINTS = {
   ASSETS_PERIPHERAL_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/Peripheral/{asset_id}/KBArticle/{id}',
   ASSETS_PERIPHERAL_BY_ASSET_ID_LINE: '/Assets/Peripheral/{asset_id}/Line',
   ASSETS_PERIPHERAL_BY_ASSET_ID_LINE_BY_ID: '/Assets/Peripheral/{asset_id}/Line/{id}',
-  ASSETS_PERIPHERAL_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Peripheral/{asset_id}/PeripheralConnection',
-  ASSETS_PERIPHERAL_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Peripheral/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_PERIPHERAL_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/Peripheral/{asset_id}/PeripheralConnection',
+  ASSETS_PERIPHERAL_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Peripheral/{asset_id}/PeripheralConnection/{id}',
   ASSETS_PERIPHERAL_BY_ASSET_ID_PROJECT: '/Assets/Peripheral/{asset_id}/Project',
   ASSETS_PERIPHERAL_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/Peripheral/{asset_id}/Project/{id}',
   ASSETS_PERIPHERAL_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Peripheral/{asset_id}/RemoteManagement',
-  ASSETS_PERIPHERAL_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Peripheral/{asset_id}/RemoteManagement/{id}',
-  ASSETS_PERIPHERAL_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Peripheral/{asset_id}/SoftwareInstallation',
-  ASSETS_PERIPHERAL_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Peripheral/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_PERIPHERAL_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/Peripheral/{asset_id}/RemoteManagement/{id}',
+  ASSETS_PERIPHERAL_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/Peripheral/{asset_id}/SoftwareInstallation',
+  ASSETS_PERIPHERAL_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Peripheral/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_PERIPHERAL_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Peripheral/{asset_id}/VirtualMachine',
-  ASSETS_PERIPHERAL_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Peripheral/{asset_id}/VirtualMachine/{id}',
+  ASSETS_PERIPHERAL_BY_ASSET_ID_VIRTUALMACHINE_BY_ID:
+    '/Assets/Peripheral/{asset_id}/VirtualMachine/{id}',
   ASSETS_PERIPHERAL_BY_ASSET_ID_VOLUME: '/Assets/Peripheral/{asset_id}/Volume',
   ASSETS_PERIPHERAL_BY_ASSET_ID_VOLUME_BY_ID: '/Assets/Peripheral/{asset_id}/Volume/{id}',
   ASSETS_PERIPHERAL_BY_ID: '/Assets/Peripheral/{id}',
@@ -340,7 +406,8 @@ export const ENDPOINTS = {
   ASSETS_PERIPHERAL_BY_ID_COMPONENT_CONTROLLER: '/Assets/Peripheral/{id}/Component/Controller',
   ASSETS_PERIPHERAL_BY_ID_COMPONENT_DRIVE: '/Assets/Peripheral/{id}/Component/Drive',
   ASSETS_PERIPHERAL_BY_ID_COMPONENT_FIRMWARE: '/Assets/Peripheral/{id}/Component/Firmware',
-  ASSETS_PERIPHERAL_BY_ID_COMPONENT_GENERICDEVICE: '/Assets/Peripheral/{id}/Component/GenericDevice',
+  ASSETS_PERIPHERAL_BY_ID_COMPONENT_GENERICDEVICE:
+    '/Assets/Peripheral/{id}/Component/GenericDevice',
   ASSETS_PERIPHERAL_BY_ID_COMPONENT_GRAPHICCARD: '/Assets/Peripheral/{id}/Component/GraphicCard',
   ASSETS_PERIPHERAL_BY_ID_COMPONENT_HARDDRIVE: '/Assets/Peripheral/{id}/Component/HardDrive',
   ASSETS_PERIPHERAL_BY_ID_COMPONENT_MEMORY: '/Assets/Peripheral/{id}/Component/Memory',
@@ -369,13 +436,15 @@ export const ENDPOINTS = {
   ASSETS_PHONE_BY_ASSET_ID_LINE: '/Assets/Phone/{asset_id}/Line',
   ASSETS_PHONE_BY_ASSET_ID_LINE_BY_ID: '/Assets/Phone/{asset_id}/Line/{id}',
   ASSETS_PHONE_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Phone/{asset_id}/PeripheralConnection',
-  ASSETS_PHONE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Phone/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_PHONE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Phone/{asset_id}/PeripheralConnection/{id}',
   ASSETS_PHONE_BY_ASSET_ID_PROJECT: '/Assets/Phone/{asset_id}/Project',
   ASSETS_PHONE_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/Phone/{asset_id}/Project/{id}',
   ASSETS_PHONE_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Phone/{asset_id}/RemoteManagement',
   ASSETS_PHONE_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Phone/{asset_id}/RemoteManagement/{id}',
   ASSETS_PHONE_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Phone/{asset_id}/SoftwareInstallation',
-  ASSETS_PHONE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Phone/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_PHONE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Phone/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_PHONE_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Phone/{asset_id}/VirtualMachine',
   ASSETS_PHONE_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Phone/{asset_id}/VirtualMachine/{id}',
   ASSETS_PHONE_BY_ASSET_ID_VOLUME: '/Assets/Phone/{asset_id}/Volume',
@@ -415,14 +484,19 @@ export const ENDPOINTS = {
   ASSETS_PRINTER_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/Printer/{asset_id}/KBArticle/{id}',
   ASSETS_PRINTER_BY_ASSET_ID_LINE: '/Assets/Printer/{asset_id}/Line',
   ASSETS_PRINTER_BY_ASSET_ID_LINE_BY_ID: '/Assets/Printer/{asset_id}/Line/{id}',
-  ASSETS_PRINTER_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Printer/{asset_id}/PeripheralConnection',
-  ASSETS_PRINTER_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Printer/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_PRINTER_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/Printer/{asset_id}/PeripheralConnection',
+  ASSETS_PRINTER_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Printer/{asset_id}/PeripheralConnection/{id}',
   ASSETS_PRINTER_BY_ASSET_ID_PROJECT: '/Assets/Printer/{asset_id}/Project',
   ASSETS_PRINTER_BY_ASSET_ID_PROJECT_BY_ID: '/Assets/Printer/{asset_id}/Project/{id}',
   ASSETS_PRINTER_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Printer/{asset_id}/RemoteManagement',
-  ASSETS_PRINTER_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Printer/{asset_id}/RemoteManagement/{id}',
-  ASSETS_PRINTER_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Printer/{asset_id}/SoftwareInstallation',
-  ASSETS_PRINTER_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Printer/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_PRINTER_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/Printer/{asset_id}/RemoteManagement/{id}',
+  ASSETS_PRINTER_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/Printer/{asset_id}/SoftwareInstallation',
+  ASSETS_PRINTER_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Printer/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_PRINTER_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Printer/{asset_id}/VirtualMachine',
   ASSETS_PRINTER_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Printer/{asset_id}/VirtualMachine/{id}',
   ASSETS_PRINTER_BY_ASSET_ID_VOLUME: '/Assets/Printer/{asset_id}/Volume',
@@ -471,44 +545,68 @@ export const ENDPOINTS = {
   ASSETS_SOFTWARE_BY_SOFTWARE_ID_VERSION_BY_ID: '/Assets/Software/{software_id}/Version/{id}',
   ASSETS_SOFTWARELICENSE: '/Assets/SoftwareLicense',
   ASSETS_SOFTWARELICENSE_BY_ASSET_ID_ANTIVIRUS: '/Assets/SoftwareLicense/{asset_id}/Antivirus',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_ANTIVIRUS_BY_ID: '/Assets/SoftwareLicense/{asset_id}/Antivirus/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_ANTIVIRUS_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/Antivirus/{id}',
   ASSETS_SOFTWARELICENSE_BY_ASSET_ID_APPLIANCE: '/Assets/SoftwareLicense/{asset_id}/Appliance',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_APPLIANCE_BY_ID: '/Assets/SoftwareLicense/{asset_id}/Appliance/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_APPLIANCE_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/Appliance/{id}',
   ASSETS_SOFTWARELICENSE_BY_ASSET_ID_CERTIFICATE: '/Assets/SoftwareLicense/{asset_id}/Certificate',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_CERTIFICATE_BY_ID: '/Assets/SoftwareLicense/{asset_id}/Certificate/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_CERTIFICATE_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/Certificate/{id}',
   ASSETS_SOFTWARELICENSE_BY_ASSET_ID_CONTRACT: '/Assets/SoftwareLicense/{asset_id}/Contract',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_CONTRACT_BY_ID: '/Assets/SoftwareLicense/{asset_id}/Contract/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_CONTRACT_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/Contract/{id}',
   ASSETS_SOFTWARELICENSE_BY_ASSET_ID_KBARTICLE: '/Assets/SoftwareLicense/{asset_id}/KBArticle',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_KBARTICLE_BY_ID: '/Assets/SoftwareLicense/{asset_id}/KBArticle/{id}',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/SoftwareLicense/{asset_id}/PeripheralConnection',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/SoftwareLicense/{asset_id}/PeripheralConnection/{id}',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/SoftwareLicense/{asset_id}/RemoteManagement',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/SoftwareLicense/{asset_id}/RemoteManagement/{id}',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation/{id}',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/SoftwareLicense/{asset_id}/VirtualMachine',
-  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/SoftwareLicense/{asset_id}/VirtualMachine/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_KBARTICLE_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/KBArticle/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/SoftwareLicense/{asset_id}/PeripheralConnection',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_REMOTEMANAGEMENT:
+    '/Assets/SoftwareLicense/{asset_id}/RemoteManagement',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/RemoteManagement/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_VIRTUALMACHINE:
+    '/Assets/SoftwareLicense/{asset_id}/VirtualMachine',
+  ASSETS_SOFTWARELICENSE_BY_ASSET_ID_VIRTUALMACHINE_BY_ID:
+    '/Assets/SoftwareLicense/{asset_id}/VirtualMachine/{id}',
   ASSETS_SOFTWARELICENSE_BY_ASSET_ID_VOLUME: '/Assets/SoftwareLicense/{asset_id}/Volume',
   ASSETS_SOFTWARELICENSE_BY_ASSET_ID_VOLUME_BY_ID: '/Assets/SoftwareLicense/{asset_id}/Volume/{id}',
   ASSETS_SOFTWARELICENSE_BY_ID: '/Assets/SoftwareLicense/{id}',
   ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_BATTERY: '/Assets/SoftwareLicense/{id}/Component/Battery',
   ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_CAMERA: '/Assets/SoftwareLicense/{id}/Component/Camera',
   ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_CASE: '/Assets/SoftwareLicense/{id}/Component/Case',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_CONTROLLER: '/Assets/SoftwareLicense/{id}/Component/Controller',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_CONTROLLER:
+    '/Assets/SoftwareLicense/{id}/Component/Controller',
   ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_DRIVE: '/Assets/SoftwareLicense/{id}/Component/Drive',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_FIRMWARE: '/Assets/SoftwareLicense/{id}/Component/Firmware',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_GENERICDEVICE: '/Assets/SoftwareLicense/{id}/Component/GenericDevice',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_GRAPHICCARD: '/Assets/SoftwareLicense/{id}/Component/GraphicCard',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_HARDDRIVE: '/Assets/SoftwareLicense/{id}/Component/HardDrive',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_FIRMWARE:
+    '/Assets/SoftwareLicense/{id}/Component/Firmware',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_GENERICDEVICE:
+    '/Assets/SoftwareLicense/{id}/Component/GenericDevice',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_GRAPHICCARD:
+    '/Assets/SoftwareLicense/{id}/Component/GraphicCard',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_HARDDRIVE:
+    '/Assets/SoftwareLicense/{id}/Component/HardDrive',
   ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_MEMORY: '/Assets/SoftwareLicense/{id}/Component/Memory',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_NETWORKCARD: '/Assets/SoftwareLicense/{id}/Component/NetworkCard',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_PCIDEVICE: '/Assets/SoftwareLicense/{id}/Component/PCIDevice',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_POWERSUPPLY: '/Assets/SoftwareLicense/{id}/Component/PowerSupply',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_PROCESSOR: '/Assets/SoftwareLicense/{id}/Component/Processor',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_NETWORKCARD:
+    '/Assets/SoftwareLicense/{id}/Component/NetworkCard',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_PCIDEVICE:
+    '/Assets/SoftwareLicense/{id}/Component/PCIDevice',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_POWERSUPPLY:
+    '/Assets/SoftwareLicense/{id}/Component/PowerSupply',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_PROCESSOR:
+    '/Assets/SoftwareLicense/{id}/Component/Processor',
   ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_SIMCARD: '/Assets/SoftwareLicense/{id}/Component/SIMCard',
   ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_SENSOR: '/Assets/SoftwareLicense/{id}/Component/Sensor',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_SOUNDCARD: '/Assets/SoftwareLicense/{id}/Component/SoundCard',
-  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_SYSTEMBOARD: '/Assets/SoftwareLicense/{id}/Component/Systemboard',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_SOUNDCARD:
+    '/Assets/SoftwareLicense/{id}/Component/SoundCard',
+  ASSETS_SOFTWARELICENSE_BY_ID_COMPONENT_SYSTEMBOARD:
+    '/Assets/SoftwareLicense/{id}/Component/Systemboard',
   ASSETS_SOFTWARELICENSE_BY_ID_INFOCOM: '/Assets/SoftwareLicense/{id}/Infocom',
   ASSETS_UNMANAGED: '/Assets/Unmanaged',
   ASSETS_UNMANAGED_BY_ASSET_ID_ANTIVIRUS: '/Assets/Unmanaged/{asset_id}/Antivirus',
@@ -517,14 +615,20 @@ export const ENDPOINTS = {
   ASSETS_UNMANAGED_BY_ASSET_ID_APPLIANCE_BY_ID: '/Assets/Unmanaged/{asset_id}/Appliance/{id}',
   ASSETS_UNMANAGED_BY_ASSET_ID_DOMAIN: '/Assets/Unmanaged/{asset_id}/Domain',
   ASSETS_UNMANAGED_BY_ASSET_ID_DOMAIN_BY_ID: '/Assets/Unmanaged/{asset_id}/Domain/{id}',
-  ASSETS_UNMANAGED_BY_ASSET_ID_PERIPHERALCONNECTION: '/Assets/Unmanaged/{asset_id}/PeripheralConnection',
-  ASSETS_UNMANAGED_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID: '/Assets/Unmanaged/{asset_id}/PeripheralConnection/{id}',
+  ASSETS_UNMANAGED_BY_ASSET_ID_PERIPHERALCONNECTION:
+    '/Assets/Unmanaged/{asset_id}/PeripheralConnection',
+  ASSETS_UNMANAGED_BY_ASSET_ID_PERIPHERALCONNECTION_BY_ID:
+    '/Assets/Unmanaged/{asset_id}/PeripheralConnection/{id}',
   ASSETS_UNMANAGED_BY_ASSET_ID_REMOTEMANAGEMENT: '/Assets/Unmanaged/{asset_id}/RemoteManagement',
-  ASSETS_UNMANAGED_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID: '/Assets/Unmanaged/{asset_id}/RemoteManagement/{id}',
-  ASSETS_UNMANAGED_BY_ASSET_ID_SOFTWAREINSTALLATION: '/Assets/Unmanaged/{asset_id}/SoftwareInstallation',
-  ASSETS_UNMANAGED_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID: '/Assets/Unmanaged/{asset_id}/SoftwareInstallation/{id}',
+  ASSETS_UNMANAGED_BY_ASSET_ID_REMOTEMANAGEMENT_BY_ID:
+    '/Assets/Unmanaged/{asset_id}/RemoteManagement/{id}',
+  ASSETS_UNMANAGED_BY_ASSET_ID_SOFTWAREINSTALLATION:
+    '/Assets/Unmanaged/{asset_id}/SoftwareInstallation',
+  ASSETS_UNMANAGED_BY_ASSET_ID_SOFTWAREINSTALLATION_BY_ID:
+    '/Assets/Unmanaged/{asset_id}/SoftwareInstallation/{id}',
   ASSETS_UNMANAGED_BY_ASSET_ID_VIRTUALMACHINE: '/Assets/Unmanaged/{asset_id}/VirtualMachine',
-  ASSETS_UNMANAGED_BY_ASSET_ID_VIRTUALMACHINE_BY_ID: '/Assets/Unmanaged/{asset_id}/VirtualMachine/{id}',
+  ASSETS_UNMANAGED_BY_ASSET_ID_VIRTUALMACHINE_BY_ID:
+    '/Assets/Unmanaged/{asset_id}/VirtualMachine/{id}',
   ASSETS_UNMANAGED_BY_ASSET_ID_VOLUME: '/Assets/Unmanaged/{asset_id}/Volume',
   ASSETS_UNMANAGED_BY_ASSET_ID_VOLUME_BY_ID: '/Assets/Unmanaged/{asset_id}/Volume/{id}',
   ASSETS_UNMANAGED_BY_ID: '/Assets/Unmanaged/{id}',
@@ -546,11 +650,14 @@ export const ENDPOINTS = {
   ASSETS_UNMANAGED_BY_ID_COMPONENT_SENSOR: '/Assets/Unmanaged/{id}/Component/Sensor',
   ASSETS_UNMANAGED_BY_ID_COMPONENT_SOUNDCARD: '/Assets/Unmanaged/{id}/Component/SoundCard',
   ASSETS_UNMANAGED_BY_ID_COMPONENT_SYSTEMBOARD: '/Assets/Unmanaged/{id}/Component/Systemboard',
-  ASSETS_BY_ASSET_ITEMTYPE_BY_ASSET_ID_OSINSTALLATION: '/Assets/{asset_itemtype}/{asset_id}/OSInstallation',
-  ASSETS_BY_ASSET_ITEMTYPE_BY_ASSET_ID_OSINSTALLATION_BY_ID: '/Assets/{asset_itemtype}/{asset_id}/OSInstallation/{id}',
+  ASSETS_BY_ASSET_ITEMTYPE_BY_ASSET_ID_OSINSTALLATION:
+    '/Assets/{asset_itemtype}/{asset_id}/OSInstallation',
+  ASSETS_BY_ASSET_ITEMTYPE_BY_ASSET_ID_OSINSTALLATION_BY_ID:
+    '/Assets/{asset_itemtype}/{asset_id}/OSInstallation/{id}',
   ASSISTANCE_CHANGE: '/Assistance/Change',
   ASSISTANCE_CHANGE_BY_ASSISTANCE_ID_KBARTICLE: '/Assistance/Change/{assistance_id}/KBArticle',
-  ASSISTANCE_CHANGE_BY_ASSISTANCE_ID_KBARTICLE_BY_ID: '/Assistance/Change/{assistance_id}/KBArticle/{id}',
+  ASSISTANCE_CHANGE_BY_ASSISTANCE_ID_KBARTICLE_BY_ID:
+    '/Assistance/Change/{assistance_id}/KBArticle/{id}',
   ASSISTANCE_CHANGE_BY_ID: '/Assistance/Change/{id}',
   ASSISTANCE_CHANGE_BY_ID_COST: '/Assistance/Change/{id}/Cost',
   ASSISTANCE_CHANGE_BY_ID_COST_BY_COST_ID: '/Assistance/Change/{id}/Cost/{cost_id}',
@@ -559,15 +666,20 @@ export const ENDPOINTS = {
   ASSISTANCE_CHANGE_BY_ID_TEAMMEMBER_BY_ROLE: '/Assistance/Change/{id}/TeamMember/{role}',
   ASSISTANCE_CHANGE_BY_ID_TIMELINE: '/Assistance/Change/{id}/Timeline',
   ASSISTANCE_CHANGE_BY_ID_TIMELINE_DOCUMENT: '/Assistance/Change/{id}/Timeline/Document',
-  ASSISTANCE_CHANGE_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID: '/Assistance/Change/{id}/Timeline/Document/{subitem_id}',
+  ASSISTANCE_CHANGE_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID:
+    '/Assistance/Change/{id}/Timeline/Document/{subitem_id}',
   ASSISTANCE_CHANGE_BY_ID_TIMELINE_FOLLOWUP: '/Assistance/Change/{id}/Timeline/Followup',
-  ASSISTANCE_CHANGE_BY_ID_TIMELINE_FOLLOWUP_BY_SUBITEM_ID: '/Assistance/Change/{id}/Timeline/Followup/{subitem_id}',
+  ASSISTANCE_CHANGE_BY_ID_TIMELINE_FOLLOWUP_BY_SUBITEM_ID:
+    '/Assistance/Change/{id}/Timeline/Followup/{subitem_id}',
   ASSISTANCE_CHANGE_BY_ID_TIMELINE_SOLUTION: '/Assistance/Change/{id}/Timeline/Solution',
-  ASSISTANCE_CHANGE_BY_ID_TIMELINE_SOLUTION_BY_SUBITEM_ID: '/Assistance/Change/{id}/Timeline/Solution/{subitem_id}',
+  ASSISTANCE_CHANGE_BY_ID_TIMELINE_SOLUTION_BY_SUBITEM_ID:
+    '/Assistance/Change/{id}/Timeline/Solution/{subitem_id}',
   ASSISTANCE_CHANGE_BY_ID_TIMELINE_TASK: '/Assistance/Change/{id}/Timeline/Task',
-  ASSISTANCE_CHANGE_BY_ID_TIMELINE_TASK_BY_SUBITEM_ID: '/Assistance/Change/{id}/Timeline/Task/{subitem_id}',
+  ASSISTANCE_CHANGE_BY_ID_TIMELINE_TASK_BY_SUBITEM_ID:
+    '/Assistance/Change/{id}/Timeline/Task/{subitem_id}',
   ASSISTANCE_CHANGE_BY_ID_TIMELINE_VALIDATION: '/Assistance/Change/{id}/Timeline/Validation',
-  ASSISTANCE_CHANGE_BY_ID_TIMELINE_VALIDATION_BY_SUBITEM_ID: '/Assistance/Change/{id}/Timeline/Validation/{subitem_id}',
+  ASSISTANCE_CHANGE_BY_ID_TIMELINE_VALIDATION_BY_SUBITEM_ID:
+    '/Assistance/Change/{id}/Timeline/Validation/{subitem_id}',
   ASSISTANCE_EXTERNALEVENT: '/Assistance/ExternalEvent',
   ASSISTANCE_EXTERNALEVENT_BY_ID: '/Assistance/ExternalEvent/{id}',
   ASSISTANCE_PENDINGREASON: '/Assistance/PendingReason',
@@ -576,7 +688,8 @@ export const ENDPOINTS = {
   ASSISTANCE_PLANNINGREMINDER_BY_ID: '/Assistance/PlanningReminder/{id}',
   ASSISTANCE_PROBLEM: '/Assistance/Problem',
   ASSISTANCE_PROBLEM_BY_ASSISTANCE_ID_KBARTICLE: '/Assistance/Problem/{assistance_id}/KBArticle',
-  ASSISTANCE_PROBLEM_BY_ASSISTANCE_ID_KBARTICLE_BY_ID: '/Assistance/Problem/{assistance_id}/KBArticle/{id}',
+  ASSISTANCE_PROBLEM_BY_ASSISTANCE_ID_KBARTICLE_BY_ID:
+    '/Assistance/Problem/{assistance_id}/KBArticle/{id}',
   ASSISTANCE_PROBLEM_BY_ID: '/Assistance/Problem/{id}',
   ASSISTANCE_PROBLEM_BY_ID_COST: '/Assistance/Problem/{id}/Cost',
   ASSISTANCE_PROBLEM_BY_ID_COST_BY_COST_ID: '/Assistance/Problem/{id}/Cost/{cost_id}',
@@ -585,13 +698,17 @@ export const ENDPOINTS = {
   ASSISTANCE_PROBLEM_BY_ID_TEAMMEMBER_BY_ROLE: '/Assistance/Problem/{id}/TeamMember/{role}',
   ASSISTANCE_PROBLEM_BY_ID_TIMELINE: '/Assistance/Problem/{id}/Timeline',
   ASSISTANCE_PROBLEM_BY_ID_TIMELINE_DOCUMENT: '/Assistance/Problem/{id}/Timeline/Document',
-  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID: '/Assistance/Problem/{id}/Timeline/Document/{subitem_id}',
+  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID:
+    '/Assistance/Problem/{id}/Timeline/Document/{subitem_id}',
   ASSISTANCE_PROBLEM_BY_ID_TIMELINE_FOLLOWUP: '/Assistance/Problem/{id}/Timeline/Followup',
-  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_FOLLOWUP_BY_SUBITEM_ID: '/Assistance/Problem/{id}/Timeline/Followup/{subitem_id}',
+  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_FOLLOWUP_BY_SUBITEM_ID:
+    '/Assistance/Problem/{id}/Timeline/Followup/{subitem_id}',
   ASSISTANCE_PROBLEM_BY_ID_TIMELINE_SOLUTION: '/Assistance/Problem/{id}/Timeline/Solution',
-  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_SOLUTION_BY_SUBITEM_ID: '/Assistance/Problem/{id}/Timeline/Solution/{subitem_id}',
+  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_SOLUTION_BY_SUBITEM_ID:
+    '/Assistance/Problem/{id}/Timeline/Solution/{subitem_id}',
   ASSISTANCE_PROBLEM_BY_ID_TIMELINE_TASK: '/Assistance/Problem/{id}/Timeline/Task',
-  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_TASK_BY_SUBITEM_ID: '/Assistance/Problem/{id}/Timeline/Task/{subitem_id}',
+  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_TASK_BY_SUBITEM_ID:
+    '/Assistance/Problem/{id}/Timeline/Task/{subitem_id}',
   ASSISTANCE_RECURRINGCHANGE: '/Assistance/RecurringChange',
   ASSISTANCE_RECURRINGCHANGE_BY_ID: '/Assistance/RecurringChange/{id}',
   ASSISTANCE_RECURRINGTICKET: '/Assistance/RecurringTicket',
@@ -600,27 +717,31 @@ export const ENDPOINTS = {
   ASSISTANCE_STAT_CHANGE_ASSET: '/Assistance/Stat/Change/Asset',
   ASSISTANCE_STAT_CHANGE_ASSET_EXPORT: '/Assistance/Stat/Change/Asset/Export',
   ASSISTANCE_STAT_CHANGE_ASSETCHARACTERISTICS: '/Assistance/Stat/Change/AssetCharacteristics',
-  ASSISTANCE_STAT_CHANGE_ASSETCHARACTERISTICS_EXPORT: '/Assistance/Stat/Change/AssetCharacteristics/Export',
+  ASSISTANCE_STAT_CHANGE_ASSETCHARACTERISTICS_EXPORT:
+    '/Assistance/Stat/Change/AssetCharacteristics/Export',
   ASSISTANCE_STAT_CHANGE_CHARACTERISTICS: '/Assistance/Stat/Change/Characteristics',
   ASSISTANCE_STAT_CHANGE_CHARACTERISTICS_EXPORT: '/Assistance/Stat/Change/Characteristics/Export',
   ASSISTANCE_STAT_CHANGE_GLOBAL: '/Assistance/Stat/Change/Global',
   ASSISTANCE_STAT_PROBLEM_ASSET: '/Assistance/Stat/Problem/Asset',
   ASSISTANCE_STAT_PROBLEM_ASSET_EXPORT: '/Assistance/Stat/Problem/Asset/Export',
   ASSISTANCE_STAT_PROBLEM_ASSETCHARACTERISTICS: '/Assistance/Stat/Problem/AssetCharacteristics',
-  ASSISTANCE_STAT_PROBLEM_ASSETCHARACTERISTICS_EXPORT: '/Assistance/Stat/Problem/AssetCharacteristics/Export',
+  ASSISTANCE_STAT_PROBLEM_ASSETCHARACTERISTICS_EXPORT:
+    '/Assistance/Stat/Problem/AssetCharacteristics/Export',
   ASSISTANCE_STAT_PROBLEM_CHARACTERISTICS: '/Assistance/Stat/Problem/Characteristics',
   ASSISTANCE_STAT_PROBLEM_CHARACTERISTICS_EXPORT: '/Assistance/Stat/Problem/Characteristics/Export',
   ASSISTANCE_STAT_PROBLEM_GLOBAL: '/Assistance/Stat/Problem/Global',
   ASSISTANCE_STAT_TICKET_ASSET: '/Assistance/Stat/Ticket/Asset',
   ASSISTANCE_STAT_TICKET_ASSET_EXPORT: '/Assistance/Stat/Ticket/Asset/Export',
   ASSISTANCE_STAT_TICKET_ASSETCHARACTERISTICS: '/Assistance/Stat/Ticket/AssetCharacteristics',
-  ASSISTANCE_STAT_TICKET_ASSETCHARACTERISTICS_EXPORT: '/Assistance/Stat/Ticket/AssetCharacteristics/Export',
+  ASSISTANCE_STAT_TICKET_ASSETCHARACTERISTICS_EXPORT:
+    '/Assistance/Stat/Ticket/AssetCharacteristics/Export',
   ASSISTANCE_STAT_TICKET_CHARACTERISTICS: '/Assistance/Stat/Ticket/Characteristics',
   ASSISTANCE_STAT_TICKET_CHARACTERISTICS_EXPORT: '/Assistance/Stat/Ticket/Characteristics/Export',
   ASSISTANCE_STAT_TICKET_GLOBAL: '/Assistance/Stat/Ticket/Global',
   ASSISTANCE_TICKET: '/Assistance/Ticket',
   ASSISTANCE_TICKET_BY_ASSISTANCE_ID_KBARTICLE: '/Assistance/Ticket/{assistance_id}/KBArticle',
-  ASSISTANCE_TICKET_BY_ASSISTANCE_ID_KBARTICLE_BY_ID: '/Assistance/Ticket/{assistance_id}/KBArticle/{id}',
+  ASSISTANCE_TICKET_BY_ASSISTANCE_ID_KBARTICLE_BY_ID:
+    '/Assistance/Ticket/{assistance_id}/KBArticle/{id}',
   ASSISTANCE_TICKET_BY_ID: '/Assistance/Ticket/{id}',
   ASSISTANCE_TICKET_BY_ID_COST: '/Assistance/Ticket/{id}/Cost',
   ASSISTANCE_TICKET_BY_ID_COST_BY_COST_ID: '/Assistance/Ticket/{id}/Cost/{cost_id}',
@@ -629,15 +750,20 @@ export const ENDPOINTS = {
   ASSISTANCE_TICKET_BY_ID_TEAMMEMBER_BY_ROLE: '/Assistance/Ticket/{id}/TeamMember/{role}',
   ASSISTANCE_TICKET_BY_ID_TIMELINE: '/Assistance/Ticket/{id}/Timeline',
   ASSISTANCE_TICKET_BY_ID_TIMELINE_DOCUMENT: '/Assistance/Ticket/{id}/Timeline/Document',
-  ASSISTANCE_TICKET_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID: '/Assistance/Ticket/{id}/Timeline/Document/{subitem_id}',
+  ASSISTANCE_TICKET_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID:
+    '/Assistance/Ticket/{id}/Timeline/Document/{subitem_id}',
   ASSISTANCE_TICKET_BY_ID_TIMELINE_FOLLOWUP: '/Assistance/Ticket/{id}/Timeline/Followup',
-  ASSISTANCE_TICKET_BY_ID_TIMELINE_FOLLOWUP_BY_SUBITEM_ID: '/Assistance/Ticket/{id}/Timeline/Followup/{subitem_id}',
+  ASSISTANCE_TICKET_BY_ID_TIMELINE_FOLLOWUP_BY_SUBITEM_ID:
+    '/Assistance/Ticket/{id}/Timeline/Followup/{subitem_id}',
   ASSISTANCE_TICKET_BY_ID_TIMELINE_SOLUTION: '/Assistance/Ticket/{id}/Timeline/Solution',
-  ASSISTANCE_TICKET_BY_ID_TIMELINE_SOLUTION_BY_SUBITEM_ID: '/Assistance/Ticket/{id}/Timeline/Solution/{subitem_id}',
+  ASSISTANCE_TICKET_BY_ID_TIMELINE_SOLUTION_BY_SUBITEM_ID:
+    '/Assistance/Ticket/{id}/Timeline/Solution/{subitem_id}',
   ASSISTANCE_TICKET_BY_ID_TIMELINE_TASK: '/Assistance/Ticket/{id}/Timeline/Task',
-  ASSISTANCE_TICKET_BY_ID_TIMELINE_TASK_BY_SUBITEM_ID: '/Assistance/Ticket/{id}/Timeline/Task/{subitem_id}',
+  ASSISTANCE_TICKET_BY_ID_TIMELINE_TASK_BY_SUBITEM_ID:
+    '/Assistance/Ticket/{id}/Timeline/Task/{subitem_id}',
   ASSISTANCE_TICKET_BY_ID_TIMELINE_VALIDATION: '/Assistance/Ticket/{id}/Timeline/Validation',
-  ASSISTANCE_TICKET_BY_ID_TIMELINE_VALIDATION_BY_SUBITEM_ID: '/Assistance/Ticket/{id}/Timeline/Validation/{subitem_id}',
+  ASSISTANCE_TICKET_BY_ID_TIMELINE_VALIDATION_BY_SUBITEM_ID:
+    '/Assistance/Ticket/{id}/Timeline/Validation/{subitem_id}',
   BUDGET_BY_ITEMS_ID_NOTE: '/Budget/{items_id}/Note',
   BUDGET_BY_ITEMS_ID_NOTE_BY_ID: '/Budget/{items_id}/Note/{id}',
   CARTRIDGEITEM_BY_ITEMS_ID_NOTE: '/CartridgeItem/{items_id}/Note',
@@ -906,11 +1032,15 @@ export const ENDPOINTS = {
   KNOWLEDGEBASE_ARTICLE: '/Knowledgebase/Article',
   KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID: '/Knowledgebase/Article/{article_id}',
   KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_COMMENT: '/Knowledgebase/Article/{article_id}/Comment',
-  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_COMMENT_BY_ID: '/Knowledgebase/Article/{article_id}/Comment/{id}',
+  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_COMMENT_BY_ID:
+    '/Knowledgebase/Article/{article_id}/Comment/{id}',
   KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_REVISION: '/Knowledgebase/Article/{article_id}/Revision',
-  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_REVISION_BY_REVISION: '/Knowledgebase/Article/{article_id}/Revision/{revision}',
-  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_BY_LANGUAGE_REVISION: '/Knowledgebase/Article/{article_id}/{language}/Revision',
-  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_BY_LANGUAGE_REVISION_BY_REVISION: '/Knowledgebase/Article/{article_id}/{language}/Revision/{revision}',
+  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_REVISION_BY_REVISION:
+    '/Knowledgebase/Article/{article_id}/Revision/{revision}',
+  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_BY_LANGUAGE_REVISION:
+    '/Knowledgebase/Article/{article_id}/{language}/Revision',
+  KNOWLEDGEBASE_ARTICLE_BY_ARTICLE_ID_BY_LANGUAGE_REVISION_BY_REVISION:
+    '/Knowledgebase/Article/{article_id}/{language}/Revision/{revision}',
   KNOWLEDGEBASE_CATEGORY: '/Knowledgebase/Category',
   KNOWLEDGEBASE_CATEGORY_BY_ID: '/Knowledgebase/Category/{id}',
   LINE_BY_ITEMS_ID_NOTE: '/Line/{items_id}/Note',
@@ -938,12 +1068,17 @@ export const ENDPOINTS = {
   MANAGEMENT_DATABASE_BY_ITEMS_ID_DOMAIN_BY_ID: '/Management/Database/{items_id}/Domain/{id}',
   MANAGEMENT_DATABASEINSTANCE: '/Management/DatabaseInstance',
   MANAGEMENT_DATABASEINSTANCE_BY_ID: '/Management/DatabaseInstance/{id}',
-  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CERTIFICATE: '/Management/DatabaseInstance/{items_id}/Certificate',
-  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CERTIFICATE_BY_ID: '/Management/DatabaseInstance/{items_id}/Certificate/{id}',
-  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CONTRACT: '/Management/DatabaseInstance/{items_id}/Contract',
-  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CONTRACT_BY_ID: '/Management/DatabaseInstance/{items_id}/Contract/{id}',
+  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CERTIFICATE:
+    '/Management/DatabaseInstance/{items_id}/Certificate',
+  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CERTIFICATE_BY_ID:
+    '/Management/DatabaseInstance/{items_id}/Certificate/{id}',
+  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CONTRACT:
+    '/Management/DatabaseInstance/{items_id}/Contract',
+  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_CONTRACT_BY_ID:
+    '/Management/DatabaseInstance/{items_id}/Contract/{id}',
   MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_DOMAIN: '/Management/DatabaseInstance/{items_id}/Domain',
-  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_DOMAIN_BY_ID: '/Management/DatabaseInstance/{items_id}/Domain/{id}',
+  MANAGEMENT_DATABASEINSTANCE_BY_ITEMS_ID_DOMAIN_BY_ID:
+    '/Management/DatabaseInstance/{items_id}/Domain/{id}',
   MANAGEMENT_DOCUMENT: '/Management/Document',
   MANAGEMENT_DOCUMENT_BY_ID: '/Management/Document/{id}',
   MANAGEMENT_DOCUMENT_BY_ID_DOWNLOAD: '/Management/Document/{id}/Download',
@@ -969,19 +1104,28 @@ export const ENDPOINTS = {
   NETWORKEQUIPMENT_BY_ITEMS_ID_NOTE_BY_ID: '/NetworkEquipment/{items_id}/Note/{id}',
   NOTIFICATIONS_NOTIFICATION: '/Notifications/Notification',
   NOTIFICATIONS_NOTIFICATION_BY_ID: '/Notifications/Notification/{id}',
-  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_NOTIFICATIONTEMPLATE: '/Notifications/Notification/{notification_id}/NotificationTemplate',
-  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_NOTIFICATIONTEMPLATE_BY_ID: '/Notifications/Notification/{notification_id}/NotificationTemplate/{id}',
-  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_RECIPIENT: '/Notifications/Notification/{notification_id}/Recipient',
-  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_RECIPIENT_BY_ID: '/Notifications/Notification/{notification_id}/Recipient/{id}',
+  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_NOTIFICATIONTEMPLATE:
+    '/Notifications/Notification/{notification_id}/NotificationTemplate',
+  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_NOTIFICATIONTEMPLATE_BY_ID:
+    '/Notifications/Notification/{notification_id}/NotificationTemplate/{id}',
+  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_RECIPIENT:
+    '/Notifications/Notification/{notification_id}/Recipient',
+  NOTIFICATIONS_NOTIFICATION_BY_NOTIFICATION_ID_RECIPIENT_BY_ID:
+    '/Notifications/Notification/{notification_id}/Recipient/{id}',
   NOTIFICATIONS_NOTIFICATIONTEMPLATE: '/Notifications/NotificationTemplate',
   NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_ID: '/Notifications/NotificationTemplate/{id}',
-  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION: '/Notifications/NotificationTemplate/{template_id}/Translation',
-  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION_DEFAULT: '/Notifications/NotificationTemplate/{template_id}/Translation/Default',
-  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION_BY_ID: '/Notifications/NotificationTemplate/{template_id}/Translation/{id}',
-  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION_BY_LANGUAGE: '/Notifications/NotificationTemplate/{template_id}/Translation/{language}',
+  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION:
+    '/Notifications/NotificationTemplate/{template_id}/Translation',
+  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION_DEFAULT:
+    '/Notifications/NotificationTemplate/{template_id}/Translation/Default',
+  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION_BY_ID:
+    '/Notifications/NotificationTemplate/{template_id}/Translation/{id}',
+  NOTIFICATIONS_NOTIFICATIONTEMPLATE_BY_TEMPLATE_ID_TRANSLATION_BY_LANGUAGE:
+    '/Notifications/NotificationTemplate/{template_id}/Translation/{language}',
   NOTIFICATIONS_QUEUEDNOTIFICATION: '/Notifications/QueuedNotification',
   NOTIFICATIONS_QUEUEDNOTIFICATION_BY_ID: '/Notifications/QueuedNotification/{id}',
-  NOTIFICATIONS_QUEUEDNOTIFICATION_BY_ID_SENDREQUEST: '/Notifications/QueuedNotification/{id}/SendRequest',
+  NOTIFICATIONS_QUEUEDNOTIFICATION_BY_ID_SENDREQUEST:
+    '/Notifications/QueuedNotification/{id}/SendRequest',
   PERIPHERAL_BY_ITEMS_ID_NOTE: '/Peripheral/{items_id}/Note',
   PERIPHERAL_BY_ITEMS_ID_NOTE_BY_ID: '/Peripheral/{items_id}/Note/{id}',
   PHONE_BY_ITEMS_ID_NOTE: '/Phone/{items_id}/Note',
@@ -1000,7 +1144,8 @@ export const ENDPOINTS = {
   PROJECT_TASK: '/Project/Task',
   PROJECT_TASK_BY_ID: '/Project/Task/{id}',
   PROJECT_TASK_BY_TASK_ID_TEAMMEMBER: '/Project/Task/{task_id}/TeamMember',
-  PROJECT_TASK_BY_TASK_ID_TEAMMEMBER_BY_TEAMMEMBER_ID: '/Project/Task/{task_id}/TeamMember/{teammember_id}',
+  PROJECT_TASK_BY_TASK_ID_TEAMMEMBER_BY_TEAMMEMBER_ID:
+    '/Project/Task/{task_id}/TeamMember/{teammember_id}',
   PROJECT_BY_ID: '/Project/{id}',
   PROJECT_BY_ITEMS_ID_NOTE: '/Project/{items_id}/Note',
   PROJECT_BY_ITEMS_ID_NOTE_BY_ID: '/Project/{items_id}/Note/{id}',
@@ -1010,7 +1155,8 @@ export const ENDPOINTS = {
   PROJECT_BY_PROJECT_ID_PROBLEM_BY_PROBLEM_ID: '/Project/{project_id}/Problem/{problem_id}',
   PROJECT_BY_PROJECT_ID_TASK: '/Project/{project_id}/Task',
   PROJECT_BY_PROJECT_ID_TEAMMEMBER: '/Project/{project_id}/TeamMember',
-  PROJECT_BY_PROJECT_ID_TEAMMEMBER_BY_TEAMMEMBER_ID: '/Project/{project_id}/TeamMember/{teammember_id}',
+  PROJECT_BY_PROJECT_ID_TEAMMEMBER_BY_TEAMMEMBER_ID:
+    '/Project/{project_id}/TeamMember/{teammember_id}',
   PROJECT_BY_PROJECT_ID_TICKET: '/Project/{project_id}/Ticket',
   PROJECT_BY_PROJECT_ID_TICKET_BY_TICKET_ID: '/Project/{project_id}/Ticket/{ticket_id}',
   PROJECTTASK_BY_ITEMS_ID_NOTE: '/ProjectTask/{items_id}/Note',
@@ -1027,9 +1173,11 @@ export const ENDPOINTS = {
   RULE_COLLECTION_ASSET_RULE_BY_ID_ACTION: '/Rule/Collection/Asset/Rule/{id}/Action',
   RULE_COLLECTION_ASSET_RULE_BY_ID_CRITERIA: '/Rule/Collection/Asset/Rule/{id}/Criteria',
   RULE_COLLECTION_ASSET_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/Asset/Rule/{rule_id}/Action',
-  RULE_COLLECTION_ASSET_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/Asset/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_ASSET_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/Asset/Rule/{rule_id}/Action/{id}',
   RULE_COLLECTION_ASSET_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/Asset/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_ASSET_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/Asset/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_ASSET_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/Asset/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_CHANGE_ACTIONFIELD: '/Rule/Collection/Change/ActionField',
   RULE_COLLECTION_CHANGE_ACTIONTYPE: '/Rule/Collection/Change/ActionType',
   RULE_COLLECTION_CHANGE_CRITERIACONDITION: '/Rule/Collection/Change/CriteriaCondition',
@@ -1039,21 +1187,32 @@ export const ENDPOINTS = {
   RULE_COLLECTION_CHANGE_RULE_BY_ID_ACTION: '/Rule/Collection/Change/Rule/{id}/Action',
   RULE_COLLECTION_CHANGE_RULE_BY_ID_CRITERIA: '/Rule/Collection/Change/Rule/{id}/Criteria',
   RULE_COLLECTION_CHANGE_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/Change/Rule/{rule_id}/Action',
-  RULE_COLLECTION_CHANGE_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/Change/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_CHANGE_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/Change/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_CHANGE_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/Change/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_CHANGE_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/Change/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_CHANGE_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/Change/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_CHANGE_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/Change/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_DEFINEITEMTYPE_ACTIONFIELD: '/Rule/Collection/DefineItemtype/ActionField',
   RULE_COLLECTION_DEFINEITEMTYPE_ACTIONTYPE: '/Rule/Collection/DefineItemtype/ActionType',
-  RULE_COLLECTION_DEFINEITEMTYPE_CRITERIACONDITION: '/Rule/Collection/DefineItemtype/CriteriaCondition',
-  RULE_COLLECTION_DEFINEITEMTYPE_CRITERIACRITERIA: '/Rule/Collection/DefineItemtype/CriteriaCriteria',
+  RULE_COLLECTION_DEFINEITEMTYPE_CRITERIACONDITION:
+    '/Rule/Collection/DefineItemtype/CriteriaCondition',
+  RULE_COLLECTION_DEFINEITEMTYPE_CRITERIACRITERIA:
+    '/Rule/Collection/DefineItemtype/CriteriaCriteria',
   RULE_COLLECTION_DEFINEITEMTYPE_RULE: '/Rule/Collection/DefineItemtype/Rule',
   RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_ID: '/Rule/Collection/DefineItemtype/Rule/{id}',
-  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_ID_ACTION: '/Rule/Collection/DefineItemtype/Rule/{id}/Action',
-  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_ID_CRITERIA: '/Rule/Collection/DefineItemtype/Rule/{id}/Criteria',
-  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action',
-  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_ID_ACTION:
+    '/Rule/Collection/DefineItemtype/Rule/{id}/Action',
+  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_ID_CRITERIA:
+    '/Rule/Collection/DefineItemtype/Rule/{id}/Criteria',
+  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_ACTION:
+    '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action',
+  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_DEFINEITEMTYPE_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_IMPORTASSET_ACTIONFIELD: '/Rule/Collection/ImportAsset/ActionField',
   RULE_COLLECTION_IMPORTASSET_ACTIONTYPE: '/Rule/Collection/ImportAsset/ActionType',
   RULE_COLLECTION_IMPORTASSET_CRITERIACONDITION: '/Rule/Collection/ImportAsset/CriteriaCondition',
@@ -1061,11 +1220,16 @@ export const ENDPOINTS = {
   RULE_COLLECTION_IMPORTASSET_RULE: '/Rule/Collection/ImportAsset/Rule',
   RULE_COLLECTION_IMPORTASSET_RULE_BY_ID: '/Rule/Collection/ImportAsset/Rule/{id}',
   RULE_COLLECTION_IMPORTASSET_RULE_BY_ID_ACTION: '/Rule/Collection/ImportAsset/Rule/{id}/Action',
-  RULE_COLLECTION_IMPORTASSET_RULE_BY_ID_CRITERIA: '/Rule/Collection/ImportAsset/Rule/{id}/Criteria',
-  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Action',
-  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_IMPORTASSET_RULE_BY_ID_CRITERIA:
+    '/Rule/Collection/ImportAsset/Rule/{id}/Criteria',
+  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_ACTION:
+    '/Rule/Collection/ImportAsset/Rule/{rule_id}/Action',
+  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/ImportAsset/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_IMPORTASSET_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_IMPORTENTITY_ACTIONFIELD: '/Rule/Collection/ImportEntity/ActionField',
   RULE_COLLECTION_IMPORTENTITY_ACTIONTYPE: '/Rule/Collection/ImportEntity/ActionType',
   RULE_COLLECTION_IMPORTENTITY_CRITERIACONDITION: '/Rule/Collection/ImportEntity/CriteriaCondition',
@@ -1073,11 +1237,16 @@ export const ENDPOINTS = {
   RULE_COLLECTION_IMPORTENTITY_RULE: '/Rule/Collection/ImportEntity/Rule',
   RULE_COLLECTION_IMPORTENTITY_RULE_BY_ID: '/Rule/Collection/ImportEntity/Rule/{id}',
   RULE_COLLECTION_IMPORTENTITY_RULE_BY_ID_ACTION: '/Rule/Collection/ImportEntity/Rule/{id}/Action',
-  RULE_COLLECTION_IMPORTENTITY_RULE_BY_ID_CRITERIA: '/Rule/Collection/ImportEntity/Rule/{id}/Criteria',
-  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Action',
-  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_IMPORTENTITY_RULE_BY_ID_CRITERIA:
+    '/Rule/Collection/ImportEntity/Rule/{id}/Criteria',
+  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_ACTION:
+    '/Rule/Collection/ImportEntity/Rule/{rule_id}/Action',
+  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/ImportEntity/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_IMPORTENTITY_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_LOCATION_ACTIONFIELD: '/Rule/Collection/Location/ActionField',
   RULE_COLLECTION_LOCATION_ACTIONTYPE: '/Rule/Collection/Location/ActionType',
   RULE_COLLECTION_LOCATION_CRITERIACONDITION: '/Rule/Collection/Location/CriteriaCondition',
@@ -1086,22 +1255,33 @@ export const ENDPOINTS = {
   RULE_COLLECTION_LOCATION_RULE_BY_ID: '/Rule/Collection/Location/Rule/{id}',
   RULE_COLLECTION_LOCATION_RULE_BY_ID_ACTION: '/Rule/Collection/Location/Rule/{id}/Action',
   RULE_COLLECTION_LOCATION_RULE_BY_ID_CRITERIA: '/Rule/Collection/Location/Rule/{id}/Criteria',
-  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/Location/Rule/{rule_id}/Action',
-  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/Location/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/Location/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/Location/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_ACTION:
+    '/Rule/Collection/Location/Rule/{rule_id}/Action',
+  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/Location/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/Location/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_LOCATION_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/Location/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_MAILCOLLECTOR_ACTIONFIELD: '/Rule/Collection/MailCollector/ActionField',
   RULE_COLLECTION_MAILCOLLECTOR_ACTIONTYPE: '/Rule/Collection/MailCollector/ActionType',
-  RULE_COLLECTION_MAILCOLLECTOR_CRITERIACONDITION: '/Rule/Collection/MailCollector/CriteriaCondition',
+  RULE_COLLECTION_MAILCOLLECTOR_CRITERIACONDITION:
+    '/Rule/Collection/MailCollector/CriteriaCondition',
   RULE_COLLECTION_MAILCOLLECTOR_CRITERIACRITERIA: '/Rule/Collection/MailCollector/CriteriaCriteria',
   RULE_COLLECTION_MAILCOLLECTOR_RULE: '/Rule/Collection/MailCollector/Rule',
   RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_ID: '/Rule/Collection/MailCollector/Rule/{id}',
-  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_ID_ACTION: '/Rule/Collection/MailCollector/Rule/{id}/Action',
-  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_ID_CRITERIA: '/Rule/Collection/MailCollector/Rule/{id}/Criteria',
-  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/MailCollector/Rule/{rule_id}/Action',
-  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/MailCollector/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_ID_ACTION:
+    '/Rule/Collection/MailCollector/Rule/{id}/Action',
+  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_ID_CRITERIA:
+    '/Rule/Collection/MailCollector/Rule/{id}/Criteria',
+  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_ACTION:
+    '/Rule/Collection/MailCollector/Rule/{rule_id}/Action',
+  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/MailCollector/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_MAILCOLLECTOR_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_PROBLEM_ACTIONFIELD: '/Rule/Collection/Problem/ActionField',
   RULE_COLLECTION_PROBLEM_ACTIONTYPE: '/Rule/Collection/Problem/ActionType',
   RULE_COLLECTION_PROBLEM_CRITERIACONDITION: '/Rule/Collection/Problem/CriteriaCondition',
@@ -1111,9 +1291,12 @@ export const ENDPOINTS = {
   RULE_COLLECTION_PROBLEM_RULE_BY_ID_ACTION: '/Rule/Collection/Problem/Rule/{id}/Action',
   RULE_COLLECTION_PROBLEM_RULE_BY_ID_CRITERIA: '/Rule/Collection/Problem/Rule/{id}/Criteria',
   RULE_COLLECTION_PROBLEM_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/Problem/Rule/{rule_id}/Action',
-  RULE_COLLECTION_PROBLEM_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/Problem/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_PROBLEM_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/Problem/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_PROBLEM_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/Problem/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_PROBLEM_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/Problem/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_PROBLEM_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/Problem/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_PROBLEM_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/Problem/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_RIGHT_ACTIONFIELD: '/Rule/Collection/Right/ActionField',
   RULE_COLLECTION_RIGHT_ACTIONTYPE: '/Rule/Collection/Right/ActionType',
   RULE_COLLECTION_RIGHT_CRITERIACONDITION: '/Rule/Collection/Right/CriteriaCondition',
@@ -1123,21 +1306,31 @@ export const ENDPOINTS = {
   RULE_COLLECTION_RIGHT_RULE_BY_ID_ACTION: '/Rule/Collection/Right/Rule/{id}/Action',
   RULE_COLLECTION_RIGHT_RULE_BY_ID_CRITERIA: '/Rule/Collection/Right/Rule/{id}/Criteria',
   RULE_COLLECTION_RIGHT_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/Right/Rule/{rule_id}/Action',
-  RULE_COLLECTION_RIGHT_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/Right/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_RIGHT_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/Right/Rule/{rule_id}/Action/{id}',
   RULE_COLLECTION_RIGHT_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/Right/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_RIGHT_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/Right/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_RIGHT_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/Right/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_SOFTWARECATEGORY_ACTIONFIELD: '/Rule/Collection/SoftwareCategory/ActionField',
   RULE_COLLECTION_SOFTWARECATEGORY_ACTIONTYPE: '/Rule/Collection/SoftwareCategory/ActionType',
-  RULE_COLLECTION_SOFTWARECATEGORY_CRITERIACONDITION: '/Rule/Collection/SoftwareCategory/CriteriaCondition',
-  RULE_COLLECTION_SOFTWARECATEGORY_CRITERIACRITERIA: '/Rule/Collection/SoftwareCategory/CriteriaCriteria',
+  RULE_COLLECTION_SOFTWARECATEGORY_CRITERIACONDITION:
+    '/Rule/Collection/SoftwareCategory/CriteriaCondition',
+  RULE_COLLECTION_SOFTWARECATEGORY_CRITERIACRITERIA:
+    '/Rule/Collection/SoftwareCategory/CriteriaCriteria',
   RULE_COLLECTION_SOFTWARECATEGORY_RULE: '/Rule/Collection/SoftwareCategory/Rule',
   RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_ID: '/Rule/Collection/SoftwareCategory/Rule/{id}',
-  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_ID_ACTION: '/Rule/Collection/SoftwareCategory/Rule/{id}/Action',
-  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_ID_CRITERIA: '/Rule/Collection/SoftwareCategory/Rule/{id}/Criteria',
-  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action',
-  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_ID_ACTION:
+    '/Rule/Collection/SoftwareCategory/Rule/{id}/Action',
+  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_ID_CRITERIA:
+    '/Rule/Collection/SoftwareCategory/Rule/{id}/Criteria',
+  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_ACTION:
+    '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action',
+  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_SOFTWARECATEGORY_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria/{id}',
   RULE_COLLECTION_TICKET_ACTIONFIELD: '/Rule/Collection/Ticket/ActionField',
   RULE_COLLECTION_TICKET_ACTIONTYPE: '/Rule/Collection/Ticket/ActionType',
   RULE_COLLECTION_TICKET_CRITERIACONDITION: '/Rule/Collection/Ticket/CriteriaCondition',
@@ -1147,9 +1340,12 @@ export const ENDPOINTS = {
   RULE_COLLECTION_TICKET_RULE_BY_ID_ACTION: '/Rule/Collection/Ticket/Rule/{id}/Action',
   RULE_COLLECTION_TICKET_RULE_BY_ID_CRITERIA: '/Rule/Collection/Ticket/Rule/{id}/Criteria',
   RULE_COLLECTION_TICKET_RULE_BY_RULE_ID_ACTION: '/Rule/Collection/Ticket/Rule/{rule_id}/Action',
-  RULE_COLLECTION_TICKET_RULE_BY_RULE_ID_ACTION_BY_ID: '/Rule/Collection/Ticket/Rule/{rule_id}/Action/{id}',
-  RULE_COLLECTION_TICKET_RULE_BY_RULE_ID_CRITERIA: '/Rule/Collection/Ticket/Rule/{rule_id}/Criteria',
-  RULE_COLLECTION_TICKET_RULE_BY_RULE_ID_CRITERIA_BY_ID: '/Rule/Collection/Ticket/Rule/{rule_id}/Criteria/{id}',
+  RULE_COLLECTION_TICKET_RULE_BY_RULE_ID_ACTION_BY_ID:
+    '/Rule/Collection/Ticket/Rule/{rule_id}/Action/{id}',
+  RULE_COLLECTION_TICKET_RULE_BY_RULE_ID_CRITERIA:
+    '/Rule/Collection/Ticket/Rule/{rule_id}/Criteria',
+  RULE_COLLECTION_TICKET_RULE_BY_RULE_ID_CRITERIA_BY_ID:
+    '/Rule/Collection/Ticket/Rule/{rule_id}/Criteria/{id}',
   SESSION_ENTITYTREE: '/Session/EntityTree',
   SETUP: '/Setup/',
   SETUP_AUTOMATICACTION_BY_ID: '/Setup/AutomaticAction/{id}',

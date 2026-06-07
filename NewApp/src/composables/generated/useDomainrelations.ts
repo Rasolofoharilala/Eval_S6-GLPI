@@ -2,7 +2,10 @@
 // Composable generated from domainrelationService.ts.
 
 import { ref } from 'vue'
-import { getDomainrelations, getDomainrelationById } from '@/services/generated/domainrelationService'
+import {
+  getDomainrelations,
+  getDomainrelationById,
+} from '@/services/generated/domainrelationService'
 
 export function useDomainrelations() {
   const domainrelations = ref<any[]>([])

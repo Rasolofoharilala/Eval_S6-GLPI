@@ -2,7 +2,10 @@
 // Composable generated from databaseinstancetypeService.ts.
 
 import { ref } from 'vue'
-import { getDatabaseinstancetypes, getDatabaseinstancetypeById } from '@/services/generated/databaseinstancetypeService'
+import {
+  getDatabaseinstancetypes,
+  getDatabaseinstancetypeById,
+} from '@/services/generated/databaseinstancetypeService'
 
 export function useDatabaseinstancetypes() {
   const databaseinstancetypes = ref<any[]>([])

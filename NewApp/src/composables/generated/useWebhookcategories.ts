@@ -2,7 +2,10 @@
 // Composable generated from webhookcategoryService.ts.
 
 import { ref } from 'vue'
-import { getWebhookcategories, getWebhookcategoryById } from '@/services/generated/webhookcategoryService'
+import {
+  getWebhookcategories,
+  getWebhookcategoryById,
+} from '@/services/generated/webhookcategoryService'
 
 export function useWebhookcategories() {
   const webhookcategories = ref<any[]>([])

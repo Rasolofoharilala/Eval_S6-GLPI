@@ -2,7 +2,10 @@
 // Composable generated from snmpcredentialService.ts.
 
 import { ref } from 'vue'
-import { getSnmpcredentials, getSnmpcredentialById } from '@/services/generated/snmpcredentialService'
+import {
+  getSnmpcredentials,
+  getSnmpcredentialById,
+} from '@/services/generated/snmpcredentialService'
 
 export function useSnmpcredentials() {
   const snmpcredentials = ref<any[]>([])

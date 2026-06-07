@@ -2,7 +2,10 @@
 // Composable generated from consumableitemtypeService.ts.
 
 import { ref } from 'vue'
-import { getConsumableitemtypes, getConsumableitemtypeById } from '@/services/generated/consumableitemtypeService'
+import {
+  getConsumableitemtypes,
+  getConsumableitemtypeById,
+} from '@/services/generated/consumableitemtypeService'
 
 export function useConsumableitemtypes() {
   const consumableitemtypes = ref<any[]>([])

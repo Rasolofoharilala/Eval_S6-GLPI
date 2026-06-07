@@ -2,7 +2,10 @@
 // Composable generated from recurringticketService.ts.
 
 import { ref } from 'vue'
-import { getRecurringtickets, getRecurringticketById } from '@/services/generated/recurringticketService'
+import {
+  getRecurringtickets,
+  getRecurringticketById,
+} from '@/services/generated/recurringticketService'
 
 export function useRecurringtickets() {
   const recurringtickets = ref<any[]>([])

@@ -2,7 +2,10 @@
 // Composable generated from validationtemplateService.ts.
 
 import { ref } from 'vue'
-import { getValidationtemplates, getValidationtemplateById } from '@/services/generated/validationtemplateService'
+import {
+  getValidationtemplates,
+  getValidationtemplateById,
+} from '@/services/generated/validationtemplateService'
 
 export function useValidationtemplates() {
   const validationtemplates = ref<any[]>([])

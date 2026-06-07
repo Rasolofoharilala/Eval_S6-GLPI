@@ -4,5 +4,4 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getPlugins = () =>
-  getAll(ENDPOINTS.SETUP_PLUGIN)
+export const getPlugins = () => getAll(ENDPOINTS.SETUP_PLUGIN)

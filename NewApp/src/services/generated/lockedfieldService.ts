@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getLockedfields = () =>
-  getAll(ENDPOINTS.INVENTORY_LOCKEDFIELD)
+export const getLockedfields = () => getAll(ENDPOINTS.INVENTORY_LOCKEDFIELD)
 
-export const getLockedfieldById = (id: number) =>
-  getById(ENDPOINTS.INVENTORY_LOCKEDFIELD, id)
+export const getLockedfieldById = (id: number) => getById(ENDPOINTS.INVENTORY_LOCKEDFIELD, id)

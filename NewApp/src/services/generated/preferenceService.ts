@@ -4,5 +4,4 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getPreferences = () =>
-  getAll(ENDPOINTS.ADMINISTRATION_USER_ME_PREFERENCE)
+export const getPreferences = () => getAll(ENDPOINTS.ADMINISTRATION_USER_ME_PREFERENCE)

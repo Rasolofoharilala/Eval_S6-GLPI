@@ -2,7 +2,10 @@
 // Composable generated from softwarelicenseService.ts.
 
 import { ref } from 'vue'
-import { getSoftwarelicenses, getSoftwarelicenseById } from '@/services/generated/softwarelicenseService'
+import {
+  getSoftwarelicenses,
+  getSoftwarelicenseById,
+} from '@/services/generated/softwarelicenseService'
 
 export function useSoftwarelicenses() {
   const softwarelicenses = ref<any[]>([])

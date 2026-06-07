@@ -2,7 +2,10 @@
 // Composable generated from solutiontemplateService.ts.
 
 import { ref } from 'vue'
-import { getSolutiontemplates, getSolutiontemplateById } from '@/services/generated/solutiontemplateService'
+import {
+  getSolutiontemplates,
+  getSolutiontemplateById,
+} from '@/services/generated/solutiontemplateService'
 
 export function useSolutiontemplates() {
   const solutiontemplates = ref<any[]>([])

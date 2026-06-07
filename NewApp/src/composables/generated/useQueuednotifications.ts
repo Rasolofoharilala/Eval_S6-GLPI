@@ -2,7 +2,10 @@
 // Composable generated from queuednotificationService.ts.
 
 import { ref } from 'vue'
-import { getQueuednotifications, getQueuednotificationById } from '@/services/generated/queuednotificationService'
+import {
+  getQueuednotifications,
+  getQueuednotificationById,
+} from '@/services/generated/queuednotificationService'
 
 export function useQueuednotifications() {
   const queuednotifications = ref<any[]>([])

@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getOlas = () =>
-  getAll(ENDPOINTS.SETUP_OLA)
+export const getOlas = () => getAll(ENDPOINTS.SETUP_OLA)
 
-export const getOlaById = (id: number) =>
-  getById(ENDPOINTS.SETUP_OLA, id)
+export const getOlaById = (id: number) => getById(ENDPOINTS.SETUP_OLA, id)

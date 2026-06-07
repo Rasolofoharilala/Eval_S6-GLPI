@@ -2,7 +2,10 @@
 // Composable generated from passivedcequipmentService.ts.
 
 import { ref } from 'vue'
-import { getPassivedcequipments, getPassivedcequipmentById } from '@/services/generated/passivedcequipmentService'
+import {
+  getPassivedcequipments,
+  getPassivedcequipmentById,
+} from '@/services/generated/passivedcequipmentService'
 
 export function usePassivedcequipments() {
   const passivedcequipments = ref<any[]>([])

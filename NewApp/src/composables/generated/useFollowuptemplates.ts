@@ -2,7 +2,10 @@
 // Composable generated from followuptemplateService.ts.
 
 import { ref } from 'vue'
-import { getFollowuptemplates, getFollowuptemplateById } from '@/services/generated/followuptemplateService'
+import {
+  getFollowuptemplates,
+  getFollowuptemplateById,
+} from '@/services/generated/followuptemplateService'
 
 export function useFollowuptemplates() {
   const followuptemplates = ref<any[]>([])

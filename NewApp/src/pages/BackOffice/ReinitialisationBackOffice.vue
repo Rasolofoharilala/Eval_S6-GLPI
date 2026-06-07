@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import { AVOID_RESET_ENDPOINTS, RESETTABLE_ENDPOINTS } from '@/reset/resetEndpointPolicy'
 import { resetSelectedEndpoints } from '@/reset/resetService'
+import { parseCsvFile } from '@/services/csv/csvParser'
+
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 
 const selectedEndpoints = ref<string[]>([])

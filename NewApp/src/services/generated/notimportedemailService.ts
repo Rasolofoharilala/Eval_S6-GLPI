@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getNotimportedemails = () =>
-  getAll(ENDPOINTS.SETUP_NOTIMPORTEDEMAIL)
+export const getNotimportedemails = () => getAll(ENDPOINTS.SETUP_NOTIMPORTEDEMAIL)
 
-export const getNotimportedemailById = (id: number) =>
-  getById(ENDPOINTS.SETUP_NOTIMPORTEDEMAIL, id)
+export const getNotimportedemailById = (id: number) => getById(ENDPOINTS.SETUP_NOTIMPORTEDEMAIL, id)

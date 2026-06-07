@@ -4,5 +4,4 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getArticles = () =>
-  getAll(ENDPOINTS.KNOWLEDGEBASE_ARTICLE)
+export const getArticles = () => getAll(ENDPOINTS.KNOWLEDGEBASE_ARTICLE)

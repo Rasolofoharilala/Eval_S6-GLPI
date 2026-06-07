@@ -2,7 +2,10 @@
 // Composable generated from notificationtemplateService.ts.
 
 import { ref } from 'vue'
-import { getNotificationtemplates, getNotificationtemplateById } from '@/services/generated/notificationtemplateService'
+import {
+  getNotificationtemplates,
+  getNotificationtemplateById,
+} from '@/services/generated/notificationtemplateService'
 
 export function useNotificationtemplates() {
   const notificationtemplates = ref<any[]>([])

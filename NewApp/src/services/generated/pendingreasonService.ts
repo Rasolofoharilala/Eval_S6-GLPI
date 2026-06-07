@@ -4,8 +4,6 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getPendingreasons = () =>
-  getAll(ENDPOINTS.ASSISTANCE_PENDINGREASON)
+export const getPendingreasons = () => getAll(ENDPOINTS.ASSISTANCE_PENDINGREASON)
 
-export const getPendingreasonById = (id: number) =>
-  getById(ENDPOINTS.ASSISTANCE_PENDINGREASON, id)
+export const getPendingreasonById = (id: number) => getById(ENDPOINTS.ASSISTANCE_PENDINGREASON, id)

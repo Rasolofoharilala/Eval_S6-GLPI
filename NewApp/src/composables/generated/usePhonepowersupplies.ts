@@ -2,7 +2,10 @@
 // Composable generated from phonepowersupplyService.ts.
 
 import { ref } from 'vue'
-import { getPhonepowersupplies, getPhonepowersupplyById } from '@/services/generated/phonepowersupplyService'
+import {
+  getPhonepowersupplies,
+  getPhonepowersupplyById,
+} from '@/services/generated/phonepowersupplyService'
 
 export function usePhonepowersupplies() {
   const phonepowersupplies = ref<any[]>([])

@@ -2,7 +2,10 @@
 // Composable generated from planningreminderService.ts.
 
 import { ref } from 'vue'
-import { getPlanningreminders, getPlanningreminderById } from '@/services/generated/planningreminderService'
+import {
+  getPlanningreminders,
+  getPlanningreminderById,
+} from '@/services/generated/planningreminderService'
 
 export function usePlanningreminders() {
   const planningreminders = ref<any[]>([])

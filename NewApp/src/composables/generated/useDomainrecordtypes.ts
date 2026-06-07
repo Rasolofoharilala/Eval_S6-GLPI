@@ -2,7 +2,10 @@
 // Composable generated from domainrecordtypeService.ts.
 
 import { ref } from 'vue'
-import { getDomainrecordtypes, getDomainrecordtypeById } from '@/services/generated/domainrecordtypeService'
+import {
+  getDomainrecordtypes,
+  getDomainrecordtypeById,
+} from '@/services/generated/domainrecordtypeService'
 
 export function useDomainrecordtypes() {
   const domainrecordtypes = ref<any[]>([])

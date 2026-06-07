@@ -2,7 +2,10 @@
 // Composable generated from networkequipmenttypeService.ts.
 
 import { ref } from 'vue'
-import { getNetworkequipmenttypes, getNetworkequipmenttypeById } from '@/services/generated/networkequipmenttypeService'
+import {
+  getNetworkequipmenttypes,
+  getNetworkequipmenttypeById,
+} from '@/services/generated/networkequipmenttypeService'
 
 export function useNetworkequipmenttypes() {
   const networkequipmenttypes = ref<any[]>([])

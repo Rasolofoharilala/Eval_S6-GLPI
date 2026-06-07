@@ -2,7 +2,10 @@
 // Composable generated from networkporttypeService.ts.
 
 import { ref } from 'vue'
-import { getNetworkporttypes, getNetworkporttypeById } from '@/services/generated/networkporttypeService'
+import {
+  getNetworkporttypes,
+  getNetworkporttypeById,
+} from '@/services/generated/networkporttypeService'
 
 export function useNetworkporttypes() {
   const networkporttypes = ref<any[]>([])

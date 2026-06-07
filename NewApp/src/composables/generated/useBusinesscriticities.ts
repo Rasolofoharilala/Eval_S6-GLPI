@@ -2,7 +2,10 @@
 // Composable generated from businesscriticityService.ts.
 
 import { ref } from 'vue'
-import { getBusinesscriticities, getBusinesscriticityById } from '@/services/generated/businesscriticityService'
+import {
+  getBusinesscriticities,
+  getBusinesscriticityById,
+} from '@/services/generated/businesscriticityService'
 
 export function useBusinesscriticities() {
   const businesscriticities = ref<any[]>([])

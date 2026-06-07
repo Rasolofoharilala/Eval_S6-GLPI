@@ -33,7487 +33,8291 @@ export const RESET_POLICY_META = {
 } as const
 
 export const RESETTABLE_ENDPOINTS: ResettablePolicyItem[] = [
-/* /Assets */
-{
-  endpoint: "/Assets/Appliance",
-  deleteTarget: "/Assets/Appliance/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Cable",
-  deleteTarget: "/Assets/Cable/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Cartridge",
-  deleteTarget: "/Assets/Cartridge/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate",
-  deleteTarget: "/Assets/Certificate/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer",
-  deleteTarget: "/Assets/Computer/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Consumable",
-  deleteTarget: "/Assets/Consumable/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Enclosure",
-  deleteTarget: "/Assets/Enclosure/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor",
-  deleteTarget: "/Assets/Monitor/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment",
-  deleteTarget: "/Assets/NetworkEquipment/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/PDU",
-  deleteTarget: "/Assets/PDU/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/PassiveDCEquipment",
-  deleteTarget: "/Assets/PassiveDCEquipment/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral",
-  deleteTarget: "/Assets/Peripheral/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone",
-  deleteTarget: "/Assets/Phone/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer",
-  deleteTarget: "/Assets/Printer/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Rack",
-  deleteTarget: "/Assets/Rack/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Socket",
-  deleteTarget: "/Assets/Socket/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Software",
-  deleteTarget: "/Assets/Software/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense",
-  deleteTarget: "/Assets/SoftwareLicense/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged",
-  deleteTarget: "/Assets/Unmanaged/{id}",
-  category: "assets",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
+  /* /Assets */
+  {
+    endpoint: '/Assets/Appliance',
+    deleteTarget: '/Assets/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Cable',
+    deleteTarget: '/Assets/Cable/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Cartridge',
+    deleteTarget: '/Assets/Cartridge/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate',
+    deleteTarget: '/Assets/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer',
+    deleteTarget: '/Assets/Computer/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Consumable',
+    deleteTarget: '/Assets/Consumable/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Enclosure',
+    deleteTarget: '/Assets/Enclosure/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor',
+    deleteTarget: '/Assets/Monitor/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment',
+    deleteTarget: '/Assets/NetworkEquipment/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/PDU',
+    deleteTarget: '/Assets/PDU/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/PassiveDCEquipment',
+    deleteTarget: '/Assets/PassiveDCEquipment/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral',
+    deleteTarget: '/Assets/Peripheral/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone',
+    deleteTarget: '/Assets/Phone/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer',
+    deleteTarget: '/Assets/Printer/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Rack',
+    deleteTarget: '/Assets/Rack/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Socket',
+    deleteTarget: '/Assets/Socket/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Software',
+    deleteTarget: '/Assets/Software/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense',
+    deleteTarget: '/Assets/SoftwareLicense/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged',
+    deleteTarget: '/Assets/Unmanaged/{id}',
+    category: 'assets',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
 
-/* /Assistance */
-{
-  endpoint: "/Assistance/Change",
-  deleteTarget: "/Assistance/Change/{id}",
-  category: "assistance",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem",
-  deleteTarget: "/Assistance/Problem/{id}",
-  category: "assistance",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket",
-  deleteTarget: "/Assistance/Ticket/{id}",
-  category: "assistance",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
+  /* /Assistance */
+  {
+    endpoint: '/Assistance/Change',
+    deleteTarget: '/Assistance/Change/{id}',
+    category: 'assistance',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem',
+    deleteTarget: '/Assistance/Problem/{id}',
+    category: 'assistance',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket',
+    deleteTarget: '/Assistance/Ticket/{id}',
+    category: 'assistance',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
 
-/* /Knowledgebase */
-{
-  endpoint: "/Knowledgebase/Article",
-  deleteTarget: "/Knowledgebase/Article/{article_id}",
-  category: "knowledgebase",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
+  /* /Knowledgebase */
+  {
+    endpoint: '/Knowledgebase/Article',
+    deleteTarget: '/Knowledgebase/Article/{article_id}',
+    category: 'knowledgebase',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
 
-/* /Management */
-{
-  endpoint: "/Management/Budget",
-  deleteTarget: "/Management/Budget/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Cluster",
-  deleteTarget: "/Management/Cluster/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Contact",
-  deleteTarget: "/Management/Contact/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Contract",
-  deleteTarget: "/Management/Contract/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/DataCenter",
-  deleteTarget: "/Management/DataCenter/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Database",
-  deleteTarget: "/Management/Database/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/DatabaseInstance",
-  deleteTarget: "/Management/DatabaseInstance/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Document",
-  deleteTarget: "/Management/Document/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Domain",
-  deleteTarget: "/Management/Domain/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/DomainRecord",
-  deleteTarget: "/Management/DomainRecord/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/License",
-  deleteTarget: "/Management/License/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Line",
-  deleteTarget: "/Management/Line/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Supplier",
-  deleteTarget: "/Management/Supplier/{id}",
-  category: "management",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
+  /* /Management */
+  {
+    endpoint: '/Management/Budget',
+    deleteTarget: '/Management/Budget/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Cluster',
+    deleteTarget: '/Management/Cluster/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Contact',
+    deleteTarget: '/Management/Contact/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Contract',
+    deleteTarget: '/Management/Contract/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/DataCenter',
+    deleteTarget: '/Management/DataCenter/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Database',
+    deleteTarget: '/Management/Database/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance',
+    deleteTarget: '/Management/DatabaseInstance/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Document',
+    deleteTarget: '/Management/Document/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Domain',
+    deleteTarget: '/Management/Domain/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/DomainRecord',
+    deleteTarget: '/Management/DomainRecord/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/License',
+    deleteTarget: '/Management/License/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Line',
+    deleteTarget: '/Management/Line/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Supplier',
+    deleteTarget: '/Management/Supplier/{id}',
+    category: 'management',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
 
-/* /Project */
-{
-  endpoint: "/Project/",
-  deleteTarget: "/Project/{id}",
-  category: "project",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/Task",
-  deleteTarget: "/Project/Task/{id}",
-  category: "project",
-  reason: "Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.",
-  methods: ["GET", "POST"],
-},
+  /* /Project */
+  {
+    endpoint: '/Project/',
+    deleteTarget: '/Project/{id}',
+    category: 'project',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/Task',
+    deleteTarget: '/Project/Task/{id}',
+    category: 'project',
+    reason:
+      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+    methods: ['GET', 'POST'],
+  },
 ]
 
 export const AVOID_RESET_ENDPOINTS: ResetPolicyItem[] = [
-/* / */
-{
-  endpoint: "/",
-  category: "root",
-  reason: "Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.",
-  methods: ["GET"],
-},
+  /* / */
+  {
+    endpoint: '/',
+    category: 'root',
+    reason:
+      'Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.',
+    methods: ['GET'],
+  },
 
-/* /Administration */
-{
-  endpoint: "/Administration/ApprovalSubstitute",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/ApprovalSubstitute/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Administration/Entity",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/Entity/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/Entity/{items_id}/KBArticle",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/Entity/{items_id}/KBArticle/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/EventLog",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/EventLog/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/Group",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/Group/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/Profile",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/Profile/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/User",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/User/Me",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/Me/Email",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/User/Me/Email/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/Me/Emails/Default",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/Me/ManagedItem",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/Me/Picture",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/Me/Preference",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/User/Me/UsedItem",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/username/{username}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/User/username/{username}/ManagedItem",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/username/{username}/Picture",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/username/{username}/UsedItem",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/User/{id}/ManagedItem",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/{id}/Picture",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/{id}/Preference",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/User/{id}/UsedItem",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Administration/User/{username}/Preference",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/User/{users_id}/Certificate",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/User/{users_id}/Certificate/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/UserCategory",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/UserCategory/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Administration/UserTitle",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Administration/UserTitle/{id}",
-  category: "administration",
-  reason: "Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Administration */
+  {
+    endpoint: '/Administration/ApprovalSubstitute',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/ApprovalSubstitute/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Administration/Entity',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/Entity/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/Entity/{items_id}/KBArticle',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/Entity/{items_id}/KBArticle/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/EventLog',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/EventLog/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/Group',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/Group/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/Profile',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/Profile/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/User',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/User/Me',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/Me/Email',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/User/Me/Email/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/Me/Emails/Default',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/Me/ManagedItem',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/Me/Picture',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/Me/Preference',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/User/Me/UsedItem',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/username/{username}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/User/username/{username}/ManagedItem',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/username/{username}/Picture',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/username/{username}/UsedItem',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/User/{id}/ManagedItem',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/{id}/Picture',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/{id}/Preference',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/User/{id}/UsedItem',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Administration/User/{username}/Preference',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/User/{users_id}/Certificate',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/User/{users_id}/Certificate/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/UserCategory',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/UserCategory/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Administration/UserTitle',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Administration/UserTitle/{id}',
+    category: 'administration',
+    reason:
+      'Administration GLPI: utilisateurs, profils, groupes, entités ou préférences. Risque de casser les accès.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Appliance */
-{
-  endpoint: "/Appliance/{items_id}/Note",
-  category: "appliance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Appliance/{items_id}/Note/{id}",
-  category: "appliance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Appliance */
+  {
+    endpoint: '/Appliance/{items_id}/Note',
+    category: 'appliance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Appliance/{items_id}/Note/{id}',
+    category: 'appliance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Assets */
-{
-  endpoint: "/Assets/",
-  category: "assets",
-  reason: "Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Certificate",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Appliance/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Appliance; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Appliance/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Cable/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Cable; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Cable/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Cartridge/{cartridgeitems_id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Cartridge/{cartridgeitems_id}/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Cartridge/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Cartridge; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Cartridge/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/CartridgeItem/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Certificate/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Certificate; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Certificate/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Certificate",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Line",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Line/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Computer/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Computer; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Computer/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Consumable/{consumableitems_id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Consumable/{consumableitems_id}/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Consumable/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Consumable; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Consumable/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/ConsumableItem/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Custom/",
-  category: "assets",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Custom/{itemtype}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Custom/{itemtype}/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Custom/{itemtype}Model",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Custom/{itemtype}Model/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Custom/{itemtype}Type",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Custom/{itemtype}Type/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/DCRoom/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/DCRoom/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Enclosure/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Enclosure/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Enclosure/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Enclosure; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Enclosure/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Global",
-  category: "assets",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Monitor/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Monitor; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Monitor/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Certificate",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Line",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Line/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/NetworkEquipment; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/NetworkEquipment/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/PDU/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/PDU/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/PDU/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/PDU; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/PDU/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/PassiveDCEquipment/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/PassiveDCEquipment; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/PassiveDCEquipment/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Certificate",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Line",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Line/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Peripheral/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Peripheral; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Peripheral/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Certificate",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Line",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Line/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Phone/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Phone; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Phone/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Certificate",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Line",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Line/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Printer/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Printer; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Printer/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Rack/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Rack/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Rack/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Rack; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Rack/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Rack/{rack_id}/Item",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Rack/{rack_id}/Item/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Socket/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Socket; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/Project",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Software/{asset_id}/Project/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Software/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Software; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Software/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Software/{software_id}/Version",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Software/{software_id}/Version/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Certificate",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Certificate/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Contract",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Contract/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/KBArticle",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/KBArticle/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/SoftwareLicense; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/SoftwareLicense/{id}/Infocom",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Antivirus",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Antivirus/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Appliance",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Appliance/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Domain",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Domain/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/PeripheralConnection",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/PeripheralConnection/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/RemoteManagement",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/RemoteManagement/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/SoftwareInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/SoftwareInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/VirtualMachine",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/VirtualMachine/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Volume",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{asset_id}/Volume/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}",
-  category: "assets",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assets/Unmanaged; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Battery",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Camera",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Case",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Controller",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Drive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Firmware",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/GenericDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/GraphicCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/HardDrive",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Memory",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/NetworkCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/PCIDevice",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/PowerSupply",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Processor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/SIMCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Sensor",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/SoundCard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/Unmanaged/{id}/Component/Systemboard",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assets/{asset_itemtype}/{asset_id}/OSInstallation",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assets/{asset_itemtype}/{asset_id}/OSInstallation/{id}",
-  category: "assets",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Assets */
+  {
+    endpoint: '/Assets/',
+    category: 'assets',
+    reason:
+      'Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Certificate',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Appliance; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Appliance/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Cable/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Cable; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Cable/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Cartridge/{cartridgeitems_id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Cartridge/{cartridgeitems_id}/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Cartridge/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Cartridge; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Cartridge/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/CartridgeItem/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Certificate; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Certificate/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Certificate',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Line',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Line/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Computer/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Computer; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Computer/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Consumable/{consumableitems_id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Consumable/{consumableitems_id}/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Consumable/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Consumable; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Consumable/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/ConsumableItem/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Custom/',
+    category: 'assets',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Custom/{itemtype}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Custom/{itemtype}/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Custom/{itemtype}Model',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Custom/{itemtype}Model/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Custom/{itemtype}Type',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Custom/{itemtype}Type/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/DCRoom/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/DCRoom/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Enclosure/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Enclosure/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Enclosure/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Enclosure; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Enclosure/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Global',
+    category: 'assets',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Monitor; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Monitor/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Certificate',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Line',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Line/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/NetworkEquipment; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/NetworkEquipment/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/PDU/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/PDU/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/PDU/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/PDU; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/PDU/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/PassiveDCEquipment/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/PassiveDCEquipment; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/PassiveDCEquipment/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Certificate',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Line',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Line/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Peripheral; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Peripheral/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Certificate',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Line',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Line/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Phone/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Phone; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Phone/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Certificate',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Line',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Line/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Printer/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Printer; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Printer/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Rack/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Rack/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Rack/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Rack; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Rack/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Rack/{rack_id}/Item',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Rack/{rack_id}/Item/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Socket/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Socket; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/Project',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Software/{asset_id}/Project/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Software/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Software; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Software/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Software/{software_id}/Version',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Software/{software_id}/Version/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Certificate',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Certificate/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Contract',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Contract/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/KBArticle',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/KBArticle/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/SoftwareLicense; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/SoftwareLicense/{id}/Infocom',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Antivirus',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Antivirus/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Appliance',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Appliance/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Domain',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Domain/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/PeripheralConnection',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/PeripheralConnection/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/RemoteManagement',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/RemoteManagement/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/SoftwareInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/SoftwareInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/VirtualMachine',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/VirtualMachine/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Volume',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{asset_id}/Volume/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assets/Unmanaged; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Battery',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Camera',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Case',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Controller',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Drive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Firmware',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/GenericDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/GraphicCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/HardDrive',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Memory',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/NetworkCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/PCIDevice',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/PowerSupply',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Processor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/SIMCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Sensor',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/SoundCard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/Unmanaged/{id}/Component/Systemboard',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assets/{asset_itemtype}/{asset_id}/OSInstallation',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assets/{asset_itemtype}/{asset_id}/OSInstallation/{id}',
+    category: 'assets',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Assistance */
-{
-  endpoint: "/Assistance/Change/{assistance_id}/KBArticle",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{assistance_id}/KBArticle/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Change/{id}",
-  category: "assistance",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assistance/Change; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Cost",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Cost/{cost_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/PendingReason",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/TeamMember",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/TeamMember/{role}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Document",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Document/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Followup",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Followup/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Solution",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Solution/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Task",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Task/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Validation",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Change/{id}/Timeline/Validation/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/ExternalEvent",
-  category: "assistance",
-  reason: "Possède une cible DELETE (/Assistance/ExternalEvent/{id}) mais n'est pas retenu comme reset métier sûr.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/ExternalEvent/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/PendingReason",
-  category: "assistance",
-  reason: "Possède une cible DELETE (/Assistance/PendingReason/{id}) mais n'est pas retenu comme reset métier sûr.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/PendingReason/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/PlanningReminder",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/PlanningReminder/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Problem/{assistance_id}/KBArticle",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem/{assistance_id}/KBArticle/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}",
-  category: "assistance",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assistance/Problem; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Cost",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Cost/{cost_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/PendingReason",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/TeamMember",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/TeamMember/{role}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Document",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Document/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Followup",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Followup/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Solution",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Solution/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Task",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Problem/{id}/Timeline/Task/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/RecurringChange",
-  category: "assistance",
-  reason: "Possède une cible DELETE (/Assistance/RecurringChange/{id}) mais n'est pas retenu comme reset métier sûr.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/RecurringChange/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/RecurringTicket",
-  category: "assistance",
-  reason: "Possède une cible DELETE (/Assistance/RecurringTicket/{id}) mais n'est pas retenu comme reset métier sûr.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/RecurringTicket/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Stat",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Change/Asset",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Change/Asset/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Change/AssetCharacteristics",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Change/AssetCharacteristics/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Change/Characteristics",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Change/Characteristics/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Change/Global",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Problem/Asset",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Problem/Asset/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Problem/AssetCharacteristics",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Problem/AssetCharacteristics/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Problem/Characteristics",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Problem/Characteristics/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Problem/Global",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Ticket/Asset",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Ticket/Asset/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Ticket/AssetCharacteristics",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Ticket/AssetCharacteristics/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Ticket/Characteristics",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Ticket/Characteristics/Export",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Stat/Ticket/Global",
-  category: "assistance",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Ticket/{assistance_id}/KBArticle",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{assistance_id}/KBArticle/{id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}",
-  category: "assistance",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Assistance/Ticket; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Cost",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Cost/{cost_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/PendingReason",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/TeamMember",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/TeamMember/{role}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Document",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Document/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Followup",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Followup/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Solution",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Solution/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Task",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Task/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Validation",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Assistance/Ticket/{id}/Timeline/Validation/{subitem_id}",
-  category: "assistance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Assistance */
+  {
+    endpoint: '/Assistance/Change/{assistance_id}/KBArticle',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{assistance_id}/KBArticle/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assistance/Change; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Cost',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Cost/{cost_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/PendingReason',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/TeamMember',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/TeamMember/{role}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Document',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Document/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Followup',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Followup/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Solution',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Solution/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Task',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Task/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Validation',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Change/{id}/Timeline/Validation/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/ExternalEvent',
+    category: 'assistance',
+    reason:
+      "Possède une cible DELETE (/Assistance/ExternalEvent/{id}) mais n'est pas retenu comme reset métier sûr.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/ExternalEvent/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/PendingReason',
+    category: 'assistance',
+    reason:
+      "Possède une cible DELETE (/Assistance/PendingReason/{id}) mais n'est pas retenu comme reset métier sûr.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/PendingReason/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/PlanningReminder',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/PlanningReminder/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{assistance_id}/KBArticle',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{assistance_id}/KBArticle/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assistance/Problem; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Cost',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Cost/{cost_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/PendingReason',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/TeamMember',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/TeamMember/{role}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Document',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Document/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Followup',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Followup/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Solution',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Solution/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Task',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Problem/{id}/Timeline/Task/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/RecurringChange',
+    category: 'assistance',
+    reason:
+      "Possède une cible DELETE (/Assistance/RecurringChange/{id}) mais n'est pas retenu comme reset métier sûr.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/RecurringChange/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/RecurringTicket',
+    category: 'assistance',
+    reason:
+      "Possède une cible DELETE (/Assistance/RecurringTicket/{id}) mais n'est pas retenu comme reset métier sûr.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/RecurringTicket/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Stat',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Change/Asset',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Change/Asset/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Change/AssetCharacteristics',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Change/AssetCharacteristics/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Change/Characteristics',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Change/Characteristics/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Change/Global',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Problem/Asset',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Problem/Asset/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Problem/AssetCharacteristics',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Problem/AssetCharacteristics/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Problem/Characteristics',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Problem/Characteristics/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Problem/Global',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Ticket/Asset',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Ticket/Asset/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Ticket/AssetCharacteristics',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Ticket/AssetCharacteristics/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Ticket/Characteristics',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Ticket/Characteristics/Export',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Stat/Ticket/Global',
+    category: 'assistance',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{assistance_id}/KBArticle',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{assistance_id}/KBArticle/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}',
+    category: 'assistance',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Assistance/Ticket; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Cost',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Cost/{cost_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/PendingReason',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/TeamMember',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/TeamMember/{role}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Document',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Document/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Followup',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Followup/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Solution',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Solution/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Task',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Task/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Validation',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Assistance/Ticket/{id}/Timeline/Validation/{subitem_id}',
+    category: 'assistance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Budget */
-{
-  endpoint: "/Budget/{items_id}/Note",
-  category: "budget",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Budget/{items_id}/Note/{id}",
-  category: "budget",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Budget */
+  {
+    endpoint: '/Budget/{items_id}/Note',
+    category: 'budget',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Budget/{items_id}/Note/{id}',
+    category: 'budget',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /CartridgeItem */
-{
-  endpoint: "/CartridgeItem/{items_id}/Note",
-  category: "cartridgeitem",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/CartridgeItem/{items_id}/Note/{id}",
-  category: "cartridgeitem",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /CartridgeItem */
+  {
+    endpoint: '/CartridgeItem/{items_id}/Note',
+    category: 'cartridgeitem',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/CartridgeItem/{items_id}/Note/{id}',
+    category: 'cartridgeitem',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Certificate */
-{
-  endpoint: "/Certificate/{items_id}/Note",
-  category: "certificate",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Certificate/{items_id}/Note/{id}",
-  category: "certificate",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Certificate */
+  {
+    endpoint: '/Certificate/{items_id}/Note',
+    category: 'certificate',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Certificate/{items_id}/Note/{id}',
+    category: 'certificate',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Change */
-{
-  endpoint: "/Change/{items_id}/Note",
-  category: "change",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Change/{items_id}/Note/{id}",
-  category: "change",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Change */
+  {
+    endpoint: '/Change/{items_id}/Note',
+    category: 'change',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Change/{items_id}/Note/{id}',
+    category: 'change',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Cluster */
-{
-  endpoint: "/Cluster/{items_id}/Note",
-  category: "cluster",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Cluster/{items_id}/Note/{id}",
-  category: "cluster",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Cluster */
+  {
+    endpoint: '/Cluster/{items_id}/Note',
+    category: 'cluster',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Cluster/{items_id}/Note/{id}',
+    category: 'cluster',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Components */
-{
-  endpoint: "/Components",
-  category: "components",
-  reason: "Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Battery",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Battery/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Battery/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Battery/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Camera",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Camera/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Camera/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Camera/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Case",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Case/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Case/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Case/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Controller",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Controller/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Controller/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Controller/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Drive",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Drive/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Drive/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Drive/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Firmware",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Firmware/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Firmware/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Firmware/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/GenericDevice",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/GenericDevice/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/GenericDevice/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/GenericDevice/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/GraphicCard",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/GraphicCard/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/GraphicCard/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/GraphicCard/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/HardDrive",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/HardDrive/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/HardDrive/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/HardDrive/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Memory",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Memory/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Memory/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Memory/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/NetworkCard",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/NetworkCard/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/NetworkCard/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/NetworkCard/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/PCIDevice",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/PCIDevice/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/PCIDevice/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/PCIDevice/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/PowerSupply",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/PowerSupply/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/PowerSupply/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/PowerSupply/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Processor",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Processor/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Processor/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Processor/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/SIMCard",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/SIMCard/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/SIMCard/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/SIMCard/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Sensor",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Sensor/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Sensor/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Sensor/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/SoundCard",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/SoundCard/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/SoundCard/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/SoundCard/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Systemboard",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Components/Systemboard/Items/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Components/Systemboard/{id}",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Components/Systemboard/{id}/Items",
-  category: "components",
-  reason: "Composants matériels de référence. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
+  /* /Components */
+  {
+    endpoint: '/Components',
+    category: 'components',
+    reason:
+      'Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Battery',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Battery/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Battery/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Battery/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Camera',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Camera/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Camera/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Camera/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Case',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Case/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Case/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Case/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Controller',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Controller/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Controller/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Controller/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Drive',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Drive/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Drive/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Drive/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Firmware',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Firmware/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Firmware/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Firmware/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/GenericDevice',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/GenericDevice/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/GenericDevice/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/GenericDevice/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/GraphicCard',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/GraphicCard/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/GraphicCard/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/GraphicCard/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/HardDrive',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/HardDrive/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/HardDrive/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/HardDrive/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Memory',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Memory/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Memory/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Memory/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/NetworkCard',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/NetworkCard/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/NetworkCard/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/NetworkCard/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/PCIDevice',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/PCIDevice/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/PCIDevice/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/PCIDevice/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/PowerSupply',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/PowerSupply/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/PowerSupply/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/PowerSupply/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Processor',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Processor/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Processor/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Processor/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/SIMCard',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/SIMCard/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/SIMCard/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/SIMCard/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Sensor',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Sensor/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Sensor/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Sensor/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/SoundCard',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/SoundCard/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/SoundCard/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/SoundCard/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Systemboard',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Components/Systemboard/Items/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Components/Systemboard/{id}',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Components/Systemboard/{id}/Items',
+    category: 'components',
+    reason: 'Composants matériels de référence. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
 
-/* /Computer */
-{
-  endpoint: "/Computer/{items_id}/Note",
-  category: "computer",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Computer/{items_id}/Note/{id}",
-  category: "computer",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Computer */
+  {
+    endpoint: '/Computer/{items_id}/Note',
+    category: 'computer',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Computer/{items_id}/Note/{id}',
+    category: 'computer',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /ConsumableItem */
-{
-  endpoint: "/ConsumableItem/{items_id}/Note",
-  category: "consumableitem",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/ConsumableItem/{items_id}/Note/{id}",
-  category: "consumableitem",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /ConsumableItem */
+  {
+    endpoint: '/ConsumableItem/{items_id}/Note',
+    category: 'consumableitem',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/ConsumableItem/{items_id}/Note/{id}',
+    category: 'consumableitem',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Contact */
-{
-  endpoint: "/Contact/{items_id}/Note",
-  category: "contact",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Contact/{items_id}/Note/{id}",
-  category: "contact",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Contact */
+  {
+    endpoint: '/Contact/{items_id}/Note',
+    category: 'contact',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Contact/{items_id}/Note/{id}',
+    category: 'contact',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /DCRoom */
-{
-  endpoint: "/DCRoom/{items_id}/Note",
-  category: "dcroom",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/DCRoom/{items_id}/Note/{id}",
-  category: "dcroom",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /DCRoom */
+  {
+    endpoint: '/DCRoom/{items_id}/Note',
+    category: 'dcroom',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/DCRoom/{items_id}/Note/{id}',
+    category: 'dcroom',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Database */
-{
-  endpoint: "/Database/{items_id}/Note",
-  category: "database",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Database/{items_id}/Note/{id}",
-  category: "database",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Database */
+  {
+    endpoint: '/Database/{items_id}/Note',
+    category: 'database',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Database/{items_id}/Note/{id}',
+    category: 'database',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /DatabaseInstance */
-{
-  endpoint: "/DatabaseInstance/{items_id}/Note",
-  category: "databaseinstance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/DatabaseInstance/{items_id}/Note/{id}",
-  category: "databaseinstance",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /DatabaseInstance */
+  {
+    endpoint: '/DatabaseInstance/{items_id}/Note',
+    category: 'databaseinstance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/DatabaseInstance/{items_id}/Note/{id}',
+    category: 'databaseinstance',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Domain */
-{
-  endpoint: "/Domain/{items_id}/Note",
-  category: "domain",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Domain/{items_id}/Note/{id}",
-  category: "domain",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Domain */
+  {
+    endpoint: '/Domain/{items_id}/Note',
+    category: 'domain',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Domain/{items_id}/Note/{id}',
+    category: 'domain',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /DomainRecord */
-{
-  endpoint: "/DomainRecord/{items_id}/Note",
-  category: "domainrecord",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/DomainRecord/{items_id}/Note/{id}",
-  category: "domainrecord",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /DomainRecord */
+  {
+    endpoint: '/DomainRecord/{items_id}/Note',
+    category: 'domainrecord',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/DomainRecord/{items_id}/Note/{id}',
+    category: 'domainrecord',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Dropdowns */
-{
-  endpoint: "/Dropdowns/",
-  category: "dropdowns",
-  reason: "Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Dropdowns/ApplianceEnvironment",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ApplianceEnvironment/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ApplianceType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ApplianceType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ApprovalStep",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ApprovalStep/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/AutoUpdateSystem",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/AutoUpdateSystem/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/BudgetType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/BudgetType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/BusinessCriticity",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/BusinessCriticity/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CableStrand",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CableStrand/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CableType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CableType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Calendar",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Calendar/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CalendarCloseTime",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CalendarCloseTime/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CalendarTimeRange",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CalendarTimeRange/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CameraImageFormat",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CameraImageFormat/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CameraImageResolution",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CameraImageResolution/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CartridgeItemType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CartridgeItemType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CertificateType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CertificateType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/CloseTime",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/CloseTime/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ClusterType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ClusterType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ComputerModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ComputerModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ComputerType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ComputerType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ConsumableItemType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ConsumableItemType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ContactType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ContactType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ContractType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ContractType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DatabaseInstanceCategory",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DatabaseInstanceCategory/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DatabaseInstanceType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DatabaseInstanceType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DeniedMailContent",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DeniedMailContent/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DenyList",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DenyList/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DocumentCategory",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DocumentCategory/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DocumentType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DocumentType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DomainRecordType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DomainRecordType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DomainRelation",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DomainRelation/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/DomainType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/DomainType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/EnclosureModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/EnclosureModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/EventCategory",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/EventCategory/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Filesystem",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Filesystem/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/FollowupTemplate",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/FollowupTemplate/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/HardDriveType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/HardDriveType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ITILCategory",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ITILCategory/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Item_Plug",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Item_Plug/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/LicenseType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/LicenseType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/LineType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/LineType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Location",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Location/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Manufacturer",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Manufacturer/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/MonitorModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/MonitorModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/MonitorType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/MonitorType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Network",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Network/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/NetworkEquipmentModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/NetworkEquipmentModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/NetworkEquipmentType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/NetworkEquipmentType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/NetworkPortFiberchannelType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/NetworkPortFiberchannelType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/NetworkPortType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/NetworkPortType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PCIVendor",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PCIVendor/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PeripheralModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PeripheralModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PeripheralType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PeripheralType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PhoneModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PhoneModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PhonePowerSupply",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PhonePowerSupply/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PhoneType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PhoneType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Plug",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Plug/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PrinterModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PrinterModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/PrinterType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/PrinterType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ProjectTaskType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ProjectTaskType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ProjectType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ProjectType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/RequestType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/RequestType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/SolutionTemplate",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/SolutionTemplate/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/SolutionType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/SolutionType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/State",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/State/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/Stencil",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/Stencil/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/SupplierType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/SupplierType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/TaskCategory",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/TaskCategory/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/TaskTemplate",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/TaskTemplate/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/USBVendor",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/USBVendor/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/ValidationTemplate",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/ValidationTemplate/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/VirtualMachineModel",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/VirtualMachineModel/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/VirtualMachineState",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/VirtualMachineState/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/VirtualMachineType",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/VirtualMachineType/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Dropdowns/WifiNetwork",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Dropdowns/WifiNetwork/{id}",
-  category: "dropdowns",
-  reason: "Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Dropdowns */
+  {
+    endpoint: '/Dropdowns/',
+    category: 'dropdowns',
+    reason:
+      'Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Dropdowns/ApplianceEnvironment',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ApplianceEnvironment/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ApplianceType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ApplianceType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ApprovalStep',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ApprovalStep/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/AutoUpdateSystem',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/AutoUpdateSystem/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/BudgetType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/BudgetType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/BusinessCriticity',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/BusinessCriticity/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CableStrand',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CableStrand/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CableType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CableType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Calendar',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Calendar/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CalendarCloseTime',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CalendarCloseTime/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CalendarTimeRange',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CalendarTimeRange/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CameraImageFormat',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CameraImageFormat/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CameraImageResolution',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CameraImageResolution/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CartridgeItemType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CartridgeItemType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CertificateType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CertificateType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/CloseTime',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/CloseTime/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ClusterType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ClusterType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ComputerModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ComputerModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ComputerType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ComputerType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ConsumableItemType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ConsumableItemType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ContactType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ContactType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ContractType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ContractType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DatabaseInstanceCategory',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DatabaseInstanceCategory/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DatabaseInstanceType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DatabaseInstanceType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DeniedMailContent',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DeniedMailContent/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DenyList',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DenyList/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DocumentCategory',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DocumentCategory/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DocumentType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DocumentType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DomainRecordType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DomainRecordType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DomainRelation',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DomainRelation/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/DomainType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/DomainType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/EnclosureModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/EnclosureModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/EventCategory',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/EventCategory/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Filesystem',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Filesystem/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/FollowupTemplate',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/FollowupTemplate/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/HardDriveType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/HardDriveType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ITILCategory',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ITILCategory/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Item_Plug',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Item_Plug/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/LicenseType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/LicenseType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/LineType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/LineType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Location',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Location/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Manufacturer',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Manufacturer/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/MonitorModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/MonitorModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/MonitorType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/MonitorType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Network',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Network/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkEquipmentModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkEquipmentModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkEquipmentType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkEquipmentType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkPortFiberchannelType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkPortFiberchannelType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkPortType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/NetworkPortType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PCIVendor',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PCIVendor/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PeripheralModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PeripheralModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PeripheralType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PeripheralType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PhoneModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PhoneModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PhonePowerSupply',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PhonePowerSupply/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PhoneType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PhoneType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Plug',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Plug/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PrinterModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PrinterModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/PrinterType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/PrinterType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ProjectTaskType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ProjectTaskType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ProjectType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ProjectType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/RequestType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/RequestType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/SolutionTemplate',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/SolutionTemplate/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/SolutionType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/SolutionType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/State',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/State/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/Stencil',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/Stencil/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/SupplierType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/SupplierType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/TaskCategory',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/TaskCategory/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/TaskTemplate',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/TaskTemplate/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/USBVendor',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/USBVendor/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/ValidationTemplate',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/ValidationTemplate/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/VirtualMachineModel',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/VirtualMachineModel/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/VirtualMachineState',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/VirtualMachineState/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/VirtualMachineType',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/VirtualMachineType/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Dropdowns/WifiNetwork',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Dropdowns/WifiNetwork/{id}',
+    category: 'dropdowns',
+    reason: 'Référentiel/listes déroulantes GLPI. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Enclosure */
-{
-  endpoint: "/Enclosure/{items_id}/Note",
-  category: "enclosure",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Enclosure/{items_id}/Note/{id}",
-  category: "enclosure",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Enclosure */
+  {
+    endpoint: '/Enclosure/{items_id}/Note',
+    category: 'enclosure',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Enclosure/{items_id}/Note/{id}',
+    category: 'enclosure',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Entity */
-{
-  endpoint: "/Entity/{items_id}/Note",
-  category: "entity",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Entity/{items_id}/Note/{id}",
-  category: "entity",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Entity */
+  {
+    endpoint: '/Entity/{items_id}/Note',
+    category: 'entity',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Entity/{items_id}/Note/{id}',
+    category: 'entity',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /GraphQL */
-{
-  endpoint: "/GraphQL/",
-  category: "graphql",
-  reason: "Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/GraphQL/Schema",
-  category: "graphql",
-  reason: "Endpoint technique GraphQL, non destiné à une suppression de données.",
-  methods: ["GET"],
-},
+  /* /GraphQL */
+  {
+    endpoint: '/GraphQL/',
+    category: 'graphql',
+    reason:
+      'Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/GraphQL/Schema',
+    category: 'graphql',
+    reason: 'Endpoint technique GraphQL, non destiné à une suppression de données.',
+    methods: ['GET'],
+  },
 
-/* /Group */
-{
-  endpoint: "/Group/{items_id}/Note",
-  category: "group",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Group/{items_id}/Note/{id}",
-  category: "group",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Group */
+  {
+    endpoint: '/Group/{items_id}/Note',
+    category: 'group',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Group/{items_id}/Note/{id}',
+    category: 'group',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Inventory */
-{
-  endpoint: "/Inventory/Agent",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Inventory/Agent/{id}",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Inventory/Agent/{id}/InventoryFile",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Inventory/Agent/{id}/InventoryRequest",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Inventory/Agent/{id}/StatusRequest",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Inventory/LockedField",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Inventory/LockedField/{id}",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Inventory/SNMPCredential",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Inventory/SNMPCredential/{id}",
-  category: "inventory",
-  reason: "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Inventory */
+  {
+    endpoint: '/Inventory/Agent',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Inventory/Agent/{id}',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Inventory/Agent/{id}/InventoryFile',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Inventory/Agent/{id}/InventoryRequest',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Inventory/Agent/{id}/StatusRequest',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Inventory/LockedField',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Inventory/LockedField/{id}',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Inventory/SNMPCredential',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Inventory/SNMPCredential/{id}',
+    category: 'inventory',
+    reason:
+      "Inventaire agent/credentials/champs verrouillés. À éviter pour ne pas casser l'inventaire.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Knowledgebase */
-{
-  endpoint: "/Knowledgebase/Article/{article_id}",
-  category: "knowledgebase",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Knowledgebase/Article; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Knowledgebase/Article/{article_id}/Comment",
-  category: "knowledgebase",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Knowledgebase/Article/{article_id}/Comment/{id}",
-  category: "knowledgebase",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Knowledgebase/Article/{article_id}/Revision",
-  category: "knowledgebase",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Knowledgebase/Article/{article_id}/Revision/{revision}",
-  category: "knowledgebase",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Knowledgebase/Article/{article_id}/{language}/Revision",
-  category: "knowledgebase",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Knowledgebase/Article/{article_id}/{language}/Revision/{revision}",
-  category: "knowledgebase",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Knowledgebase/Category",
-  category: "knowledgebase",
-  reason: "Possède une cible DELETE (/Knowledgebase/Category/{id}) mais n'est pas retenu comme reset métier sûr.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Knowledgebase/Category/{id}",
-  category: "knowledgebase",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Knowledgebase */
+  {
+    endpoint: '/Knowledgebase/Article/{article_id}',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Knowledgebase/Article; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Knowledgebase/Article/{article_id}/Comment',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Knowledgebase/Article/{article_id}/Comment/{id}',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Knowledgebase/Article/{article_id}/Revision',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Knowledgebase/Article/{article_id}/Revision/{revision}',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Knowledgebase/Article/{article_id}/{language}/Revision',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Knowledgebase/Article/{article_id}/{language}/Revision/{revision}',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Knowledgebase/Category',
+    category: 'knowledgebase',
+    reason:
+      "Possède une cible DELETE (/Knowledgebase/Category/{id}) mais n'est pas retenu comme reset métier sûr.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Knowledgebase/Category/{id}',
+    category: 'knowledgebase',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Line */
-{
-  endpoint: "/Line/{items_id}/Note",
-  category: "line",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Line/{items_id}/Note/{id}",
-  category: "line",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Line */
+  {
+    endpoint: '/Line/{items_id}/Note',
+    category: 'line',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Line/{items_id}/Note/{id}',
+    category: 'line',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Management */
-{
-  endpoint: "/Management/",
-  category: "management",
-  reason: "Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Management/Budget/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Budget; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Budget/{items_id}/KBArticle",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Budget/{items_id}/KBArticle/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Cluster/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Cluster; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Cluster/{items_id}/Contract",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Cluster/{items_id}/Contract/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Contact/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Contact; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Contract/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Contract; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Contract/{id}/Cost",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Contract/{id}/Cost/{cost_id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/DataCenter/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/DataCenter; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Database/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Database; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Database/{items_id}/Domain",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Database/{items_id}/Domain/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/DatabaseInstance/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/DatabaseInstance; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/DatabaseInstance/{items_id}/Certificate",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/DatabaseInstance/{items_id}/Certificate/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/DatabaseInstance/{items_id}/Contract",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/DatabaseInstance/{items_id}/Contract/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/DatabaseInstance/{items_id}/Domain",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/DatabaseInstance/{items_id}/Domain/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Document/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Document; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Document/{id}/Download",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Management/Domain/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Domain; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Domain/{items_id}/Certificate",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Domain/{items_id}/Certificate/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Domain/{items_id}/Contract",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Domain/{items_id}/Contract/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/DomainRecord/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/DomainRecord; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/License/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/License; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Line/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Line; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Line/{items_id}/Contract",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Management/Line/{items_id}/Contract/{id}",
-  category: "management",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Management/Supplier/{id}",
-  category: "management",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Management/Supplier; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Management */
+  {
+    endpoint: '/Management/',
+    category: 'management',
+    reason:
+      'Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Management/Budget/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Budget; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Budget/{items_id}/KBArticle',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Budget/{items_id}/KBArticle/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Cluster/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Cluster; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Cluster/{items_id}/Contract',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Cluster/{items_id}/Contract/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Contact/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Contact; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Contract/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Contract; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Contract/{id}/Cost',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Contract/{id}/Cost/{cost_id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/DataCenter/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/DataCenter; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Database/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Database; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Database/{items_id}/Domain',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Database/{items_id}/Domain/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/DatabaseInstance; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance/{items_id}/Certificate',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance/{items_id}/Certificate/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance/{items_id}/Contract',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance/{items_id}/Contract/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance/{items_id}/Domain',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/DatabaseInstance/{items_id}/Domain/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Document/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Document; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Document/{id}/Download',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Management/Domain/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Domain; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Domain/{items_id}/Certificate',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Domain/{items_id}/Certificate/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Domain/{items_id}/Contract',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Domain/{items_id}/Contract/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/DomainRecord/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/DomainRecord; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/License/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/License; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Line/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Line; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Line/{items_id}/Contract',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Management/Line/{items_id}/Contract/{id}',
+    category: 'management',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Management/Supplier/{id}',
+    category: 'management',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Management/Supplier; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Monitor */
-{
-  endpoint: "/Monitor/{items_id}/Note",
-  category: "monitor",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Monitor/{items_id}/Note/{id}",
-  category: "monitor",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Monitor */
+  {
+    endpoint: '/Monitor/{items_id}/Note',
+    category: 'monitor',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Monitor/{items_id}/Note/{id}',
+    category: 'monitor',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /NetworkEquipment */
-{
-  endpoint: "/NetworkEquipment/{items_id}/Note",
-  category: "networkequipment",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/NetworkEquipment/{items_id}/Note/{id}",
-  category: "networkequipment",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /NetworkEquipment */
+  {
+    endpoint: '/NetworkEquipment/{items_id}/Note',
+    category: 'networkequipment',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/NetworkEquipment/{items_id}/Note/{id}',
+    category: 'networkequipment',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Notifications */
-{
-  endpoint: "/Notifications/Notification",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Notifications/Notification/{id}",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Notifications/Notification/{notification_id}/NotificationTemplate",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Notifications/Notification/{notification_id}/NotificationTemplate/{id}",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Notifications/Notification/{notification_id}/Recipient",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Notifications/Notification/{notification_id}/Recipient/{id}",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Notifications/NotificationTemplate",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Notifications/NotificationTemplate/{id}",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Notifications/NotificationTemplate/{template_id}/Translation",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Notifications/NotificationTemplate/{template_id}/Translation/Default",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Notifications/NotificationTemplate/{template_id}/Translation/{id}",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Notifications/NotificationTemplate/{template_id}/Translation/{language}",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Notifications/QueuedNotification",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Notifications/QueuedNotification/{id}",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Notifications/QueuedNotification/{id}/SendRequest",
-  category: "notifications",
-  reason: "Configuration ou file de notifications. À éviter dans un reset métier général.",
-  methods: ["POST"],
-},
+  /* /Notifications */
+  {
+    endpoint: '/Notifications/Notification',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Notifications/Notification/{id}',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Notifications/Notification/{notification_id}/NotificationTemplate',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Notifications/Notification/{notification_id}/NotificationTemplate/{id}',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Notifications/Notification/{notification_id}/Recipient',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Notifications/Notification/{notification_id}/Recipient/{id}',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Notifications/NotificationTemplate',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Notifications/NotificationTemplate/{id}',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Notifications/NotificationTemplate/{template_id}/Translation',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Notifications/NotificationTemplate/{template_id}/Translation/Default',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Notifications/NotificationTemplate/{template_id}/Translation/{id}',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Notifications/NotificationTemplate/{template_id}/Translation/{language}',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Notifications/QueuedNotification',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Notifications/QueuedNotification/{id}',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Notifications/QueuedNotification/{id}/SendRequest',
+    category: 'notifications',
+    reason: 'Configuration ou file de notifications. À éviter dans un reset métier général.',
+    methods: ['POST'],
+  },
 
-/* /Peripheral */
-{
-  endpoint: "/Peripheral/{items_id}/Note",
-  category: "peripheral",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Peripheral/{items_id}/Note/{id}",
-  category: "peripheral",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Peripheral */
+  {
+    endpoint: '/Peripheral/{items_id}/Note',
+    category: 'peripheral',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Peripheral/{items_id}/Note/{id}',
+    category: 'peripheral',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Phone */
-{
-  endpoint: "/Phone/{items_id}/Note",
-  category: "phone",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Phone/{items_id}/Note/{id}",
-  category: "phone",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Phone */
+  {
+    endpoint: '/Phone/{items_id}/Note',
+    category: 'phone',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Phone/{items_id}/Note/{id}',
+    category: 'phone',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Printer */
-{
-  endpoint: "/Printer/{items_id}/Note",
-  category: "printer",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Printer/{items_id}/Note/{id}",
-  category: "printer",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Printer */
+  {
+    endpoint: '/Printer/{items_id}/Note',
+    category: 'printer',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Printer/{items_id}/Note/{id}',
+    category: 'printer',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Problem */
-{
-  endpoint: "/Problem/{items_id}/Note",
-  category: "problem",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Problem/{items_id}/Note/{id}",
-  category: "problem",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Problem */
+  {
+    endpoint: '/Problem/{items_id}/Note',
+    category: 'problem',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Problem/{items_id}/Note/{id}',
+    category: 'problem',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Project */
-{
-  endpoint: "/Project/Project/{id}/Cost",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/Project/{id}/Cost/{cost_id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Project/Project/{items_id}/Contract",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/Project/{items_id}/Contract/{id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Project/Project/{items_id}/KBArticle",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/Project/{items_id}/KBArticle/{id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Project/Task/{id}",
-  category: "project",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Project/Task; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Project/Task/{task_id}/TeamMember",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/Task/{task_id}/TeamMember/{teammember_id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE"],
-},
-{
-  endpoint: "/Project/{id}",
-  category: "project",
-  reason: "Endpoint item servant de cible DELETE automatique pour /Project/; ne pas proposer directement dans la liste de reset.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Project/{items_id}/Note",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/{items_id}/Note/{id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Project/{project_id}/Change",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/{project_id}/Change/{change_id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE"],
-},
-{
-  endpoint: "/Project/{project_id}/Problem",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/{project_id}/Problem/{problem_id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE"],
-},
-{
-  endpoint: "/Project/{project_id}/Task",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/{project_id}/TeamMember",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/{project_id}/TeamMember/{teammember_id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE"],
-},
-{
-  endpoint: "/Project/{project_id}/Ticket",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Project/{project_id}/Ticket/{ticket_id}",
-  category: "project",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE"],
-},
+  /* /Project */
+  {
+    endpoint: '/Project/Project/{id}/Cost',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/Project/{id}/Cost/{cost_id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Project/Project/{items_id}/Contract',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/Project/{items_id}/Contract/{id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Project/Project/{items_id}/KBArticle',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/Project/{items_id}/KBArticle/{id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Project/Task/{id}',
+    category: 'project',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Project/Task; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Project/Task/{task_id}/TeamMember',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/Task/{task_id}/TeamMember/{teammember_id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE'],
+  },
+  {
+    endpoint: '/Project/{id}',
+    category: 'project',
+    reason:
+      'Endpoint item servant de cible DELETE automatique pour /Project/; ne pas proposer directement dans la liste de reset.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Project/{items_id}/Note',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/{items_id}/Note/{id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Project/{project_id}/Change',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/{project_id}/Change/{change_id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE'],
+  },
+  {
+    endpoint: '/Project/{project_id}/Problem',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/{project_id}/Problem/{problem_id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE'],
+  },
+  {
+    endpoint: '/Project/{project_id}/Task',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/{project_id}/TeamMember',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/{project_id}/TeamMember/{teammember_id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE'],
+  },
+  {
+    endpoint: '/Project/{project_id}/Ticket',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Project/{project_id}/Ticket/{ticket_id}',
+    category: 'project',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE'],
+  },
 
-/* /ProjectTask */
-{
-  endpoint: "/ProjectTask/{items_id}/Note",
-  category: "projecttask",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/ProjectTask/{items_id}/Note/{id}",
-  category: "projecttask",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /ProjectTask */
+  {
+    endpoint: '/ProjectTask/{items_id}/Note',
+    category: 'projecttask',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/ProjectTask/{items_id}/Note/{id}',
+    category: 'projecttask',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Rack */
-{
-  endpoint: "/Rack/{items_id}/Note",
-  category: "rack",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rack/{items_id}/Note/{id}",
-  category: "rack",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Rack */
+  {
+    endpoint: '/Rack/{items_id}/Note',
+    category: 'rack',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rack/{items_id}/Note/{id}',
+    category: 'rack',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Rule */
-{
-  endpoint: "/Rule/Collection",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Asset/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Change/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Change/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Change/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Change/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Change/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Location/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Location/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Location/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Location/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Location/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Problem/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Right/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Right/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Right/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Right/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Right/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/ActionField",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/ActionType",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/CriteriaCondition",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/CriteriaCriteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule/{id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule/{id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule/{rule_id}/Action",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule/{rule_id}/Action/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule/{rule_id}/Criteria",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Rule/Collection/Ticket/Rule/{rule_id}/Criteria/{id}",
-  category: "rule",
-  reason: "Règles automatiques GLPI. Suppression dangereuse pour le comportement système.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Rule */
+  {
+    endpoint: '/Rule/Collection',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Asset/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Change/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/DefineItemtype/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportAsset/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/ImportEntity/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Location/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/MailCollector/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Problem/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Right/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/SoftwareCategory/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/ActionField',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/ActionType',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/CriteriaCondition',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/CriteriaCriteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule/{id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule/{id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule/{rule_id}/Action',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule/{rule_id}/Action/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule/{rule_id}/Criteria',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Rule/Collection/Ticket/Rule/{rule_id}/Criteria/{id}',
+    category: 'rule',
+    reason: 'Règles automatiques GLPI. Suppression dangereuse pour le comportement système.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Session */
-{
-  endpoint: "/Session/EntityTree",
-  category: "session",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /Session */
+  {
+    endpoint: '/Session/EntityTree',
+    category: 'session',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /Setup */
-{
-  endpoint: "/Setup/",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Setup/AutomaticAction/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/AutomaticAction/{id}/Log",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Setup/Config",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Setup/Config/{context}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Setup/Config/{context}/{name}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/EmailAuthServer",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/EmailAuthServer/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/EmailCollector",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/EmailCollector/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/ExternalLink",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/ExternalLink/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/FieldUnicity",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/FieldUnicity/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/LDAPDirectory",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/LDAPDirectory/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/LDAPDirectoryReplicate",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/LDAPDirectoryReplicate/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/ManualLink",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/ManualLink/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/NotImportedEmail",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Setup/NotImportedEmail/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET"],
-},
-{
-  endpoint: "/Setup/OAuthClient",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/OAuthClient/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/OLA",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/OLA/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/OLALevel",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/OLALevel/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/Plugin",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Setup/Plugin/{id}/Clean",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Setup/Plugin/{id}/Disable",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Setup/Plugin/{id}/Enable",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Setup/Plugin/{id}/Install",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Setup/Plugin/{id}/Uninstall",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["POST"],
-},
-{
-  endpoint: "/Setup/QueuedWebhook",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/QueuedWebhook/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/SLA",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/SLA/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/SLALevel",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/SLALevel/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/SLM",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/SLM/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/Webhook",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/Webhook/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Setup/WebhookCategory",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Setup/WebhookCategory/{id}",
-  category: "setup",
-  reason: "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Setup */
+  {
+    endpoint: '/Setup/',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Setup/AutomaticAction/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/AutomaticAction/{id}/Log',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Setup/Config',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Setup/Config/{context}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Setup/Config/{context}/{name}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/EmailAuthServer',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/EmailAuthServer/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/EmailCollector',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/EmailCollector/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/ExternalLink',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/ExternalLink/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/FieldUnicity',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/FieldUnicity/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/LDAPDirectory',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/LDAPDirectory/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/LDAPDirectoryReplicate',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/LDAPDirectoryReplicate/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/ManualLink',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/ManualLink/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/NotImportedEmail',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Setup/NotImportedEmail/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET'],
+  },
+  {
+    endpoint: '/Setup/OAuthClient',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/OAuthClient/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/OLA',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/OLA/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/OLALevel',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/OLALevel/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/Plugin',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Setup/Plugin/{id}/Clean',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Setup/Plugin/{id}/Disable',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Setup/Plugin/{id}/Enable',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Setup/Plugin/{id}/Install',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Setup/Plugin/{id}/Uninstall',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['POST'],
+  },
+  {
+    endpoint: '/Setup/QueuedWebhook',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/QueuedWebhook/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/SLA',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/SLA/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/SLALevel',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/SLALevel/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/SLM',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/SLM/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/Webhook',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/Webhook/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Setup/WebhookCategory',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Setup/WebhookCategory/{id}',
+    category: 'setup',
+    reason:
+      "Configuration GLPI: OAuth, SLA/OLA, webhooks, collecteurs ou paramètres. Risque de casser l'application.",
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Software */
-{
-  endpoint: "/Software/{items_id}/Note",
-  category: "software",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Software/{items_id}/Note/{id}",
-  category: "software",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Software */
+  {
+    endpoint: '/Software/{items_id}/Note',
+    category: 'software',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Software/{items_id}/Note/{id}',
+    category: 'software',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /SoftwareLicense */
-{
-  endpoint: "/SoftwareLicense/{items_id}/Note",
-  category: "softwarelicense",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/SoftwareLicense/{items_id}/Note/{id}",
-  category: "softwarelicense",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /SoftwareLicense */
+  {
+    endpoint: '/SoftwareLicense/{items_id}/Note',
+    category: 'softwarelicense',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/SoftwareLicense/{items_id}/Note/{id}',
+    category: 'softwarelicense',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Supplier */
-{
-  endpoint: "/Supplier/{items_id}/Note",
-  category: "supplier",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Supplier/{items_id}/Note/{id}",
-  category: "supplier",
-  reason: "Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Supplier */
+  {
+    endpoint: '/Supplier/{items_id}/Note',
+    category: 'supplier',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Supplier/{items_id}/Note/{id}',
+    category: 'supplier',
+    reason:
+      'Endpoint paramétré ou sous-ressource. Ne pas afficher directement; utiliser uniquement si le reset service le cible explicitement.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Tools */
-{
-  endpoint: "/Tools/",
-  category: "tools",
-  reason: "Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/Tools/RSSFeed",
-  category: "tools",
-  reason: "Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Tools/RSSFeed/{id}",
-  category: "tools",
-  reason: "Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
-{
-  endpoint: "/Tools/Reminder",
-  category: "tools",
-  reason: "Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.",
-  methods: ["GET", "POST"],
-},
-{
-  endpoint: "/Tools/Reminder/{id}",
-  category: "tools",
-  reason: "Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.",
-  methods: ["DELETE", "GET", "PATCH"],
-},
+  /* /Tools */
+  {
+    endpoint: '/Tools/',
+    category: 'tools',
+    reason: 'Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/Tools/RSSFeed',
+    category: 'tools',
+    reason: 'Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Tools/RSSFeed/{id}',
+    category: 'tools',
+    reason: 'Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
+  {
+    endpoint: '/Tools/Reminder',
+    category: 'tools',
+    reason: 'Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.',
+    methods: ['GET', 'POST'],
+  },
+  {
+    endpoint: '/Tools/Reminder/{id}',
+    category: 'tools',
+    reason: 'Outils personnels ou flux RSS/rappels. À éviter dans le reset GLPI principal.',
+    methods: ['DELETE', 'GET', 'PATCH'],
+  },
 
-/* /Transfer */
-{
-  endpoint: "/Transfer",
-  category: "transfer",
-  reason: "Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.",
-  methods: ["POST"],
-},
+  /* /Transfer */
+  {
+    endpoint: '/Transfer',
+    category: 'transfer',
+    reason: 'Pas de suppression simple sûre détectée dans Swagger pour ce endpoint.',
+    methods: ['POST'],
+  },
 
-/* /authorize */
-{
-  endpoint: "/authorize",
-  category: "authorize",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET", "POST"],
-},
+  /* /authorize */
+  {
+    endpoint: '/authorize',
+    category: 'authorize',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET', 'POST'],
+  },
 
-/* /doc */
-{
-  endpoint: "/doc",
-  category: "doc",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /doc */
+  {
+    endpoint: '/doc',
+    category: 'doc',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /doc.json */
-{
-  endpoint: "/doc.json",
-  category: "doc.json",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /doc.json */
+  {
+    endpoint: '/doc.json',
+    category: 'doc.json',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /getting-started */
-{
-  endpoint: "/getting-started",
-  category: "getting-started",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /getting-started */
+  {
+    endpoint: '/getting-started',
+    category: 'getting-started',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /locales */
-{
-  endpoint: "/locales",
-  category: "locales",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /locales */
+  {
+    endpoint: '/locales',
+    category: 'locales',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /session */
-{
-  endpoint: "/session",
-  category: "session",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /session */
+  {
+    endpoint: '/session',
+    category: 'session',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /status */
-{
-  endpoint: "/status",
-  category: "status",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/status/all",
-  category: "status",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
-{
-  endpoint: "/status/{service}",
-  category: "status",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /status */
+  {
+    endpoint: '/status',
+    category: 'status',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/status/all',
+    category: 'status',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
+  {
+    endpoint: '/status/{service}',
+    category: 'status',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /swagger-oauth-redirect */
-{
-  endpoint: "/swagger-oauth-redirect",
-  category: "swagger-oauth-redirect",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["GET"],
-},
+  /* /swagger-oauth-redirect */
+  {
+    endpoint: '/swagger-oauth-redirect',
+    category: 'swagger-oauth-redirect',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['GET'],
+  },
 
-/* /token */
-{
-  endpoint: "/token",
-  category: "token",
-  reason: "Endpoint technique/API/auth/documentation/statut. Non supprimable.",
-  methods: ["POST"],
-},
+  /* /token */
+  {
+    endpoint: '/token',
+    category: 'token',
+    reason: 'Endpoint technique/API/auth/documentation/statut. Non supprimable.',
+    methods: ['POST'],
+  },
 
-/* /{req} */
-{
-  endpoint: "/{req}",
-  category: "{req}",
-  reason: "Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.",
-  methods: ["DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT"],
-},
+  /* /{req} */
+  {
+    endpoint: '/{req}',
+    category: '{req}',
+    reason:
+      'Endpoint racine, joker ou catégorie; ne correspond pas à une ressource métier supprimable.',
+    methods: ['DELETE', 'GET', 'OPTIONS', 'PATCH', 'POST', 'PUT'],
+  },
 ]
 
-export const ALL_RESET_POLICY_ENDPOINTS = [
-  ...RESETTABLE_ENDPOINTS,
-  ...AVOID_RESET_ENDPOINTS,
-]
+export const ALL_RESET_POLICY_ENDPOINTS = [...RESETTABLE_ENDPOINTS, ...AVOID_RESET_ENDPOINTS]
 
 function getEndpointGroupName(endpoint: string): string {
   return endpoint.split('/')[1] || 'Autres'
@@ -7524,7 +8328,7 @@ function groupResettableEndpoints(items: ResettablePolicyItem[]): ResettablePoli
 
   for (const item of items) {
     const name = getEndpointGroupName(item.endpoint)
-    const group = groups.find(currentGroup => currentGroup.name === name)
+    const group = groups.find((currentGroup) => currentGroup.name === name)
 
     if (group) {
       group.endpoints.push(item)
@@ -7544,7 +8348,7 @@ function groupPolicyEndpoints(items: ResetPolicyItem[]): ResetPolicyGroup[] {
 
   for (const item of items) {
     const name = getEndpointGroupName(item.endpoint)
-    const group = groups.find(currentGroup => currentGroup.name === name)
+    const group = groups.find((currentGroup) => currentGroup.name === name)
 
     if (group) {
       group.endpoints.push(item)
@@ -7566,9 +8370,9 @@ export const AVOID_RESET_ENDPOINT_GROUPS = groupPolicyEndpoints(AVOID_RESET_ENDP
 export const ALL_RESET_POLICY_ENDPOINT_GROUPS = groupPolicyEndpoints(ALL_RESET_POLICY_ENDPOINTS)
 
 export function isEndpointResettable(endpoint: string): boolean {
-  return RESETTABLE_ENDPOINTS.some(item => item.endpoint === endpoint)
+  return RESETTABLE_ENDPOINTS.some((item) => item.endpoint === endpoint)
 }
 
 export function getResetPolicy(endpoint: string) {
-  return ALL_RESET_POLICY_ENDPOINTS.find(item => item.endpoint === endpoint)
+  return ALL_RESET_POLICY_ENDPOINTS.find((item) => item.endpoint === endpoint)
 }

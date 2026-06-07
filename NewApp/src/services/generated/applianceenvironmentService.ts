@@ -4,8 +4,7 @@
 import { getAll, getById } from '@/api/crudClient'
 import { ENDPOINTS } from '@/generated/endpoints'
 
-export const getApplianceenvironments = () =>
-  getAll(ENDPOINTS.DROPDOWNS_APPLIANCEENVIRONMENT)
+export const getApplianceenvironments = () => getAll(ENDPOINTS.DROPDOWNS_APPLIANCEENVIRONMENT)
 
 export const getApplianceenvironmentById = (id: number) =>
   getById(ENDPOINTS.DROPDOWNS_APPLIANCEENVIRONMENT, id)
