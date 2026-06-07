@@ -1,0 +1,29 @@
+export interface Infocom {
+  id?: number
+  itemtype?: string
+  items_id?: number
+  comment?: string
+  entity?: Entity
+  is_recursive?: boolean
+  date_buy?: string
+  date_use?: string
+  date_order?: string
+  date_delivery?: string
+  date_inventory?: string
+  date_warranty?: string
+  date_decommission?: string
+  warranty_info?: string
+  warranty_value?: number
+  warranty_duration?: number
+  budget?: Budget
+  supplier?: Supplier
+  order_number?: string
+  delivery_number?: string
+  immo_number?: string
+  invoice_number?: string
+  value?: number
+  amortization_type?: string
+  amortization_time?: number
+  amortization_coeff?: number
+  business_criticity?: BusinessCriticity
+}

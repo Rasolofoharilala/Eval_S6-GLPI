@@ -1,0 +1,29 @@
+export interface QueuedNotification {
+  id?: number
+  itemtype?: string
+  items_id?: number
+  notification_template?: NotificationTemplate
+  entity?: Entity
+  is_deleted?: boolean
+  sent_try?: number
+  create_time?: string
+  expected_send_date?: string
+  send_date?: string
+  name?: string
+  sender?: string
+  sender_name?: string
+  recipient?: string
+  recipient_name?: string
+  replyto?: string
+  replyto_name?: string
+  headers?: string
+  body_text?: string
+  body_html?: string
+  message_id?: string
+  documents?: string
+  mode?: string
+  event?: string
+  attach_documents?: number
+  itemtype_trigger?: string
+  items_id_trigger?: number
+}

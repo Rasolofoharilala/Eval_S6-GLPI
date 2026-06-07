@@ -1,0 +1,30 @@
+export interface NetworkPort {
+  id?: number
+  name?: string
+  comment?: string
+  entity?: Entity
+  is_recursive?: boolean
+  itemtype?: string
+  items_id?: number
+  instantiation_type?: string
+  logical_number?: number
+  mac?: string
+  is_deleted?: boolean
+  is_dynamic?: boolean
+  if_mtu?: number
+  if_speed?: number
+  if_internal_status?: string
+  if_connection_status?: number
+  if_last_change?: string
+  if_in_bytes?: number
+  if_out_bytes?: number
+  if_in_errors?: number
+  if_out_errors?: number
+  if_status?: string
+  if_description?: string
+  if_alias?: string
+  port_duplex?: string
+  trunk?: number
+  date_creation?: string
+  date_mod?: string
+}

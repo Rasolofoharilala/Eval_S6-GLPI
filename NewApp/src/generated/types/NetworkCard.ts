@@ -1,0 +1,13 @@
+export interface NetworkCard {
+  id?: number
+  designation?: string
+  comment?: string
+  manufacturer?: Manufacturer
+  entity?: Entity
+  is_recursive?: boolean
+  date_creation?: string
+  date_mod?: string
+  bandwidth?: string
+  mac_default?: string
+  model?: DeviceNetworkCardModel
+}
