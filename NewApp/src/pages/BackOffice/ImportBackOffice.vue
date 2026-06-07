@@ -50,26 +50,6 @@
     </div>
 
     <div v-if="importResults.length > 0">
-      <h2>Résultats</h2>
-
-      <ul>
-        <li
-          v-for="result in importResults"
-          :key="result.name"
-        >
-          <strong>{{ result.name }}</strong>
-
-          <span v-if="result.success">
-            — Importé
-          </span>
-
-          <span v-else>
-            — Erreur : {{ result.error }}
-          </span>
-        </li>
-      </ul>
-    </div>
-    <div v-if="importResults.length > 0">
   <h2>Résultats</h2>
 
   <ul>
@@ -93,6 +73,7 @@
     </li>
   </ul>
 </div>
+
   </main>
 </template>
 
