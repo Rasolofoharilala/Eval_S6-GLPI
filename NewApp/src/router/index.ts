@@ -8,8 +8,11 @@ import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.
 import importPages from '@/pages/BackOffice/ImportBackOffice.vue'
 import dashboardGeneral from '@/pages/BackOffice/DashboardElementGeneral.vue'
 import dashboardTickets from '@/pages/BackOffice/DashboardTicktes.vue'
+
 import accueilFrontOffice from '@/pages/FrontOffice/AccueilFrontOffice.vue'
 import listeElement from '@/pages/FrontOffice/ListeElement.vue'
+import createTicket from '@/pages/FrontOffice/CreateTickets.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -79,12 +82,20 @@ const router = createRouter({
         title: 'Accueil Front Office',
       },
     },
-    {      
+    {
       path: '/listeElement',
       name: 'listeElement',
       component: listeElement,
       meta: {
         title: 'Liste element Front Office',
+      },
+    },
+    {      
+      path: '/createTicket',
+      name: 'createTicket',
+      component: createTicket,
+      meta: {
+        title: 'createTicket Front Office',
       },
     }
   ],

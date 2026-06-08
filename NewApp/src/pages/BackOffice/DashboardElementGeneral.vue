@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
+import { computed, onMounted, ref } from 'vue'
 
 import { useCables } from '@/composables/generated/useCables'
 import { useCartridges } from '@/composables/generated/useCartridges'

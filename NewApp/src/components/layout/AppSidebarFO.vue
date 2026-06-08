@@ -34,20 +34,11 @@ import deconnexionButton from '@/components/common/deconnexionButton.vue'
 const menus = [
   {
     label: 'Liste des elements',
-    path: '/listeElement'
+    path: '/listeElement',
   },
   {
-    label: 'Dashboard',
-    children: [
-      {
-        label: 'Element General',
-        // path: '/dashboardElementGeneral',
-      },
-      {
-        label: 'Ticket General',
-        // path: '/dashboardTickets',
-      },
-    ],
-  },
+    label: 'Creation ticket',
+    path: '/createTicket', 
+  }
 ]
 </script>

@@ -21,7 +21,7 @@ function handleSubmit() {
 }
 
 const redirectFrontOffice = () => {
-  console.log("Redirect on");
+  console.log('Redirect on')
   router.replace('/accueilFrontOffice')
 }
 </script>
