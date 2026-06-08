@@ -1,3 +1,4 @@
+<template>
   <div class=""></div>
   <aside>
     <h3>FRONT OFFICE</h3>
