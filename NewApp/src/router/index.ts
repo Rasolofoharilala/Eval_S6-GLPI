@@ -7,6 +7,7 @@ import accueil from '@/pages/BackOffice/AccueilBackOffice.vue'
 import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.vue'
 import importPages from '@/pages/BackOffice/ImportBackOffice.vue'
 import dashboardGeneral from '@/pages/BackOffice/DashboardElementGeneral.vue'
+import dashboardTickets from '@/pages/BackOffice/DashboardTicktes.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,7 +49,7 @@ const router = createRouter({
       meta: {
         title: 'importPages',
         requiresAuth: true,
-      }
+      },
     },
     {
       path: '/dashboardElementGeneral',
@@ -57,8 +58,17 @@ const router = createRouter({
       meta: {
         title: 'dashboardGeneral',
         requiresAuth: true,
-      }
-    }
+      },
+    },
+    {
+      path: '/dashboardTickets',
+      name: dashboardTickets,
+      component: dashboardTickets,
+      meta: {
+        title: 'dashboardTickets',
+        requiresAuth: true,
+      },
+    },
   ],
 })
 

@@ -1,0 +1,12 @@
+src/composables/generated/useEnclosuremodels.ts
+src/composables/generated/useVirtualmachinestates.ts
+src/composables/generated/useManufacturers.ts
+src/composables/generated/useMonitormodels.ts
+src/composables/generated/useStates.ts
+src/composables/generated/useVirtualmachinemodels.ts
+src/composables/generated/useNetworkequipmentmodels.ts
+src/composables/generated/useComputermodels.ts
+src/composables/generated/usePrintermodels.ts
+src/composables/generated/useLocations.ts
+src/composables/generated/usePhonemodels.ts
+src/composables/generated/usePeripheralmodels.ts

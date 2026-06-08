@@ -55,7 +55,16 @@ const menus = [
   },
   {
     label: 'Dashboard',
-    path: '/dashboardElementGeneral'
-  }
+    children: [
+      {
+        label: 'Element General',
+        path: '/dashboardElementGeneral',
+      },
+      {
+        label: 'Ticket General',
+        path: '/dashboardTickets',
+      },
+    ],
+  },
 ]
 </script>

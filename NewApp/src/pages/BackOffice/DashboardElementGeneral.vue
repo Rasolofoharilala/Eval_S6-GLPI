@@ -58,9 +58,7 @@ const assetCounts = computed(() => [
   { label: 'Cartes SIM', count: simcards.value.length },
 ])
 
-const globalCount = computed(() =>
-  assetCounts.value.reduce((total, item) => total + item.count, 0),
-)
+const globalCount = computed(() => assetCounts.value.reduce((total, item) => total + item.count, 0))
 
 async function loadDashboard() {
   loading.value = true
@@ -101,15 +99,13 @@ onMounted(() => {
   <AppSidebar />
 
   <main>
-    <h1>Dashboard</h1>
+    <h1>Dashboard: element general</h1>
 
     <p>Nombre général d’éléments avec détails par type.</p>
 
     <p v-if="loading">Chargement...</p>
 
-    <p v-if="error">
-      Erreur : {{ error }}
-    </p>
+    <p v-if="error">Erreur : {{ error }}</p>
 
     <div v-if="!loading && !error">
       <p>
@@ -117,16 +113,10 @@ onMounted(() => {
       </p>
 
       <div>
-        <p
-          v-for="item in assetCounts"
-          :key="item.label"
-        >
-          {{ item.label }} : {{ item.count }}
-        </p>
+        <p v-for="item in assetCounts" :key="item.label">{{ item.label }} : {{ item.count }}</p>
       </div>
     </div>
   </main>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

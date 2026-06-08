@@ -12,10 +12,7 @@ export type TicketCsvRow = CsvRow & {
   items: string
 }
 
-export type ParsedTicketRow = Omit<
-  TicketCsvRow,
-  'ref_ticket' | 'items'
-> & {
+export type ParsedTicketRow = Omit<TicketCsvRow, 'ref_ticket' | 'items'> & {
   ref_ticket: number
   items: string[]
 }
