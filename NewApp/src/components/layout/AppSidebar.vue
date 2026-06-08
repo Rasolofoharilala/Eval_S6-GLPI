@@ -53,5 +53,9 @@ const menus = [
     label: 'Import',
     path: '/importFichier',
   },
+  {
+    label: 'Dashboard',
+    path: '/dashboardElementGeneral'
+  }
 ]
 </script>

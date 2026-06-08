@@ -1,0 +1,899 @@
+===== pages import =====
+
+
+===== src/pages/BackOffice/ImportBackOffice.vue =====
+<template>
+  <AppSidebar />
+
+  <main>
+    <h1>Page d'import</h1>
+
+    <div>
+      <h2>Parc Informatique</h2>
+
+      <input type="file" accept=".csv" @change="handleFileChange" />
+    </div>
+
+    <div>
+      <h2>Aperçu</h2>
+
+      <p v-if="selectedFileName">Fichier sélectionné : {{ selectedFileName }}</p>
+
+      <p v-else>Aucun fichier sélectionné.</p>
+
+      <p v-if="csvRows.length > 0">{{ csvRows.length }} ligne(s) détectée(s).</p>
+
+      <ul v-if="csvRows.length > 0">
+        <li v-for="row in csvRows" :key="row.inventory_number">
+          {{ row.name }} — {{ row.item_type }} — {{ row.inventory_number }}
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <button type="button" :disabled="csvRows.length === 0 || loading" @click="handleImport">
+        {{ loading ? 'Importation...' : 'Importer' }}
+      </button>
+    </div>
+
+    <div v-if="importResults.length > 0">
+      <h2>Résultats</h2>
+
+      <ul>
+        <li v-for="result in importResults" :key="result.name">
+          <strong>{{ result.name }}</strong>
+
+          <span v-if="result.skipped"> — Déjà existant, ignoré </span>
+
+          <span v-else-if="result.success"> — Importé </span>
+
+          <span v-else> — Erreur : {{ result.error }} </span>
+        </li>
+      </ul>
+    </div>
+  </main>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import AppSidebar from '@/components/layout/AppSidebar.vue'
+
+import { parseCsvFile } from '@/services/csv/csvParser'
+import { importAssetRows } from '@/services/import/assetImportService'
+
+import type { AssetCsvRow, ImportResult } from '@/services/import/assetImportTypes'
+
+const selectedFileName = ref('')
+const csvRows = ref<AssetCsvRow[]>([])
+const importResults = ref<ImportResult[]>([])
+const loading = ref(false)
+
+async function handleFileChange(event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+
+  if (!file) {
+    selectedFileName.value = ''
+    csvRows.value = []
+    importResults.value = []
+    return
+  }
+
+  selectedFileName.value = file.name
+  importResults.value = []
+
+  const result = await parseCsvFile(file)
+
+  csvRows.value = result.rows as AssetCsvRow[]
+
+  console.log('Headers:', result.headers)
+  console.log('Rows:', csvRows.value)
+}
+
+async function handleImport() {
+  if (csvRows.value.length === 0) {
+    console.log('Aucune donnée à importer')
+    return
+  }
+
+  loading.value = true
+  importResults.value = []
+
+  try {
+    importResults.value = await importAssetRows(csvRows.value)
+
+    console.log('Résultat import:', importResults.value)
+  } catch (error) {
+    console.error('Erreur pendant l’import', error)
+  } finally {
+    loading.value = false
+  }
+}
+</script>
+
+<style scoped></style>
+
+
+===== csv parser =====
+import type { CsvParseResult, CsvRow } from './csvTypes'
+
+export async function parseCsvFile(file: File): Promise<CsvParseResult> {
+  const csvContent = await file.text()
+
+  const lines = csvContent
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line !== '')
+
+  const rows = lines.map((line) => line.split(',').map((value) => value.trim()))
+
+  const headers = rows[0].map((header) => header.toLowerCase())
+
+  const dataRows = rows.slice(1)
+
+  const parsedRows: CsvRow[] = dataRows.map((row) => {
+    const object: CsvRow = {}
+
+    headers.forEach((header, index) => {
+      object[header] = row[index] ?? ''
+    })
+
+    return object
+  })
+
+  return {
+    headers,
+    rows: parsedRows,
+  }
+}
+export type CsvRow = Record<string, string>
+
+export type CsvParseResult = {
+  headers: string[]
+  rows: CsvRow[]
+}
+
+
+===== import asset =====
+import type { CsvRow } from '@/services/csv/csvTypes'
+
+// AssetCsvRow: CSV1
+export type AssetCsvRow = CsvRow & {
+  name: string
+  status: string
+  location: string
+  manufacturer: string
+  item_type: string
+  model: string
+  inventory_number: string
+  user: string
+}
+
+export type ImportResult = {
+  name: string
+  itemType: string
+  success: boolean
+  skipped?: boolean
+  existingId?: number
+  error?: string
+}
+import { createComputer } from '@/services/generated/computerService'
+import { createMonitor } from '@/services/generated/monitorService'
+
+import { mapCsvRowToComputerInput } from './computerImportMapper'
+import { mapCsvRowToMonitorInput } from './monitorImportMapper'
+
+import type { AssetCsvRow, ImportResult } from './assetImportTypes'
+import { assetAlreadyExists } from './glpiAssetLookupService'
+
+function getErrorMessage(error: unknown): string {
+  if (typeof error !== 'object' || error === null) {
+    return 'Erreur inconnue'
+  }
+
+  const err = error as {
+    response?: {
+      data?: {
+        title?: string
+        detail?: string
+        message?: string
+      }
+      status?: number
+    }
+    message?: string
+  }
+
+  return (
+    err.response?.data?.title ||
+    err.response?.data?.detail ||
+    err.response?.data?.message ||
+    err.message ||
+    'Erreur inconnue'
+  )
+}
+
+function normalizeItemType(value: string): string {
+  return value.trim().toLowerCase()
+}
+
+function getEndpointByItemType(itemType: string): string | null {
+  const normalizedItemType = normalizeItemType(itemType)
+
+  if (normalizedItemType === 'computer') {
+    return '/Assets/Computer'
+  }
+
+  if (normalizedItemType === 'monitor') {
+    return '/Assets/Monitor'
+  }
+
+  return null
+}
+
+async function createAssetByType(row: AssetCsvRow): Promise<void> {
+  const itemType = normalizeItemType(row.item_type)
+
+  if (itemType === 'computer') {
+    const payload = await mapCsvRowToComputerInput(row)
+
+    await createComputer(payload)
+
+    return
+  }
+
+  if (itemType === 'monitor') {
+    const payload = await mapCsvRowToMonitorInput(row)
+
+    await createMonitor(payload)
+
+    return
+  }
+
+  throw new Error(`Type non encore supporté : ${row.item_type}`)
+}
+
+export async function importAssetRows(rows: AssetCsvRow[]): Promise<ImportResult[]> {
+  const results: ImportResult[] = []
+
+  for (const row of rows) {
+    try {
+      const endpoint = getEndpointByItemType(row.item_type)
+
+      if (!endpoint) {
+        results.push({
+          name: row.name,
+          itemType: row.item_type,
+          success: false,
+          error: `Type non encore supporté : ${row.item_type}`,
+        })
+
+        continue
+      }
+
+      const existingAsset = await assetAlreadyExists(endpoint, row.name, row.inventory_number)
+
+      if (existingAsset) {
+        results.push({
+          name: row.name,
+          itemType: row.item_type,
+          success: true,
+          skipped: true,
+          existingId: existingAsset.id,
+        })
+
+        continue
+      }
+
+      await createAssetByType(row)
+
+      results.push({
+        name: row.name,
+        itemType: row.item_type,
+        success: true,
+      })
+    } catch (error) {
+      results.push({
+        name: row.name,
+        itemType: row.item_type,
+        success: false,
+        error: getErrorMessage(error),
+      })
+    }
+  }
+
+  return results
+}
+import type { ComputerInput } from '@/types/generated'
+import type { AssetCsvRow } from './assetImportTypes'
+import { ensureReferenceByName } from './glpiEnsureService'
+import { referenceConfig } from './glpiReferenceConfig'
+
+function toRelation(id?: number | null) {
+  if (!id) {
+    return undefined
+  }
+
+  return {
+    id,
+  }
+}
+
+export async function mapCsvRowToComputerInput(row: AssetCsvRow): Promise<ComputerInput> {
+  const status = await ensureReferenceByName(
+    referenceConfig.status.endpoint,
+    row.status,
+    referenceConfig.status.autoCreate,
+  )
+
+  const location = await ensureReferenceByName(
+    referenceConfig.location.endpoint,
+    row.location,
+    referenceConfig.location.autoCreate,
+  )
+
+  const manufacturer = await ensureReferenceByName(
+    referenceConfig.manufacturer.endpoint,
+    row.manufacturer,
+    referenceConfig.manufacturer.autoCreate,
+  )
+
+  const model = await ensureReferenceByName(
+    referenceConfig.computerModel.endpoint,
+    row.model,
+    referenceConfig.computerModel.autoCreate,
+  )
+
+  const user = await ensureReferenceByName(
+    referenceConfig.user.endpoint,
+    row.user,
+    referenceConfig.user.autoCreate,
+  )
+
+  return {
+    name: row.name,
+    otherserial: row.inventory_number,
+
+    status: toRelation(status?.id),
+    location: toRelation(location?.id),
+    manufacturer: toRelation(manufacturer?.id),
+    model: toRelation(model?.id),
+    user: toRelation(user?.id),
+  }
+}
+import type { MonitorInput } from '@/types/generated'
+import type { AssetCsvRow } from './assetImportTypes'
+import { ensureReferenceByName } from './glpiEnsureService'
+import { referenceConfig } from './glpiReferenceConfig'
+
+function toRelation(id?: number | null) {
+  if (!id) {
+    return undefined
+  }
+
+  return {
+    id,
+  }
+}
+
+export async function mapCsvRowToMonitorInput(row: AssetCsvRow): Promise<MonitorInput> {
+  const status = await ensureReferenceByName(
+    referenceConfig.status.endpoint,
+    row.status,
+    referenceConfig.status.autoCreate,
+  )
+
+  const location = await ensureReferenceByName(
+    referenceConfig.location.endpoint,
+    row.location,
+    referenceConfig.location.autoCreate,
+  )
+
+  const manufacturer = await ensureReferenceByName(
+    referenceConfig.manufacturer.endpoint,
+    row.manufacturer,
+    referenceConfig.manufacturer.autoCreate,
+  )
+
+  const model = await ensureReferenceByName(
+    referenceConfig.monitorModel.endpoint,
+    row.model,
+    referenceConfig.monitorModel.autoCreate,
+  )
+
+  const user = await ensureReferenceByName(
+    referenceConfig.user.endpoint,
+    row.user,
+    referenceConfig.user.autoCreate,
+  )
+
+  return {
+    name: row.name,
+    otherserial: row.inventory_number,
+
+    status: toRelation(status?.id),
+    location: toRelation(location?.id),
+    manufacturer: toRelation(manufacturer?.id),
+    model: toRelation(model?.id),
+    user: toRelation(user?.id),
+  }
+}
+
+
+===== image import files =====
+
+
+===== src/composables/generated/usePictures.ts =====
+// Auto-generated file. Do not edit manually.
+// Composable generated from pictureService.ts.
+
+import { ref } from 'vue'
+import { getPictures } from '@/services/generated/pictureService'
+
+export function usePictures() {
+  const pictures = ref<unknown[]>([])
+  const selectedPicture = ref<unknown | null>(null)
+  const loading = ref(false)
+  const error = ref<string | null>(null)
+
+  async function loadPictures() {
+    loading.value = true
+    error.value = null
+
+    try {
+      pictures.value = await getPictures()
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Erreur inconnue'
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return {
+    pictures,
+    selectedPicture,
+    loading,
+    error,
+    loadPictures,
+  }
+}
+
+
+===== src/composables/generated/useCameraimageresolutions.ts =====
+// Auto-generated file. Do not edit manually.
+// Composable generated from cameraimageresolutionService.ts.
+
+import { ref } from 'vue'
+import {
+  getCameraimageresolutions,
+  getCameraimageresolutionById,
+} from '@/services/generated/cameraimageresolutionService'
+import type { CameraImageResolution } from '@/services/generated/cameraimageresolutionService'
+
+export function useCameraimageresolutions() {
+  const cameraimageresolutions = ref<CameraImageResolution[]>([])
+  const selectedCameraimageresolution = ref<CameraImageResolution | null>(null)
+  const loading = ref(false)
+  const error = ref<string | null>(null)
+
+  async function loadCameraimageresolutions() {
+    loading.value = true
+    error.value = null
+
+    try {
+      cameraimageresolutions.value = await getCameraimageresolutions()
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Erreur inconnue'
+    } finally {
+      loading.value = false
+    }
+  }
+
+  async function loadCameraimageresolutionById(id: number) {
+    loading.value = true
+    error.value = null
+
+    try {
+      selectedCameraimageresolution.value = await getCameraimageresolutionById(id)
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Erreur inconnue'
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return {
+    cameraimageresolutions,
+    selectedCameraimageresolution,
+    loading,
+    error,
+    loadCameraimageresolutions,
+    loadCameraimageresolutionById,
+  }
+}
+
+
+===== src/composables/generated/useCameraimageformats.ts =====
+// Auto-generated file. Do not edit manually.
+// Composable generated from cameraimageformatService.ts.
+
+import { ref } from 'vue'
+import {
+  getCameraimageformats,
+  getCameraimageformatById,
+} from '@/services/generated/cameraimageformatService'
+import type { CameraImageFormat } from '@/services/generated/cameraimageformatService'
+
+export function useCameraimageformats() {
+  const cameraimageformats = ref<CameraImageFormat[]>([])
+  const selectedCameraimageformat = ref<CameraImageFormat | null>(null)
+  const loading = ref(false)
+  const error = ref<string | null>(null)
+
+  async function loadCameraimageformats() {
+    loading.value = true
+    error.value = null
+
+    try {
+      cameraimageformats.value = await getCameraimageformats()
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Erreur inconnue'
+    } finally {
+      loading.value = false
+    }
+  }
+
+  async function loadCameraimageformatById(id: number) {
+    loading.value = true
+    error.value = null
+
+    try {
+      selectedCameraimageformat.value = await getCameraimageformatById(id)
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Erreur inconnue'
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return {
+    cameraimageformats,
+    selectedCameraimageformat,
+    loading,
+    error,
+    loadCameraimageformats,
+    loadCameraimageformatById,
+  }
+}
+
+
+===== src/services/generated/cameraimageformatService.ts =====
+// Auto-generated file. Do not edit manually.
+// Service generated for /Dropdowns/CameraImageFormat.
+
+import { getAll, getById } from '@/api/crudClient'
+import { ENDPOINTS } from '@/generated/endpoints'
+import type { CameraImageFormat } from '@/types/generated'
+
+export type { CameraImageFormat } from '@/types/generated'
+
+export const getCameraimageformats = () =>
+  getAll<CameraImageFormat>(ENDPOINTS.DROPDOWNS_CAMERAIMAGEFORMAT)
+
+export const getCameraimageformatById = (id: number) =>
+  getById<CameraImageFormat>(ENDPOINTS.DROPDOWNS_CAMERAIMAGEFORMAT, id)
+
+
+===== src/services/generated/pictureService.ts =====
+// Auto-generated file. Do not edit manually.
+// Service generated for /Administration/User/Me/Picture.
+
+import { getAll, getById } from '@/api/crudClient'
+import { ENDPOINTS } from '@/generated/endpoints'
+
+export const getPictures = () => getAll<unknown>(ENDPOINTS.ADMINISTRATION_USER_ME_PICTURE)
+
+
+===== src/services/generated/cameraimageresolutionService.ts =====
+// Auto-generated file. Do not edit manually.
+// Service generated for /Dropdowns/CameraImageResolution.
+
+import { getAll, getById } from '@/api/crudClient'
+import { ENDPOINTS } from '@/generated/endpoints'
+import type { CameraImageResolution } from '@/types/generated'
+
+export type { CameraImageResolution } from '@/types/generated'
+
+export const getCameraimageresolutions = () =>
+  getAll<CameraImageResolution>(ENDPOINTS.DROPDOWNS_CAMERAIMAGERESOLUTION)
+
+export const getCameraimageresolutionById = (id: number) =>
+  getById<CameraImageResolution>(ENDPOINTS.DROPDOWNS_CAMERAIMAGERESOLUTION, id)
+
+
+===== generated services useful =====
+import { getAll, getById, create, update, remove } from '@/api/crudClient'
+
+import { ENDPOINTS } from '@/generated/endpoints'
+
+import type { Computer, ComputerInput } from '@/types/generated'
+
+export type { Computer, ComputerInput } from '@/types/generated'
+
+export const getComputers = () => getAll<Computer>(ENDPOINTS.ASSETS_COMPUTER)
+
+export const getComputerById = (id: number) => getById<Computer>(ENDPOINTS.ASSETS_COMPUTER, id)
+
+export const createComputer = (payload: ComputerInput) =>
+  create<Computer, ComputerInput>(ENDPOINTS.ASSETS_COMPUTER, payload)
+
+export const updateComputer = (id: number, payload: ComputerInput) =>
+  update<Computer, ComputerInput>(ENDPOINTS.ASSETS_COMPUTER, id, payload)
+
+export const deleteComputer = (id: number) => remove<Computer>(ENDPOINTS.ASSETS_COMPUTER, id)
+import { getAll, getById, create, update, remove } from '@/api/crudClient'
+
+import { ENDPOINTS } from '@/generated/endpoints'
+
+import type { Monitor, MonitorInput } from '@/types/generated'
+
+export type { Monitor, MonitorInput } from '@/types/generated'
+
+export const getMonitors = () => getAll<Monitor>(ENDPOINTS.ASSETS_MONITOR)
+
+export const getMonitorById = (id: number) => getById<Monitor>(ENDPOINTS.ASSETS_MONITOR, id)
+
+export const createMonitor = (payload: MonitorInput) =>
+  create<Monitor, MonitorInput>(ENDPOINTS.ASSETS_MONITOR, payload)
+
+export const updateMonitor = (id: number, payload: MonitorInput) =>
+  update<Monitor, MonitorInput>(ENDPOINTS.ASSETS_MONITOR, id, payload)
+
+export const deleteMonitor = (id: number) => remove<Monitor>(ENDPOINTS.ASSETS_MONITOR, id)
+
+
+===== references =====
+import { httpClient } from '@/api/httpClient'
+import type { GlpiReferenceItem } from './glpiReferenceTypes'
+
+const cache = new Map<string, GlpiReferenceItem>()
+
+function normalize(value: string): string {
+  return value.trim().toLowerCase()
+}
+
+function buildCacheKey(endpoint: string, name: string): string {
+  return `${endpoint}:${normalize(name)}`
+}
+
+function normalizeResponse(data: unknown): GlpiReferenceItem[] {
+  if (Array.isArray(data)) {
+    return data
+      .filter((item) => item && typeof item === 'object')
+      .map((item: any) => ({
+        id: Number(item.id),
+        name: String(item.name ?? ''),
+      }))
+      .filter((item) => item.id && item.name)
+  }
+
+  if (typeof data === 'object' && data !== null && Array.isArray((data as any).data)) {
+    return normalizeResponse((data as any).data)
+  }
+
+  if (typeof data === 'object' && data !== null && Array.isArray((data as any).results)) {
+    return normalizeResponse((data as any).results)
+  }
+
+  return []
+}
+
+async function findReferenceByName(
+  endpoint: string,
+  name: string,
+): Promise<GlpiReferenceItem | null> {
+  const cacheKey = buildCacheKey(endpoint, name)
+
+  if (cache.has(cacheKey)) {
+    return cache.get(cacheKey) ?? null
+  }
+
+  const response = await httpClient.get(endpoint)
+
+  const items = normalizeResponse(response.data)
+
+  const found = items.find((item) => normalize(item.name) === normalize(name))
+
+  if (!found) {
+    return null
+  }
+
+  cache.set(cacheKey, found)
+
+  return found
+}
+
+async function createReferenceByName(endpoint: string, name: string): Promise<GlpiReferenceItem> {
+  const response = await httpClient.post(endpoint, {
+    name,
+  })
+
+  const id = response.data?.id ?? response.data?.data?.id
+
+  if (!id) {
+    throw new Error(`Impossible de récupérer l'id créé pour ${name}`)
+  }
+
+  const created = {
+    id: Number(id),
+    name,
+  }
+
+  cache.set(buildCacheKey(endpoint, name), created)
+
+  return created
+}
+
+export async function ensureReferenceByName(
+  endpoint: string,
+  name: string,
+  autoCreate = true,
+): Promise<GlpiReferenceItem | null> {
+  if (!name || name.trim() === '') {
+    return null
+  }
+
+  const existing = await findReferenceByName(endpoint, name)
+
+  if (existing) {
+    return existing
+  }
+
+  if (!autoCreate) {
+    return null
+  }
+
+  return await createReferenceByName(endpoint, name)
+}
+import type { GlpiReferenceConfig } from './glpiReferenceTypes'
+
+export const referenceConfig = {
+  status: {
+    endpoint: '/Dropdowns/State',
+    autoCreate: true,
+  },
+
+  location: {
+    endpoint: '/Dropdowns/Location',
+    autoCreate: true,
+  },
+
+  manufacturer: {
+    endpoint: '/Dropdowns/Manufacturer',
+    autoCreate: true,
+  },
+
+  computerModel: {
+    endpoint: '/Dropdowns/ComputerModel',
+    autoCreate: true,
+  },
+
+  monitorModel: {
+    endpoint: '/Dropdowns/MonitorModel',
+    autoCreate: true,
+  },
+
+  user: {
+    endpoint: '/Administration/User',
+    autoCreate: false,
+  },
+} satisfies Record<string, GlpiReferenceConfig>
+export type GlpiReferenceItem = {
+  id: number
+  name: string
+}
+
+export type GlpiReferenceConfig = {
+  endpoint: string
+  autoCreate: boolean
+}
+import { httpClient } from '@/api/httpClient'
+
+export type ExistingAsset = {
+  id: number
+  name: string
+  otherserial?: string
+}
+
+function normalize(value: string): string {
+  return value.trim().toLowerCase()
+}
+
+function normalizeAssets(data: unknown): ExistingAsset[] {
+  if (!Array.isArray(data)) {
+    return []
+  }
+
+  return data
+    .filter((item) => item && typeof item === 'object')
+    .map((item: any) => ({
+      id: Number(item.id),
+      name: String(item.name ?? ''),
+      otherserial: item.otherserial ? String(item.otherserial) : undefined,
+    }))
+    .filter((item) => item.id && item.name)
+}
+
+export async function findAssetByName(
+  endpoint: string,
+  name: string,
+): Promise<ExistingAsset | null> {
+  const response = await httpClient.get(endpoint)
+
+  const assets = normalizeAssets(response.data)
+
+  const found = assets.find((asset) => normalize(asset.name) === normalize(name))
+
+  return found ?? null
+}
+
+export async function findAssetByInventoryNumber(
+  endpoint: string,
+  inventoryNumber: string,
+): Promise<ExistingAsset | null> {
+  if (!inventoryNumber || inventoryNumber.trim() === '') {
+    return null
+  }
+
+  const response = await httpClient.get(endpoint)
+
+  const assets = normalizeAssets(response.data)
+
+  const found = assets.find(
+    (asset) => asset.otherserial && normalize(asset.otherserial) === normalize(inventoryNumber),
+  )
+
+  return found ?? null
+}
+
+export async function assetAlreadyExists(
+  endpoint: string,
+  name: string,
+  inventoryNumber: string,
+): Promise<ExistingAsset | null> {
+  const foundByInventoryNumber = await findAssetByInventoryNumber(endpoint, inventoryNumber)
+
+  if (foundByInventoryNumber) {
+    return foundByInventoryNumber
+  }
+
+  const foundByName = await findAssetByName(endpoint, name)
+
+  return foundByName
+}
+
+
+===== endpoints image/picture/document =====
+25:  ADMINISTRATION_USER_ME_PICTURE: '/Administration/User/Me/Picture',
+31:  ADMINISTRATION_USER_USERNAME_BY_USERNAME_PICTURE:
+32:    '/Administration/User/username/{username}/Picture',
+37:  ADMINISTRATION_USER_BY_ID_PICTURE: '/Administration/User/{id}/Picture',
+668:  ASSISTANCE_CHANGE_BY_ID_TIMELINE_DOCUMENT: '/Assistance/Change/{id}/Timeline/Document',
+669:  ASSISTANCE_CHANGE_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID:
+670:    '/Assistance/Change/{id}/Timeline/Document/{subitem_id}',
+700:  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_DOCUMENT: '/Assistance/Problem/{id}/Timeline/Document',
+701:  ASSISTANCE_PROBLEM_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID:
+702:    '/Assistance/Problem/{id}/Timeline/Document/{subitem_id}',
+752:  ASSISTANCE_TICKET_BY_ID_TIMELINE_DOCUMENT: '/Assistance/Ticket/{id}/Timeline/Document',
+753:  ASSISTANCE_TICKET_BY_ID_TIMELINE_DOCUMENT_BY_SUBITEM_ID:
+754:    '/Assistance/Ticket/{id}/Timeline/Document/{subitem_id}',
+889:  DROPDOWNS_CAMERAIMAGEFORMAT: '/Dropdowns/CameraImageFormat',
+890:  DROPDOWNS_CAMERAIMAGEFORMAT_BY_ID: '/Dropdowns/CameraImageFormat/{id}',
+891:  DROPDOWNS_CAMERAIMAGERESOLUTION: '/Dropdowns/CameraImageResolution',
+892:  DROPDOWNS_CAMERAIMAGERESOLUTION_BY_ID: '/Dropdowns/CameraImageResolution/{id}',
+919:  DROPDOWNS_DOCUMENTCATEGORY: '/Dropdowns/DocumentCategory',
+920:  DROPDOWNS_DOCUMENTCATEGORY_BY_ID: '/Dropdowns/DocumentCategory/{id}',
+921:  DROPDOWNS_DOCUMENTTYPE: '/Dropdowns/DocumentType',
+922:  DROPDOWNS_DOCUMENTTYPE_BY_ID: '/Dropdowns/DocumentType/{id}',
+1082:  MANAGEMENT_DOCUMENT: '/Management/Document',
+1083:  MANAGEMENT_DOCUMENT_BY_ID: '/Management/Document/{id}',
+1084:  MANAGEMENT_DOCUMENT_BY_ID_DOWNLOAD: '/Management/Document/{id}/Download',

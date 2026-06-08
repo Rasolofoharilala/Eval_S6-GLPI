@@ -6,6 +6,7 @@ import login from '@/pages/BackOffice/LoginBackOffice.vue'
 import accueil from '@/pages/BackOffice/AccueilBackOffice.vue'
 import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.vue'
 import importPages from '@/pages/BackOffice/ImportBackOffice.vue'
+import dashboardGeneral from '@/pages/BackOffice/DashboardElementGeneral.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,8 +48,17 @@ const router = createRouter({
       meta: {
         title: 'importPages',
         requiresAuth: true,
-      },
+      }
     },
+    {
+      path: '/dashboardElementGeneral',
+      name: dashboardGeneral,
+      component: dashboardGeneral,
+      meta: {
+        title: 'dashboardGeneral',
+        requiresAuth: true,
+      }
+    }
   ],
 })
 
