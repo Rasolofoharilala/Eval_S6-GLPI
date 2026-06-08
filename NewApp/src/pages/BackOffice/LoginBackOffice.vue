@@ -19,6 +19,11 @@ function handleSubmit() {
 
   router.replace('/accueil')
 }
+
+const redirectFrontOffice = () => {
+  console.log("Redirect on");
+  router.replace('/accueilFrontOffice')
+}
 </script>
 
 <template>
@@ -29,4 +34,5 @@ function handleSubmit() {
 
     <button type="submit">Connexion</button>
   </form>
+  <button @click="redirectFrontOffice">Front office</button>
 </template>

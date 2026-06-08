@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { isAuthenticated } from '@/auth/authService.ts'
+import { isAuthenticated } from '@/auth/authService'
 
 import login from '@/pages/BackOffice/LoginBackOffice.vue'
 import accueil from '@/pages/BackOffice/AccueilBackOffice.vue'
@@ -8,6 +8,8 @@ import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.
 import importPages from '@/pages/BackOffice/ImportBackOffice.vue'
 import dashboardGeneral from '@/pages/BackOffice/DashboardElementGeneral.vue'
 import dashboardTickets from '@/pages/BackOffice/DashboardTicktes.vue'
+import accueilFrontOffice from '@/pages/FrontOffice/AccueilFrontOffice.vue'
+import listeElement from '@/pages/FrontOffice/ListeElement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +20,7 @@ const router = createRouter({
     },
     {
       path: '/login',
-      name: login,
+      name: 'login',
       component: login,
       meta: {
         title: 'Login',
@@ -26,7 +28,7 @@ const router = createRouter({
     },
     {
       path: '/accueil',
-      name: accueil,
+      name: 'accueil',
       component: accueil,
       meta: {
         title: 'Accueil',
@@ -35,7 +37,7 @@ const router = createRouter({
     },
     {
       path: '/reinitialisationBase',
-      name: reinitialisationBase,
+      name: 'reinitialisationBase',
       component: reinitialisationBase,
       meta: {
         title: 'Reinitialisation',
@@ -44,7 +46,7 @@ const router = createRouter({
     },
     {
       path: '/importFichier',
-      name: importPages,
+      name: 'importPages',
       component: importPages,
       meta: {
         title: 'importPages',
@@ -53,7 +55,7 @@ const router = createRouter({
     },
     {
       path: '/dashboardElementGeneral',
-      name: dashboardGeneral,
+      name: 'dashboardGeneral',
       component: dashboardGeneral,
       meta: {
         title: 'dashboardGeneral',
@@ -62,13 +64,29 @@ const router = createRouter({
     },
     {
       path: '/dashboardTickets',
-      name: dashboardTickets,
+      name: 'dashboardTickets',
       component: dashboardTickets,
       meta: {
         title: 'dashboardTickets',
         requiresAuth: true,
       },
     },
+    {
+      path: '/accueilFrontOffice',
+      name: 'accueilFrontOffice',
+      component: accueilFrontOffice,
+      meta: {
+        title: 'Accueil Front Office',
+      },
+    },
+    {      
+      path: '/listeElement',
+      name: 'listeElement',
+      component: listeElement,
+      meta: {
+        title: 'Liste element Front Office',
+      },
+    }
   ],
 })
 
