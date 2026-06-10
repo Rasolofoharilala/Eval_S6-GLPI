@@ -41,6 +41,10 @@ const menus = [
     path: '/accueil',
   },
   {
+    label: 'Focus tickets',
+    path: '/focusTickets',
+  },
+  {
     label: 'Reinitialisation',
     children: [
       {

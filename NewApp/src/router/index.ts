@@ -12,6 +12,7 @@ import dashboardTickets from '@/pages/BackOffice/DashboardTicktes.vue'
 import accueilFrontOffice from '@/pages/FrontOffice/AccueilFrontOffice.vue'
 import listeElement from '@/pages/FrontOffice/ListeElement.vue'
 import createTicket from '@/pages/FrontOffice/CreateTickets.vue'
+import focusTickets from '@/pages/BackOffice/FocusTickets.vue'
 
 
 const router = createRouter({
@@ -96,6 +97,14 @@ const router = createRouter({
       component: createTicket,
       meta: {
         title: 'createTicket Front Office',
+      },
+    },
+    {
+      path: '/focusTickets',
+      name: 'focusTickets',
+      component: focusTickets,
+      meta: {
+        title: 'focusTickets Front Office',
       },
     }
   ],
