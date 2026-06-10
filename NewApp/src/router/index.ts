@@ -14,6 +14,8 @@ import listeElement from '@/pages/FrontOffice/ListeElement.vue'
 import createTicket from '@/pages/FrontOffice/CreateTickets.vue'
 import focusTickets from '@/pages/BackOffice/FocusTickets.vue'
 
+import stockageCouleur from '@/pages/BackOffice/StockageValeursCouleur.vue'
+import stockageLangue from '@/pages/BackOffice/StockageValeursVersionLangue.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -91,7 +93,7 @@ const router = createRouter({
         title: 'Liste element Front Office',
       },
     },
-    {      
+    {
       path: '/createTicket',
       name: 'createTicket',
       component: createTicket,
@@ -106,7 +108,23 @@ const router = createRouter({
       meta: {
         title: 'focusTickets Front Office',
       },
-    }
+    },
+    {
+      path: '/stockageCouleur',
+      name: 'stockageCouleur',
+      component: stockageCouleur,
+      meta: {
+        title: 'stockageCouleur Front Office',
+      },
+    },
+    {
+      path: '/stockageLangue',
+      name: 'stockageLangue',
+      component: stockageLangue,
+      meta: {
+        title: 'stockageLangue Front Office',
+      },
+    },
   ],
 })
 

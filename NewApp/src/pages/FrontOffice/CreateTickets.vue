@@ -194,7 +194,7 @@ onMounted(() => {
 
         <div class="field full">
           <label for="ticket-title">Titre <strong>*</strong></label>
-          <input id="ticket-title" v-model="form.name" type="text" required>
+          <input id="ticket-title" v-model="form.name" type="text" required />
         </div>
 
         <div class="field full">
@@ -211,7 +211,7 @@ onMounted(() => {
         <div class="upload-zone">
           <label for="ticket-files">Fichier(s)</label>
           <p>Glissez vos fichiers ici ou sélectionnez-les.</p>
-          <input id="ticket-files" type="file" multiple @change="onFilesSelected">
+          <input id="ticket-files" type="file" multiple @change="onFilesSelected" />
           <small v-if="selectedFiles.length">
             {{ selectedFiles.length }} fichier(s) sélectionné(s)
           </small>
@@ -225,7 +225,7 @@ onMounted(() => {
           <div class="fields-grid">
             <div class="field">
               <label for="ticket-date">Date d'ouverture</label>
-              <input id="ticket-date" v-model="form.date" type="datetime-local">
+              <input id="ticket-date" v-model="form.date" type="datetime-local" />
             </div>
 
             <div class="field">
@@ -240,11 +240,7 @@ onMounted(() => {
               <label for="ticket-category">Catégorie</label>
               <select id="ticket-category" v-model.number="form.categoryId">
                 <option :value="0">Aucune catégorie</option>
-                <option
-                  v-for="category in itilcategories"
-                  :key="category.id"
-                  :value="category.id"
-                >
+                <option v-for="category in itilcategories" :key="category.id" :value="category.id">
                   {{ category.completename || category.name }}
                 </option>
               </select>
@@ -313,12 +309,12 @@ onMounted(() => {
                 v-model="form.totalDuration"
                 type="text"
                 placeholder="Ex. 2 heures"
-              >
+              />
             </div>
 
             <div class="field full">
               <label for="ticket-external-id">ID externe</label>
-              <input id="ticket-external-id" v-model="form.externalId" type="text">
+              <input id="ticket-external-id" v-model="form.externalId" type="text" />
             </div>
           </div>
         </section>
@@ -381,7 +377,7 @@ onMounted(() => {
                 type="number"
                 min="1"
                 placeholder="ID GLPI"
-              >
+              />
             </div>
           </div>
           <p class="helper">L'association sera réalisée après la création du ticket.</p>
@@ -441,7 +437,7 @@ onMounted(() => {
                 type="number"
                 min="1"
                 placeholder="ID du ticket"
-              >
+              />
             </div>
           </div>
           <p class="helper">La liaison sera réalisée après la création du ticket.</p>
@@ -466,8 +462,7 @@ onMounted(() => {
   padding: 28px;
   color: #20304a;
   background:
-    radial-gradient(circle at top right, rgba(239, 176, 48, 0.12), transparent 28rem),
-    #f4f7fb;
+    radial-gradient(circle at top right, rgba(239, 176, 48, 0.12), transparent 28rem), #f4f7fb;
 }
 
 .page-header {
@@ -609,7 +604,9 @@ textarea {
   color: #20304a;
   background: #fff;
   font: inherit;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 input:focus,

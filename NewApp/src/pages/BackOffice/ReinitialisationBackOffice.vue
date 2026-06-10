@@ -99,6 +99,6 @@ async function resetAll() {
           <td>{{ item.methods.join(', ') }}</td>
         </tr>
       </tbody>
-    </table>    
+    </table>
   </main>
 </template>

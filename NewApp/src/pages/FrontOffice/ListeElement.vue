@@ -93,7 +93,6 @@ async function loadDashboard() {
 onMounted(() => {
   loadDashboard()
 })
-
 </script>
 <template>
   <AppSidebarFO />
@@ -101,7 +100,7 @@ onMounted(() => {
   <p>Nombre des elements: {{ globalCount }}</p>
   <select name="equipements">
     <option value="ordinateurs" v-for="temp_assetCounts in assetCounts" :key="temp_assetCounts">
-        {{ temp_assetCounts.label }} : {{ temp_assetCounts.count }}
+      {{ temp_assetCounts.label }} : {{ temp_assetCounts.count }}
     </option>
   </select>
 </template>

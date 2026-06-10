@@ -38,7 +38,7 @@ const menus = [
   },
   {
     label: 'Creation ticket',
-    path: '/createTicket', 
-  }
+    path: '/createTicket',
+  },
 ]
 </script>

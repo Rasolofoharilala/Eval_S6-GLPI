@@ -45,6 +45,19 @@ const menus = [
     path: '/focusTickets',
   },
   {
+    label: 'Stockage valeur front office',
+    children: [
+      {
+        label: 'Personnalisation couleur',
+        path: '/stockageCouleur',
+      },
+      {
+        label: 'Version de langue',
+        path: '/stockageLangue',
+      },
+    ],
+  },
+  {
     label: 'Reinitialisation',
     children: [
       {
