@@ -203,6 +203,7 @@ async function handleSubmit() {
     urgency: form.urgency,
     impact: form.impact,
     priority: form.priority,
+    actiontime: form.totalDuration ? parseInt(form.totalDuration) * 60 : undefined,
     external_id: form.externalId.trim() || undefined,
     sla_tto: relation(form.slaTtoId),
     sla_ttr: relation(form.slaTtrId),
@@ -392,12 +393,22 @@ onMounted(() => {
 
             <div class="field">
               <label for="ticket-duration">Durée totale</label>
-              <input
-                id="ticket-duration"
-                v-model="form.totalDuration"
-                type="text"
-                placeholder="Ex. 2 heures"
-              />
+              <select id="ticket-duration" v-model="form.totalDuration">
+                <option value="">-----</option>
+                <option value="5">0h05</option>
+                <option value="10">0h10</option>
+                <option value="15">0h15</option>
+                <option value="20">0h20</option>
+                <option value="25">0h25</option>
+                <option value="30">0h30</option>
+                <option value="45">0h45</option>
+                <option value="60">1h00</option>
+                <option value="90">1h30</option>
+                <option value="120">2h00</option>
+                <option value="180">3h00</option>
+                <option value="240">4h00</option>
+                <option value="480">8h00</option>
+              </select>
             </div>
 
             <div class="field full">

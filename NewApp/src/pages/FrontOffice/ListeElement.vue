@@ -29,6 +29,13 @@ const searchStatut = ref('')
 const searchLieu = ref('')
 const searchUtilisateur = ref('')
 
+const statutOptions = computed(() =>
+  [...new Set(allAssets.value.map((a) => a.statut).filter((s) => s !== '—'))].sort(),
+)
+const lieuOptions = computed(() =>
+  [...new Set(allAssets.value.map((a) => a.lieu).filter((l) => l !== '—'))].sort(),
+)
+
 const typeOptions = [
   { value: 'tous', label: 'Tous les types' },
   { value: 'Computer', label: 'Ordinateurs' },
@@ -82,15 +89,15 @@ const allAssets = computed<AssetRow[]>(() => [
 
 const filteredAssets = computed<AssetRow[]>(() => {
   const nom = searchNom.value.trim().toLowerCase()
-  const statut = searchStatut.value.trim().toLowerCase()
-  const lieu = searchLieu.value.trim().toLowerCase()
+  const statut = searchStatut.value
+  const lieu = searchLieu.value
   const user = searchUtilisateur.value.trim().toLowerCase()
 
   return allAssets.value.filter((row) => {
     if (typeFilter.value !== 'tous' && row.type !== typeFilter.value) return false
     if (nom && !row.name.toLowerCase().includes(nom)) return false
-    if (statut && !row.statut.toLowerCase().includes(statut)) return false
-    if (lieu && !row.lieu.toLowerCase().includes(lieu)) return false
+    if (statut && row.statut !== statut) return false
+    if (lieu && row.lieu !== lieu) return false
     if (user && !row.utilisateur.toLowerCase().includes(user)) return false
     return true
   })
@@ -145,9 +152,19 @@ onMounted(charger)
         </tr>
         <tr>
           <td><label>Statut</label></td>
-          <td><input v-model="searchStatut" type="text" placeholder="Recherche statut…" /></td>
+          <td>
+            <select v-model="searchStatut">
+              <option value="">Tous les statuts</option>
+              <option v-for="s in statutOptions" :key="s" :value="s">{{ s }}</option>
+            </select>
+          </td>
           <td><label>Lieu</label></td>
-          <td><input v-model="searchLieu" type="text" placeholder="Recherche lieu…" /></td>
+          <td>
+            <select v-model="searchLieu">
+              <option value="">Tous les lieux</option>
+              <option v-for="l in lieuOptions" :key="l" :value="l">{{ l }}</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td><label>Utilisateur</label></td>
