@@ -51,23 +51,19 @@ function getEndpointByItemType(itemType: string): string | null {
   return null
 }
 
-async function createAssetByType(row: AssetCsvRow): Promise<void> {
+async function createAssetByType(row: AssetCsvRow): Promise<{ id: number }> {
   const itemType = normalizeItemType(row.item_type)
 
   if (itemType === 'computer') {
     const payload = await mapCsvRowToComputerInput(row)
-
-    await createComputer(payload)
-
-    return
+    const result = await createComputer(payload)
+    return { id: (result as any).id }
   }
 
   if (itemType === 'monitor') {
     const payload = await mapCsvRowToMonitorInput(row)
-
-    await createMonitor(payload)
-
-    return
+    const result = await createMonitor(payload)
+    return { id: (result as any).id }
   }
 
   throw new Error(`Type non encore supporté : ${row.item_type}`)
@@ -105,12 +101,13 @@ export async function importAssetRows(rows: AssetCsvRow[]): Promise<ImportResult
         continue
       }
 
-      await createAssetByType(row)
+      const created = await createAssetByType(row)
 
       results.push({
         name: row.name,
         itemType: row.item_type,
         success: true,
+        existingId: created.id,
       })
     } catch (error) {
       results.push({
