@@ -1,35 +1,54 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 import { useTickets } from '@/composables/generated/useTickets'
-import {
-  getTicketStatusLabel,
-  getTicketLocationLabel,
-  getTicketRequestTypeLabel,
-  getTicketCategoryLabel,
-  getTicketRequesterName,
-  getTicketAssignedName,
-  getTicketPriorityLabel,
-  getTicketUrgencyLabel,
-  getTicketImpactLabel,
-  removeHtmlTags
-} from '@/helpers/Dashboard/Tickets'
+import { getTicketStatusLabel, getTicketPriorityLabel } from '@/helpers/Dashboard/Tickets'
 
-const { tickets, selectedTicket, loading, error, loadTickets, loadTicketById } = useTickets()
+const { tickets, loading, error, loadTickets } = useTickets()
 
 onMounted(async () => {
   await loadTickets()
-  console.log(`Nombre de tickets chargés : ${tickets.value.length}`)
 })
 
-async function selectTicket(id?: number) {
-  if (id === undefined) {
-    return
-  }
+const total = computed(() => tickets.value.length)
+const incidents = computed(() => tickets.value.filter((t) => t.type === 1))
+const requetes = computed(() => tickets.value.filter((t) => t.type === 2))
 
-  await loadTicketById(id)
-  console.log('Ticket sélectionné :', selectedTicket.value)
-}
+const countByStatus = computed(() => {
+  const map: Record<string, number> = {}
+  for (const t of tickets.value) {
+    const label = getTicketStatusLabel(t.status) ?? 'Inconnu'
+    map[label] = (map[label] ?? 0) + 1
+  }
+  return map
+})
+
+const countByPriority = computed(() => {
+  const map: Record<string, number> = {}
+  for (const t of tickets.value) {
+    const label = getTicketPriorityLabel(t.priority)
+    map[label] = (map[label] ?? 0) + 1
+  }
+  return map
+})
+
+const countIncidentsByStatus = computed(() => {
+  const map: Record<string, number> = {}
+  for (const t of incidents.value) {
+    const label = getTicketStatusLabel(t.status) ?? 'Inconnu'
+    map[label] = (map[label] ?? 0) + 1
+  }
+  return map
+})
+
+const countRequetesByStatus = computed(() => {
+  const map: Record<string, number> = {}
+  for (const t of requetes.value) {
+    const label = getTicketStatusLabel(t.status) ?? 'Inconnu'
+    map[label] = (map[label] ?? 0) + 1
+  }
+  return map
+})
 </script>
 
 <template>
@@ -38,43 +57,103 @@ async function selectTicket(id?: number) {
 
   <p v-if="loading">Chargement...</p>
   <p v-if="error">Erreur : {{ error }}</p>
-  <!-- <pre>{{ tickets }}</pre> -->
-  <!-- <pre>{{ selectedTicket }}</pre> -->
-  <a href="" v-for="ticket in tickets" :key="ticket.id" @click.prevent="selectTicket(ticket.id)">
-    {{ ticket.name }}
-    <br />
-  </a>
 
-  <!-- <div v-if="selectedTicket">
-    <h2>{{ selectedTicket.name }}</h2>
+  <div v-if="!loading && tickets.length > 0">
 
-    <p>Statut : {{ getTicketStatusLabel(selectedTicket.status) }}</p>
-    <p>Lieu : {{ getTicketLocationLabel(selectedTicket.location) }}</p>
-    <p>Type : {{ getTicketRequestTypeLabel(selectedTicket.request_type) }}</p>
-    <p>Catégorie : {{ getTicketCategoryLabel(selectedTicket.category) }}</p>
-    <p>Demandeur : {{ getTicketRequesterName(selectedTicket.team) }}</p>
-    <p>Technicien : {{ getTicketAssignedName(selectedTicket.team) }}</p>
-    <p>Priorité : {{ getTicketPriorityLabel(selectedTicket.priority) }}</p>
-    <p>Urgence : {{ getTicketUrgencyLabel(selectedTicket.urgency) }}</p>
-    <p>Impact : {{ getTicketImpactLabel(selectedTicket.impact) }}</p>
-    <p>Description : {{ removeHtmlTags(selectedTicket.content) }}</p>
-  </div> -->
+    <section>
+      <h2>Vue globale</h2>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Total</th>
+            <th>Incidents</th>
+            <th>Requêtes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ total }}</td>
+            <td>{{ incidents.length }}</td>
+            <td>{{ requetes.length }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-  <div v-if="tickets.length > 0">
-    <!-- <div v-for="ticket in tickets" :key="ticket.id">
-      <h2>{{ ticket.name }}</h2>
+    <section>
+      <h2>Statuts (tous types)</h2>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Statut</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(count, label) in countByStatus" :key="label">
+            <td>{{ label }}</td>
+            <td>{{ count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-      <p>Statut : {{ getTicketStatusLabel(ticket.status) }}</p>
-      <p>Lieu : {{ getTicketLocationLabel(ticket.location) }}</p>
-      <p>Type : {{ getTicketRequestTypeLabel(ticket.request_type) }}</p>
-      <p>Catégorie : {{ getTicketCategoryLabel(ticket.category) }}</p>
-      <p>Demandeur : {{ getTicketRequesterName(ticket.team) }}</p>
-      <p>Technicien : {{ getTicketAssignedName(ticket.team) }}</p>
-      <p>Priorité : {{ getTicketPriorityLabel(ticket.priority) }}</p>
-      <p>Urgence : {{ getTicketUrgencyLabel(ticket.urgency) }}</p>
-      <p>Impact : {{ getTicketImpactLabel(ticket.impact) }}</p>
-      <p>Description : {{ removeHtmlTags(ticket.content) }}</p>
-    </div> -->
+    <section>
+      <h2>Priorités (tous types)</h2>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Priorité</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(count, label) in countByPriority" :key="label">
+            <td>{{ label }}</td>
+            <td>{{ count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Incidents — par statut</h2>
+      <p>Total incidents : {{ incidents.length }}</p>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Statut</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(count, label) in countIncidentsByStatus" :key="label">
+            <td>{{ label }}</td>
+            <td>{{ count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Requêtes — par statut</h2>
+      <p>Total requêtes : {{ requetes.length }}</p>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Statut</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(count, label) in countRequetesByStatus" :key="label">
+            <td>{{ label }}</td>
+            <td>{{ count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
   </div>
 
   <p v-else-if="!loading">Aucun ticket trouvé.</p>

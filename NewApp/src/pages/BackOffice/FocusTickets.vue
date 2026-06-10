@@ -4,7 +4,6 @@ import AppSidebar from '@/components/layout/AppSidebar.vue'
 import { useTickets } from '@/composables/generated/useTickets'
 import {
   getTicketStatusLabel,
-  getTicketLocationLabel,
   getTicketRequestTypeLabel,
   getTicketCategoryLabel,
   getTicketRequesterName,
@@ -19,16 +18,17 @@ const { tickets, selectedTicket, loading, error, loadTickets, loadTicketById } =
 
 onMounted(async () => {
   await loadTickets()
-  console.log(`Nombre de tickets chargés : ${tickets.value.length}`)
 })
 
 async function selectTicket(id?: number) {
-  if (id === undefined) {
-    return
-  }
-
+  if (id === undefined) return
   await loadTicketById(id)
-  console.log('Ticket sélectionné :', selectedTicket.value)
+}
+
+function getTypeLabel(type?: number): string {
+  if (type === 1) return 'Incident'
+  if (type === 2) return 'Requête'
+  return 'Non renseigné'
 }
 </script>
 
@@ -38,43 +38,103 @@ async function selectTicket(id?: number) {
 
   <p v-if="loading">Chargement...</p>
   <p v-if="error">Erreur : {{ error }}</p>
-  <!-- <pre>{{ tickets }}</pre> -->
-  <!-- <pre>{{ selectedTicket }}</pre> -->
-  <a href="" v-for="ticket in tickets" :key="ticket.id" @click.prevent="selectTicket(ticket.id)">
-    {{ ticket.name }}
-    <br />
-  </a>
 
-  <div v-if="selectedTicket">
-    <h2>{{ selectedTicket.name }}</h2>
+  <div v-if="!loading && tickets.length > 0">
 
-    <p>Statut : {{ getTicketStatusLabel(selectedTicket.status) }}</p>
-    <p>Lieu : {{ getTicketLocationLabel(selectedTicket.location) }}</p>
-    <p>Type : {{ getTicketRequestTypeLabel(selectedTicket.request_type) }}</p>
-    <p>Catégorie : {{ getTicketCategoryLabel(selectedTicket.category) }}</p>
-    <p>Demandeur : {{ getTicketRequesterName(selectedTicket.team) }}</p>
-    <p>Technicien : {{ getTicketAssignedName(selectedTicket.team) }}</p>
-    <p>Priorité : {{ getTicketPriorityLabel(selectedTicket.priority) }}</p>
-    <p>Urgence : {{ getTicketUrgencyLabel(selectedTicket.urgency) }}</p>
-    <p>Impact : {{ getTicketImpactLabel(selectedTicket.impact) }}</p>
-    <p>Description : {{ removeHtmlTags(selectedTicket.content) }}</p>
-  </div>
+    <section>
+      <h2>Liste des tickets</h2>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Statut</th>
+            <th>Priorité</th>
+            <th>Date création</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="ticket in tickets"
+            :key="ticket.id"
+            :style="selectedTicket?.id === ticket.id ? 'background: #eee' : ''"
+          >
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.name }}</td>
+            <td>{{ getTypeLabel(ticket.type) }}</td>
+            <td>{{ getTicketStatusLabel(ticket.status) }}</td>
+            <td>{{ getTicketPriorityLabel(ticket.priority) }}</td>
+            <td>{{ ticket.date_creation ?? '—' }}</td>
+            <td>
+              <button @click="selectTicket(ticket.id)">Voir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-  <div v-if="tickets.length > 0">
-    <!-- <div v-for="ticket in tickets" :key="ticket.id">
-      <h2>{{ ticket.name }}</h2>
+    <section v-if="selectedTicket">
+      <h2>Fiche ticket #{{ selectedTicket.id }} — {{ selectedTicket.name }}</h2>
+      <table border="1" cellpadding="6">
+        <tbody>
+          <tr>
+            <th>Type</th>
+            <td>{{ getTypeLabel(selectedTicket.type) }}</td>
+          </tr>
+          <tr>
+            <th>Statut</th>
+            <td>{{ getTicketStatusLabel(selectedTicket.status) }}</td>
+          </tr>
+          <tr>
+            <th>Source de la demande</th>
+            <td>{{ getTicketRequestTypeLabel(selectedTicket.request_type) }}</td>
+          </tr>
+          <tr>
+            <th>Catégorie</th>
+            <td>{{ getTicketCategoryLabel(selectedTicket.category) }}</td>
+          </tr>
+          <tr>
+            <th>Priorité</th>
+            <td>{{ getTicketPriorityLabel(selectedTicket.priority) }}</td>
+          </tr>
+          <tr>
+            <th>Urgence</th>
+            <td>{{ getTicketUrgencyLabel(selectedTicket.urgency) }}</td>
+          </tr>
+          <tr>
+            <th>Impact</th>
+            <td>{{ getTicketImpactLabel(selectedTicket.impact) }}</td>
+          </tr>
+          <tr>
+            <th>Demandeur</th>
+            <td>{{ getTicketRequesterName(selectedTicket.team) }}</td>
+          </tr>
+          <tr>
+            <th>Technicien assigné</th>
+            <td>{{ getTicketAssignedName(selectedTicket.team) }}</td>
+          </tr>
+          <tr>
+            <th>Date création</th>
+            <td>{{ selectedTicket.date_creation ?? '—' }}</td>
+          </tr>
+          <tr>
+            <th>Date résolution</th>
+            <td>{{ selectedTicket.date_solve ?? '—' }}</td>
+          </tr>
+          <tr>
+            <th>Date clôture</th>
+            <td>{{ selectedTicket.date_close ?? '—' }}</td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>{{ removeHtmlTags(selectedTicket.content) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-      <p>Statut : {{ getTicketStatusLabel(ticket.status) }}</p>
-      <p>Lieu : {{ getTicketLocationLabel(ticket.location) }}</p>
-      <p>Type : {{ getTicketRequestTypeLabel(ticket.request_type) }}</p>
-      <p>Catégorie : {{ getTicketCategoryLabel(ticket.category) }}</p>
-      <p>Demandeur : {{ getTicketRequesterName(ticket.team) }}</p>
-      <p>Technicien : {{ getTicketAssignedName(ticket.team) }}</p>
-      <p>Priorité : {{ getTicketPriorityLabel(ticket.priority) }}</p>
-      <p>Urgence : {{ getTicketUrgencyLabel(ticket.urgency) }}</p>
-      <p>Impact : {{ getTicketImpactLabel(ticket.impact) }}</p>
-      <p>Description : {{ removeHtmlTags(ticket.content) }}</p>
-    </div> -->
   </div>
 
   <p v-else-if="!loading">Aucun ticket trouvé.</p>
