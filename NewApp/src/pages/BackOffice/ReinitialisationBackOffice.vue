@@ -13,6 +13,11 @@ async function reset() {
   results.value = await resetSelectedEndpoints(selectedEndpoints.value)
   console.log(results.value)
 }
+
+async function resetAll() {
+  results.value = await resetSelectedEndpoints(RESETTABLE_ENDPOINTS.map((item) => item.endpoint))
+  console.log(results.value)
+}
 </script>
 
 <template>
@@ -20,6 +25,25 @@ async function reset() {
 
   <main>
     <h1>Réinitialisation GLPI</h1>
+
+    <button @click="reset">Réinitialiser</button>
+    <button @click="resetAll">Tout réinitialiser</button>
+
+    <div v-if="results.length > 0">
+      <h2>Résultats</h2>
+
+      <ul>
+        <li v-for="result in results" :key="result.endpoint">
+          <strong>{{ result.endpoint }}</strong>
+
+          <span v-if="result.success">
+            — OK — supprimés : {{ result.deleted }} / {{ result.total }}
+          </span>
+
+          <span v-else> — Erreur — {{ result.error }} </span>
+        </li>
+      </ul>
+    </div>
 
     <ul>
       <li v-for="item in RESETTABLE_ENDPOINTS" :key="item.endpoint">
@@ -75,24 +99,6 @@ async function reset() {
           <td>{{ item.methods.join(', ') }}</td>
         </tr>
       </tbody>
-    </table>
-
-    <button @click="reset">Réinitialiser</button>
-
-    <div v-if="results.length > 0">
-      <h2>Résultats</h2>
-
-      <ul>
-        <li v-for="result in results" :key="result.endpoint">
-          <strong>{{ result.endpoint }}</strong>
-
-          <span v-if="result.success">
-            — OK — supprimés : {{ result.deleted }} / {{ result.total }}
-          </span>
-
-          <span v-else> — Erreur — {{ result.error }} </span>
-        </li>
-      </ul>
-    </div>
+    </table>    
   </main>
 </template>
