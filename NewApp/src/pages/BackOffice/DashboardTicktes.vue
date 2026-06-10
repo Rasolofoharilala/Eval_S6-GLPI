@@ -12,7 +12,7 @@ import {
   getTicketPriorityLabel,
   getTicketUrgencyLabel,
   getTicketImpactLabel,
-  removeHtmlTags,
+  removeHtmlTags
 } from '@/helpers/Dashboard/Tickets'
 
 const { tickets, selectedTicket, loading, error, loadTickets, loadTicketById } = useTickets()
@@ -45,7 +45,7 @@ async function selectTicket(id?: number) {
     <br />
   </a>
 
-  <div v-if="selectedTicket">
+  <!-- <div v-if="selectedTicket">
     <h2>{{ selectedTicket.name }}</h2>
 
     <p>Statut : {{ getTicketStatusLabel(selectedTicket.status) }}</p>
@@ -58,7 +58,7 @@ async function selectTicket(id?: number) {
     <p>Urgence : {{ getTicketUrgencyLabel(selectedTicket.urgency) }}</p>
     <p>Impact : {{ getTicketImpactLabel(selectedTicket.impact) }}</p>
     <p>Description : {{ removeHtmlTags(selectedTicket.content) }}</p>
-  </div>
+  </div> -->
 
   <div v-if="tickets.length > 0">
     <!-- <div v-for="ticket in tickets" :key="ticket.id">
