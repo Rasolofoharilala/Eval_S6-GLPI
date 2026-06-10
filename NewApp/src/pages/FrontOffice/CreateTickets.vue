@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, computed } from 'vue'
+import axios from 'axios'
 import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
 import { createTicket } from '@/services/generated/ticketService'
 import type { TicketCreatePayload } from '@/services/generated/ticketService'
@@ -10,6 +11,14 @@ import { useOlas } from '@/composables/generated/useOlas'
 import { useRequesttypes } from '@/composables/generated/useRequesttypes'
 import { useSlas } from '@/composables/generated/useSlas'
 import { useUsers } from '@/composables/generated/useUsers'
+import { useComputers } from '@/composables/generated/useComputers'
+import { useMonitors } from '@/composables/generated/useMonitors'
+import { usePrinters } from '@/composables/generated/usePrinters'
+import { useNetworkequipments } from '@/composables/generated/useNetworkequipments'
+import { usePeripherals } from '@/composables/generated/usePeripherals'
+import { usePhones } from '@/composables/generated/usePhones'
+import { glpiConfig } from '@/api/glpiConfig'
+import { getValidToken } from '@/api/tokenManager'
 
 type Level = 1 | 2 | 3 | 4 | 5
 
@@ -20,6 +29,75 @@ const { olas, loadOlas } = useOlas()
 const { requesttypes, loadRequesttypes } = useRequesttypes()
 const { slas, loadSlas } = useSlas()
 const { users, loadUsers } = useUsers()
+const { computers, loadComputers } = useComputers()
+const { monitors, loadMonitors } = useMonitors()
+const { printers, loadPrinters } = usePrinters()
+const { networkequipments, loadNetworkequipments } = useNetworkequipments()
+const { peripherals, loadPeripherals } = usePeripherals()
+const { phones, loadPhones } = usePhones()
+
+// ─── Assets unifiés pour la sélection ─────────────────────────────────────────
+
+type AssetOption = { id: number; name: string; type: string; typeLabel: string }
+
+const allAssets = computed<AssetOption[]>(() => [
+  ...computers.value.map((c) => ({ id: c.id ?? 0, name: c.name ?? '?', type: 'Computer', typeLabel: 'Ordinateur' })),
+  ...monitors.value.map((m) => ({ id: m.id ?? 0, name: m.name ?? '?', type: 'Monitor', typeLabel: 'Moniteur' })),
+  ...printers.value.map((p) => ({ id: p.id ?? 0, name: p.name ?? '?', type: 'Printer', typeLabel: 'Imprimante' })),
+  ...networkequipments.value.map((n) => ({ id: n.id ?? 0, name: n.name ?? '?', type: 'NetworkEquipment', typeLabel: 'Matériel réseau' })),
+  ...peripherals.value.map((p) => ({ id: p.id ?? 0, name: p.name ?? '?', type: 'Peripheral', typeLabel: 'Périphérique' })),
+  ...phones.value.map((p) => ({ id: p.id ?? 0, name: p.name ?? '?', type: 'Phone', typeLabel: 'Téléphone' })),
+])
+
+// Éléments sélectionnés pour le ticket (multi)
+const selectedItems = ref<AssetOption[]>([])
+const itemSearchFilter = ref('')
+const itemTypeFilter = ref('tous')
+
+const filteredAssets = computed(() => {
+  const q = itemSearchFilter.value.trim().toLowerCase()
+  return allAssets.value.filter((a) => {
+    if (itemTypeFilter.value !== 'tous' && a.type !== itemTypeFilter.value) return false
+    if (q && !a.name.toLowerCase().includes(q)) return false
+    return true
+  })
+})
+
+function toggleItem(asset: AssetOption) {
+  const idx = selectedItems.value.findIndex((s) => s.id === asset.id && s.type === asset.type)
+  if (idx >= 0) {
+    selectedItems.value.splice(idx, 1)
+  } else {
+    selectedItems.value.push(asset)
+  }
+}
+
+function isSelected(asset: AssetOption) {
+  return selectedItems.value.some((s) => s.id === asset.id && s.type === asset.type)
+}
+
+function removeItem(asset: AssetOption) {
+  selectedItems.value = selectedItems.value.filter((s) => !(s.id === asset.id && s.type === asset.type))
+}
+
+// ─── Lien asset → ticket via API v1 ──────────────────────────────────────────
+
+const v1Base = glpiConfig.apiUrl.replace(/\/v[\d.]+$/, '')
+
+async function linkItemsToTicket(ticketId: number) {
+  const token = await getValidToken()
+  for (const item of selectedItems.value) {
+    try {
+      await axios.post(
+        `${v1Base}/Item_Ticket`,
+        { input: { tickets_id: ticketId, items_id: item.id, itemtype: item.type } },
+        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } },
+      )
+    } catch {
+      // non-bloquant
+    }
+  }
+}
 
 const levels: Array<{ value: Level; label: string }> = [
   { value: 1, label: 'Très basse' },
@@ -60,10 +138,6 @@ const form = reactive({
   slaTtrId: 0,
   olaTtoId: 0,
   olaTtrId: 0,
-  associatedItemType: '',
-  associatedItemId: '',
-  linkType: 'related',
-  linkedTicketId: '',
 })
 
 const loading = ref(false)
@@ -132,22 +206,21 @@ async function handleSubmit() {
 
   try {
     const ticket = await createTicket(payload)
-    const deferredFields = [
-      selectedFiles.value.length ? 'pièces jointes' : '',
-      form.associatedItemId ? 'élément associé' : '',
-      form.linkedTicketId ? 'liaison entre tickets' : '',
-    ].filter(Boolean)
+    const ticketId = (ticket as any).id as number | undefined
 
-    success.value = `Ticket créé avec succès${ticket.id ? ` (ID ${ticket.id})` : ''}.${
-      deferredFields.length
-        ? ` À compléter via les endpoints secondaires : ${deferredFields.join(', ')}.`
-        : ''
+    if (ticketId && selectedItems.value.length > 0) {
+      await linkItemsToTicket(ticketId)
+    }
+
+    success.value = `Ticket créé avec succès${ticketId ? ` (ID ${ticketId})` : ''}${
+      selectedItems.value.length ? ` — ${selectedItems.value.length} élément(s) associé(s).` : '.'
     }`
 
     form.name = ''
     form.content = ''
     form.externalId = ''
     selectedFiles.value = []
+    selectedItems.value = []
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Erreur pendant la création du ticket'
   } finally {
@@ -164,6 +237,12 @@ onMounted(() => {
     loadRequesttypes(),
     loadSlas(),
     loadUsers(),
+    loadComputers(),
+    loadMonitors(),
+    loadPrinters(),
+    loadNetworkequipments(),
+    loadPeripherals(),
+    loadPhones(),
   ])
 })
 </script>
@@ -355,32 +434,72 @@ onMounted(() => {
         </section>
 
         <section class="panel">
-          <h2>Éléments</h2>
-          <div class="inline-fields">
+          <h2>Éléments associés</h2>
+
+          <!-- Éléments déjà sélectionnés -->
+          <div v-if="selectedItems.length > 0">
+            <p><strong>{{ selectedItems.length }} élément(s) sélectionné(s) :</strong></p>
+            <table border="1" cellpadding="4" style="width:100%;margin-bottom:10px">
+              <thead>
+                <tr><th>Type</th><th>Nom</th><th>Retirer</th></tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in selectedItems" :key="`sel-${item.type}-${item.id}`">
+                  <td>{{ item.typeLabel }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>
+                    <button type="button" @click="removeItem(item)">✕</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Filtres de recherche -->
+          <div class="inline-fields" style="margin-bottom:8px">
             <div class="field">
-              <label for="item-type">Type d'élément</label>
-              <select id="item-type" v-model="form.associatedItemType">
-                <option value="">Sélectionner</option>
-                <option value="Computer">Ordinateur</option>
-                <option value="Monitor">Moniteur</option>
-                <option value="Printer">Imprimante</option>
-                <option value="NetworkEquipment">Matériel réseau</option>
-                <option value="Phone">Téléphone</option>
-                <option value="Software">Logiciel</option>
+              <label>Type</label>
+              <select v-model="itemTypeFilter">
+                <option value="tous">Tous</option>
+                <option value="Computer">Ordinateurs</option>
+                <option value="Monitor">Moniteurs</option>
+                <option value="Printer">Imprimantes</option>
+                <option value="NetworkEquipment">Réseau</option>
+                <option value="Peripheral">Périphériques</option>
+                <option value="Phone">Téléphones</option>
               </select>
             </div>
             <div class="field">
-              <label for="item-id">ID de l'élément</label>
-              <input
-                id="item-id"
-                v-model="form.associatedItemId"
-                type="number"
-                min="1"
-                placeholder="ID GLPI"
-              />
+              <label>Recherche</label>
+              <input v-model="itemSearchFilter" type="text" placeholder="Nom…" />
             </div>
           </div>
-          <p class="helper">L'association sera réalisée après la création du ticket.</p>
+
+          <!-- Liste des assets -->
+          <table border="1" cellpadding="4" style="width:100%;max-height:220px;overflow-y:auto;display:block">
+            <thead>
+              <tr><th></th><th>Type</th><th>Nom</th></tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="asset in filteredAssets"
+                :key="`${asset.type}-${asset.id}`"
+                :style="isSelected(asset) ? 'background:#edf9f0' : ''"
+                style="cursor:pointer"
+                @click="toggleItem(asset)"
+              >
+                <td>
+                  <input type="checkbox" :checked="isSelected(asset)" @click.stop="toggleItem(asset)" />
+                </td>
+                <td>{{ asset.typeLabel }}</td>
+                <td>{{ asset.name }}</td>
+              </tr>
+              <tr v-if="filteredAssets.length === 0">
+                <td colspan="3">Aucun élément</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="helper">La liaison est envoyée après la création du ticket.</p>
         </section>
 
         <section class="panel">
@@ -417,31 +536,6 @@ onMounted(() => {
           </div>
         </section>
 
-        <section class="panel">
-          <h2>Liaisons</h2>
-          <div class="inline-fields">
-            <div class="field">
-              <label for="link-type">Relation</label>
-              <select id="link-type" v-model="form.linkType">
-                <option value="related">Lié à</option>
-                <option value="duplicate">Duplique</option>
-                <option value="parent">Parent de</option>
-                <option value="child">Enfant de</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="linked-ticket">Ticket lié</label>
-              <input
-                id="linked-ticket"
-                v-model="form.linkedTicketId"
-                type="number"
-                min="1"
-                placeholder="ID du ticket"
-              />
-            </div>
-          </div>
-          <p class="helper">La liaison sera réalisée après la création du ticket.</p>
-        </section>
       </div>
 
       <div class="form-footer">

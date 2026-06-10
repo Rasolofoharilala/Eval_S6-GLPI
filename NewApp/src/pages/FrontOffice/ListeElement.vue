@@ -2,86 +2,114 @@
 import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
 import { computed, onMounted, ref } from 'vue'
 
-import { useCables } from '@/composables/generated/useCables'
-import { useCartridges } from '@/composables/generated/useCartridges'
 import { useComputers } from '@/composables/generated/useComputers'
-import { useConsumables } from '@/composables/generated/useConsumables'
-import { useEnclosures } from '@/composables/generated/useEnclosures'
 import { useMonitors } from '@/composables/generated/useMonitors'
+import { usePrinters } from '@/composables/generated/usePrinters'
 import { useNetworkequipments } from '@/composables/generated/useNetworkequipments'
-import { usePassivedcequipments } from '@/composables/generated/usePassivedcequipments'
-import { usePdus } from '@/composables/generated/usePdus'
 import { usePeripherals } from '@/composables/generated/usePeripherals'
 import { usePhones } from '@/composables/generated/usePhones'
-import { usePrinters } from '@/composables/generated/usePrinters'
-import { useRacks } from '@/composables/generated/useRacks'
-import { useSimcards } from '@/composables/generated/useSimcards'
 import { useSoftwares } from '@/composables/generated/useSoftwares'
-import { useUnmanageds } from '@/composables/generated/useUnmanageds'
+
+const { computers, loadComputers } = useComputers()
+const { monitors, loadMonitors } = useMonitors()
+const { printers, loadPrinters } = usePrinters()
+const { networkequipments, loadNetworkequipments } = useNetworkequipments()
+const { peripherals, loadPeripherals } = usePeripherals()
+const { phones, loadPhones } = usePhones()
+const { softwares, loadSoftwares } = useSoftwares()
 
 const loading = ref(false)
 const error = ref('')
 
-const { computers, loadComputers } = useComputers()
-const { monitors, loadMonitors } = useMonitors()
-const { softwares, loadSoftwares } = useSoftwares()
-const { networkequipments, loadNetworkequipments } = useNetworkequipments()
-const { peripherals, loadPeripherals } = usePeripherals()
-const { printers, loadPrinters } = usePrinters()
-const { cartridges, loadCartridges } = useCartridges()
-const { consumables, loadConsumables } = useConsumables()
-const { phones, loadPhones } = usePhones()
-const { racks, loadRacks } = useRacks()
-const { enclosures, loadEnclosures } = useEnclosures()
-const { pdus, loadPdus } = usePdus()
-const { passivedcequipments, loadPassivedcequipments } = usePassivedcequipments()
-const { unmanageds, loadUnmanageds } = useUnmanageds()
-const { cables, loadCables } = useCables()
-const { simcards, loadSimcards } = useSimcards()
+// ─── Filtres ─────────────────────────────────────────────────────────────────
 
-const assetCounts = computed(() => [
-  { label: 'Ordinateurs', count: computers.value.length },
-  { label: 'Moniteurs', count: monitors.value.length },
-  { label: 'Logiciels', count: softwares.value.length },
-  { label: 'Matériels réseau', count: networkequipments.value.length },
-  { label: 'Périphériques', count: peripherals.value.length },
-  { label: 'Imprimantes', count: printers.value.length },
-  { label: 'Cartouches', count: cartridges.value.length },
-  { label: 'Consommables', count: consumables.value.length },
-  { label: 'Téléphones', count: phones.value.length },
-  { label: 'Baies', count: racks.value.length },
-  { label: 'Châssis', count: enclosures.value.length },
-  { label: 'PDU', count: pdus.value.length },
-  { label: 'Équipements passifs', count: passivedcequipments.value.length },
-  { label: 'Actifs non gérés', count: unmanageds.value.length },
-  { label: 'Câbles', count: cables.value.length },
-  { label: 'Cartes SIM', count: simcards.value.length },
+const typeFilter = ref('tous')
+const searchNom = ref('')
+const searchStatut = ref('')
+const searchLieu = ref('')
+const searchUtilisateur = ref('')
+
+const typeOptions = [
+  { value: 'tous', label: 'Tous les types' },
+  { value: 'Computer', label: 'Ordinateurs' },
+  { value: 'Monitor', label: 'Moniteurs' },
+  { value: 'Printer', label: 'Imprimantes' },
+  { value: 'NetworkEquipment', label: 'Matériels réseau' },
+  { value: 'Peripheral', label: 'Périphériques' },
+  { value: 'Phone', label: 'Téléphones' },
+  { value: 'Software', label: 'Logiciels' },
+]
+
+// ─── Liste unifiée ───────────────────────────────────────────────────────────
+
+type AssetRow = {
+  id: number
+  type: string
+  typeLabel: string
+  name: string
+  statut: string
+  lieu: string
+  utilisateur: string
+  fabricant: string
+  modele: string
+  numero: string
+}
+
+function toRow(item: any, type: string, typeLabel: string): AssetRow {
+  return {
+    id: item.id ?? 0,
+    type,
+    typeLabel,
+    name: item.name ?? '—',
+    statut: item.status?.name ?? '—',
+    lieu: item.location?.completename ?? item.location?.name ?? '—',
+    utilisateur: [item.user?.firstname, item.user?.realname].filter(Boolean).join(' ') || item.user?.username || '—',
+    fabricant: item.manufacturer?.name ?? '—',
+    modele: item.model?.name ?? '—',
+    numero: item.otherserial ?? item.serial ?? '—',
+  }
+}
+
+const allAssets = computed<AssetRow[]>(() => [
+  ...computers.value.map((c) => toRow(c, 'Computer', 'Ordinateur')),
+  ...monitors.value.map((m) => toRow(m, 'Monitor', 'Moniteur')),
+  ...printers.value.map((p) => toRow(p, 'Printer', 'Imprimante')),
+  ...networkequipments.value.map((n) => toRow(n, 'NetworkEquipment', 'Matériel réseau')),
+  ...peripherals.value.map((p) => toRow(p, 'Peripheral', 'Périphérique')),
+  ...phones.value.map((p) => toRow(p, 'Phone', 'Téléphone')),
+  ...softwares.value.map((s) => toRow(s, 'Software', 'Logiciel')),
 ])
 
-const globalCount = computed(() => assetCounts.value.reduce((total, item) => total + item.count, 0))
+const filteredAssets = computed<AssetRow[]>(() => {
+  const nom = searchNom.value.trim().toLowerCase()
+  const statut = searchStatut.value.trim().toLowerCase()
+  const lieu = searchLieu.value.trim().toLowerCase()
+  const user = searchUtilisateur.value.trim().toLowerCase()
 
-async function loadDashboard() {
+  return allAssets.value.filter((row) => {
+    if (typeFilter.value !== 'tous' && row.type !== typeFilter.value) return false
+    if (nom && !row.name.toLowerCase().includes(nom)) return false
+    if (statut && !row.statut.toLowerCase().includes(statut)) return false
+    if (lieu && !row.lieu.toLowerCase().includes(lieu)) return false
+    if (user && !row.utilisateur.toLowerCase().includes(user)) return false
+    return true
+  })
+})
+
+// ─── Chargement ──────────────────────────────────────────────────────────────
+
+async function charger() {
   loading.value = true
   error.value = ''
-
   try {
     await Promise.all([
       loadComputers(),
       loadMonitors(),
-      loadSoftwares(),
+      loadPrinters(),
       loadNetworkequipments(),
       loadPeripherals(),
-      loadPrinters(),
-      loadCartridges(),
-      loadConsumables(),
       loadPhones(),
-      loadRacks(),
-      loadEnclosures(),
-      loadPdus(),
-      loadPassivedcequipments(),
-      loadUnmanageds(),
-      loadCables(),
-      loadSimcards(),
+      loadSoftwares(),
     ])
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Erreur inconnue'
@@ -90,18 +118,81 @@ async function loadDashboard() {
   }
 }
 
-onMounted(() => {
-  loadDashboard()
-})
+onMounted(charger)
 </script>
+
 <template>
   <AppSidebarFO />
-  <h1>Liste des éléments:</h1>
-  <p>Nombre des elements: {{ globalCount }}</p>
-  <select name="equipements">
-    <option value="ordinateurs" v-for="temp_assetCounts in assetCounts" :key="temp_assetCounts">
-      {{ temp_assetCounts.label }} : {{ temp_assetCounts.count }}
-    </option>
-  </select>
+  <main>
+    <h1>Liste des éléments</h1>
+    <p v-if="loading">Chargement…</p>
+    <p v-if="error" style="color:red">{{ error }}</p>
+
+    <!-- Filtres -->
+    <table border="0" cellpadding="4">
+      <tbody>
+        <tr>
+          <td><label>Type</label></td>
+          <td>
+            <select v-model="typeFilter">
+              <option v-for="opt in typeOptions" :key="opt.value" :value="opt.value">
+                {{ opt.label }}
+              </option>
+            </select>
+          </td>
+          <td><label>Nom</label></td>
+          <td><input v-model="searchNom" type="text" placeholder="Recherche nom…" /></td>
+        </tr>
+        <tr>
+          <td><label>Statut</label></td>
+          <td><input v-model="searchStatut" type="text" placeholder="Recherche statut…" /></td>
+          <td><label>Lieu</label></td>
+          <td><input v-model="searchLieu" type="text" placeholder="Recherche lieu…" /></td>
+        </tr>
+        <tr>
+          <td><label>Utilisateur</label></td>
+          <td><input v-model="searchUtilisateur" type="text" placeholder="Recherche utilisateur…" /></td>
+          <td></td>
+          <td>
+            <span>{{ filteredAssets.length }} / {{ allAssets.length }} élément(s)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Tableau des éléments -->
+    <table border="1" cellpadding="4">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Nom</th>
+          <th>Statut</th>
+          <th>Lieu</th>
+          <th>Utilisateur</th>
+          <th>Fabricant</th>
+          <th>Modèle</th>
+          <th>N° inventaire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-if="filteredAssets.length === 0">
+          <td colspan="9">Aucun élément trouvé</td>
+        </tr>
+        <tr v-for="row in filteredAssets" :key="`${row.type}-${row.id}`">
+          <td>{{ row.id }}</td>
+          <td>{{ row.typeLabel }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.statut }}</td>
+          <td>{{ row.lieu }}</td>
+          <td>{{ row.utilisateur }}</td>
+          <td>{{ row.fabricant }}</td>
+          <td>{{ row.modele }}</td>
+          <td>{{ row.numero }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
 </template>
+
 <style scoped></style>
