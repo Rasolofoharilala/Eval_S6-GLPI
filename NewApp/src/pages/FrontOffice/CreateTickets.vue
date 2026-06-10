@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, computed } from 'vue'
-import axios from 'axios'
 import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
 import { createTicket } from '@/services/generated/ticketService'
 import type { TicketCreatePayload } from '@/services/generated/ticketService'
@@ -17,8 +16,7 @@ import { usePrinters } from '@/composables/generated/usePrinters'
 import { useNetworkequipments } from '@/composables/generated/useNetworkequipments'
 import { usePeripherals } from '@/composables/generated/usePeripherals'
 import { usePhones } from '@/composables/generated/usePhones'
-import { glpiConfig } from '@/api/glpiConfig'
-import { getValidToken } from '@/api/tokenManager'
+import { httpClient } from '@/api/httpClient'
 
 type Level = 1 | 2 | 3 | 4 | 5
 
@@ -80,22 +78,42 @@ function removeItem(asset: AssetOption) {
   selectedItems.value = selectedItems.value.filter((s) => !(s.id === asset.id && s.type === asset.type))
 }
 
-// ─── Lien asset → ticket via API v1 ──────────────────────────────────────────
+// ─── Acteurs via POST /Assistance/Ticket/{id}/TeamMember ─────────────────────
+// L'API v2 ignore le champ "team" du POST initial — il faut des appels séparés.
 
-const v1Base = glpiConfig.apiUrl.replace(/\/v[\d.]+$/, '')
+async function addTeamMembers(ticketId: number) {
+  const members: Array<{ role: 'requester' | 'observer' | 'assigned'; userId: number }> = []
+  if (form.requesterId) members.push({ role: 'requester', userId: form.requesterId })
+  if (form.observerId) members.push({ role: 'observer', userId: form.observerId })
+  if (form.assignedId) members.push({ role: 'assigned', userId: form.assignedId })
 
-async function linkItemsToTicket(ticketId: number) {
-  const token = await getValidToken()
-  for (const item of selectedItems.value) {
+  for (const m of members) {
     try {
-      await axios.post(
-        `${v1Base}/Item_Ticket`,
-        { input: { tickets_id: ticketId, items_id: item.id, itemtype: item.type } },
-        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } },
-      )
+      await httpClient.post(`/Assistance/Ticket/${ticketId}/TeamMember`, {
+        type: 'User',
+        id: m.userId,
+        role: m.role,
+      })
     } catch {
       // non-bloquant
     }
+  }
+}
+
+// ─── Éléments : non supporté par l'API v2 — mention dans le contenu ───────────
+// L'API v2 n'expose aucun endpoint pour créer un Item_Ticket.
+// Les éléments sélectionnés sont ajoutés en note dans un Followup après création.
+
+async function linkItemsAsFollowup(ticketId: number) {
+  if (!selectedItems.value.length) return
+  const lines = selectedItems.value.map((i) => `- ${i.typeLabel} : ${i.name} (id=${i.id})`).join('\n')
+  try {
+    await httpClient.post(`/Assistance/Ticket/${ticketId}/Timeline/Followup`, {
+      content: `Éléments associés à ce ticket :\n${lines}`,
+      is_private: false,
+    })
+  } catch {
+    // non-bloquant
   }
 }
 
@@ -172,16 +190,6 @@ async function handleSubmit() {
   error.value = ''
   success.value = ''
 
-  const team: NonNullable<TicketCreatePayload['team']> = []
-
-  if (form.observerId) {
-    team.push({ type: 'User', id: form.observerId, role: 'observer' })
-  }
-
-  if (form.assignedId) {
-    team.push({ type: 'User', id: form.assignedId, role: 'assigned' })
-  }
-
   const payload: TicketCreatePayload = {
     name: form.name.trim(),
     content: form.content.trim(),
@@ -196,8 +204,6 @@ async function handleSubmit() {
     impact: form.impact,
     priority: form.priority,
     external_id: form.externalId.trim() || undefined,
-    user_recipient: relation(form.requesterId),
-    team: team.length ? team : undefined,
     sla_tto: relation(form.slaTtoId),
     sla_ttr: relation(form.slaTtrId),
     ola_tto: relation(form.olaTtoId),
@@ -208,12 +214,15 @@ async function handleSubmit() {
     const ticket = await createTicket(payload)
     const ticketId = (ticket as any).id as number | undefined
 
-    if (ticketId && selectedItems.value.length > 0) {
-      await linkItemsToTicket(ticketId)
+    if (ticketId) {
+      // Acteurs via TeamMember (l'API ignore le champ "team" du POST)
+      await addTeamMembers(ticketId)
+      // Éléments via Followup (Item_Ticket non exposé en v2)
+      await linkItemsAsFollowup(ticketId)
     }
 
     success.value = `Ticket créé avec succès${ticketId ? ` (ID ${ticketId})` : ''}${
-      selectedItems.value.length ? ` — ${selectedItems.value.length} élément(s) associé(s).` : '.'
+      selectedItems.value.length ? ` — ${selectedItems.value.length} élément(s) mentionné(s) dans un suivi.` : '.'
     }`
 
     form.name = ''

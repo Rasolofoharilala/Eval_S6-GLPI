@@ -1,34 +1,5 @@
 import { httpClient } from '@/api/httpClient'
-import axios from 'axios'
-import { glpiConfig } from '@/api/glpiConfig'
-import { getValidToken } from '@/api/tokenManager'
 import type { TicketCsvRow, CoutCsvRow, TicketImportResult, CoutImportResult } from './ticketImportTypes'
-
-// ─── Client API v1 (Session-Token) ───────────────────────────────────────────
-// Item_Ticket et Document_Item n'existent que dans l'API GLPI v1
-
-const v1BaseUrl = glpiConfig.apiUrl.replace(/\/v[\d.]+$/, '')
-
-async function v1Post<T>(endpoint: string, body: unknown): Promise<T> {
-  const token = await getValidToken()
-  const response = await axios.post<T>(`${v1BaseUrl}${endpoint}`, body, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  return response.data
-}
-
-async function v1PostForm<T>(endpoint: string, form: FormData): Promise<T> {
-  const token = await getValidToken()
-  const response = await axios.post<T>(`${v1BaseUrl}${endpoint}`, form, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  return response.data
-}
 
 // ─── Constantes de mapping ────────────────────────────────────────────────────
 
@@ -111,18 +82,16 @@ export async function importTicketRows(
 
       ticketRegistry[ref] = ticketId
 
-      // Lier les assets au ticket via l'API v1 /Item_Ticket
+      // Lier les assets au ticket via POST /Assets/Custom/Item_Ticket (API v2)
       const itemNames = parseItems(row.items)
       for (const itemName of itemNames) {
         const asset = assetsRegistry[itemName]
         if (!asset) continue
         try {
-          await v1Post('/Item_Ticket', {
-            input: {
-              tickets_id: ticketId,
-              items_id: asset.id,
-              itemtype: asset.type,
-            },
+          await httpClient.post('/Assets/Custom/Item_Ticket', {
+            tickets_id: ticketId,
+            items_id: asset.id,
+            itemtype: asset.type,
           })
         } catch {
           // lien non-bloquant
@@ -200,7 +169,7 @@ export async function importImageFiles(
     }
 
     try {
-      // Upload du document via l'API v1 (multipart)
+      // Upload du document via API v2
       const formData = new FormData()
       formData.append('uploadManifest', JSON.stringify({
         input: {
@@ -210,18 +179,18 @@ export async function importImageFiles(
       }))
       formData.append('filename[0]', blob, filename)
 
-      const docRes = await v1PostForm<{ id: number }>('/Document', formData)
-      const docId = docRes?.id
+      const docRes = await httpClient.post<{ id: number }>('/Management/Document', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      const docId = docRes.data?.id
 
       if (!docId) throw new Error('Aucun id de document retourné')
 
-      // Lier le document à l'asset via l'API v1
-      await v1Post('/Document_Item', {
-        input: {
-          documents_id: docId,
-          items_id: asset.id,
-          itemtype: asset.type,
-        },
+      // Lier le document à l'asset via POST /Assets/Custom/Document_Item (API v2)
+      await httpClient.post('/Assets/Custom/Document_Item', {
+        documents_id: docId,
+        items_id: asset.id,
+        itemtype: asset.type,
       })
 
       results.push({ name: filename, success: true })
