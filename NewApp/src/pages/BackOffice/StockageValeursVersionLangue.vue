@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import axios from 'axios'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 import {
   getKanbanSettings,
@@ -8,9 +7,13 @@ import {
   resetKanbanSettings,
   type KanbanSetting,
 } from '@/services/kanbanSettingsService'
+import { creerLogger } from '@/utils/pageLogger'
+import { messageErreur } from '@/utils/messageErreur'
 
 // Réglages du Kanban : 3 couleurs de fond + version malgache des statuts.
 // Persistés dans SQLite via le backend Spring Boot (port 8080).
+
+const log = creerLogger('Stockage Kanban')
 
 const settings = ref<KanbanSetting[]>([])
 const loading = ref(false)
@@ -18,21 +21,17 @@ const saving = ref(false)
 const error = ref('')
 const success = ref('')
 
-function messageErreur(err: unknown, fallback: string): string {
-  if (axios.isAxiosError(err)) {
-    return (err.response?.data as { error?: string } | undefined)?.error ?? err.message
-  }
-  return err instanceof Error ? err.message : fallback
-}
-
 async function charger() {
   loading.value = true
   error.value = ''
+  log.info('Chargement des réglages Kanban…')
   try {
     settings.value = await getKanbanSettings()
-  } catch {
+    log.succes(`${settings.value.length} réglages chargés`)
+  } catch (err) {
     error.value =
       'Backend injoignable. Lancez-le avec : cd Backend && mvn spring-boot:run (port 8080).'
+    log.erreur('Échec du chargement des réglages', err)
   } finally {
     loading.value = false
   }
@@ -52,8 +51,10 @@ async function sauvegarder() {
       })),
     )
     success.value = 'Réglages enregistrés dans SQLite.'
+    log.succes('Réglages sauvegardés dans SQLite')
   } catch (err) {
-    error.value = messageErreur(err, 'Erreur pendant la sauvegarde')
+    error.value = messageErreur(err)
+    log.erreur('Échec de la sauvegarde', err)
   } finally {
     saving.value = false
   }
@@ -66,8 +67,10 @@ async function restaurerDefauts() {
   try {
     settings.value = await resetKanbanSettings()
     success.value = 'Valeurs par défaut restaurées (vaovao, efa manao, vita).'
+    log.succes('Valeurs par défaut restaurées')
   } catch (err) {
-    error.value = messageErreur(err, 'Erreur pendant la restauration')
+    error.value = messageErreur(err)
+    log.erreur('Échec de la restauration', err)
   } finally {
     saving.value = false
   }

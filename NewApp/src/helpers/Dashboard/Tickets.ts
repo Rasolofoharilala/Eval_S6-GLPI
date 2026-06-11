@@ -79,88 +79,53 @@ export function getTicketAssignedName(team: TeamMemberLike[] | undefined): strin
   return getTeamMemberName(team, 'assigned')
 }
 
+// Tables de correspondance numéro GLPI → libellé français.
+// GLPI utilise 1 à 5 partout, plus 6 (« Majeure ») pour la priorité.
+
+const PRIORITY_LABELS: Record<number, string> = {
+  1: 'Très basse',
+  2: 'Basse',
+  3: 'Moyenne',
+  4: 'Haute',
+  5: 'Très haute',
+  6: 'Majeure',
+}
+
+const URGENCY_LABELS: Record<number, string> = {
+  1: 'Très basse',
+  2: 'Basse',
+  3: 'Moyenne',
+  4: 'Haute',
+  5: 'Très haute',
+}
+
+const IMPACT_LABELS: Record<number, string> = {
+  1: 'Très bas',
+  2: 'Bas',
+  3: 'Moyen',
+  4: 'Haut',
+  5: 'Très haut',
+}
+
 export function getTicketPriorityLabel(priority?: number): string {
   if (!priority) {
     return 'Non renseigné'
   }
-
-  if (priority === 1) {
-    return 'Très basse'
-  }
-
-  if (priority === 2) {
-    return 'Basse'
-  }
-
-  if (priority === 3) {
-    return 'Moyenne'
-  }
-
-  if (priority === 4) {
-    return 'Haute'
-  }
-
-  if (priority === 5) {
-    return 'Très haute'
-  }
-
-  return `Priorité ${priority}`
+  return PRIORITY_LABELS[priority] ?? `Priorité ${priority}`
 }
 
 export function getTicketUrgencyLabel(urgency?: number): string {
   if (!urgency) {
     return 'Non renseigné'
   }
-
-  if (urgency === 1) {
-    return 'Très basse'
-  }
-
-  if (urgency === 2) {
-    return 'Basse'
-  }
-
-  if (urgency === 3) {
-    return 'Moyenne'
-  }
-
-  if (urgency === 4) {
-    return 'Haute'
-  }
-
-  if (urgency === 5) {
-    return 'Très haute'
-  }
-
-  return `Urgence ${urgency}`
+  return URGENCY_LABELS[urgency] ?? `Urgence ${urgency}`
 }
 
 export function getTicketImpactLabel(impact?: number): string {
   if (!impact) {
     return 'Non renseigné'
   }
-
-  if (impact === 1) {
-    return 'Très bas'
-  }
-
-  if (impact === 2) {
-    return 'Bas'
-  }
-
-  if (impact === 3) {
-    return 'Moyen'
-  }
-
-  if (impact === 4) {
-    return 'Haut'
-  }
-
-  if (impact === 5) {
-    return 'Très haut'
-  }
-
-  return `Impact ${impact}`
+  return IMPACT_LABELS[impact] ?? `Impact ${impact}`
 }
 
 export function removeHtmlTags(value?: string | null): string {

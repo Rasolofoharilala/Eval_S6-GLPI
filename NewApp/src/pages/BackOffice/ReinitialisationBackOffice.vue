@@ -1,21 +1,72 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RESETTABLE_ENDPOINTS } from '@/reset/resetEndpointPolicy'
-import { resetSelectedEndpoints } from '@/reset/resetService'
+import { resetSelectedEndpoints, type ResetResult } from '@/reset/resetService'
+import { creerLogger } from '@/utils/pageLogger'
+import { messageErreur } from '@/utils/messageErreur'
 
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 
-type EndpointResetOutcome = Awaited<ReturnType<typeof resetSelectedEndpoints>>[number]
+const log = creerLogger('Réinitialisation Page')
 
+// ─── État de la page ───
 const selectedEndpoints = ref<string[]>([])
-const results = ref<EndpointResetOutcome[]>([])
+const results = ref<ResetResult[]>([])
+const enCours = ref(false)
+const erreur = ref('')
+
+// ─── Lance la suppression sur une liste d'endpoints (avec confirmation) ───
+async function lancerReset(endpoints: string[]) {
+  erreur.value = ''
+
+  // Sécurité : rien de coché → on prévient et on ne fait rien
+  if (endpoints.length === 0) {
+    erreur.value = 'Aucun endpoint sélectionné.'
+    log.attention('Réinitialisation annulée : aucun endpoint sélectionné')
+    return
+  }
+
+  // Sécurité : confirmation obligatoire car la suppression est définitive
+  const confirme = window.confirm(
+    `Supprimer définitivement les éléments de ${endpoints.length} endpoint(s) ? Cette action est irréversible.`
+  )
+  if (!confirme) {
+    return
+  }
+
+  enCours.value = true
+  log.info(`Lancement de la réinitialisation : ${endpoints.join(', ')}`)
+
+  try {
+    results.value = await resetSelectedEndpoints(endpoints)
+
+    // Totaux pour le log de fin
+    let totalSupprimes = 0
+    let totalEchecs = 0
+    for (const result of results.value) {
+      totalSupprimes += result.deleted
+      totalEchecs += result.failed
+    }
+    log.succes(`Réinitialisation terminée : ${totalSupprimes} supprimé(s), ${totalEchecs} échec(s)`)
+  } catch (err) {
+    erreur.value = messageErreur(err)
+    log.erreur('Échec de la réinitialisation', err)
+  } finally {
+    enCours.value = false
+  }
+}
 
 async function reset() {
-  results.value = await resetSelectedEndpoints(selectedEndpoints.value)
+  await lancerReset(selectedEndpoints.value)
 }
 
 async function resetAll() {
-  results.value = await resetSelectedEndpoints(RESETTABLE_ENDPOINTS.map((item) => item.endpoint))
+  // On vide TOUS les endpoints autorisés
+  const tous: string[] = []
+  for (const item of RESETTABLE_ENDPOINTS) {
+    tous.push(item.endpoint)
+  }
+  await lancerReset(tous)
 }
 </script>
 
@@ -25,8 +76,14 @@ async function resetAll() {
   <main>
     <h1>Réinitialisation GLPI</h1>
 
-    <button @click="reset">Réinitialiser</button>
-    <button @click="resetAll">Tout réinitialiser</button>
+    <button :disabled="enCours" @click="reset">
+      {{ enCours ? 'Suppression en cours…' : 'Réinitialiser' }}
+    </button>
+    <button :disabled="enCours" @click="resetAll">
+      {{ enCours ? 'Suppression en cours…' : 'Tout réinitialiser' }}
+    </button>
+
+    <p v-if="erreur" style="color: red">{{ erreur }}</p>
 
     <div v-if="results.length > 0">
       <h2>Résultats</h2>
@@ -40,6 +97,10 @@ async function resetAll() {
           </span>
 
           <span v-else> — Erreur — {{ result.error }} </span>
+
+          <span v-if="result.protected > 0"> — protégés : {{ result.protected }}</span>
+
+          <span v-if="result.failed > 0" style="color: red"> — échecs : {{ result.failed }}</span>
         </li>
       </ul>
     </div>

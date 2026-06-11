@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '@/auth/authService'
+import { creerLogger } from '@/utils/pageLogger'
+
+const log = creerLogger('Connexion')
 
 const router = useRouter()
 
@@ -16,10 +19,12 @@ function handleSubmit() {
 
   if (!success) {
     error.value = 'Code incorrect'
+    log.attention('Mot de passe incorrect')
     return
   }
 
   error.value = ''
+  log.succes('Connexion réussie → /accueil')
   router.replace('/accueil')
 }
 

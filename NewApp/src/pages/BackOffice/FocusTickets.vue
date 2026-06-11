@@ -13,15 +13,26 @@ import {
   getTicketImpactLabel,
   removeHtmlTags,
 } from '@/helpers/Dashboard/Tickets'
+import { creerLogger } from '@/utils/pageLogger'
+
+const log = creerLogger('Focus Tickets')
 
 const { tickets, selectedTicket, loading, error, loadTickets, loadTicketById } = useTickets()
 
 onMounted(async () => {
+  log.info('Chargement des tickets…')
   await loadTickets()
+  // ─── Le composable remplit error.value lui-même : on vérifie après coup
+  if (error.value) {
+    log.erreur('Échec du chargement des tickets', error.value)
+  } else {
+    log.succes(`${tickets.value.length} tickets chargés`)
+  }
 })
 
 async function selectTicket(id?: number) {
   if (id === undefined) return
+  log.info(`Sélection du ticket #${id}`)
   await loadTicketById(id)
 }
 

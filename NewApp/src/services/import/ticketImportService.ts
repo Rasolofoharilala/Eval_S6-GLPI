@@ -6,6 +6,8 @@ import {
   v1LinkItemToTicket,
   v1GetTicketItems,
 } from '@/api/glpiV1Client'
+import { versItemtypeGlpi } from '@/config/parc'
+import { messageErreur } from '@/utils/messageErreur'
 import { importLogger } from './importLogger'
 import type {
   TicketCsvRow,
@@ -17,60 +19,44 @@ import type {
 
 // L'API v2 ne gère ni l'upload de fichiers, ni Document_Item, ni Item_Ticket :
 // ces trois opérations passent par l'API legacy v1 (voir glpiV1Client).
-
-const GLPI_ITEMTYPES: Record<string, string> = {
-  computer: 'Computer',
-  monitor: 'Monitor',
-  printer: 'Printer',
-  networkequipment: 'NetworkEquipment',
-  peripheral: 'Peripheral',
-  phone: 'Phone',
-  software: 'Software',
-}
-
-function toGlpiItemtype(type: string): string {
-  const normalized = type.trim().toLowerCase()
-  return GLPI_ITEMTYPES[normalized] ?? type.trim()
-}
-
-function getErrorMessage(error: unknown): string {
-  if (typeof error !== 'object' || error === null) {
-    return 'Erreur inconnue'
-  }
-
-  const err = error as {
-    response?: { data?: { title?: string; detail?: string } }
-    message?: string
-  }
-
-  return err.response?.data?.title ?? err.response?.data?.detail ?? err.message ?? 'Erreur inconnue'
-}
+// La conversion Item_Type CSV → classe GLPI vient de src/config/parc.ts.
 
 // ─── Constantes de mapping ────────────────────────────────────────────────────
 
+// Priorités GLPI : 1=Très basse, 2=Basse, 3=Moyenne, 4=Haute, 5=Très haute, 6=Majeure
 const PRIORITY_MAP: Record<string, number> = {
+  'very low': 1,
   low: 2,
   medium: 3,
   high: 4,
   'very high': 5,
+  major: 6,
+  'très basse': 1,
   basse: 2,
   moyenne: 3,
   haute: 4,
   'très haute': 5,
+  majeure: 6,
 }
 
+// Statuts GLPI : 1=Nouveau, 2=En cours (Attribué), 4=En attente, 5=Résolu, 6=Clos
 const STATUS_MAP: Record<string, number> = {
   new: 1,
   processing: 2,
+  'processing (assigned)': 2,
+  'in progress': 2,
+  'in progress (assigned)': 2,
   pending: 4,
   solved: 5,
   closed: 6,
   validation: 10,
   nouveau: 1,
   'en cours': 2,
+  'en cours (attribué)': 2,
   'en attente': 4,
   résolu: 5,
   fermé: 6,
+  clos: 6,
 }
 
 const TYPE_MAP: Record<string, number> = {
@@ -169,7 +155,7 @@ export async function importTicketRows(
           continue
         }
 
-        const itemtype = toGlpiItemtype(asset.type)
+        const itemtype = versItemtypeGlpi(asset.type)
 
         // Un seul GET /Ticket/{id}/Item_Ticket par ticket.
         if (existingLinks === null) {
@@ -205,7 +191,7 @@ export async function importTicketRows(
           } else {
             links.failed++
             importLogger.error(
-              `Ticket ${ref} : échec association « ${itemName} » → ${getErrorMessage(linkErr)}`,
+              `Ticket ${ref} : échec association « ${itemName} » → ${messageErreur(linkErr)}`,
             )
           }
         }
@@ -216,7 +202,7 @@ export async function importTicketRows(
       )
       results.push({ ref, title, success: true, links })
     } catch (err) {
-      const message = getErrorMessage(err)
+      const message = messageErreur(err)
       importLogger.error(`Ticket ${ref} : ${message}`)
       results.push({ ref, title, success: false, error: message })
     }
@@ -263,7 +249,7 @@ export async function importCoutRows(
       await httpClient.post(`/Assistance/Ticket/${ticketId}/Cost`, payload)
       results.push({ numTicket, success: true })
     } catch (err) {
-      const message = getErrorMessage(err)
+      const message = messageErreur(err)
       importLogger.error(`Coût ticket ${numTicket} : ${message}`)
       results.push({ numTicket, success: false, error: message })
     }
@@ -354,12 +340,12 @@ export async function importImageFiles(
       if (!doc.id) throw new Error('Aucun id de document retourné')
 
       // Lien document ↔ asset (onglet « Documents » de l'asset dans GLPI)
-      await v1LinkDocumentToItem(doc.id, asset.id, toGlpiItemtype(asset.type))
+      await v1LinkDocumentToItem(doc.id, asset.id, versItemtypeGlpi(asset.type))
 
       importLogger.success(`Image « ${filename} » → document ${doc.id} lié à ${baseName}`)
       results.push({ name: filename, success: true })
     } catch (err) {
-      const message = getErrorMessage(err)
+      const message = messageErreur(err)
       importLogger.error(`Image « ${filename} » : ${message}`)
       results.push({ name: filename, success: false, error: message })
     }

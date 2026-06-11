@@ -13,6 +13,7 @@ import {
   importImageFiles,
 } from '@/services/import/ticketImportService'
 import { importLogger } from '@/services/import/importLogger'
+import { messageErreur } from '@/utils/messageErreur'
 
 import type { AssetCsvRow, ImportResult } from '@/services/import/assetImportTypes'
 import type {
@@ -58,6 +59,8 @@ const csv1Rows = ref<AssetCsvRow[]>([])
 const csv2Rows = ref<TicketCsvRow[]>([])
 const csv3Rows = ref<CoutCsvRow[]>([])
 const zipImageNames = ref<string[]>([])
+
+// ─── En-têtes attendus des CSV ───────────────────────────────────────────────
 
 const CSV1_HEADERS = [
   'name',
@@ -225,11 +228,6 @@ async function toutImporter() {
     loading.value = false
     console.groupEnd()
   }
-}
-
-function messageErreur(err: unknown): string {
-  if (err instanceof Error) return err.message
-  return typeof err === 'string' ? err : 'Erreur inconnue'
 }
 
 // ─── Extraction du ZIP ───────────────────────────────────────────────────────

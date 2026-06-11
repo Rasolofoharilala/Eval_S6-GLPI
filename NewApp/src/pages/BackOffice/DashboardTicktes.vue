@@ -13,19 +13,27 @@ import {
   countLinkedItems,
   type CostAggregate,
 } from '@/services/dashboard/dashboardTicketStats'
+import type { Ticket } from '@/services/generated/ticketService'
+import { creerLogger } from '@/utils/pageLogger'
+import { messageErreur } from '@/utils/messageErreur'
+
+const log = creerLogger('Dashboard Tickets')
 
 const { tickets, loading, error, loadTickets } = useTickets()
 
-// Agrégats complémentaires (coûts + éléments liés) chargés après les tickets.
+// ─── Agrégats complémentaires (coûts + éléments liés) chargés après les tickets
 const costs = ref<CostAggregate | null>(null)
 const linkedItems = ref<number | null>(null)
 const extraLoading = ref(false)
 
 onMounted(async () => {
+  log.info('Chargement des tickets...')
   await loadTickets()
+  log.succes(tickets.value.length + ' tickets chargés')
 
-  // Une fois les tickets chargés, on enrichit avec les coûts détaillés et le
-  // nombre d'éléments liés (requêtes complémentaires, potentiellement longues).
+  // ─── On enrichit ensuite avec les coûts détaillés et le nombre d'éléments
+  // liés (requêtes complémentaires, potentiellement longues).
+  log.info('Calcul des coûts et des éléments liés...')
   extraLoading.value = true
   try {
     const [c, n] = await Promise.all([
@@ -34,6 +42,17 @@ onMounted(async () => {
     ])
     costs.value = c
     linkedItems.value = n
+    log.succes(
+      'Agrégats calculés : ' +
+        c.entries +
+        ' entrées de coût, total global ' +
+        c.totalOverall +
+        ', ' +
+        n +
+        ' éléments liés',
+    )
+  } catch (err) {
+    log.erreur('Erreur pendant le calcul des agrégats : ' + messageErreur(err), err)
   } finally {
     extraLoading.value = false
   }
@@ -43,34 +62,37 @@ const total = computed(() => tickets.value.length)
 const incidents = computed(() => tickets.value.filter((t) => t.type === 1))
 const requetes = computed(() => tickets.value.filter((t) => t.type === 2))
 
-function countBy<T extends string | number>(
-  list: typeof tickets.value,
-  keyFn: (t: (typeof tickets.value)[number]) => T,
+// ─── Compte les tickets par étiquette (statut, priorité...) : version simple
+function compterPar(
+  liste: Ticket[],
+  getEtiquette: (t: Ticket) => string,
 ): Record<string, number> {
-  const map: Record<string, number> = {}
-  for (const t of list) {
-    const label = String(keyFn(t))
-    map[label] = (map[label] ?? 0) + 1
+  const compte: Record<string, number> = {}
+  for (const t of liste) {
+    const e = getEtiquette(t)
+    compte[e] = (compte[e] ?? 0) + 1
   }
-  return map
+  return compte
 }
 
 const countByStatus = computed(() =>
-  countBy(tickets.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
+  compterPar(tickets.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
 )
 const countByPriority = computed(() =>
-  countBy(tickets.value, (t) => getTicketPriorityLabel(t.priority)),
+  compterPar(tickets.value, (t) => getTicketPriorityLabel(t.priority)),
 )
 const countByUrgency = computed(() =>
-  countBy(tickets.value, (t) => getTicketUrgencyLabel(t.urgency)),
+  compterPar(tickets.value, (t) => getTicketUrgencyLabel(t.urgency)),
 )
-const countByImpact = computed(() => countBy(tickets.value, (t) => getTicketImpactLabel(t.impact)))
+const countByImpact = computed(() =>
+  compterPar(tickets.value, (t) => getTicketImpactLabel(t.impact)),
+)
 
 const countIncidentsByStatus = computed(() =>
-  countBy(incidents.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
+  compterPar(incidents.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
 )
 const countRequetesByStatus = computed(() =>
-  countBy(requetes.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
+  compterPar(requetes.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
 )
 
 // Formatage monétaire en Ariary (séparateurs de milliers).
