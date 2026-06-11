@@ -63,7 +63,12 @@ type RawAsset = {
   name?: string | null
   status?: { name?: string | null } | null
   location?: { completename?: string | null; name?: string | null } | null
-  user?: { firstname?: string | null; realname?: string | null; username?: string | null } | null
+  user?: {
+    name?: string | null
+    firstname?: string | null
+    realname?: string | null
+    username?: string | null
+  } | null
   manufacturer?: { name?: string | null } | null
   model?: { name?: string | null } | null
   otherserial?: string | null
@@ -78,7 +83,11 @@ function toRow(item: RawAsset, type: string, typeLabel: string): AssetRow {
     name: item.name ?? '—',
     statut: item.status?.name ?? '—',
     lieu: item.location?.completename ?? item.location?.name ?? '—',
-    utilisateur: [item.user?.firstname, item.user?.realname].filter(Boolean).join(' ') || item.user?.username || '—',
+    utilisateur:
+      [item.user?.firstname, item.user?.realname].filter(Boolean).join(' ') ||
+      item.user?.name ||
+      item.user?.username ||
+      '—',
     fabricant: item.manufacturer?.name ?? '—',
     modele: item.model?.name ?? '—',
     numero: item.otherserial ?? item.serial ?? '—',
