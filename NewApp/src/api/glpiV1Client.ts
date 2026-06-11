@@ -44,14 +44,30 @@ async function withSession<T>(call: (token: string) => Promise<T>): Promise<T> {
   }
 }
 
-/** Liste les éléments d'un itemtype. Utile quand l'endpoint v2 est en erreur (ex: Cartridge/Consumable → 500). */
+/**
+ * Liste TOUS les éléments actifs d'un itemtype via l'API v1 (corbeille exclue).
+ *
+ * POURQUOI v1 ET PAS v2 : l'API v2.3 plafonne à 100 éléments ET ignore l'offset
+ * du `range` (range=100-199 renvoie les mêmes 100 premiers) — impossible donc
+ * de récupérer plus de 100 éléments. L'API v1 pagine correctement.
+ * `is_deleted=0` exclut la corbeille (l'API v1 la respecte, contrairement à v2).
+ */
 export async function v1GetAll<T = unknown>(itemtype: string): Promise<T[]> {
   return withSession(async (token) => {
-    const res = await axios.get<T[]>(`${v1Url}/${itemtype}`, {
-      headers: { 'Session-Token': token },
-      params: { range: '0-999' },
-    })
-    return Array.isArray(res.data) ? res.data : []
+    const PAGE = 100
+    const items: T[] = []
+    let start = 0
+    for (let page = 0; page < 100; page++) {
+      const res = await axios.get<T[]>(`${v1Url}/${itemtype}`, {
+        headers: { 'Session-Token': token },
+        params: { is_deleted: 0, range: `${start}-${start + PAGE - 1}` },
+      })
+      const chunk = Array.isArray(res.data) ? res.data : []
+      items.push(...chunk)
+      if (chunk.length < PAGE) break
+      start += PAGE
+    }
+    return items
   })
 }
 
@@ -65,6 +81,21 @@ export async function v1Post<T = { id: number }>(path: string, input: unknown): 
       },
     )
     return res.data
+  })
+}
+
+/**
+ * Supprime DÉFINITIVEMENT un élément (force_purge=1).
+ * L'API v2 (DELETE) ne fait que mettre en corbeille (is_deleted=true) sans jamais
+ * purger ; seule l'API v1 avec force_purge=1 supprime réellement de la base.
+ * @param itemtype classe GLPI v1 (ex: "Computer", "Ticket", "Document", "User")
+ */
+export async function v1Purge(itemtype: string, id: number): Promise<void> {
+  return withSession(async (token) => {
+    await axios.delete(`${v1Url}/${itemtype}/${id}`, {
+      headers: { 'Session-Token': token },
+      params: { force_purge: true },
+    })
   })
 }
 

@@ -11,7 +11,7 @@
 // ═════════════════════════════════════════════════════════════════════════════
 
 import { computed, ref } from 'vue'
-import { getAll } from '@/api/crudClient'
+import { getAllActifs } from '@/api/crudClient'
 import { TYPES_PARC } from '@/config/parc'
 import { messageErreur } from '@/utils/messageErreur'
 
@@ -54,13 +54,15 @@ export function useParcAssets() {
     return liste
   })
 
-  /** Charge les 5 types en parallèle (5 requêtes simultanées). */
+  /** Charge les 5 types en parallèle (5 requêtes simultanées, corbeille exclue). */
   async function chargerParc() {
     loading.value = true
     error.value = ''
 
     try {
-      const reponses = await Promise.all(TYPES_PARC.map((type) => getAll<AssetParc>(type.endpoint)))
+      const reponses = await Promise.all(
+        TYPES_PARC.map((type) => getAllActifs<AssetParc>(type.endpoint)),
+      )
 
       groupes.value = TYPES_PARC.map((type, i) => ({
         cle: type.cle,

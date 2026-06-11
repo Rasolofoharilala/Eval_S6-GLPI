@@ -40,6 +40,8 @@ const PRIORITY_MAP: Record<string, number> = {
 }
 
 // Statuts GLPI : 1=Nouveau, 2=En cours (Attribué), 4=En attente, 5=Résolu, 6=Clos
+// Un POST direct avec status={id:6} crée bien un ticket Clos visible (is_deleted=0).
+// Seuls 3 statuts apparaissent dans les imports : New, In Progress (assigned), Closed.
 const STATUS_MAP: Record<string, number> = {
   new: 1,
   processing: 2,
@@ -116,12 +118,13 @@ export async function importTicketRows(
     try {
       const isoDate = parseDate(row.date?.trim() ?? '', row.heure?.trim() ?? '')
 
+      // L'API v2 attend status comme objet {id:N}. Un POST direct avec status={id:6}
+      // crée bien un ticket Clos visible — pas besoin de PATCH en deux étapes.
       const payload = {
         name: title,
         content: row.description?.trim() ?? '',
         date: isoDate,
-        external_id: ref,
-        status: STATUS_MAP[row.status?.trim().toLowerCase()] ?? 1,
+        status: { id: STATUS_MAP[row.status?.trim().toLowerCase()] ?? 1 },
         priority: PRIORITY_MAP[row.priority?.trim().toLowerCase()] ?? 3,
         type: TYPE_MAP[row.type?.trim().toLowerCase()] ?? 1,
       }

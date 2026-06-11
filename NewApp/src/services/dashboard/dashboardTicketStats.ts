@@ -39,12 +39,16 @@ async function inBatches<T, R>(
 
 /**
  * Récupère et agrège les coûts de tous les tickets fournis.
- * Seuls les tickets ayant `costs` non vide déclenchent une requête détaillée.
+ *
+ * On interroge l'endpoint Cost de CHAQUE ticket : les tickets viennent de
+ * l'API v1 (pour contourner le plafond de 100 de l'API v2) et n'incluent donc
+ * pas de tableau `costs` permettant de pré-filtrer. Les tickets sans coût
+ * renvoient simplement une liste vide.
  */
 export async function aggregateTicketCosts(tickets: Ticket[]): Promise<CostAggregate> {
-  const withCosts = tickets.filter((t) => Array.isArray(t.costs) && t.costs.length > 0 && t.id)
+  const avecId = tickets.filter((t) => typeof t.id === 'number')
 
-  const perTicket = await inBatches(withCosts, 10, async (t) => {
+  const perTicket = await inBatches(avecId, 10, async (t) => {
     try {
       const res = await httpClient.get<TicketCostLine[]>(`/Assistance/Ticket/${t.id}/Cost`)
       return Array.isArray(res.data) ? res.data : []
@@ -78,16 +82,22 @@ export async function aggregateTicketCosts(tickets: Ticket[]): Promise<CostAggre
 
 /**
  * Compte le nombre total d'éléments (assets) liés à l'ensemble des tickets,
- * via l'API v1 (l'onglet « Éléments » n'est pas exposé par l'API v2).
+ * via l'API v1. GLPI retourne une erreur (400/404) pour les tickets sans élément :
+ * on l'ignore et on compte 0 pour ces tickets.
+ * Seuls les tickets ayant des coûts (proxy rapide pour "ticket non vide") sont interrogés
+ * en priorité ; tous les autres sont inclus aussi pour avoir le total réel.
  */
 export async function countLinkedItems(tickets: Ticket[]): Promise<number> {
   const ids = tickets.map((t) => t.id).filter((id): id is number => typeof id === 'number')
 
+  if (ids.length === 0) return 0
+
   const counts = await inBatches(ids, 10, async (id) => {
     try {
       const items = await v1GetTicketItems(id)
-      return items.length
+      return Array.isArray(items) ? items.length : 0
     } catch {
+      // 404 = ticket sans élément lié, 400 = même raison côté GLPI v1
       return 0
     }
   })

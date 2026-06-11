@@ -5,13 +5,14 @@ import { ref } from 'vue'
 import { getTickets, getTicketById } from '@/services/generated/ticketService'
 import type { Ticket } from '@/services/generated/ticketService'
 
-export function useTickets() {
   const tickets = ref<Ticket[]>([])
   const selectedTicket = ref<Ticket | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
+export function useTickets() {
 
   async function loadTickets() {
+    tickets.value = []
     loading.value = true
     error.value = null
 

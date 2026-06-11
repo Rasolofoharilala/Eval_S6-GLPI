@@ -2,11 +2,20 @@
 // SERVICE DE RÉINITIALISATION
 //
 // Vide les endpoints autorisés (voir resetEndpointPolicy.ts) :
-// on liste les éléments (GET) puis on les supprime UN PAR UN (DELETE).
+// on liste les éléments actifs (GET v2, corbeille exclue) puis on les PURGE
+// un par un via l'API v1 (force_purge=1).
+//
+// POURQUOI v1 POUR LA SUPPRESSION : l'API v2 (DELETE) ne fait que mettre en
+// corbeille (is_deleted=true) — elle ne purge JAMAIS, même avec force_purge.
+// Les éléments réapparaissent donc à chaque rechargement. Seule l'API v1 avec
+// force_purge=1 supprime réellement de la base.
+//
 // Les éléments protégés (ex : utilisateurs id ≤ 6) ne sont jamais supprimés.
 // ═════════════════════════════════════════════════════════════════════════════
 
-import { httpClient } from '@/api/httpClient'
+import axios from 'axios'
+import { getAllActifs } from '@/api/crudClient'
+import { v1Purge } from '@/api/glpiV1Client'
 import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
 import { RESETTABLE_ENDPOINTS } from './resetEndpointPolicy'
@@ -42,45 +51,42 @@ function getResetPolicy(endpoint: string) {
   return policy
 }
 
-function buildDeleteUrl(deleteTarget: string, id: number) {
-  // "/Assets/Computer/{id}" + 12 → "/Assets/Computer/12"
-  return deleteTarget.replace(/\{[^}]+\}/g, String(id))
+// Convertit un endpoint v2 ("/Assets/Computer", "/Assistance/Ticket"…) en
+// classe GLPI v1 utilisée pour la purge ("Computer", "Ticket"…).
+// La classe v1 est simplement le dernier segment du chemin.
+function versItemtypeV1(endpoint: string): string {
+  const segments = endpoint.split('/').filter(Boolean)
+  return segments[segments.length - 1] ?? endpoint
 }
 
-/** Liste les éléments d'un endpoint (sans rien supprimer). */
+/** Liste TOUS les éléments actifs d'un endpoint (paginé, corbeille exclue). */
 export async function previewReset(endpoint: string) {
-  const response = await httpClient.get(endpoint)
-
-  if (Array.isArray(response.data)) {
-    return response.data
-  }
-  if (Array.isArray(response.data?.data)) {
-    return response.data.data
-  }
-  if (Array.isArray(response.data?.results)) {
-    return response.data.results
-  }
-  return []
+  return getAllActifs<{ id?: number }>(endpoint)
 }
 
-/** Supprime UN élément (DELETE avec force=true pour ignorer la corbeille). */
+/** Purge DÉFINITIVEMENT un élément via l'API v1 (404 = déjà supprimé, ignoré). */
 export async function resetOneItem(endpoint: string, id: number) {
-  const policy = getResetPolicy(endpoint)
-  const deleteUrl = buildDeleteUrl(policy.deleteTarget, id)
+  const itemtype = versItemtypeV1(endpoint)
 
-  await httpClient.delete(deleteUrl, {
-    params: { force: true, history: false },
-  })
+  try {
+    await v1Purge(itemtype, id)
+  } catch (err) {
+    // 404 = élément déjà supprimé entre le GET et le DELETE : on l'ignore
+    if (axios.isAxiosError(err) && err.response?.status === 404) {
+      return { id, status: 'deleted' as const }
+    }
+    throw err
+  }
 
   return { id, status: 'deleted' as const }
 }
 
-/** Vide UN endpoint : liste puis supprime chaque élément non protégé. */
+/** Vide UN endpoint : liste les actifs puis purge chaque élément non protégé. */
 export async function resetEndpoint(endpoint: string): Promise<ResetResult> {
   try {
     const policy = getResetPolicy(endpoint)
     const items = await previewReset(endpoint)
-    log.info(`${endpoint} : ${items.length} élément(s) trouvé(s)`)
+    log.info(`${endpoint} : ${items.length} élément(s) actif(s) trouvé(s)`)
 
     const results: ResetItemResult[] = []
     let protectedCount = 0
@@ -107,9 +113,9 @@ export async function resetEndpoint(endpoint: string): Promise<ResetResult> {
     const failed = results.filter((item) => item.status === 'failed').length
 
     if (failed > 0) {
-      log.attention(`${endpoint} : ${deleted} supprimé(s), ${failed} échec(s)`)
+      log.attention(`${endpoint} : ${deleted} purgé(s), ${failed} échec(s)`)
     } else {
-      log.succes(`${endpoint} : ${deleted} supprimé(s), ${protectedCount} protégé(s)`)
+      log.succes(`${endpoint} : ${deleted} purgé(s), ${protectedCount} protégé(s)`)
     }
 
     return {
