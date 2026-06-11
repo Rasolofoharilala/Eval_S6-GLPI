@@ -26,8 +26,6 @@ export const referenceConfig = {
     autoCreate: true,
   },
 
-  user: {
-    endpoint: '/Administration/User',
-    autoCreate: false,
-  },
+  // Les utilisateurs ont une logique dédiée (nom complet du CSV, login généré,
+  // création automatique) : voir userEnsureService.ts
 } satisfies Record<string, GlpiReferenceConfig>

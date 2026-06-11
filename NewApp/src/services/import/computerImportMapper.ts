@@ -2,6 +2,7 @@ import type { ComputerCreatePayload } from '@/services/generated/computerService
 import type { AssetCsvRow } from './assetImportTypes'
 import { ensureReferenceByName } from './glpiEnsureService'
 import { referenceConfig } from './glpiReferenceConfig'
+import { ensureUserByFullName } from './userEnsureService'
 
 function toRelation(id?: number | null) {
   if (!id) {
@@ -38,11 +39,7 @@ export async function mapCsvRowToComputerInput(row: AssetCsvRow): Promise<Comput
     referenceConfig.computerModel.autoCreate,
   )
 
-  const user = await ensureReferenceByName(
-    referenceConfig.user.endpoint,
-    row.user,
-    referenceConfig.user.autoCreate,
-  )
+  const user = await ensureUserByFullName(row.user)
 
   return {
     name: row.name,

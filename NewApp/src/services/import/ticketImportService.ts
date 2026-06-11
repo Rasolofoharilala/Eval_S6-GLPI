@@ -1,5 +1,24 @@
 import { httpClient } from '@/api/httpClient'
+import { v1UploadDocument, v1LinkDocumentToItem, v1LinkItemToTicket } from '@/api/glpiV1Client'
 import type { TicketCsvRow, CoutCsvRow, TicketImportResult, CoutImportResult } from './ticketImportTypes'
+
+// L'API v2 ne gère ni l'upload de fichiers, ni Document_Item, ni Item_Ticket :
+// ces trois opérations passent par l'API legacy v1 (voir glpiV1Client).
+
+const GLPI_ITEMTYPES: Record<string, string> = {
+  computer: 'Computer',
+  monitor: 'Monitor',
+  printer: 'Printer',
+  networkequipment: 'NetworkEquipment',
+  peripheral: 'Peripheral',
+  phone: 'Phone',
+  software: 'Software',
+}
+
+function toGlpiItemtype(type: string): string {
+  const normalized = type.trim().toLowerCase()
+  return GLPI_ITEMTYPES[normalized] ?? type.trim()
+}
 
 function getErrorMessage(error: unknown): string {
   if (typeof error !== 'object' || error === null) {
@@ -95,17 +114,13 @@ export async function importTicketRows(
 
       ticketRegistry[ref] = ticketId
 
-      // Lier les assets au ticket via POST /Assets/Custom/Item_Ticket (API v2)
+      // Associer les assets au ticket (onglet « Éléments ») via l'API v1
       const itemNames = parseItems(row.items)
       for (const itemName of itemNames) {
         const asset = assetsRegistry[itemName]
         if (!asset) continue
         try {
-          await httpClient.post('/Assets/Custom/Item_Ticket', {
-            tickets_id: ticketId,
-            items_id: asset.id,
-            itemtype: asset.type,
-          })
+          await v1LinkItemToTicket(ticketId, asset.id, toGlpiItemtype(asset.type))
         } catch {
           // lien non-bloquant
         }
@@ -166,6 +181,18 @@ export async function importCoutRows(
 
 // ─── Import images depuis ZIP ─────────────────────────────────────────────────
 
+// GLPI vérifie le contenu réel du fichier : les images du ZIP sont des JPEG
+// parfois renommés en .png, il faut donc détecter le vrai format (magic bytes)
+// et corriger l'extension avant l'upload.
+async function detectImageExtension(blob: Blob): Promise<'png' | 'jpg' | 'gif' | null> {
+  const bytes = new Uint8Array(await blob.slice(0, 4).arrayBuffer())
+
+  if (bytes[0] === 0x89 && bytes[1] === 0x50) return 'png'
+  if (bytes[0] === 0xff && bytes[1] === 0xd8) return 'jpg'
+  if (bytes[0] === 0x47 && bytes[1] === 0x49) return 'gif'
+  return null
+}
+
 export async function importImageFiles(
   images: Record<string, Blob>,
   assetsRegistry: Record<string, { id: number; type: string }>,
@@ -182,29 +209,21 @@ export async function importImageFiles(
     }
 
     try {
-      // Upload du document via API v2
-      const formData = new FormData()
-      formData.append('uploadManifest', JSON.stringify({
-        input: {
-          name: baseName,
-          _filename: [filename],
-        },
-      }))
-      formData.append('filename[0]', blob, filename)
+      const realExt = await detectImageExtension(blob)
 
-      const docRes = await httpClient.post<{ id: number }>('/Management/Document', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      const docId = docRes.data?.id
+      if (!realExt) {
+        throw new Error('Format d’image non reconnu (ni PNG, ni JPEG, ni GIF)')
+      }
 
-      if (!docId) throw new Error('Aucun id de document retourné')
+      const uploadName = `${baseName}.${realExt}`
 
-      // Lier le document à l'asset via POST /Assets/Custom/Document_Item (API v2)
-      await httpClient.post('/Assets/Custom/Document_Item', {
-        documents_id: docId,
-        items_id: asset.id,
-        itemtype: asset.type,
-      })
+      // Upload du fichier via l'API v1 (la v2 ne gère pas les fichiers)
+      const doc = await v1UploadDocument(baseName, uploadName, blob)
+
+      if (!doc.id) throw new Error('Aucun id de document retourné')
+
+      // Lien document ↔ asset (onglet « Documents » de l'asset dans GLPI)
+      await v1LinkDocumentToItem(doc.id, asset.id, toGlpiItemtype(asset.type))
 
       results.push({ name: filename, success: true })
     } catch (err) {

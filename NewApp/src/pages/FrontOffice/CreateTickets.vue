@@ -17,6 +17,7 @@ import { useNetworkequipments } from '@/composables/generated/useNetworkequipmen
 import { usePeripherals } from '@/composables/generated/usePeripherals'
 import { usePhones } from '@/composables/generated/usePhones'
 import { httpClient } from '@/api/httpClient'
+import { v1LinkItemToTicket } from '@/api/glpiV1Client'
 
 type Level = 1 | 2 | 3 | 4 | 5
 
@@ -118,20 +119,34 @@ async function addDurationTask(ticketId: number) {
   }
 }
 
-// ─── Éléments : non supporté par l'API v2 — mention dans le contenu ───────────
-// L'API v2 n'expose aucun endpoint pour créer un Item_Ticket.
-// Les éléments sélectionnés sont ajoutés en note dans un Followup après création.
+// ─── Éléments associés ─────────────────────────────────────────────────────────
+// L'API v2 n'expose pas Item_Ticket : l'association réelle (onglet « Éléments »
+// du ticket) passe par l'API legacy v1. En cas d'échec, les éléments sont au
+// moins consignés dans un followup de la timeline.
 
-async function linkItemsAsFollowup(ticketId: number) {
+async function linkItemsToTicket(ticketId: number) {
   if (!selectedItems.value.length) return
-  const lines = selectedItems.value.map((i) => `- ${i.typeLabel} : ${i.name} (id=${i.id})`).join('\n')
-  try {
-    await httpClient.post(`/Assistance/Ticket/${ticketId}/Timeline/Followup`, {
-      content: `Éléments associés à ce ticket :\n${lines}`,
-      is_private: false,
-    })
-  } catch {
-    // non-bloquant
+
+  const failed: AssetOption[] = []
+
+  for (const item of selectedItems.value) {
+    try {
+      await v1LinkItemToTicket(ticketId, item.id, item.type)
+    } catch {
+      failed.push(item)
+    }
+  }
+
+  if (failed.length) {
+    const lines = failed.map((i) => `- ${i.typeLabel} : ${i.name} (id=${i.id})`).join('\n')
+    try {
+      await httpClient.post(`/Assistance/Ticket/${ticketId}/Timeline/Followup`, {
+        content: `Éléments associés à ce ticket :\n${lines}`,
+        is_private: false,
+      })
+    } catch {
+      // non-bloquant
+    }
   }
 }
 
@@ -235,14 +250,14 @@ async function handleSubmit() {
     if (ticketId) {
       // Acteurs via TeamMember (l'API ignore le champ "team" du POST)
       await addTeamMembers(ticketId)
-      // Éléments via Followup (Item_Ticket non exposé en v2)
-      await linkItemsAsFollowup(ticketId)
+      // Éléments réellement associés au ticket (API v1 Item_Ticket)
+      await linkItemsToTicket(ticketId)
       // Durée totale via une tâche (actiontime est readonly côté API)
       await addDurationTask(ticketId)
     }
 
     success.value = `Ticket créé avec succès${ticketId ? ` (ID ${ticketId})` : ''}${
-      selectedItems.value.length ? ` — ${selectedItems.value.length} élément(s) mentionné(s) dans un suivi.` : '.'
+      selectedItems.value.length ? ` — ${selectedItems.value.length} élément(s) associé(s).` : '.'
     }`
 
     form.name = ''
