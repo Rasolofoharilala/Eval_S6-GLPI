@@ -23,7 +23,7 @@
           </ul>
         </template>
       </li>
-      <deconnexionButton />
+      <li><deconnexionButton /></li>
     </ul>
   </aside>
 </template>
@@ -48,12 +48,8 @@ const menus = [
     label: 'Stockage valeur front office',
     children: [
       {
-        label: 'Personnalisation couleur',
-        path: '/stockageCouleur',
-      },
-      {
-        label: 'Version de langue',
-        path: '/stockageLangue',
+        label: 'Kanban : couleurs & langue (SQLite)',
+        path: '/stockage',
       },
     ],
   },

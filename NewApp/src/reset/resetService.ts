@@ -41,8 +41,6 @@ function getErrorMessage(error: unknown): string {
 }
 
 export async function previewReset(endpoint: string) {
-  console.log('Endpoint:', endpoint)
-
   const response = await httpClient.get(endpoint)
 
   if (Array.isArray(response.data)) {

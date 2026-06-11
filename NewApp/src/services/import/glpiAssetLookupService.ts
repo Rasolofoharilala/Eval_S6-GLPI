@@ -17,11 +17,14 @@ function normalizeAssets(data: unknown): ExistingAsset[] {
 
   return data
     .filter((item) => item && typeof item === 'object')
-    .map((item: any) => ({
-      id: Number(item.id),
-      name: String(item.name ?? ''),
-      otherserial: item.otherserial ? String(item.otherserial) : undefined,
-    }))
+    .map((item) => {
+      const record = item as Record<string, unknown>
+      return {
+        id: Number(record.id),
+        name: String(record.name ?? ''),
+        otherserial: record.otherserial ? String(record.otherserial) : undefined,
+      }
+    })
     .filter((item) => item.id && item.name)
 }
 

@@ -15,19 +15,26 @@ function normalizeResponse(data: unknown): GlpiReferenceItem[] {
   if (Array.isArray(data)) {
     return data
       .filter((item) => item && typeof item === 'object')
-      .map((item: any) => ({
-        id: Number(item.id),
-        name: String(item.name ?? ''),
-      }))
+      .map((item) => {
+        const record = item as Record<string, unknown>
+        return {
+          id: Number(record.id),
+          name: String(record.name ?? ''),
+        }
+      })
       .filter((item) => item.id && item.name)
   }
 
-  if (typeof data === 'object' && data !== null && Array.isArray((data as any).data)) {
-    return normalizeResponse((data as any).data)
-  }
+  if (typeof data === 'object' && data !== null) {
+    const record = data as Record<string, unknown>
 
-  if (typeof data === 'object' && data !== null && Array.isArray((data as any).results)) {
-    return normalizeResponse((data as any).results)
+    if (Array.isArray(record.data)) {
+      return normalizeResponse(record.data)
+    }
+
+    if (Array.isArray(record.results)) {
+      return normalizeResponse(record.results)
+    }
   }
 
   return []

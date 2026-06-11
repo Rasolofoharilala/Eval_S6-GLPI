@@ -210,13 +210,6 @@ const statsImages = computed(() => ({
   ok: imageResults.value.filter(r => r.success).length,
   err: imageResults.value.filter(r => !r.success).length,
 }))
-
-// Correspondance image ↔ asset (pour prévisualisation)
-function assetPresentPourImage(filename: string): boolean {
-  // On ne peut vérifier qu'après import inventaire, sinon on affiche juste le nom
-  const base = filename.substring(0, filename.lastIndexOf('.'))
-  return base in assetsRegistry.value
-}
 </script>
 
 <template>

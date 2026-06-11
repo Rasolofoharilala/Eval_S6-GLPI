@@ -1,0 +1,648 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
+import { getTickets, createTicket } from '@/services/generated/ticketService'
+import { httpClient } from '@/api/httpClient'
+import type { Ticket } from '@/services/generated/ticketService'
+import {
+  getKanbanSettings,
+  DEFAULT_KANBAN_SETTINGS,
+  type KanbanSetting,
+  type KanbanStatusKey,
+} from '@/services/kanbanSettingsService'
+
+// ─── Statuts Kanban (3 colonnes) ─────────────────────────────────────────────
+// Couleurs et libellés (FR / Malagasy) viennent du backend Spring Boot (SQLite).
+
+type KanbanStatus = 1 | 2 | 5
+
+const STATUS_KEY_TO_COLUMN: Record<KanbanStatusKey, KanbanStatus> = {
+  nouveau: 1,
+  in_progress: 2,
+  termine: 5,
+}
+
+const kanbanSettings = ref<KanbanSetting[]>(DEFAULT_KANBAN_SETTINGS)
+const lang = ref<'fr' | 'mg'>('fr')
+
+const COLUMNS = computed<{ id: KanbanStatus; label: string; color: string }[]>(() =>
+  [...kanbanSettings.value]
+    .sort((a, b) => a.position - b.position)
+    .map((s) => ({
+      id: STATUS_KEY_TO_COLUMN[s.statusKey],
+      label: lang.value === 'mg' ? s.labelMg : s.labelFr,
+      color: s.color,
+    })),
+)
+
+const STATUS_LABEL: Record<number, string> = {
+  1: 'Nouveau',
+  2: 'En cours (attribué)',
+  3: 'En cours (planifié)',
+  4: 'En attente',
+  5: 'Résolu',
+  6: 'Clos',
+  10: 'En cours',
+}
+
+// ─── État ─────────────────────────────────────────────────────────────────────
+
+const tickets = ref<Ticket[]>([])
+const loading = ref(false)
+const error = ref('')
+
+// Dialogue détail
+const detailTicket = ref<Ticket | null>(null)
+
+// Dialogue création
+const showCreateDialog = ref(false)
+const createColumnId = ref<KanbanStatus>(1)
+const newTitle = ref('')
+const newContent = ref('')
+const createLoading = ref(false)
+const createError = ref('')
+
+// Dialogue changement de statut
+const showStatusDialog = ref(false)
+const pendingDrop = ref<{ ticket: Ticket; newStatus: KanbanStatus } | null>(null)
+const statusNote = ref('')
+const statusLoading = ref(false)
+
+// DnD
+const draggingTicketId = ref<number | null>(null)
+const dragOverColumn = ref<KanbanStatus | null>(null)
+
+// ─── Computed par colonne ────────────────────────────────────────────────────
+
+function ticketsForColumn(colId: KanbanStatus): Ticket[] {
+  return tickets.value.filter((t) => {
+    const sid = t.status?.id ?? 1
+    if (colId === 1) return sid === 1
+    if (colId === 2) return sid === 2 || sid === 3 || sid === 4 || sid === 10
+    if (colId === 5) return sid === 5 || sid === 6
+    return false
+  })
+}
+
+const columnCounts = computed(() =>
+  Object.fromEntries(COLUMNS.value.map((c) => [c.id, ticketsForColumn(c.id).length])),
+)
+
+// ─── Chargement ──────────────────────────────────────────────────────────────
+
+async function charger() {
+  loading.value = true
+  error.value = ''
+  try {
+    tickets.value = await getTickets()
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Erreur inconnue'
+  } finally {
+    loading.value = false
+  }
+}
+
+async function chargerReglages() {
+  try {
+    kanbanSettings.value = await getKanbanSettings()
+  } catch {
+    // backend SQLite injoignable : on garde les valeurs par défaut
+  }
+}
+
+onMounted(() => {
+  void charger()
+  void chargerReglages()
+})
+
+// ─── Détail ───────────────────────────────────────────────────────────────────
+
+function openDetail(ticket: Ticket) {
+  detailTicket.value = ticket
+}
+
+function closeDetail() {
+  detailTicket.value = null
+}
+
+// ─── Création ────────────────────────────────────────────────────────────────
+
+function openCreate(colId: KanbanStatus) {
+  createColumnId.value = colId
+  newTitle.value = ''
+  newContent.value = ''
+  createError.value = ''
+  showCreateDialog.value = true
+}
+
+async function submitCreate() {
+  if (!newTitle.value.trim()) {
+    createError.value = 'Le titre est requis'
+    return
+  }
+  createLoading.value = true
+  createError.value = ''
+  try {
+    await createTicket({
+      name: newTitle.value.trim(),
+      content: newContent.value.trim(),
+      status: { id: createColumnId.value },
+      type: 1,
+    })
+    await charger()
+    showCreateDialog.value = false
+  } catch (err) {
+    createError.value = err instanceof Error ? err.message : 'Erreur création'
+  } finally {
+    createLoading.value = false
+  }
+}
+
+// ─── Drag & Drop ─────────────────────────────────────────────────────────────
+
+function onDragStart(ticket: Ticket) {
+  draggingTicketId.value = ticket.id ?? null
+}
+
+function onDragEnd() {
+  draggingTicketId.value = null
+  dragOverColumn.value = null
+}
+
+function onDragOver(colId: KanbanStatus, event: DragEvent) {
+  event.preventDefault()
+  dragOverColumn.value = colId
+}
+
+function onDrop(colId: KanbanStatus) {
+  dragOverColumn.value = null
+  const ticket = tickets.value.find((t) => t.id === draggingTicketId.value)
+  if (!ticket) return
+
+  const currentColId = getColumnForTicket(ticket)
+  if (currentColId === colId) return
+
+  // Toujours demander confirmation / infos supplémentaires
+  pendingDrop.value = { ticket, newStatus: colId }
+  statusNote.value = ''
+  showStatusDialog.value = true
+}
+
+function getColumnForTicket(ticket: Ticket): KanbanStatus {
+  const sid = ticket.status?.id ?? 1
+  if (sid === 1) return 1
+  if (sid === 2 || sid === 3 || sid === 4 || sid === 10) return 2
+  return 5
+}
+
+// ─── Changement de statut ────────────────────────────────────────────────────
+
+async function confirmStatusChange() {
+  if (!pendingDrop.value) return
+  const { ticket, newStatus } = pendingDrop.value
+  statusLoading.value = true
+  try {
+    await httpClient.patch(`/Assistance/Ticket/${ticket.id}`, {
+      status: { id: newStatus },
+    })
+    if (statusNote.value.trim()) {
+      await httpClient.post(`/Assistance/Ticket/${ticket.id}/Timeline/Followup`, {
+        content: statusNote.value.trim(),
+        is_private: false,
+      })
+    }
+    await charger()
+    showStatusDialog.value = false
+    pendingDrop.value = null
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Échec du changement de statut'
+    await charger()
+    showStatusDialog.value = false
+    pendingDrop.value = null
+  } finally {
+    statusLoading.value = false
+  }
+}
+
+function cancelStatusChange() {
+  showStatusDialog.value = false
+  pendingDrop.value = null
+}
+
+// ─── Helpers affichage ────────────────────────────────────────────────────────
+
+function priorityLabel(p?: number) {
+  const map: Record<number, string> = { 1: 'Très basse', 2: 'Basse', 3: 'Moyenne', 4: 'Haute', 5: 'Très haute' }
+  return p ? map[p] ?? '' : ''
+}
+
+function priorityClass(p?: number) {
+  if (p === 5 || p === 4) return 'prio-high'
+  if (p === 3) return 'prio-med'
+  return 'prio-low'
+}
+
+function formatDate(d?: string) {
+  if (!d) return '—'
+  return d.slice(0, 10)
+}
+</script>
+
+<template>
+  <AppSidebarFO />
+
+  <main class="kanban-page">
+    <header class="kanban-header">
+      <h1>Tickets — Vue Kanban</h1>
+      <button class="btn-reload" @click="charger" :disabled="loading">
+        {{ loading ? 'Chargement…' : 'Actualiser' }}
+      </button>
+      <button class="btn-reload" @click="lang = lang === 'fr' ? 'mg' : 'fr'">
+        {{ lang === 'fr' ? 'Hova amin\'ny teny malagasy' : 'Passer en français' }}
+      </button>
+    </header>
+
+    <p v-if="error" class="kanban-error">{{ error }}</p>
+
+    <!-- Board -->
+    <div class="kanban-board">
+      <div
+        v-for="col in COLUMNS"
+        :key="col.id"
+        class="kanban-col"
+        :class="{ 'drag-over': dragOverColumn === col.id }"
+        :style="{ background: col.color }"
+        @dragover="onDragOver(col.id, $event)"
+        @dragleave="dragOverColumn = null"
+        @drop="onDrop(col.id)"
+      >
+        <!-- En-tête colonne -->
+        <div class="col-header">
+          <span class="col-title">{{ col.label }}</span>
+          <span class="col-count">{{ columnCounts[col.id] }}</span>
+        </div>
+
+        <!-- Cartes -->
+        <div
+          v-for="ticket in ticketsForColumn(col.id)"
+          :key="ticket.id"
+          class="ticket-card"
+          :class="[priorityClass(ticket.priority), { dragging: draggingTicketId === ticket.id }]"
+          draggable="true"
+          @dragstart="onDragStart(ticket)"
+          @dragend="onDragEnd"
+          @click="openDetail(ticket)"
+        >
+          <div class="card-title">{{ ticket.name ?? '(sans titre)' }}</div>
+          <div class="card-meta">
+            <span v-if="ticket.priority" class="badge-prio">{{ priorityLabel(ticket.priority) }}</span>
+            <span class="card-date">{{ formatDate(ticket.date) }}</span>
+          </div>
+        </div>
+
+        <!-- Ajouter un ticket -->
+        <button class="btn-add" @click="openCreate(col.id)">+ Ajouter 1 ticket</button>
+      </div>
+    </div>
+
+    <!-- ─── Dialogue Détail ──────────────────────────────────────────────── -->
+    <div v-if="detailTicket" class="dialog-overlay" @click.self="closeDetail">
+      <div class="dialog">
+        <button class="dialog-close" @click="closeDetail">✕</button>
+        <h2>Ticket #{{ detailTicket.id }}</h2>
+        <table class="detail-table">
+          <tbody>
+            <tr><th>Titre</th><td>{{ detailTicket.name ?? '—' }}</td></tr>
+            <tr><th>Statut</th><td>{{ STATUS_LABEL[detailTicket.status?.id ?? 0] ?? '—' }}</td></tr>
+            <tr><th>Type</th><td>{{ detailTicket.type === 1 ? 'Incident' : 'Demande' }}</td></tr>
+            <tr><th>Priorité</th><td>{{ priorityLabel(detailTicket.priority) }}</td></tr>
+            <tr><th>Urgence</th><td>{{ priorityLabel(detailTicket.urgency) }}</td></tr>
+            <tr><th>Impact</th><td>{{ priorityLabel(detailTicket.impact) }}</td></tr>
+            <tr><th>Catégorie</th><td>{{ detailTicket.category?.name ?? '—' }}</td></tr>
+            <tr><th>Lieu</th><td>{{ detailTicket.location?.name ?? '—' }}</td></tr>
+            <tr><th>Date ouverture</th><td>{{ formatDate(detailTicket.date) }}</td></tr>
+            <tr><th>Date résolution</th><td>{{ formatDate(detailTicket.resolution_date) }}</td></tr>
+            <tr><th>ID externe</th><td>{{ detailTicket.external_id ?? '—' }}</td></tr>
+            <tr>
+              <th>Description</th>
+              <td><pre class="content-pre">{{ detailTicket.content ?? '—' }}</pre></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── Dialogue Création ─────────────────────────────────────────────── -->
+    <div v-if="showCreateDialog" class="dialog-overlay" @click.self="showCreateDialog = false">
+      <div class="dialog">
+        <button class="dialog-close" @click="showCreateDialog = false">✕</button>
+        <h2>Nouveau ticket — {{ COLUMNS.find((c) => c.id === createColumnId)?.label }}</h2>
+        <p v-if="createError" class="dialog-error">{{ createError }}</p>
+        <div class="field">
+          <label>Titre *</label>
+          <input v-model="newTitle" type="text" placeholder="Titre du ticket" />
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea v-model="newContent" rows="4" placeholder="Description…" />
+        </div>
+        <div class="dialog-actions">
+          <button class="btn-cancel" @click="showCreateDialog = false">Annuler</button>
+          <button class="btn-confirm" @click="submitCreate" :disabled="createLoading">
+            {{ createLoading ? 'Création…' : 'Créer' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Dialogue Changement de statut ────────────────────────────────── -->
+    <div v-if="showStatusDialog && pendingDrop" class="dialog-overlay" @click.self="cancelStatusChange">
+      <div class="dialog">
+        <button class="dialog-close" @click="cancelStatusChange">✕</button>
+        <h2>Changer le statut</h2>
+        <p>
+          Déplacer <strong>« {{ pendingDrop.ticket.name }} »</strong> vers
+          <strong>{{ COLUMNS.find((c) => c.id === pendingDrop!.newStatus)?.label }}</strong> ?
+        </p>
+        <div class="field">
+          <label>Note de suivi (optionnel)</label>
+          <textarea v-model="statusNote" rows="3" placeholder="Raison du changement, informations complémentaires…" />
+        </div>
+        <div class="dialog-actions">
+          <button class="btn-cancel" @click="cancelStatusChange">Annuler</button>
+          <button class="btn-confirm" @click="confirmStatusChange" :disabled="statusLoading">
+            {{ statusLoading ? 'Mise à jour…' : 'Confirmer' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
+
+<style scoped>
+.kanban-page {
+  padding: 1.5rem;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+.kanban-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kanban-header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.btn-reload {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+.kanban-error {
+  color: #c0392b;
+  margin-bottom: 1rem;
+}
+
+/* ─── Board ─────────────────────────────────────────────────────────────────── */
+
+.kanban-board {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.kanban-col {
+  flex: 1;
+  min-width: 220px;
+  background: #e8edf2;
+  border-radius: 10px;
+  padding: 0.75rem;
+  transition: background 0.15s;
+}
+
+.kanban-col.drag-over {
+  background: #d0dff0;
+  outline: 2px dashed #3a86d4;
+}
+
+.col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.col-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.col-count {
+  background: #c5cfd9;
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ─── Cartes ─────────────────────────────────────────────────────────────────── */
+
+.ticket-card {
+  background: white;
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.5rem;
+  cursor: grab;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-left: 4px solid #aaa;
+  transition: opacity 0.15s, box-shadow 0.15s;
+}
+
+.ticket-card:hover {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.ticket-card.dragging {
+  opacity: 0.4;
+}
+
+.ticket-card.prio-high { border-left-color: #e74c3c; }
+.ticket-card.prio-med  { border-left-color: #f39c12; }
+.ticket-card.prio-low  { border-left-color: #2ecc71; }
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+  word-break: break-word;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.badge-prio {
+  background: #eee;
+  border-radius: 4px;
+  padding: 0 0.4rem;
+}
+
+.btn-add {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.45rem;
+  border: 1px dashed #aaa;
+  border-radius: 6px;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.1s;
+}
+
+.btn-add:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* ─── Dialogues ─────────────────────────────────────────────────────────────── */
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 540px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.dialog h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #888;
+}
+
+.dialog-error {
+  color: #c0392b;
+  margin-bottom: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.9rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.field input,
+.field textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-cancel {
+  padding: 0.45rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #3a86d4;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── Table détail ───────────────────────────────────────────────────────────── */
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.detail-table th {
+  width: 35%;
+  text-align: left;
+  padding: 0.4rem 0.5rem;
+  color: #555;
+  font-weight: 600;
+  vertical-align: top;
+}
+
+.detail-table td {
+  padding: 0.4rem 0.5rem;
+  word-break: break-word;
+}
+
+.detail-table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.content-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+</style>

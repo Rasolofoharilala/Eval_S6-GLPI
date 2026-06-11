@@ -57,13 +57,13 @@ async function createAssetByType(row: AssetCsvRow): Promise<{ id: number }> {
   if (itemType === 'computer') {
     const payload = await mapCsvRowToComputerInput(row)
     const result = await createComputer(payload)
-    return { id: (result as any).id }
+    return { id: result.id ?? 0 }
   }
 
   if (itemType === 'monitor') {
     const payload = await mapCsvRowToMonitorInput(row)
     const result = await createMonitor(payload)
-    return { id: (result as any).id }
+    return { id: result.id ?? 0 }
   }
 
   throw new Error(`Type non encore supporté : ${row.item_type}`)

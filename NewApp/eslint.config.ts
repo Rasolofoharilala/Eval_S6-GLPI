@@ -15,7 +15,8 @@ export default defineConfigWithVueTs(
     files: ['**/*.{vue,ts,mts,tsx}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  // src/types/generated : schémas générés depuis le swagger, non lintés
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/src/types/generated/**']),
 
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,

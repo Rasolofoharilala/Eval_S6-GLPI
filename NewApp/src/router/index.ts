@@ -12,6 +12,7 @@ import dashboardTickets from '@/pages/BackOffice/DashboardTicktes.vue'
 import accueilFrontOffice from '@/pages/FrontOffice/AccueilFrontOffice.vue'
 import listeElement from '@/pages/FrontOffice/ListeElement.vue'
 import createTicket from '@/pages/FrontOffice/CreateTickets.vue'
+import kanbanTickets from '@/pages/FrontOffice/KanbanTickets.vue'
 import focusTickets from '@/pages/BackOffice/FocusTickets.vue'
 
 import stockage from '@/pages/BackOffice/StockageValeursVersionLangue.vue'
@@ -101,11 +102,20 @@ const router = createRouter({
       },
     },
     {
+      path: '/kanbanTickets',
+      name: 'kanbanTickets',
+      component: kanbanTickets,
+      meta: {
+        title: 'Kanban Tickets Front Office',
+      },
+    },
+    {
       path: '/focusTickets',
       name: 'focusTickets',
       component: focusTickets,
       meta: {
-        title: 'focusTickets Front Office',
+        title: 'Focus tickets Back Office',
+        requiresAuth: true,
       },
     },
     {
@@ -113,7 +123,8 @@ const router = createRouter({
       name: 'stockage',
       component: stockage,
       meta: {
-        title: 'Stockage Couleurs & Langues',
+        title: 'Personnalisation Kanban (SQLite)',
+        requiresAuth: true,
       },
     },
   ],

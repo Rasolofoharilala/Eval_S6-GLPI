@@ -1,6 +1,19 @@
 import { httpClient } from '@/api/httpClient'
 import type { TicketCsvRow, CoutCsvRow, TicketImportResult, CoutImportResult } from './ticketImportTypes'
 
+function getErrorMessage(error: unknown): string {
+  if (typeof error !== 'object' || error === null) {
+    return 'Erreur inconnue'
+  }
+
+  const err = error as {
+    response?: { data?: { title?: string; detail?: string } }
+    message?: string
+  }
+
+  return err.response?.data?.title ?? err.response?.data?.detail ?? err.message ?? 'Erreur inconnue'
+}
+
 // ─── Constantes de mapping ────────────────────────────────────────────────────
 
 const PRIORITY_MAP: Record<string, number> = {
@@ -99,12 +112,12 @@ export async function importTicketRows(
       }
 
       results.push({ ref, title, success: true })
-    } catch (err: any) {
+    } catch (err) {
       results.push({
         ref,
         title,
         success: false,
-        error: err.response?.data?.title ?? err.response?.data?.detail ?? err.message ?? 'Erreur inconnue',
+        error: getErrorMessage(err),
       })
     }
   }
@@ -139,11 +152,11 @@ export async function importCoutRows(
 
       await httpClient.post(`/Assistance/Ticket/${ticketId}/Cost`, payload)
       results.push({ numTicket, success: true })
-    } catch (err: any) {
+    } catch (err) {
       results.push({
         numTicket,
         success: false,
-        error: err.response?.data?.title ?? err.message ?? 'Erreur inconnue',
+        error: getErrorMessage(err),
       })
     }
   }
@@ -194,8 +207,8 @@ export async function importImageFiles(
       })
 
       results.push({ name: filename, success: true })
-    } catch (err: any) {
-      results.push({ name: filename, success: false, error: err.message ?? 'Erreur inconnue' })
+    } catch (err) {
+      results.push({ name: filename, success: false, error: getErrorMessage(err) })
     }
   }
 
@@ -205,9 +218,8 @@ export async function importImageFiles(
 // ─── Utilitaires privés ───────────────────────────────────────────────────────
 
 function parseDate(date: string, heure: string): string {
-  const parts = date.split('/')
-  if (parts.length === 3) {
-    const [day, month, year] = parts
+  const [day, month, year] = date.split('/')
+  if (day && month && year) {
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')} ${heure || '00:00'}:00`
   }
   return `${date} ${heure || '00:00'}:00`

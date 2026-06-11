@@ -62,7 +62,20 @@ type AssetRow = {
   numero: string
 }
 
-function toRow(item: any, type: string, typeLabel: string): AssetRow {
+// Champs communs aux différents types d'assets retournés par l'API
+type RawAsset = {
+  id?: number
+  name?: string | null
+  status?: { name?: string | null } | null
+  location?: { completename?: string | null; name?: string | null } | null
+  user?: { firstname?: string | null; realname?: string | null; username?: string | null } | null
+  manufacturer?: { name?: string | null } | null
+  model?: { name?: string | null } | null
+  otherserial?: string | null
+  serial?: string | null
+}
+
+function toRow(item: RawAsset, type: string, typeLabel: string): AssetRow {
   return {
     id: item.id ?? 0,
     type,

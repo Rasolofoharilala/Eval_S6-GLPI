@@ -2,21 +2,20 @@
 import { ref } from 'vue'
 import { AVOID_RESET_ENDPOINTS, RESETTABLE_ENDPOINTS } from '@/reset/resetEndpointPolicy'
 import { resetSelectedEndpoints } from '@/reset/resetService'
-import { parseCsvFile } from '@/services/csv/csvParser'
 
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 
+type EndpointResetOutcome = Awaited<ReturnType<typeof resetSelectedEndpoints>>[number]
+
 const selectedEndpoints = ref<string[]>([])
-const results = ref<any[]>([])
+const results = ref<EndpointResetOutcome[]>([])
 
 async function reset() {
   results.value = await resetSelectedEndpoints(selectedEndpoints.value)
-  console.log(results.value)
 }
 
 async function resetAll() {
   results.value = await resetSelectedEndpoints(RESETTABLE_ENDPOINTS.map((item) => item.endpoint))
-  console.log(results.value)
 }
 </script>
 

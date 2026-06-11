@@ -1,4 +1,4 @@
-import type { MonitorInput } from '@/types/generated'
+import type { MonitorCreatePayload } from '@/services/generated/monitorService'
 import type { AssetCsvRow } from './assetImportTypes'
 import { ensureReferenceByName } from './glpiEnsureService'
 import { referenceConfig } from './glpiReferenceConfig'
@@ -13,7 +13,7 @@ function toRelation(id?: number | null) {
   }
 }
 
-export async function mapCsvRowToMonitorInput(row: AssetCsvRow): Promise<MonitorInput> {
+export async function mapCsvRowToMonitorInput(row: AssetCsvRow): Promise<MonitorCreatePayload> {
   const status = await ensureReferenceByName(
     referenceConfig.status.endpoint,
     row.status,

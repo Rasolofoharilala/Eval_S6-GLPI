@@ -44,7 +44,7 @@ export async function parseCsvFile(file: File): Promise<CsvParseResult> {
 
   const rows = lines.map(parseCsvLine)
 
-  const headers = rows[0].map((header) => header.toLowerCase())
+  const headers = (rows[0] ?? []).map((header) => header.toLowerCase())
 
   const dataRows = rows.slice(1)
 

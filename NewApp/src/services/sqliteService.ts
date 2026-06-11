@@ -1,6 +1,7 @@
 import initSqlJs from 'sql.js'
+import type { Database } from 'sql.js'
 
-let dbInstance: any = null
+let dbInstance: Database | null = null
 
 export async function testDatabase() {
   if (dbInstance) {
@@ -30,7 +31,7 @@ export async function getTableName(): Promise<string[]> {
     return []
   }
 
-  return result[0].values.map((row) => String(row[0]))
+  return result[0].values.map((row: unknown[]) => String(row[0]))
 }
 
 export async function deleteDatabase() {

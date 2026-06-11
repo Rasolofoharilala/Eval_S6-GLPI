@@ -23,7 +23,7 @@
           </ul>
         </template>
       </li>
-      <deconnexionButton />
+      <li><deconnexionButton /></li>
     </ul>
   </aside>
 </template>
@@ -31,7 +31,13 @@
 <script setup lang="ts">
 import deconnexionButton from '@/components/common/deconnexionButton.vue'
 
-const menus = [
+type MenuEntry = {
+  label: string
+  path?: string
+  children?: { label: string; path: string }[]
+}
+
+const menus: MenuEntry[] = [
   {
     label: 'Liste des elements',
     path: '/listeElement',
@@ -39,6 +45,10 @@ const menus = [
   {
     label: 'Creation ticket',
     path: '/createTicket',
+  },
+  {
+    label: 'Kanban tickets',
+    path: '/kanbanTickets',
   },
 ]
 </script>

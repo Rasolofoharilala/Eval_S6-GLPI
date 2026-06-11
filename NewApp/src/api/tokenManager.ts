@@ -8,7 +8,6 @@ type TokenResponse = {
 }
 
 let accessToken: string | null = null
-let refreshToken: string | null = null
 let expiresAt = 0
 
 export async function generateToken(): Promise<string> {
@@ -36,7 +35,6 @@ export async function generateToken(): Promise<string> {
   const data: TokenResponse = await response.json()
 
   accessToken = data.access_token
-  refreshToken = data.refresh_token ?? null
   expiresAt = Date.now() + data.expires_in * 1000
 
   return accessToken
@@ -54,6 +52,5 @@ export async function getValidToken(): Promise<string> {
 
 export function clearToken() {
   accessToken = null
-  refreshToken = null
   expiresAt = 0
 }

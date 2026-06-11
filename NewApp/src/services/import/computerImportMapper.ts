@@ -1,4 +1,4 @@
-import type { ComputerInput } from '@/types/generated'
+import type { ComputerCreatePayload } from '@/services/generated/computerService'
 import type { AssetCsvRow } from './assetImportTypes'
 import { ensureReferenceByName } from './glpiEnsureService'
 import { referenceConfig } from './glpiReferenceConfig'
@@ -13,7 +13,7 @@ function toRelation(id?: number | null) {
   }
 }
 
-export async function mapCsvRowToComputerInput(row: AssetCsvRow): Promise<ComputerInput> {
+export async function mapCsvRowToComputerInput(row: AssetCsvRow): Promise<ComputerCreatePayload> {
   const status = await ensureReferenceByName(
     referenceConfig.status.endpoint,
     row.status,

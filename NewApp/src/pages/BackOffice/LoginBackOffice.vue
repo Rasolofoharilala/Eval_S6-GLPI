@@ -9,19 +9,21 @@ const form = ref({
   password: 'pass',
 })
 
+const error = ref('')
+
 function handleSubmit() {
   const success = login(form.value.password)
 
   if (!success) {
-    console.log('Mot de passe incorrect')
+    error.value = 'Code incorrect'
     return
   }
 
+  error.value = ''
   router.replace('/accueil')
 }
 
 const redirectFrontOffice = () => {
-  console.log('Redirect on')
   router.replace('/accueilFrontOffice')
 }
 </script>
@@ -33,6 +35,8 @@ const redirectFrontOffice = () => {
     <input id="passwordInput" v-model="form.password" type="password" />
 
     <button type="submit">Connexion</button>
+
+    <p v-if="error" style="color: red">{{ error }}</p>
   </form>
   <button @click="redirectFrontOffice">Front office</button>
 </template>

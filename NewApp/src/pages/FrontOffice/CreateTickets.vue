@@ -100,6 +100,24 @@ async function addTeamMembers(ticketId: number) {
   }
 }
 
+// ─── Durée totale ──────────────────────────────────────────────────────────────
+// L'API v2 ignore "actiontime" en POST (champ readonly). GLPI calcule la durée
+// totale du ticket comme la somme des durées de ses tâches : on crée donc une
+// tâche dans la timeline avec duration (en secondes).
+
+async function addDurationTask(ticketId: number) {
+  const minutes = parseInt(form.totalDuration)
+  if (!minutes) return
+  try {
+    await httpClient.post(`/Assistance/Ticket/${ticketId}/Timeline/Task`, {
+      content: 'Durée totale saisie à la création du ticket',
+      duration: minutes * 60,
+    })
+  } catch {
+    // non-bloquant
+  }
+}
+
 // ─── Éléments : non supporté par l'API v2 — mention dans le contenu ───────────
 // L'API v2 n'expose aucun endpoint pour créer un Item_Ticket.
 // Les éléments sélectionnés sont ajoutés en note dans un Followup après création.
@@ -203,7 +221,6 @@ async function handleSubmit() {
     urgency: form.urgency,
     impact: form.impact,
     priority: form.priority,
-    actiontime: form.totalDuration ? parseInt(form.totalDuration) * 60 : undefined,
     external_id: form.externalId.trim() || undefined,
     sla_tto: relation(form.slaTtoId),
     sla_ttr: relation(form.slaTtrId),
@@ -213,13 +230,15 @@ async function handleSubmit() {
 
   try {
     const ticket = await createTicket(payload)
-    const ticketId = (ticket as any).id as number | undefined
+    const ticketId = ticket.id
 
     if (ticketId) {
       // Acteurs via TeamMember (l'API ignore le champ "team" du POST)
       await addTeamMembers(ticketId)
       // Éléments via Followup (Item_Ticket non exposé en v2)
       await linkItemsAsFollowup(ticketId)
+      // Durée totale via une tâche (actiontime est readonly côté API)
+      await addDurationTask(ticketId)
     }
 
     success.value = `Ticket créé avec succès${ticketId ? ` (ID ${ticketId})` : ''}${
