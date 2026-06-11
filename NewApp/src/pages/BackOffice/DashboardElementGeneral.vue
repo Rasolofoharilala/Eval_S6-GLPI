@@ -3,9 +3,7 @@ import AppSidebar from '@/components/layout/AppSidebar.vue'
 import { computed, onMounted, ref } from 'vue'
 
 import { useCables } from '@/composables/generated/useCables'
-import { useCartridges } from '@/composables/generated/useCartridges'
 import { useComputers } from '@/composables/generated/useComputers'
-import { useConsumables } from '@/composables/generated/useConsumables'
 import { useEnclosures } from '@/composables/generated/useEnclosures'
 import { useMonitors } from '@/composables/generated/useMonitors'
 import { useNetworkequipments } from '@/composables/generated/useNetworkequipments'
@@ -18,9 +16,23 @@ import { useRacks } from '@/composables/generated/useRacks'
 import { useSimcards } from '@/composables/generated/useSimcards'
 import { useSoftwares } from '@/composables/generated/useSoftwares'
 import { useUnmanageds } from '@/composables/generated/useUnmanageds'
+import { v1GetAll } from '@/api/glpiV1Client'
 
 const loading = ref(false)
 const error = ref('')
+
+// /Assets/Cartridge et /Assets/Consumable renvoient 500 (bug serveur GLPI
+// 11.0.7) : ces deux compteurs passent par l'API legacy v1.
+const cartridgesCount = ref(0)
+const consumablesCount = ref(0)
+
+async function loadCartridgesV1() {
+  cartridgesCount.value = (await v1GetAll('CartridgeItem')).length
+}
+
+async function loadConsumablesV1() {
+  consumablesCount.value = (await v1GetAll('ConsumableItem')).length
+}
 
 const { computers, loadComputers } = useComputers()
 const { monitors, loadMonitors } = useMonitors()
@@ -28,8 +40,6 @@ const { softwares, loadSoftwares } = useSoftwares()
 const { networkequipments, loadNetworkequipments } = useNetworkequipments()
 const { peripherals, loadPeripherals } = usePeripherals()
 const { printers, loadPrinters } = usePrinters()
-const { cartridges, loadCartridges } = useCartridges()
-const { consumables, loadConsumables } = useConsumables()
 const { phones, loadPhones } = usePhones()
 const { racks, loadRacks } = useRacks()
 const { enclosures, loadEnclosures } = useEnclosures()
@@ -46,8 +56,8 @@ const assetCounts = computed(() => [
   { label: 'Matériels réseau', count: networkequipments.value.length },
   { label: 'Périphériques', count: peripherals.value.length },
   { label: 'Imprimantes', count: printers.value.length },
-  { label: 'Cartouches', count: cartridges.value.length },
-  { label: 'Consommables', count: consumables.value.length },
+  { label: 'Cartouches', count: cartridgesCount.value },
+  { label: 'Consommables', count: consumablesCount.value },
   { label: 'Téléphones', count: phones.value.length },
   { label: 'Baies', count: racks.value.length },
   { label: 'Châssis', count: enclosures.value.length },
@@ -72,8 +82,8 @@ async function loadDashboard() {
       loadNetworkequipments(),
       loadPeripherals(),
       loadPrinters(),
-      loadCartridges(),
-      loadConsumables(),
+      loadCartridgesV1(),
+      loadConsumablesV1(),
       loadPhones(),
       loadRacks(),
       loadEnclosures(),

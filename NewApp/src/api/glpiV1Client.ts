@@ -44,6 +44,17 @@ async function withSession<T>(call: (token: string) => Promise<T>): Promise<T> {
   }
 }
 
+/** Liste les éléments d'un itemtype. Utile quand l'endpoint v2 est en erreur (ex: Cartridge/Consumable → 500). */
+export async function v1GetAll<T = unknown>(itemtype: string): Promise<T[]> {
+  return withSession(async (token) => {
+    const res = await axios.get<T[]>(`${v1Url}/${itemtype}`, {
+      headers: { 'Session-Token': token },
+      params: { range: '0-999' },
+    })
+    return Array.isArray(res.data) ? res.data : []
+  })
+}
+
 export async function v1Post<T = { id: number }>(path: string, input: unknown): Promise<T> {
   return withSession(async (token) => {
     const res = await axios.post<T>(`${v1Url}${path}`, { input }, {
