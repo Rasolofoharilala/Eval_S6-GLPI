@@ -2,21 +2,18 @@
 import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
 import { computed, onMounted, ref } from 'vue'
 
+// Endpoints du parc : Computer, Monitor, Printer, Peripheral, Phone
 import { useComputers } from '@/composables/generated/useComputers'
 import { useMonitors } from '@/composables/generated/useMonitors'
 import { usePrinters } from '@/composables/generated/usePrinters'
-import { useNetworkequipments } from '@/composables/generated/useNetworkequipments'
 import { usePeripherals } from '@/composables/generated/usePeripherals'
 import { usePhones } from '@/composables/generated/usePhones'
-import { useSoftwares } from '@/composables/generated/useSoftwares'
 
 const { computers, loadComputers } = useComputers()
 const { monitors, loadMonitors } = useMonitors()
 const { printers, loadPrinters } = usePrinters()
-const { networkequipments, loadNetworkequipments } = useNetworkequipments()
 const { peripherals, loadPeripherals } = usePeripherals()
 const { phones, loadPhones } = usePhones()
-const { softwares, loadSoftwares } = useSoftwares()
 
 const loading = ref(false)
 const error = ref('')
@@ -41,10 +38,8 @@ const typeOptions = [
   { value: 'Computer', label: 'Ordinateurs' },
   { value: 'Monitor', label: 'Moniteurs' },
   { value: 'Printer', label: 'Imprimantes' },
-  { value: 'NetworkEquipment', label: 'Matériels réseau' },
   { value: 'Peripheral', label: 'Périphériques' },
   { value: 'Phone', label: 'Téléphones' },
-  { value: 'Software', label: 'Logiciels' },
 ]
 
 // ─── Liste unifiée ───────────────────────────────────────────────────────────
@@ -94,10 +89,8 @@ const allAssets = computed<AssetRow[]>(() => [
   ...computers.value.map((c) => toRow(c, 'Computer', 'Ordinateur')),
   ...monitors.value.map((m) => toRow(m, 'Monitor', 'Moniteur')),
   ...printers.value.map((p) => toRow(p, 'Printer', 'Imprimante')),
-  ...networkequipments.value.map((n) => toRow(n, 'NetworkEquipment', 'Matériel réseau')),
   ...peripherals.value.map((p) => toRow(p, 'Peripheral', 'Périphérique')),
   ...phones.value.map((p) => toRow(p, 'Phone', 'Téléphone')),
-  ...softwares.value.map((s) => toRow(s, 'Software', 'Logiciel')),
 ])
 
 const filteredAssets = computed<AssetRow[]>(() => {
@@ -126,10 +119,8 @@ async function charger() {
       loadComputers(),
       loadMonitors(),
       loadPrinters(),
-      loadNetworkequipments(),
       loadPeripherals(),
       loadPhones(),
-      loadSoftwares(),
     ])
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Erreur inconnue'

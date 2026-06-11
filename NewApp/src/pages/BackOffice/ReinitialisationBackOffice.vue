@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { AVOID_RESET_ENDPOINTS, RESETTABLE_ENDPOINTS } from '@/reset/resetEndpointPolicy'
+import { RESETTABLE_ENDPOINTS } from '@/reset/resetEndpointPolicy'
 import { resetSelectedEndpoints } from '@/reset/resetService'
 
 import AppSidebar from '@/components/layout/AppSidebar.vue'
@@ -54,16 +54,15 @@ async function resetAll() {
       </li>
     </ul>
 
-    <h1>LIST RESETTABLE_ENDPOINTS:</h1>
+    <h2>Endpoints réinitialisables</h2>
 
-    <table>
+    <table border="1" cellpadding="6">
       <thead>
         <tr>
           <th>endpoint</th>
           <th>deleteTarget</th>
           <th>category</th>
           <th>reason</th>
-          <th>methods</th>
         </tr>
       </thead>
 
@@ -73,29 +72,6 @@ async function resetAll() {
           <td>{{ item.deleteTarget }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.reason }}</td>
-          <td>{{ item.methods.join(', ') }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h1>LIST AVOID_RESET_ENDPOINTS:</h1>
-
-    <table>
-      <thead>
-        <tr>
-          <th>endpoint</th>
-          <th>category</th>
-          <th>reason</th>
-          <th>methods</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="item in AVOID_RESET_ENDPOINTS" :key="item.endpoint">
-          <td>{{ item.endpoint }}</td>
-          <td>{{ item.category }}</td>
-          <td>{{ item.reason }}</td>
-          <td>{{ item.methods.join(', ') }}</td>
         </tr>
       </tbody>
     </table>

@@ -77,11 +77,17 @@ export async function resetOneItem(endpoint: string, id: number) {
 }
 export async function resetEndpoint(endpoint: string) {
   try {
+    const policy = getResetPolicy(endpoint)
     const items = await previewReset(endpoint)
     const results = []
 
     for (const item of items) {
       if (!item.id) {
+        continue
+      }
+
+      // Comptes/éléments par défaut protégés (ex: utilisateurs id <= 6)
+      if (policy.protectIdsUpTo && Number(item.id) <= policy.protectIdsUpTo) {
         continue
       }
 

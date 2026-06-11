@@ -13,6 +13,8 @@ export type ResetPolicyItem = {
 
 export type ResettablePolicyItem = ResetPolicyItem & {
   deleteTarget: string
+  /** Les éléments dont l'id est <= à cette valeur ne sont jamais supprimés. */
+  protectIdsUpTo?: number
 }
 
 export type ResettablePolicyGroup = {
@@ -27,67 +29,19 @@ export type ResetPolicyGroup = {
 
 export const RESET_POLICY_META = {
   totalEndpoints: 1219,
-  resettableEndpoints: 38,
+  resettableEndpoints: 8,
   avoidedEndpoints: 1181,
   generatedFrom: ['endpoint.json', 'swagger.json'],
 } as const
 
 export const RESETTABLE_ENDPOINTS: ResettablePolicyItem[] = [
-  /* /Assets */
-  {
-    endpoint: '/Assets/Appliance',
-    deleteTarget: '/Assets/Appliance/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Cable',
-    deleteTarget: '/Assets/Cable/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Cartridge',
-    deleteTarget: '/Assets/Cartridge/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Certificate',
-    deleteTarget: '/Assets/Certificate/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
+  /* Parc */
   {
     endpoint: '/Assets/Computer',
     deleteTarget: '/Assets/Computer/{id}',
     category: 'assets',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Consumable',
-    deleteTarget: '/Assets/Consumable/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Enclosure',
-    deleteTarget: '/Assets/Enclosure/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Endpoint du parc retenu pour le reset contrôlé: GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
   {
@@ -95,47 +49,7 @@ export const RESETTABLE_ENDPOINTS: ResettablePolicyItem[] = [
     deleteTarget: '/Assets/Monitor/{id}',
     category: 'assets',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/NetworkEquipment',
-    deleteTarget: '/Assets/NetworkEquipment/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/PDU',
-    deleteTarget: '/Assets/PDU/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/PassiveDCEquipment',
-    deleteTarget: '/Assets/PassiveDCEquipment/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Peripheral',
-    deleteTarget: '/Assets/Peripheral/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Phone',
-    deleteTarget: '/Assets/Phone/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Endpoint du parc retenu pour le reset contrôlé: GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
   {
@@ -143,141 +57,32 @@ export const RESETTABLE_ENDPOINTS: ResettablePolicyItem[] = [
     deleteTarget: '/Assets/Printer/{id}',
     category: 'assets',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Endpoint du parc retenu pour le reset contrôlé: GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
   {
-    endpoint: '/Assets/Rack',
-    deleteTarget: '/Assets/Rack/{id}',
+    endpoint: '/Assets/Peripheral',
+    deleteTarget: '/Assets/Peripheral/{id}',
     category: 'assets',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Endpoint du parc retenu pour le reset contrôlé: GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
   {
-    endpoint: '/Assets/Socket',
-    deleteTarget: '/Assets/Socket/{id}',
+    endpoint: '/Assets/Phone',
+    deleteTarget: '/Assets/Phone/{id}',
     category: 'assets',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Endpoint du parc retenu pour le reset contrôlé: GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
-  {
-    endpoint: '/Assets/Software',
-    deleteTarget: '/Assets/Software/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/SoftwareLicense',
-    deleteTarget: '/Assets/SoftwareLicense/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assets/Unmanaged',
-    deleteTarget: '/Assets/Unmanaged/{id}',
-    category: 'assets',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-
-  /* /Assistance */
-  {
-    endpoint: '/Assistance/Change',
-    deleteTarget: '/Assistance/Change/{id}',
-    category: 'assistance',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Assistance/Problem',
-    deleteTarget: '/Assistance/Problem/{id}',
-    category: 'assistance',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
+  /* Tickets, documents, utilisateurs */
   {
     endpoint: '/Assistance/Ticket',
     deleteTarget: '/Assistance/Ticket/{id}',
     category: 'assistance',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-
-  /* /Knowledgebase */
-  {
-    endpoint: '/Knowledgebase/Article',
-    deleteTarget: '/Knowledgebase/Article/{article_id}',
-    category: 'knowledgebase',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-
-  /* /Management */
-  {
-    endpoint: '/Management/Budget',
-    deleteTarget: '/Management/Budget/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/Cluster',
-    deleteTarget: '/Management/Cluster/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/Contact',
-    deleteTarget: '/Management/Contact/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/Contract',
-    deleteTarget: '/Management/Contract/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/DataCenter',
-    deleteTarget: '/Management/DataCenter/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/Database',
-    deleteTarget: '/Management/Database/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/DatabaseInstance',
-    deleteTarget: '/Management/DatabaseInstance/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Tickets: GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
   {
@@ -285,66 +90,17 @@ export const RESETTABLE_ENDPOINTS: ResettablePolicyItem[] = [
     deleteTarget: '/Management/Document/{id}',
     category: 'management',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Documents (images importées comprises): GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
   {
-    endpoint: '/Management/Domain',
-    deleteTarget: '/Management/Domain/{id}',
-    category: 'management',
+    endpoint: '/Administration/User',
+    deleteTarget: '/Administration/User/{id}',
+    category: 'administration',
     reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
+      'Utilisateurs importés: les comptes par défaut (id <= 6) ne sont jamais supprimés.',
     methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/DomainRecord',
-    deleteTarget: '/Management/DomainRecord/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/License',
-    deleteTarget: '/Management/License/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/Line',
-    deleteTarget: '/Management/Line/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Management/Supplier',
-    deleteTarget: '/Management/Supplier/{id}',
-    category: 'management',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-
-  /* /Project */
-  {
-    endpoint: '/Project/',
-    deleteTarget: '/Project/{id}',
-    category: 'project',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
-  },
-  {
-    endpoint: '/Project/Task',
-    deleteTarget: '/Project/Task/{id}',
-    category: 'project',
-    reason:
-      'Collection métier sélectionnable pour un reset contrôlé: faire GET sur cet endpoint puis DELETE item par item via deleteTarget.',
-    methods: ['GET', 'POST'],
+    protectIdsUpTo: 6,
   },
 ]
 

@@ -1,0 +1,401 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GLPI Legacy REST API (v1)",
+    "description": "API legacy de GLPI (apirest.php). Utilisée par NewApp pour les opérations non couvertes par l'API v2 : upload de fichiers (Document), liens Document_Item et Item_Ticket. Référence officielle : apirest.md livré avec GLPI. Authentification : initSession (Basic auth ou user_token) puis header Session-Token sur chaque appel.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost/apirest.php"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "Uniquement pour /initSession (login:mot_de_passe GLPI)."
+      },
+      "sessionToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Session-Token",
+        "description": "Jeton retourné par /initSession, requis sur tous les autres appels."
+      },
+      "appToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "App-Token",
+        "description": "Optionnel si le client API GLPI n'impose pas de jeton applicatif (cas du client « full access from localhost »)."
+      }
+    },
+    "parameters": {
+      "itemtype": {
+        "name": "itemtype",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" },
+        "description": "Type d'objet GLPI (classe PHP) : Computer, Monitor, Printer, Peripheral, Phone, Ticket, Document, Document_Item, Item_Ticket, User, ..."
+      },
+      "id": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "integer" }
+      }
+    },
+    "schemas": {
+      "InputWrapper": {
+        "type": "object",
+        "description": "Tous les POST/PUT enveloppent les champs dans \"input\" (objet ou tableau d'objets).",
+        "properties": {
+          "input": {
+            "oneOf": [
+              { "type": "object" },
+              { "type": "array", "items": { "type": "object" } }
+            ]
+          }
+        },
+        "required": ["input"]
+      },
+      "CreatedItem": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "message": { "type": "string" }
+        }
+      },
+      "SessionToken": {
+        "type": "object",
+        "properties": {
+          "session_token": { "type": "string" }
+        }
+      },
+      "DocumentItemInput": {
+        "type": "object",
+        "description": "Corps de POST /Document_Item (lien document ↔ élément).",
+        "properties": {
+          "input": {
+            "type": "object",
+            "properties": {
+              "documents_id": { "type": "integer" },
+              "items_id": { "type": "integer" },
+              "itemtype": { "type": "string", "example": "Computer" }
+            },
+            "required": ["documents_id", "items_id", "itemtype"]
+          }
+        }
+      },
+      "ItemTicketInput": {
+        "type": "object",
+        "description": "Corps de POST /Item_Ticket (lien élément ↔ ticket, onglet « Éléments »).",
+        "properties": {
+          "input": {
+            "type": "object",
+            "properties": {
+              "tickets_id": { "type": "integer" },
+              "items_id": { "type": "integer" },
+              "itemtype": { "type": "string", "example": "Computer" }
+            },
+            "required": ["tickets_id", "items_id", "itemtype"]
+          }
+        }
+      }
+    }
+  },
+  "security": [{ "sessionToken": [] }],
+  "paths": {
+    "/initSession": {
+      "get": {
+        "summary": "Init session",
+        "description": "Ouvre une session et retourne le session_token. Auth : Basic (login:password) ou paramètre user_token.",
+        "security": [{ "basicAuth": [] }],
+        "parameters": [
+          {
+            "name": "get_full_session",
+            "in": "query",
+            "schema": { "type": "boolean" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session ouverte",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SessionToken" }
+              }
+            }
+          },
+          "400": { "description": "API désactivée ou paramètres manquants" },
+          "401": { "description": "Identifiants invalides" }
+        }
+      }
+    },
+    "/killSession": {
+      "get": {
+        "summary": "Kill session",
+        "responses": { "200": { "description": "Session fermée" } }
+      }
+    },
+    "/lostPassword": {
+      "put": {
+        "summary": "Lost password",
+        "description": "Demande ou réinitialisation de mot de passe (email + éventuel password_forget_token). Ne nécessite pas de session.",
+        "security": [],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "type": "object" } } }
+        },
+        "responses": { "200": { "description": "Email envoyé / mot de passe modifié" } }
+      }
+    },
+    "/getMyProfiles": {
+      "get": {
+        "summary": "Get my profiles",
+        "responses": { "200": { "description": "Profils de l'utilisateur connecté" } }
+      }
+    },
+    "/getActiveProfile": {
+      "get": {
+        "summary": "Get active profile",
+        "responses": { "200": { "description": "Profil actif" } }
+      }
+    },
+    "/changeActiveProfile": {
+      "post": {
+        "summary": "Change active profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": { "profiles_id": { "type": "integer" } }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Profil changé" } }
+      }
+    },
+    "/getMyEntities": {
+      "get": {
+        "summary": "Get my entities",
+        "responses": { "200": { "description": "Entités accessibles" } }
+      }
+    },
+    "/getActiveEntities": {
+      "get": {
+        "summary": "Get active entities",
+        "responses": { "200": { "description": "Entités actives" } }
+      }
+    },
+    "/changeActiveEntities": {
+      "post": {
+        "summary": "Change active entities",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entities_id": { "type": "integer" },
+                  "is_recursive": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Entité active changée" } }
+      }
+    },
+    "/getFullSession": {
+      "get": {
+        "summary": "Get full session",
+        "responses": { "200": { "description": "Contenu complet de la session PHP" } }
+      }
+    },
+    "/getGlpiConfig": {
+      "get": {
+        "summary": "Get GLPI config",
+        "responses": { "200": { "description": "Configuration publique de l'instance" } }
+      }
+    },
+    "/{itemtype}": {
+      "get": {
+        "summary": "Get all items",
+        "parameters": [
+          { "$ref": "#/components/parameters/itemtype" },
+          { "name": "range", "in": "query", "schema": { "type": "string", "example": "0-49" } },
+          { "name": "sort", "in": "query", "schema": { "type": "integer" } },
+          { "name": "order", "in": "query", "schema": { "type": "string", "enum": ["ASC", "DESC"] } },
+          { "name": "searchText[name]", "in": "query", "schema": { "type": "string" } },
+          { "name": "is_deleted", "in": "query", "schema": { "type": "boolean" } },
+          { "name": "expand_dropdowns", "in": "query", "schema": { "type": "boolean" } }
+        ],
+        "responses": {
+          "200": { "description": "Collection (status 206 si partielle, header Content-Range)" },
+          "206": { "description": "Collection partielle" }
+        }
+      },
+      "post": {
+        "summary": "Add item(s)",
+        "description": "Création. Pour Document : multipart/form-data avec uploadManifest (JSON {\"input\":{\"name\":...,\"_filename\":[...]}}) + filename[0] (fichier). GLPI vérifie le contenu réel du fichier.",
+        "parameters": [{ "$ref": "#/components/parameters/itemtype" }],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/InputWrapper" } },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "uploadManifest": { "type": "string", "description": "JSON {\"input\":{\"name\":\"...\",\"_filename\":[\"x.jpg\"]}}" },
+                  "filename[0]": { "type": "string", "format": "binary" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Créé", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreatedItem" } } } },
+          "207": { "description": "Multi-statut (création multiple partielle)" }
+        }
+      }
+    },
+    "/{itemtype}/{id}": {
+      "get": {
+        "summary": "Get an item",
+        "parameters": [
+          { "$ref": "#/components/parameters/itemtype" },
+          { "$ref": "#/components/parameters/id" },
+          { "name": "expand_dropdowns", "in": "query", "schema": { "type": "boolean" } },
+          { "name": "with_documents", "in": "query", "schema": { "type": "boolean" } },
+          { "name": "with_tickets", "in": "query", "schema": { "type": "boolean" } }
+        ],
+        "responses": {
+          "200": { "description": "Élément (pour Document avec Accept: application/octet-stream → téléchargement du fichier)" },
+          "404": { "description": "Introuvable" }
+        }
+      },
+      "put": {
+        "summary": "Update item(s)",
+        "parameters": [
+          { "$ref": "#/components/parameters/itemtype" },
+          { "$ref": "#/components/parameters/id" }
+        ],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/InputWrapper" } } }
+        },
+        "responses": { "200": { "description": "Mis à jour" } }
+      },
+      "delete": {
+        "summary": "Delete item(s)",
+        "parameters": [
+          { "$ref": "#/components/parameters/itemtype" },
+          { "$ref": "#/components/parameters/id" },
+          { "name": "force_purge", "in": "query", "schema": { "type": "boolean" }, "description": "true = purge définitive (sinon corbeille)" },
+          { "name": "history", "in": "query", "schema": { "type": "boolean" } }
+        ],
+        "responses": {
+          "200": { "description": "Supprimé" },
+          "204": { "description": "Supprimé (sans contenu)" }
+        }
+      }
+    },
+    "/{itemtype}/{id}/{sub_itemtype}": {
+      "get": {
+        "summary": "Get sub items",
+        "description": "Sous-éléments d'un élément (ex : /Ticket/3/Log, /Computer/5/Document_Item).",
+        "parameters": [
+          { "$ref": "#/components/parameters/itemtype" },
+          { "$ref": "#/components/parameters/id" },
+          { "name": "sub_itemtype", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Collection des sous-éléments" } }
+      }
+    },
+    "/getMultipleItems": {
+      "get": {
+        "summary": "Get multiple items",
+        "parameters": [
+          { "name": "items", "in": "query", "required": true, "schema": { "type": "string" }, "description": "items[0][itemtype]=Computer&items[0][items_id]=42&..." }
+        ],
+        "responses": { "200": { "description": "Liste des éléments demandés" } }
+      }
+    },
+    "/listSearchOptions/{itemtype}": {
+      "get": {
+        "summary": "List searchOptions",
+        "parameters": [{ "$ref": "#/components/parameters/itemtype" }],
+        "responses": { "200": { "description": "Options de recherche de l'itemtype" } }
+      }
+    },
+    "/search/{itemtype}": {
+      "get": {
+        "summary": "Search items",
+        "description": "Moteur de recherche GLPI : criteria[n][field|searchtype|value], forcedisplay[n], range, sort, order.",
+        "parameters": [{ "$ref": "#/components/parameters/itemtype" }],
+        "responses": {
+          "200": { "description": "Résultats (data, totalcount, count)" },
+          "206": { "description": "Résultats partiels" }
+        }
+      }
+    },
+    "/getMassiveActions/{itemtype}": {
+      "get": {
+        "summary": "Get available massive actions for an itemtype",
+        "parameters": [{ "$ref": "#/components/parameters/itemtype" }],
+        "responses": { "200": { "description": "Actions massives disponibles" } }
+      }
+    },
+    "/getMassiveActionParameters/{itemtype}/{action_key}": {
+      "get": {
+        "summary": "Get massive action parameters",
+        "parameters": [
+          { "$ref": "#/components/parameters/itemtype" },
+          { "name": "action_key", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Paramètres attendus par l'action" } }
+      }
+    },
+    "/applyMassiveAction/{itemtype}": {
+      "post": {
+        "summary": "Apply massive action",
+        "parameters": [{ "$ref": "#/components/parameters/itemtype" }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "type": "object" } } }
+        },
+        "responses": { "200": { "description": "Action appliquée" }, "207": { "description": "Succès partiel" } }
+      }
+    },
+    "/Document_Item": {
+      "post": {
+        "summary": "Lier un document à un élément",
+        "description": "Cas d'usage NewApp : rattacher une image importée à un asset (onglet « Documents » de l'asset).",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DocumentItemInput" } } }
+        },
+        "responses": { "201": { "description": "Lien créé", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreatedItem" } } } } }
+      }
+    },
+    "/Item_Ticket": {
+      "post": {
+        "summary": "Associer un élément à un ticket",
+        "description": "Cas d'usage NewApp : onglet « Éléments » du ticket (non couvert par l'API v2).",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ItemTicketInput" } } }
+        },
+        "responses": { "201": { "description": "Lien créé", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreatedItem" } } } } }
+      }
+    },
+    "/User/{id}/Picture": {
+      "get": {
+        "summary": "Get a user's profile picture",
+        "parameters": [{ "$ref": "#/components/parameters/id" }],
+        "responses": {
+          "200": { "description": "Image (octet-stream)" },
+          "204": { "description": "Pas de photo" }
+        }
+      }
+    }
+  }
+}

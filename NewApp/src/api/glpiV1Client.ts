@@ -67,7 +67,9 @@ export async function v1UploadDocument(
     const manifest = JSON.stringify({ input: { name, _filename: [filename] } })
 
     const formData = new FormData()
-    formData.append('uploadManifest', new Blob([manifest], { type: 'application/json' }))
+    // uploadManifest doit être un champ texte ($_POST) : un Blob deviendrait
+    // une partie "fichier" ($_FILES) et GLPI répondrait 500.
+    formData.append('uploadManifest', manifest)
     formData.append('filename[0]', blob, filename)
 
     const res = await axios.post<{ id: number }>(`${v1Url}/Document/`, formData, {

@@ -182,8 +182,8 @@ export async function importCoutRows(
 // ─── Import images depuis ZIP ─────────────────────────────────────────────────
 
 // GLPI vérifie le contenu réel du fichier : les images du ZIP sont des JPEG
-// parfois renommés en .png, il faut donc détecter le vrai format (magic bytes)
-// et corriger l'extension avant l'upload.
+// parfois renommés en .png. Toutes les images sont converties en JPEG
+// (canvas) avant insertion, quel que soit leur format d'origine.
 async function detectImageExtension(blob: Blob): Promise<'png' | 'jpg' | 'gif' | null> {
   const bytes = new Uint8Array(await blob.slice(0, 4).arrayBuffer())
 
@@ -191,6 +191,30 @@ async function detectImageExtension(blob: Blob): Promise<'png' | 'jpg' | 'gif' |
   if (bytes[0] === 0xff && bytes[1] === 0xd8) return 'jpg'
   if (bytes[0] === 0x47 && bytes[1] === 0x49) return 'gif'
   return null
+}
+
+async function toJpegBlob(blob: Blob): Promise<Blob> {
+  const bitmap = await createImageBitmap(blob)
+
+  const canvas = document.createElement('canvas')
+  canvas.width = bitmap.width
+  canvas.height = bitmap.height
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('Canvas 2D indisponible')
+
+  // fond blanc : le JPEG ne gère pas la transparence des PNG
+  ctx.fillStyle = '#ffffff'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  ctx.drawImage(bitmap, 0, 0)
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (result) => (result ? resolve(result) : reject(new Error('Conversion JPEG impossible'))),
+      'image/jpeg',
+      0.9,
+    )
+  })
 }
 
 export async function importImageFiles(
@@ -215,10 +239,12 @@ export async function importImageFiles(
         throw new Error('Format d’image non reconnu (ni PNG, ni JPEG, ni GIF)')
       }
 
-      const uploadName = `${baseName}.${realExt}`
+      // Conversion systématique en JPEG avant insertion
+      const jpegBlob = realExt === 'jpg' ? blob : await toJpegBlob(blob)
+      const uploadName = `${baseName}.jpg`
 
       // Upload du fichier via l'API v1 (la v2 ne gère pas les fichiers)
-      const doc = await v1UploadDocument(baseName, uploadName, blob)
+      const doc = await v1UploadDocument(baseName, uploadName, jpegBlob)
 
       if (!doc.id) throw new Error('Aucun id de document retourné')
 
