@@ -18,15 +18,51 @@ const { printers, loadPrinters } = usePrinters()
 const { peripherals, loadPeripherals } = usePeripherals()
 const { phones, loadPhones } = usePhones()
 
-const assetCounts = computed(() => [
-  { label: 'Ordinateurs', count: computers.value.length },
-  { label: 'Moniteurs', count: monitors.value.length },
-  { label: 'Imprimantes', count: printers.value.length },
-  { label: 'Périphériques', count: peripherals.value.length },
-  { label: 'Téléphones', count: phones.value.length },
+// Champs communs aux assets utilisés ici : statut et nom.
+type AssetLike = { status?: { name?: string | null } | null; name?: string | null }
+
+const assetGroups = computed<{ label: string; items: AssetLike[] }[]>(() => [
+  { label: 'Ordinateurs', items: computers.value as AssetLike[] },
+  { label: 'Moniteurs', items: monitors.value as AssetLike[] },
+  { label: 'Imprimantes', items: printers.value as AssetLike[] },
+  { label: 'Périphériques', items: peripherals.value as AssetLike[] },
+  { label: 'Téléphones', items: phones.value as AssetLike[] },
 ])
 
+const assetCounts = computed(() =>
+  assetGroups.value.map((g) => ({ label: g.label, count: g.items.length })),
+)
+
 const globalCount = computed(() => assetCounts.value.reduce((total, item) => total + item.count, 0))
+
+// Tous les assets confondus, pour les répartitions transverses.
+const allAssets = computed<AssetLike[]>(() => assetGroups.value.flatMap((g) => g.items))
+
+function statusName(a: AssetLike): string {
+  return a.status?.name ?? 'Inconnu'
+}
+
+// Répartition par statut (tous types confondus), triée par effectif décroissant.
+const countByStatus = computed<[string, number][]>(() => {
+  const map: Record<string, number> = {}
+  for (const a of allAssets.value) {
+    const s = statusName(a)
+    map[s] = (map[s] ?? 0) + 1
+  }
+  return Object.entries(map).sort((a, b) => b[1] - a[1])
+})
+
+// Répartition par statut, détaillée par type.
+const countByTypeAndStatus = computed(() =>
+  assetGroups.value.map((g) => {
+    const map: Record<string, number> = {}
+    for (const a of g.items) {
+      const s = statusName(a)
+      map[s] = (map[s] ?? 0) + 1
+    }
+    return { label: g.label, statuses: Object.entries(map).sort((a, b) => b[1] - a[1]) }
+  }),
+)
 
 async function loadDashboard() {
   loading.value = true
@@ -58,20 +94,71 @@ onMounted(() => {
   <main>
     <h1>Dashboard: element general</h1>
 
-    <p>Nombre général d’éléments avec détails par type.</p>
+    <p>Nombre général d’éléments avec détails par type et par statut.</p>
 
     <p v-if="loading">Chargement...</p>
 
     <p v-if="error">Erreur : {{ error }}</p>
 
     <div v-if="!loading && !error">
-      <p>
-        <strong>Total général : {{ globalCount }}</strong>
-      </p>
+      <section>
+        <h2>Vue globale</h2>
+        <p>
+          <strong>Total général : {{ globalCount }}</strong>
+        </p>
+        <table border="1" cellpadding="6">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in assetCounts" :key="item.label">
+              <td>{{ item.label }}</td>
+              <td>{{ item.count }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-      <div>
-        <p v-for="item in assetCounts" :key="item.label">{{ item.label }} : {{ item.count }}</p>
-      </div>
+      <section>
+        <h2>Répartition par statut (tous types)</h2>
+        <table border="1" cellpadding="6">
+          <thead>
+            <tr>
+              <th>Statut</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="[label, count] in countByStatus" :key="label">
+              <td>{{ label }}</td>
+              <td>{{ count }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section v-for="group in countByTypeAndStatus" :key="group.label">
+        <template v-if="group.statuses.length > 0">
+          <h2>{{ group.label }} — par statut</h2>
+          <table border="1" cellpadding="6">
+            <thead>
+              <tr>
+                <th>Statut</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="[label, count] in group.statuses" :key="label">
+                <td>{{ label }}</td>
+                <td>{{ count }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </template>
+      </section>
     </div>
   </main>
 </template>
