@@ -59,7 +59,6 @@ const countRequetesByStatus = computed(() => {
   <p v-if="error">Erreur : {{ error }}</p>
 
   <div v-if="!loading && tickets.length > 0">
-
     <section>
       <h2>Vue globale</h2>
       <table border="1" cellpadding="6">
@@ -153,7 +152,6 @@ const countRequetesByStatus = computed(() => {
         </tbody>
       </table>
     </section>
-
   </div>
 
   <p v-else-if="!loading">Aucun ticket trouvé.</p>

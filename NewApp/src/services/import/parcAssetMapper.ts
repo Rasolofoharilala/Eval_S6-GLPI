@@ -1,20 +1,32 @@
-import type { MonitorCreatePayload } from '@/services/generated/monitorService'
 import type { AssetCsvRow } from './assetImportTypes'
 import { ensureReferenceByName } from './glpiEnsureService'
 import { referenceConfig } from './glpiReferenceConfig'
 import { ensureUserByFullName } from './userEnsureService'
 
-function toRelation(id?: number | null) {
-  if (!id) {
-    return undefined
-  }
+// Mapper générique pour les types du parc (Computer, Monitor, Printer,
+// Peripheral, Phone). Tous partagent les mêmes champs ; seul l'endpoint du
+// modèle (Dropdowns/<Type>Model) diffère.
 
-  return {
-    id,
-  }
+type RelationReference = { id: number }
+
+export type ParcAssetPayload = {
+  name: string
+  otherserial: string
+  status?: RelationReference
+  location?: RelationReference
+  manufacturer?: RelationReference
+  model?: RelationReference
+  user?: RelationReference
 }
 
-export async function mapCsvRowToMonitorInput(row: AssetCsvRow): Promise<MonitorCreatePayload> {
+function toRelation(id?: number | null): RelationReference | undefined {
+  return id ? { id } : undefined
+}
+
+export async function mapCsvRowToParcAsset(
+  row: AssetCsvRow,
+  modelEndpoint: string,
+): Promise<ParcAssetPayload> {
   const status = await ensureReferenceByName(
     referenceConfig.status.endpoint,
     row.status,
@@ -33,18 +45,13 @@ export async function mapCsvRowToMonitorInput(row: AssetCsvRow): Promise<Monitor
     referenceConfig.manufacturer.autoCreate,
   )
 
-  const model = await ensureReferenceByName(
-    referenceConfig.monitorModel.endpoint,
-    row.model,
-    referenceConfig.monitorModel.autoCreate,
-  )
+  const model = await ensureReferenceByName(modelEndpoint, row.model, true)
 
   const user = await ensureUserByFullName(row.user)
 
   return {
     name: row.name,
     otherserial: row.inventory_number,
-
     status: toRelation(status?.id),
     location: toRelation(location?.id),
     manufacturer: toRelation(manufacturer?.id),

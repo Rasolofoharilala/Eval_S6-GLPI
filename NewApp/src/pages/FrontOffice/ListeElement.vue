@@ -146,7 +146,7 @@ onMounted(charger)
   <main>
     <h1>Liste des éléments</h1>
     <p v-if="loading">Chargement…</p>
-    <p v-if="error" style="color:red">{{ error }}</p>
+    <p v-if="error" style="color: red">{{ error }}</p>
 
     <!-- Filtres -->
     <table border="0" cellpadding="4">
@@ -181,7 +181,9 @@ onMounted(charger)
         </tr>
         <tr>
           <td><label>Utilisateur</label></td>
-          <td><input v-model="searchUtilisateur" type="text" placeholder="Recherche utilisateur…" /></td>
+          <td>
+            <input v-model="searchUtilisateur" type="text" placeholder="Recherche utilisateur…" />
+          </td>
           <td></td>
           <td>
             <span>{{ filteredAssets.length }} / {{ allAssets.length }} élément(s)</span>

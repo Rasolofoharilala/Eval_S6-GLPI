@@ -81,8 +81,7 @@ export const RESETTABLE_ENDPOINTS: ResettablePolicyItem[] = [
     endpoint: '/Assistance/Ticket',
     deleteTarget: '/Assistance/Ticket/{id}',
     category: 'assistance',
-    reason:
-      'Tickets: GET la collection puis DELETE item par item via deleteTarget.',
+    reason: 'Tickets: GET la collection puis DELETE item par item via deleteTarget.',
     methods: ['GET', 'POST'],
   },
   {
@@ -97,8 +96,7 @@ export const RESETTABLE_ENDPOINTS: ResettablePolicyItem[] = [
     endpoint: '/Administration/User',
     deleteTarget: '/Administration/User/{id}',
     category: 'administration',
-    reason:
-      'Utilisateurs importés: les comptes par défaut (id <= 6) ne sont jamais supprimés.',
+    reason: 'Utilisateurs importés: les comptes par défaut (id <= 6) ne sont jamais supprimés.',
     methods: ['GET', 'POST'],
     protectIdsUpTo: 6,
   },

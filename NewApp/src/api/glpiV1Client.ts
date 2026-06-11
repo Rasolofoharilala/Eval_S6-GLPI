@@ -57,9 +57,13 @@ export async function v1GetAll<T = unknown>(itemtype: string): Promise<T[]> {
 
 export async function v1Post<T = { id: number }>(path: string, input: unknown): Promise<T> {
   return withSession(async (token) => {
-    const res = await axios.post<T>(`${v1Url}${path}`, { input }, {
-      headers: { 'Session-Token': token, 'Content-Type': 'application/json' },
-    })
+    const res = await axios.post<T>(
+      `${v1Url}${path}`,
+      { input },
+      {
+        headers: { 'Session-Token': token, 'Content-Type': 'application/json' },
+      },
+    )
     return res.data
   })
 }
@@ -101,6 +105,30 @@ export async function v1LinkDocumentToItem(
     documents_id: documentId,
     items_id: itemId,
     itemtype,
+  })
+}
+
+/** Un lien Item_Ticket existant tel que renvoyé par GLPI. */
+export type ItemTicketLink = {
+  id: number
+  itemtype: string
+  items_id: number
+  tickets_id: number
+}
+
+/**
+ * Liste les éléments déjà associés à un ticket (GET /Ticket/{id}/Item_Ticket).
+ * Permet de rendre l'association idempotente : on évite un POST voué au
+ * 400 ["ERROR_GLPI_ADD",""] quand le couple (tickets_id, items_id, itemtype)
+ * existe déjà en base (cas d'un import relancé plusieurs fois).
+ */
+export async function v1GetTicketItems(ticketId: number): Promise<ItemTicketLink[]> {
+  return withSession(async (token) => {
+    const res = await axios.get<ItemTicketLink[]>(`${v1Url}/Ticket/${ticketId}/Item_Ticket`, {
+      headers: { 'Session-Token': token },
+      params: { range: '0-999' },
+    })
+    return Array.isArray(res.data) ? res.data : []
   })
 }
 

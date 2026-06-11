@@ -1,6 +1,19 @@
+import axios from 'axios'
 import { httpClient } from '@/api/httpClient'
-import { v1UploadDocument, v1LinkDocumentToItem, v1LinkItemToTicket } from '@/api/glpiV1Client'
-import type { TicketCsvRow, CoutCsvRow, TicketImportResult, CoutImportResult } from './ticketImportTypes'
+import {
+  v1UploadDocument,
+  v1LinkDocumentToItem,
+  v1LinkItemToTicket,
+  v1GetTicketItems,
+} from '@/api/glpiV1Client'
+import { importLogger } from './importLogger'
+import type {
+  TicketCsvRow,
+  CoutCsvRow,
+  TicketImportResult,
+  CoutImportResult,
+  ImageImportResult,
+} from './ticketImportTypes'
 
 // L'API v2 ne gère ni l'upload de fichiers, ni Document_Item, ni Item_Ticket :
 // ces trois opérations passent par l'API legacy v1 (voir glpiV1Client).
@@ -76,9 +89,27 @@ function parseItems(raw: string): string[] {
     const parsed = JSON.parse(cleaned)
     if (Array.isArray(parsed)) return parsed.map((s) => String(s).trim())
   } catch {
-    return raw.split(/[|;]/).map((s) => s.trim()).filter(Boolean)
+    return raw
+      .split(/[|;]/)
+      .map((s) => s.trim())
+      .filter(Boolean)
   }
   return []
+}
+
+// ─── Détection d'un doublon GLPI ─────────────────────────────────────────────
+
+function isAlreadyLinkedError(err: unknown): boolean {
+  if (!axios.isAxiosError(err)) return false
+  if (err.response?.status !== 400) return false
+  const data = err.response.data
+  // GLPI retourne ["ERROR_GLPI_ADD",""] ou {"message":"ERROR_GLPI_ADD"}
+  if (Array.isArray(data)) return String(data[0]).includes('ERROR_GLPI_ADD')
+  if (typeof data === 'object' && data !== null) {
+    const msg = (data as Record<string, unknown>).message
+    return typeof msg === 'string' && msg.includes('ERROR_GLPI_ADD')
+  }
+  return false
 }
 
 // ─── Import tickets ───────────────────────────────────────────────────────────
@@ -89,6 +120,8 @@ export async function importTicketRows(
 ): Promise<{ results: TicketImportResult[]; ticketRegistry: Record<string, number> }> {
   const results: TicketImportResult[] = []
   const ticketRegistry: Record<string, number> = {}
+
+  importLogger.step(`Tickets — ${rows.length} ligne(s)`)
 
   for (const row of rows) {
     const ref = row.ref_ticket?.trim() ?? ''
@@ -114,28 +147,86 @@ export async function importTicketRows(
 
       ticketRegistry[ref] = ticketId
 
-      // Associer les assets au ticket (onglet « Éléments ») via l'API v1
-      const itemNames = parseItems(row.items)
+      // Associer les assets au ticket (onglet « Éléments ») via l'API v1.
+      // On déduplique : un même élément listé deux fois dans le CSV ferait
+      // échouer le 2e lien (400 « déjà associé »).
+      const itemNames = [...new Set(parseItems(row.items))]
+      const links = { linked: 0, already: 0, skipped: 0, failed: 0 }
+
+      // Liens déjà présents sur ce ticket : chargés une seule fois pour rendre
+      // l'association idempotente (import relancé → couple dupliqué = 400
+      // ["ERROR_GLPI_ADD",""]). Clés `itemtype#items_id`.
+      let existingLinks: Set<string> | null = null
+      const linkKey = (itemtype: string, id: number) => `${itemtype}#${id}`
+
       for (const itemName of itemNames) {
         const asset = assetsRegistry[itemName]
-        if (!asset) continue
+        // Élément absent de l'inventaire, ou présent mais sans id valide
+        // (création d'asset échouée) : on n'envoie pas de lien voué au 400.
+        if (!asset || !asset.id) {
+          links.skipped++
+          importLogger.skip(`Ticket ${ref} : élément « ${itemName} » introuvable ou non importé`)
+          continue
+        }
+
+        const itemtype = toGlpiItemtype(asset.type)
+
+        // Un seul GET /Ticket/{id}/Item_Ticket par ticket.
+        if (existingLinks === null) {
+          try {
+            const items = await v1GetTicketItems(ticketId)
+            existingLinks = new Set(items.map((l) => linkKey(l.itemtype, l.items_id)))
+          } catch {
+            // GET indisponible : on retombe sur le POST (un éventuel doublon
+            // redonnera 400, capté par le catch ci-dessous).
+            existingLinks = new Set()
+          }
+        }
+
+        if (existingLinks.has(linkKey(itemtype, asset.id))) {
+          links.already++
+          importLogger.skip(`Ticket ${ref} : élément « ${itemName} » déjà associé`)
+          continue
+        }
+
         try {
-          await v1LinkItemToTicket(ticketId, asset.id, toGlpiItemtype(asset.type))
-        } catch {
-          // lien non-bloquant
+          await v1LinkItemToTicket(ticketId, asset.id, itemtype)
+          existingLinks.add(linkKey(itemtype, asset.id))
+          links.linked++
+        } catch (linkErr) {
+          // GLPI refuse si l'asset est déjà lié à un autre ticket :
+          // contrainte unique (itemtype, items_id) dans glpi_items_tickets.
+          // On traite ce cas comme un skip (pas une erreur bloquante).
+          if (isAlreadyLinkedError(linkErr)) {
+            links.already++
+            importLogger.skip(
+              `Ticket ${ref} : « ${itemName} » déjà associé à un autre ticket (ignoré)`,
+            )
+          } else {
+            links.failed++
+            importLogger.error(
+              `Ticket ${ref} : échec association « ${itemName} » → ${getErrorMessage(linkErr)}`,
+            )
+          }
         }
       }
 
-      results.push({ ref, title, success: true })
+      importLogger.success(
+        `Ticket ${ref} (id ${ticketId}) — ${links.linked} lié(s), ${links.already} déjà lié(s), ${links.skipped} ignoré(s), ${links.failed} échec(s)`,
+      )
+      results.push({ ref, title, success: true, links })
     } catch (err) {
-      results.push({
-        ref,
-        title,
-        success: false,
-        error: getErrorMessage(err),
-      })
+      const message = getErrorMessage(err)
+      importLogger.error(`Ticket ${ref} : ${message}`)
+      results.push({ ref, title, success: false, error: message })
     }
   }
+
+  importLogger.summary('Tickets', {
+    ok: results.filter((r) => r.success).length,
+    erreurs: results.filter((r) => !r.success).length,
+  })
+  importLogger.endStep()
 
   return { results, ticketRegistry }
 }
@@ -148,12 +239,16 @@ export async function importCoutRows(
 ): Promise<CoutImportResult[]> {
   const results: CoutImportResult[] = []
 
+  importLogger.step(`Coûts — ${rows.length} ligne(s)`)
+
   for (const row of rows) {
     const numTicket = row.num_ticket?.trim() ?? ''
     const ticketId = ticketRegistry[numTicket]
 
     if (!ticketId) {
-      results.push({ numTicket, success: false, error: `Ticket ref "${numTicket}" introuvable` })
+      const error = `Ticket ref "${numTicket}" introuvable`
+      importLogger.skip(`Coût : ${error}`)
+      results.push({ numTicket, success: false, error })
       continue
     }
 
@@ -168,13 +263,17 @@ export async function importCoutRows(
       await httpClient.post(`/Assistance/Ticket/${ticketId}/Cost`, payload)
       results.push({ numTicket, success: true })
     } catch (err) {
-      results.push({
-        numTicket,
-        success: false,
-        error: getErrorMessage(err),
-      })
+      const message = getErrorMessage(err)
+      importLogger.error(`Coût ticket ${numTicket} : ${message}`)
+      results.push({ numTicket, success: false, error: message })
     }
   }
+
+  importLogger.summary('Coûts', {
+    ok: results.filter((r) => r.success).length,
+    erreurs: results.filter((r) => !r.success).length,
+  })
+  importLogger.endStep()
 
   return results
 }
@@ -220,15 +319,21 @@ async function toJpegBlob(blob: Blob): Promise<Blob> {
 export async function importImageFiles(
   images: Record<string, Blob>,
   assetsRegistry: Record<string, { id: number; type: string }>,
-): Promise<{ name: string; success: boolean; error?: string }[]> {
-  const results: { name: string; success: boolean; error?: string }[] = []
+): Promise<ImageImportResult[]> {
+  const results: ImageImportResult[] = []
+
+  importLogger.step(`Images — ${Object.keys(images).length} fichier(s)`)
 
   for (const [filename, blob] of Object.entries(images)) {
     const baseName = filename.substring(0, filename.lastIndexOf('.'))
     const asset = assetsRegistry[baseName]
 
-    if (!asset) {
-      results.push({ name: filename, success: false, error: 'Asset non trouvé dans le registre' })
+    if (!asset || !asset.id) {
+      // Image sans asset correspondant dans l'inventaire : ignoré légitime
+      // (le ZIP peut contenir plus d'images que d'équipements).
+      const error = 'Aucun élément correspondant dans l’inventaire'
+      importLogger.skip(`Image « ${filename} » : ${error}`)
+      results.push({ name: filename, success: false, skipped: true, error })
       continue
     }
 
@@ -251,11 +356,21 @@ export async function importImageFiles(
       // Lien document ↔ asset (onglet « Documents » de l'asset dans GLPI)
       await v1LinkDocumentToItem(doc.id, asset.id, toGlpiItemtype(asset.type))
 
+      importLogger.success(`Image « ${filename} » → document ${doc.id} lié à ${baseName}`)
       results.push({ name: filename, success: true })
     } catch (err) {
-      results.push({ name: filename, success: false, error: getErrorMessage(err) })
+      const message = getErrorMessage(err)
+      importLogger.error(`Image « ${filename} » : ${message}`)
+      results.push({ name: filename, success: false, error: message })
     }
   }
+
+  importLogger.summary('Images', {
+    ok: results.filter((r) => r.success).length,
+    ignorés: results.filter((r) => r.skipped).length,
+    erreurs: results.filter((r) => !r.success && !r.skipped).length,
+  })
+  importLogger.endStep()
 
   return results
 }

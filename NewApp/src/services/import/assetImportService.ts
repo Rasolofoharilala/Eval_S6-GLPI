@@ -1,11 +1,10 @@
-import { createComputer } from '@/services/generated/computerService'
-import { createMonitor } from '@/services/generated/monitorService'
+import { httpClient } from '@/api/httpClient'
 
-import { mapCsvRowToComputerInput } from './computerImportMapper'
-import { mapCsvRowToMonitorInput } from './monitorImportMapper'
+import { mapCsvRowToParcAsset } from './parcAssetMapper'
 
 import type { AssetCsvRow, ImportResult } from './assetImportTypes'
 import { assetAlreadyExists } from './glpiAssetLookupService'
+import { importLogger } from './importLogger'
 
 function getErrorMessage(error: unknown): string {
   if (typeof error !== 'object' || error === null) {
@@ -37,36 +36,30 @@ function normalizeItemType(value: string): string {
   return value.trim().toLowerCase()
 }
 
+// Types du parc convenus : Computer, Monitor, Printer, Peripheral, Phone.
+// Chacun a son endpoint de collection et son endpoint de modèle.
+const PARC_TYPES: Record<string, { endpoint: string; modelEndpoint: string }> = {
+  computer: { endpoint: '/Assets/Computer', modelEndpoint: '/Dropdowns/ComputerModel' },
+  monitor: { endpoint: '/Assets/Monitor', modelEndpoint: '/Dropdowns/MonitorModel' },
+  printer: { endpoint: '/Assets/Printer', modelEndpoint: '/Dropdowns/PrinterModel' },
+  peripheral: { endpoint: '/Assets/Peripheral', modelEndpoint: '/Dropdowns/PeripheralModel' },
+  phone: { endpoint: '/Assets/Phone', modelEndpoint: '/Dropdowns/PhoneModel' },
+}
+
 function getEndpointByItemType(itemType: string): string | null {
-  const normalizedItemType = normalizeItemType(itemType)
-
-  if (normalizedItemType === 'computer') {
-    return '/Assets/Computer'
-  }
-
-  if (normalizedItemType === 'monitor') {
-    return '/Assets/Monitor'
-  }
-
-  return null
+  return PARC_TYPES[normalizeItemType(itemType)]?.endpoint ?? null
 }
 
 async function createAssetByType(row: AssetCsvRow): Promise<{ id: number }> {
-  const itemType = normalizeItemType(row.item_type)
+  const config = PARC_TYPES[normalizeItemType(row.item_type)]
 
-  if (itemType === 'computer') {
-    const payload = await mapCsvRowToComputerInput(row)
-    const result = await createComputer(payload)
-    return { id: result.id ?? 0 }
+  if (!config) {
+    throw new Error(`Type non encore supporté : ${row.item_type}`)
   }
 
-  if (itemType === 'monitor') {
-    const payload = await mapCsvRowToMonitorInput(row)
-    const result = await createMonitor(payload)
-    return { id: result.id ?? 0 }
-  }
-
-  throw new Error(`Type non encore supporté : ${row.item_type}`)
+  const payload = await mapCsvRowToParcAsset(row, config.modelEndpoint)
+  const res = await httpClient.post<{ id: number }>(config.endpoint, payload)
+  return { id: res.data?.id ?? 0 }
 }
 
 export async function importAssetRows(rows: AssetCsvRow[]): Promise<ImportResult[]> {
@@ -77,19 +70,16 @@ export async function importAssetRows(rows: AssetCsvRow[]): Promise<ImportResult
       const endpoint = getEndpointByItemType(row.item_type)
 
       if (!endpoint) {
-        results.push({
-          name: row.name,
-          itemType: row.item_type,
-          success: false,
-          error: `Type non encore supporté : ${row.item_type}`,
-        })
-
+        const error = `Type non supporté : ${row.item_type}`
+        importLogger.skip(`Inventaire « ${row.name} » : ${error}`)
+        results.push({ name: row.name, itemType: row.item_type, success: false, error })
         continue
       }
 
       const existingAsset = await assetAlreadyExists(endpoint, row.name, row.inventory_number)
 
       if (existingAsset) {
+        importLogger.info(`Inventaire « ${row.name} » déjà existant (id ${existingAsset.id})`)
         results.push({
           name: row.name,
           itemType: row.item_type,
@@ -103,6 +93,7 @@ export async function importAssetRows(rows: AssetCsvRow[]): Promise<ImportResult
 
       const created = await createAssetByType(row)
 
+      importLogger.success(`Inventaire « ${row.name} » (${row.item_type}) créé — id ${created.id}`)
       results.push({
         name: row.name,
         itemType: row.item_type,
@@ -110,11 +101,13 @@ export async function importAssetRows(rows: AssetCsvRow[]): Promise<ImportResult
         existingId: created.id,
       })
     } catch (error) {
+      const message = getErrorMessage(error)
+      importLogger.error(`Inventaire « ${row.name} » : ${message}`)
       results.push({
         name: row.name,
         itemType: row.item_type,
         success: false,
-        error: getErrorMessage(error),
+        error: message,
       })
     }
   }

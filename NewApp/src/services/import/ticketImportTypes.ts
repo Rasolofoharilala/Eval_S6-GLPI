@@ -31,6 +31,22 @@ export type TicketImportResult = {
   skipped?: boolean
   existingId?: number
   error?: string
+  /** Bilan de l'association des éléments au ticket. */
+  links?: {
+    linked: number
+    /** Couple déjà présent en base (import relancé) : ni succès ni erreur. */
+    already: number
+    skipped: number
+    failed: number
+  }
+}
+
+export type ImageImportResult = {
+  name: string
+  success: boolean
+  /** Asset absent du registre : ignoré légitime, pas une erreur d'upload. */
+  skipped?: boolean
+  error?: string
 }
 
 export type CoutImportResult = {

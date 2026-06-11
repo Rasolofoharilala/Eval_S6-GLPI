@@ -232,8 +232,14 @@ function cancelStatusChange() {
 // ─── Helpers affichage ────────────────────────────────────────────────────────
 
 function priorityLabel(p?: number) {
-  const map: Record<number, string> = { 1: 'Très basse', 2: 'Basse', 3: 'Moyenne', 4: 'Haute', 5: 'Très haute' }
-  return p ? map[p] ?? '' : ''
+  const map: Record<number, string> = {
+    1: 'Très basse',
+    2: 'Basse',
+    3: 'Moyenne',
+    4: 'Haute',
+    5: 'Très haute',
+  }
+  return p ? (map[p] ?? '') : ''
 }
 
 function priorityClass(p?: number) {
@@ -258,7 +264,7 @@ function formatDate(d?: string) {
         {{ loading ? 'Chargement…' : 'Actualiser' }}
       </button>
       <button class="btn-reload" @click="lang = lang === 'fr' ? 'mg' : 'fr'">
-        {{ lang === 'fr' ? 'Hova amin\'ny teny malagasy' : 'Passer en français' }}
+        {{ lang === 'fr' ? "Hova amin'ny teny malagasy" : 'Passer en français' }}
       </button>
     </header>
 
@@ -295,7 +301,9 @@ function formatDate(d?: string) {
         >
           <div class="card-title">{{ ticket.name ?? '(sans titre)' }}</div>
           <div class="card-meta">
-            <span v-if="ticket.priority" class="badge-prio">{{ priorityLabel(ticket.priority) }}</span>
+            <span v-if="ticket.priority" class="badge-prio">{{
+              priorityLabel(ticket.priority)
+            }}</span>
             <span class="card-date">{{ formatDate(ticket.date) }}</span>
           </div>
         </div>
@@ -312,20 +320,55 @@ function formatDate(d?: string) {
         <h2>Ticket #{{ detailTicket.id }}</h2>
         <table class="detail-table">
           <tbody>
-            <tr><th>Titre</th><td>{{ detailTicket.name ?? '—' }}</td></tr>
-            <tr><th>Statut</th><td>{{ STATUS_LABEL[detailTicket.status?.id ?? 0] ?? '—' }}</td></tr>
-            <tr><th>Type</th><td>{{ detailTicket.type === 1 ? 'Incident' : 'Demande' }}</td></tr>
-            <tr><th>Priorité</th><td>{{ priorityLabel(detailTicket.priority) }}</td></tr>
-            <tr><th>Urgence</th><td>{{ priorityLabel(detailTicket.urgency) }}</td></tr>
-            <tr><th>Impact</th><td>{{ priorityLabel(detailTicket.impact) }}</td></tr>
-            <tr><th>Catégorie</th><td>{{ detailTicket.category?.name ?? '—' }}</td></tr>
-            <tr><th>Lieu</th><td>{{ detailTicket.location?.name ?? '—' }}</td></tr>
-            <tr><th>Date ouverture</th><td>{{ formatDate(detailTicket.date) }}</td></tr>
-            <tr><th>Date résolution</th><td>{{ formatDate(detailTicket.resolution_date) }}</td></tr>
-            <tr><th>ID externe</th><td>{{ detailTicket.external_id ?? '—' }}</td></tr>
+            <tr>
+              <th>Titre</th>
+              <td>{{ detailTicket.name ?? '—' }}</td>
+            </tr>
+            <tr>
+              <th>Statut</th>
+              <td>{{ STATUS_LABEL[detailTicket.status?.id ?? 0] ?? '—' }}</td>
+            </tr>
+            <tr>
+              <th>Type</th>
+              <td>{{ detailTicket.type === 1 ? 'Incident' : 'Demande' }}</td>
+            </tr>
+            <tr>
+              <th>Priorité</th>
+              <td>{{ priorityLabel(detailTicket.priority) }}</td>
+            </tr>
+            <tr>
+              <th>Urgence</th>
+              <td>{{ priorityLabel(detailTicket.urgency) }}</td>
+            </tr>
+            <tr>
+              <th>Impact</th>
+              <td>{{ priorityLabel(detailTicket.impact) }}</td>
+            </tr>
+            <tr>
+              <th>Catégorie</th>
+              <td>{{ detailTicket.category?.name ?? '—' }}</td>
+            </tr>
+            <tr>
+              <th>Lieu</th>
+              <td>{{ detailTicket.location?.name ?? '—' }}</td>
+            </tr>
+            <tr>
+              <th>Date ouverture</th>
+              <td>{{ formatDate(detailTicket.date) }}</td>
+            </tr>
+            <tr>
+              <th>Date résolution</th>
+              <td>{{ formatDate(detailTicket.resolution_date) }}</td>
+            </tr>
+            <tr>
+              <th>ID externe</th>
+              <td>{{ detailTicket.external_id ?? '—' }}</td>
+            </tr>
             <tr>
               <th>Description</th>
-              <td><pre class="content-pre">{{ detailTicket.content ?? '—' }}</pre></td>
+              <td>
+                <pre class="content-pre">{{ detailTicket.content ?? '—' }}</pre>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -356,7 +399,11 @@ function formatDate(d?: string) {
     </div>
 
     <!-- ─── Dialogue Changement de statut ────────────────────────────────── -->
-    <div v-if="showStatusDialog && pendingDrop" class="dialog-overlay" @click.self="cancelStatusChange">
+    <div
+      v-if="showStatusDialog && pendingDrop"
+      class="dialog-overlay"
+      @click.self="cancelStatusChange"
+    >
       <div class="dialog">
         <button class="dialog-close" @click="cancelStatusChange">✕</button>
         <h2>Changer le statut</h2>
@@ -366,7 +413,11 @@ function formatDate(d?: string) {
         </p>
         <div class="field">
           <label>Note de suivi (optionnel)</label>
-          <textarea v-model="statusNote" rows="3" placeholder="Raison du changement, informations complémentaires…" />
+          <textarea
+            v-model="statusNote"
+            rows="3"
+            placeholder="Raison du changement, informations complémentaires…"
+          />
         </div>
         <div class="dialog-actions">
           <button class="btn-cancel" @click="cancelStatusChange">Annuler</button>
@@ -461,22 +512,30 @@ function formatDate(d?: string) {
   padding: 0.7rem 0.85rem;
   margin-bottom: 0.5rem;
   cursor: grab;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #aaa;
-  transition: opacity 0.15s, box-shadow 0.15s;
+  transition:
+    opacity 0.15s,
+    box-shadow 0.15s;
 }
 
 .ticket-card:hover {
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .ticket-card.dragging {
   opacity: 0.4;
 }
 
-.ticket-card.prio-high { border-left-color: #e74c3c; }
-.ticket-card.prio-med  { border-left-color: #f39c12; }
-.ticket-card.prio-low  { border-left-color: #2ecc71; }
+.ticket-card.prio-high {
+  border-left-color: #e74c3c;
+}
+.ticket-card.prio-med {
+  border-left-color: #f39c12;
+}
+.ticket-card.prio-low {
+  border-left-color: #2ecc71;
+}
 
 .card-title {
   font-size: 0.9rem;
@@ -513,7 +572,7 @@ function formatDate(d?: string) {
 }
 
 .btn-add:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* ─── Dialogues ─────────────────────────────────────────────────────────────── */
@@ -521,7 +580,7 @@ function formatDate(d?: string) {
 .dialog-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;

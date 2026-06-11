@@ -40,7 +40,6 @@ function getTypeLabel(type?: number): string {
   <p v-if="error">Erreur : {{ error }}</p>
 
   <div v-if="!loading && tickets.length > 0">
-
     <section>
       <h2>Liste des tickets</h2>
       <table border="1" cellpadding="6">
@@ -134,7 +133,6 @@ function getTypeLabel(type?: number): string {
         </tbody>
       </table>
     </section>
-
   </div>
 
   <p v-else-if="!loading">Aucun ticket trouvé.</p>

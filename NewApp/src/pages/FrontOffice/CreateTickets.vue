@@ -40,12 +40,42 @@ const { phones, loadPhones } = usePhones()
 type AssetOption = { id: number; name: string; type: string; typeLabel: string }
 
 const allAssets = computed<AssetOption[]>(() => [
-  ...computers.value.map((c) => ({ id: c.id ?? 0, name: c.name ?? '?', type: 'Computer', typeLabel: 'Ordinateur' })),
-  ...monitors.value.map((m) => ({ id: m.id ?? 0, name: m.name ?? '?', type: 'Monitor', typeLabel: 'Moniteur' })),
-  ...printers.value.map((p) => ({ id: p.id ?? 0, name: p.name ?? '?', type: 'Printer', typeLabel: 'Imprimante' })),
-  ...networkequipments.value.map((n) => ({ id: n.id ?? 0, name: n.name ?? '?', type: 'NetworkEquipment', typeLabel: 'Matériel réseau' })),
-  ...peripherals.value.map((p) => ({ id: p.id ?? 0, name: p.name ?? '?', type: 'Peripheral', typeLabel: 'Périphérique' })),
-  ...phones.value.map((p) => ({ id: p.id ?? 0, name: p.name ?? '?', type: 'Phone', typeLabel: 'Téléphone' })),
+  ...computers.value.map((c) => ({
+    id: c.id ?? 0,
+    name: c.name ?? '?',
+    type: 'Computer',
+    typeLabel: 'Ordinateur',
+  })),
+  ...monitors.value.map((m) => ({
+    id: m.id ?? 0,
+    name: m.name ?? '?',
+    type: 'Monitor',
+    typeLabel: 'Moniteur',
+  })),
+  ...printers.value.map((p) => ({
+    id: p.id ?? 0,
+    name: p.name ?? '?',
+    type: 'Printer',
+    typeLabel: 'Imprimante',
+  })),
+  ...networkequipments.value.map((n) => ({
+    id: n.id ?? 0,
+    name: n.name ?? '?',
+    type: 'NetworkEquipment',
+    typeLabel: 'Matériel réseau',
+  })),
+  ...peripherals.value.map((p) => ({
+    id: p.id ?? 0,
+    name: p.name ?? '?',
+    type: 'Peripheral',
+    typeLabel: 'Périphérique',
+  })),
+  ...phones.value.map((p) => ({
+    id: p.id ?? 0,
+    name: p.name ?? '?',
+    type: 'Phone',
+    typeLabel: 'Téléphone',
+  })),
 ])
 
 // Éléments sélectionnés pour le ticket (multi)
@@ -76,7 +106,9 @@ function isSelected(asset: AssetOption) {
 }
 
 function removeItem(asset: AssetOption) {
-  selectedItems.value = selectedItems.value.filter((s) => !(s.id === asset.id && s.type === asset.type))
+  selectedItems.value = selectedItems.value.filter(
+    (s) => !(s.id === asset.id && s.type === asset.type),
+  )
 }
 
 // ─── Acteurs via POST /Assistance/Ticket/{id}/TeamMember ─────────────────────
@@ -492,10 +524,16 @@ onMounted(() => {
 
           <!-- Éléments déjà sélectionnés -->
           <div v-if="selectedItems.length > 0">
-            <p><strong>{{ selectedItems.length }} élément(s) sélectionné(s) :</strong></p>
-            <table border="1" cellpadding="4" style="width:100%;margin-bottom:10px">
+            <p>
+              <strong>{{ selectedItems.length }} élément(s) sélectionné(s) :</strong>
+            </p>
+            <table border="1" cellpadding="4" style="width: 100%; margin-bottom: 10px">
               <thead>
-                <tr><th>Type</th><th>Nom</th><th>Retirer</th></tr>
+                <tr>
+                  <th>Type</th>
+                  <th>Nom</th>
+                  <th>Retirer</th>
+                </tr>
               </thead>
               <tbody>
                 <tr v-for="item in selectedItems" :key="`sel-${item.type}-${item.id}`">
@@ -510,7 +548,7 @@ onMounted(() => {
           </div>
 
           <!-- Filtres de recherche -->
-          <div class="inline-fields" style="margin-bottom:8px">
+          <div class="inline-fields" style="margin-bottom: 8px">
             <div class="field">
               <label>Type</label>
               <select v-model="itemTypeFilter">
@@ -530,20 +568,32 @@ onMounted(() => {
           </div>
 
           <!-- Liste des assets -->
-          <table border="1" cellpadding="4" style="width:100%;max-height:220px;overflow-y:auto;display:block">
+          <table
+            border="1"
+            cellpadding="4"
+            style="width: 100%; max-height: 220px; overflow-y: auto; display: block"
+          >
             <thead>
-              <tr><th></th><th>Type</th><th>Nom</th></tr>
+              <tr>
+                <th></th>
+                <th>Type</th>
+                <th>Nom</th>
+              </tr>
             </thead>
             <tbody>
               <tr
                 v-for="asset in filteredAssets"
                 :key="`${asset.type}-${asset.id}`"
                 :style="isSelected(asset) ? 'background:#edf9f0' : ''"
-                style="cursor:pointer"
+                style="cursor: pointer"
                 @click="toggleItem(asset)"
               >
                 <td>
-                  <input type="checkbox" :checked="isSelected(asset)" @click.stop="toggleItem(asset)" />
+                  <input
+                    type="checkbox"
+                    :checked="isSelected(asset)"
+                    @click.stop="toggleItem(asset)"
+                  />
                 </td>
                 <td>{{ asset.typeLabel }}</td>
                 <td>{{ asset.name }}</td>
@@ -589,7 +639,6 @@ onMounted(() => {
             </div>
           </div>
         </section>
-
       </div>
 
       <div class="form-footer">
