@@ -5,6 +5,7 @@ import AppSidebar from '@/components/layout/AppSidebar.vue'
 
 import { parseCsvFile } from '@/services/csv/csvParser'
 import { hasRequiredHeaders } from '@/services/csv/csvValidator'
+import type { CsvRow } from '@/services/csv/csvTypes'
 
 import { importAssetRows } from '@/services/import/assetImportService'
 import {
@@ -60,6 +61,16 @@ const csv2Rows = ref<TicketCsvRow[]>([])
 const csv3Rows = ref<CoutCsvRow[]>([])
 const zipImageNames = ref<string[]>([])
 
+// État d'un fichier CSV choisi :
+//   'absent'  : aucun fichier choisi
+//   'ok'      : en-têtes valides + au moins 1 ligne
+//   'vide'    : fichier vide ou juste l'en-tête → rien à importer (PAS une erreur)
+//   'invalide': des lignes mais les colonnes attendues manquent → erreur
+type EtatCsv = 'absent' | 'ok' | 'vide' | 'invalide'
+const csv1Etat = ref<EtatCsv>('absent')
+const csv2Etat = ref<EtatCsv>('absent')
+const csv3Etat = ref<EtatCsv>('absent')
+
 // ─── En-têtes attendus des CSV ───────────────────────────────────────────────
 
 const CSV1_HEADERS = [
@@ -94,37 +105,54 @@ function ext(filename: string): string {
 
 // ─── Handlers de sélection ───────────────────────────────────────────────────
 
+// Analyse un fichier CSV et renvoie son état + ses lignes.
+// Vide ou juste l'en-tête → 'vide' (légitime, on n'importe rien).
+async function analyserCsv(
+  file: File,
+  enTetes: string[],
+): Promise<{ etat: EtatCsv; lignes: CsvRow[] }> {
+  const parsed = await parseCsvFile(file)
+
+  // Fichier vide (aucune colonne lue) → rien à importer.
+  if (parsed.headers.length === 0) {
+    return { etat: 'vide', lignes: [] }
+  }
+  // En-têtes attendus absents → vraie erreur.
+  if (!hasRequiredHeaders(parsed, enTetes)) {
+    return { etat: 'invalide', lignes: [] }
+  }
+  // En-têtes OK mais aucune ligne de données → rien à importer.
+  if (parsed.rows.length === 0) {
+    return { etat: 'vide', lignes: [] }
+  }
+  return { etat: 'ok', lignes: parsed.rows }
+}
+
 async function onCsv1Change(e: Event) {
   const file = (e.target as HTMLInputElement).files?.[0]
   if (!file) return
   csv1File.value = file
-  csv1Rows.value = []
-  const parsed = await parseCsvFile(file)
-  if (hasRequiredHeaders(parsed, CSV1_HEADERS)) {
-    csv1Rows.value = parsed.rows as AssetCsvRow[]
-  }
+  const { etat, lignes } = await analyserCsv(file, CSV1_HEADERS)
+  csv1Etat.value = etat
+  csv1Rows.value = lignes as AssetCsvRow[]
 }
 
 async function onCsv2Change(e: Event) {
   const file = (e.target as HTMLInputElement).files?.[0]
   if (!file) return
   csv2File.value = file
-  csv2Rows.value = []
-  const parsed = await parseCsvFile(file)
-  if (hasRequiredHeaders(parsed, CSV2_HEADERS)) {
-    csv2Rows.value = parsed.rows as TicketCsvRow[]
-  }
+  const { etat, lignes } = await analyserCsv(file, CSV2_HEADERS)
+  csv2Etat.value = etat
+  csv2Rows.value = lignes as TicketCsvRow[]
 }
 
 async function onCsv3Change(e: Event) {
   const file = (e.target as HTMLInputElement).files?.[0]
   if (!file) return
   csv3File.value = file
-  csv3Rows.value = []
-  const parsed = await parseCsvFile(file)
-  if (hasRequiredHeaders(parsed, CSV3_HEADERS)) {
-    csv3Rows.value = parsed.rows as CoutCsvRow[]
-  }
+  const { etat, lignes } = await analyserCsv(file, CSV3_HEADERS)
+  csv3Etat.value = etat
+  csv3Rows.value = lignes as CoutCsvRow[]
 }
 
 async function onZipChange(e: Event) {
@@ -148,16 +176,19 @@ async function onZipChange(e: Event) {
 
 // ─── Validation avant import ─────────────────────────────────────────────────
 
+// Aucun fichier n'est OBLIGATOIRE : on importe ce qui est fourni.
+// Un fichier VIDE (ou juste l'en-tête) est légitime : on n'importe rien, sans erreur.
+// On ne signale QUE les en-têtes invalides (fichier non vide mais inexploitable).
 function valider(): boolean {
   erreurs.value = []
-  if (!csv1File.value || csv1Rows.value.length === 0)
-    erreurs.value.push('Feuille 1 (inventaire) : fichier manquant ou en-têtes invalides')
-  if (!csv2File.value || csv2Rows.value.length === 0)
-    erreurs.value.push('Feuille 2 (tickets) : fichier manquant ou en-têtes invalides')
-  if (!csv3File.value || csv3Rows.value.length === 0)
-    erreurs.value.push('Feuille 3 (coûts) : fichier manquant ou en-têtes invalides')
-  if (!skipImages.value && (!zipFile.value || zipImageNames.value.length === 0))
-    erreurs.value.push('Images ZIP : fichier manquant ou aucune image valide')
+
+  if (csv1Etat.value === 'invalide')
+    erreurs.value.push('Feuille 1 (inventaire) : en-têtes invalides, fichier ignoré')
+  if (csv2Etat.value === 'invalide')
+    erreurs.value.push('Feuille 2 (tickets) : en-têtes invalides, fichier ignoré')
+  if (csv3Etat.value === 'invalide')
+    erreurs.value.push('Feuille 3 (coûts) : en-têtes invalides, fichier ignoré')
+
   return erreurs.value.length === 0
 }
 
@@ -311,8 +342,11 @@ const statsImages = computed(() => ({
             </td>
             <td><input type="file" accept=".csv" @change="onCsv1Change" /></td>
             <td>
-              <span v-if="csv1Rows.length > 0" style="color: green">
+              <span v-if="csv1Etat === 'ok'" style="color: green">
                 ✓ {{ csv1Rows.length }} ligne(s)
+              </span>
+              <span v-else-if="csv1Etat === 'vide'" style="color: #b26b00">
+                ◌ Fichier vide / en-tête seul
               </span>
               <span v-else-if="csv1File" style="color: red"> ✗ En-têtes invalides </span>
               <span v-else style="color: gray">Aucun fichier</span>
@@ -330,8 +364,11 @@ const statsImages = computed(() => ({
             </td>
             <td><input type="file" accept=".csv" @change="onCsv2Change" /></td>
             <td>
-              <span v-if="csv2Rows.length > 0" style="color: green">
+              <span v-if="csv2Etat === 'ok'" style="color: green">
                 ✓ {{ csv2Rows.length }} ticket(s)
+              </span>
+              <span v-else-if="csv2Etat === 'vide'" style="color: #b26b00">
+                ◌ Fichier vide / en-tête seul
               </span>
               <span v-else-if="csv2File" style="color: red"> ✗ En-têtes invalides </span>
               <span v-else style="color: gray">Aucun fichier</span>
@@ -346,8 +383,11 @@ const statsImages = computed(() => ({
             </td>
             <td><input type="file" accept=".csv" @change="onCsv3Change" /></td>
             <td>
-              <span v-if="csv3Rows.length > 0" style="color: green">
+              <span v-if="csv3Etat === 'ok'" style="color: green">
                 ✓ {{ csv3Rows.length }} ligne(s)
+              </span>
+              <span v-else-if="csv3Etat === 'vide'" style="color: #b26b00">
+                ◌ Fichier vide / en-tête seul
               </span>
               <span v-else-if="csv3File" style="color: red"> ✗ En-têtes invalides </span>
               <span v-else style="color: gray">Aucun fichier</span>
