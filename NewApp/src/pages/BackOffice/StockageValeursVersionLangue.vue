@@ -93,11 +93,42 @@ async function supprimer(langue: Langue) {
 }
 
 // Applique la couleur du 1er statut à tous les statuts de la langue
-// (cas « même couleur partout »). L'utilisateur enregistre ensuite.
+// (cas « même couleur partout dans CETTE langue »). On enregistre ensuite.
 function memeCouleurPartout(langue: Langue) {
   const couleur = langue.statuts[0]?.color ?? '#dbeafe'
   for (const statut of langue.statuts) {
     statut.color = couleur
+  }
+}
+
+// ─── Mode « une couleur par statut, identique pour TOUTES les langues » ───
+// Les 3 statuts fixes + une couleur choisie pour chacun.
+const couleursParStatut = ref([
+  { statusKey: 'nouveau', label: 'Statut 1 (Nouveau)', color: '#ef4444' },
+  { statusKey: 'in_progress', label: 'Statut 2 (In progress)', color: '#3b82f6' },
+  { statusKey: 'termine', label: 'Statut 3 (Terminé)', color: '#a855f7' },
+])
+
+// Applique ces 3 couleurs au statut correspondant de CHAQUE langue, puis
+// enregistre toutes les langues. Ex : statut 1 = rouge partout, 2 = bleu, 3 = violet.
+async function appliquerCouleursATouteLangue() {
+  error.value = ''
+  success.value = ''
+  try {
+    for (const langue of langues.value) {
+      for (const statut of langue.statuts) {
+        const choix = couleursParStatut.value.find((c) => c.statusKey === statut.statusKey)
+        if (choix) {
+          statut.color = choix.color
+        }
+      }
+      await majLangue(langue.id, langue.nom, langue.statuts)
+    }
+    success.value = 'Couleurs appliquées à toutes les langues.'
+    log.succes('Couleurs par statut appliquées à toutes les langues')
+  } catch (err) {
+    error.value = messageErreur(err)
+    log.erreur('Échec de l’application des couleurs', err)
   }
 }
 
@@ -117,8 +148,26 @@ onMounted(charger)
     </p>
 
     <p v-if="loading">Chargement…</p>
-    <p v-if="error" style="color: red">{{ error }}</p>
-    <p v-if="success" style="color: green">{{ success }}</p>
+    <p v-if="error" class="message-erreur">{{ error }}</p>
+    <p v-if="success" class="message-succes">{{ success }}</p>
+
+    <!-- ─── Mode : une couleur par statut, identique pour TOUTES les langues ─── -->
+    <section>
+      <h2>Couleur par statut (toutes les langues)</h2>
+      <p>
+        Choisissez une couleur par statut, puis appliquez-la à toutes les langues d'un coup.
+        Ex : statut 1 rouge, statut 2 bleu, statut 3 violet — quelle que soit la langue.
+      </p>
+      <div class="ligne-couleurs">
+        <label v-for="c in couleursParStatut" :key="c.statusKey">
+          {{ c.label }}
+          <input v-model="c.color" type="color" />
+        </label>
+      </div>
+      <button type="button" @click="appliquerCouleursATouteLangue">
+        Appliquer à toutes les langues
+      </button>
+    </section>
 
     <!-- ─── Ajouter une langue ─── -->
     <section>
