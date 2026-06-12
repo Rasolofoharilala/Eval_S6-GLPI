@@ -1,28 +1,52 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
+import BarreFiltres from '@/components/BarreFiltres.vue'
 import { useTickets } from '@/composables/generated/useTickets'
+import { useFiltreTickets } from '@/composables/useFiltreTickets'
 import {
-  getTicketStatusLabel,
+  libelleStatut,
+  libellePriorite,
+  libelleUrgence,
+  libelleImpact,
+  libelleType,
+  OPTIONS_STATUT,
+  OPTIONS_PRIORITE,
+  OPTIONS_URGENCE,
+  OPTIONS_IMPACT,
+  OPTIONS_TYPE,
+} from '@/config/tickets'
+import {
   getTicketRequestTypeLabel,
   getTicketCategoryLabel,
   getTicketRequesterName,
   getTicketAssignedName,
-  getTicketPriorityLabel,
-  getTicketUrgencyLabel,
-  getTicketImpactLabel,
   removeHtmlTags,
 } from '@/helpers/Dashboard/Tickets'
+import type { Ticket } from '@/services/generated/ticketService'
 import { creerLogger } from '@/utils/pageLogger'
 
 const log = creerLogger('Focus Tickets')
 
 const { tickets, selectedTicket, loading, error, loadTickets, loadTicketById } = useTickets()
 
+// ─── Filtres centralisés : la liste affichée est la liste filtrée
+const { filtres, ticketsFiltres, reinitialiser } = useFiltreTickets(tickets)
+
+const champsFiltres = [
+  { cle: 'recherche', label: 'Recherche (id ou titre)', type: 'texte' as const },
+  { cle: 'type', label: 'Type', type: 'select' as const, options: OPTIONS_TYPE },
+  { cle: 'statut', label: 'Statut', type: 'select' as const, options: OPTIONS_STATUT },
+  { cle: 'priorite', label: 'Priorité', type: 'select' as const, options: OPTIONS_PRIORITE },
+  { cle: 'urgence', label: 'Urgence', type: 'select' as const, options: OPTIONS_URGENCE },
+  { cle: 'impact', label: 'Impact', type: 'select' as const, options: OPTIONS_IMPACT },
+  { cle: 'dateDebut', label: 'Ouvert du', type: 'date' as const },
+  { cle: 'dateFin', label: 'au', type: 'date' as const },
+]
+
 onMounted(async () => {
   log.info('Chargement des tickets…')
   await loadTickets()
-  // ─── Le composable remplit error.value lui-même : on vérifie après coup
   if (error.value) {
     log.erreur('Échec du chargement des tickets', error.value)
   } else {
@@ -36,10 +60,9 @@ async function selectTicket(id?: number) {
   await loadTicketById(id)
 }
 
-function getTypeLabel(type?: number): string {
-  if (type === 1) return 'Incident'
-  if (type === 2) return 'Requête'
-  return 'Non renseigné'
+// L'id du statut (forme {id, name}).
+function idStatut(t: Ticket): number {
+  return t.status && typeof t.status === 'object' ? (t.status.id ?? 0) : 0
 }
 </script>
 
@@ -51,9 +74,14 @@ function getTypeLabel(type?: number): string {
   <p v-if="error">Erreur : {{ error }}</p>
 
   <div v-if="!loading && tickets.length > 0">
+    <BarreFiltres :modele="filtres" :champs="champsFiltres" @reset="reinitialiser" />
+
     <section>
-      <h2>Liste des tickets</h2>
-      <table border="1" cellpadding="6">
+      <h2>
+        Liste des tickets ({{ ticketsFiltres.length }} affiché(s) sur {{ tickets.length }})
+      </h2>
+      <p v-if="ticketsFiltres.length === 0">Aucun ticket ne correspond aux filtres.</p>
+      <table v-else border="1" cellpadding="6">
         <thead>
           <tr>
             <th>ID</th>
@@ -61,22 +89,22 @@ function getTypeLabel(type?: number): string {
             <th>Type</th>
             <th>Statut</th>
             <th>Priorité</th>
-            <th>Date création</th>
+            <th>Date ouverture</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="ticket in tickets"
+            v-for="ticket in ticketsFiltres"
             :key="ticket.id"
             :style="selectedTicket?.id === ticket.id ? 'background: #eee' : ''"
           >
             <td>{{ ticket.id }}</td>
             <td>{{ ticket.name }}</td>
-            <td>{{ getTypeLabel(ticket.type) }}</td>
-            <td>{{ getTicketStatusLabel(ticket.status) }}</td>
-            <td>{{ getTicketPriorityLabel(ticket.priority) }}</td>
-            <td>{{ ticket.date_creation ?? '—' }}</td>
+            <td>{{ libelleType(ticket.type) }}</td>
+            <td>{{ libelleStatut(idStatut(ticket)) }}</td>
+            <td>{{ libellePriorite(ticket.priority) }}</td>
+            <td>{{ ticket.date ?? ticket.date_creation ?? '—' }}</td>
             <td>
               <button @click="selectTicket(ticket.id)">Voir</button>
             </td>
@@ -91,11 +119,11 @@ function getTypeLabel(type?: number): string {
         <tbody>
           <tr>
             <th>Type</th>
-            <td>{{ getTypeLabel(selectedTicket.type) }}</td>
+            <td>{{ libelleType(selectedTicket.type) }}</td>
           </tr>
           <tr>
             <th>Statut</th>
-            <td>{{ getTicketStatusLabel(selectedTicket.status) }}</td>
+            <td>{{ libelleStatut(idStatut(selectedTicket)) }}</td>
           </tr>
           <tr>
             <th>Source de la demande</th>
@@ -107,15 +135,15 @@ function getTypeLabel(type?: number): string {
           </tr>
           <tr>
             <th>Priorité</th>
-            <td>{{ getTicketPriorityLabel(selectedTicket.priority) }}</td>
+            <td>{{ libellePriorite(selectedTicket.priority) }}</td>
           </tr>
           <tr>
             <th>Urgence</th>
-            <td>{{ getTicketUrgencyLabel(selectedTicket.urgency) }}</td>
+            <td>{{ libelleUrgence(selectedTicket.urgency) }}</td>
           </tr>
           <tr>
             <th>Impact</th>
-            <td>{{ getTicketImpactLabel(selectedTicket.impact) }}</td>
+            <td>{{ libelleImpact(selectedTicket.impact) }}</td>
           </tr>
           <tr>
             <th>Demandeur</th>
@@ -126,8 +154,8 @@ function getTypeLabel(type?: number): string {
             <td>{{ getTicketAssignedName(selectedTicket.team) }}</td>
           </tr>
           <tr>
-            <th>Date création</th>
-            <td>{{ selectedTicket.date_creation ?? '—' }}</td>
+            <th>Date ouverture</th>
+            <td>{{ selectedTicket.date ?? selectedTicket.date_creation ?? '—' }}</td>
           </tr>
           <tr>
             <th>Date résolution</th>

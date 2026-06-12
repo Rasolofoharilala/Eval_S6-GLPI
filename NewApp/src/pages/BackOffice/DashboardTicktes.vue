@@ -1,13 +1,21 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
+import BarreFiltres from '@/components/BarreFiltres.vue'
 import { useTickets } from '@/composables/generated/useTickets'
+import { useFiltreTickets } from '@/composables/useFiltreTickets'
 import {
-  getTicketStatusLabel,
-  getTicketPriorityLabel,
-  getTicketUrgencyLabel,
-  getTicketImpactLabel,
-} from '@/helpers/Dashboard/Tickets'
+  libelleStatut,
+  libellePriorite,
+  libelleUrgence,
+  libelleImpact,
+  libelleType,
+  OPTIONS_STATUT,
+  OPTIONS_PRIORITE,
+  OPTIONS_URGENCE,
+  OPTIONS_IMPACT,
+  OPTIONS_TYPE,
+} from '@/config/tickets'
 import {
   aggregateTicketCosts,
   countLinkedItems,
@@ -21,7 +29,22 @@ const log = creerLogger('Dashboard Tickets')
 
 const { tickets, loading, error, loadTickets } = useTickets()
 
-// ─── Agrégats complémentaires (coûts + éléments liés) chargés après les tickets
+// ─── Filtres (composable central) : la liste filtrée alimente tous les compteurs
+const { filtres, ticketsFiltres, reinitialiser } = useFiltreTickets(tickets)
+
+// Description des champs affichés dans la barre de filtres.
+const champsFiltres = [
+  { cle: 'recherche', label: 'Recherche (id ou titre)', type: 'texte' as const },
+  { cle: 'type', label: 'Type', type: 'select' as const, options: OPTIONS_TYPE },
+  { cle: 'statut', label: 'Statut', type: 'select' as const, options: OPTIONS_STATUT },
+  { cle: 'priorite', label: 'Priorité', type: 'select' as const, options: OPTIONS_PRIORITE },
+  { cle: 'urgence', label: 'Urgence', type: 'select' as const, options: OPTIONS_URGENCE },
+  { cle: 'impact', label: 'Impact', type: 'select' as const, options: OPTIONS_IMPACT },
+  { cle: 'dateDebut', label: 'Ouvert du', type: 'date' as const },
+  { cle: 'dateFin', label: 'au', type: 'date' as const },
+]
+
+// ─── Agrégats complémentaires (coûts + éléments liés), sur TOUS les tickets
 const costs = ref<CostAggregate | null>(null)
 const linkedItems = ref<number | null>(null)
 const extraLoading = ref(false)
@@ -31,8 +54,6 @@ onMounted(async () => {
   await loadTickets()
   log.succes(tickets.value.length + ' tickets chargés')
 
-  // ─── On enrichit ensuite avec les coûts détaillés et le nombre d'éléments
-  // liés (requêtes complémentaires, potentiellement longues).
   log.info('Calcul des coûts et des éléments liés...')
   extraLoading.value = true
   try {
@@ -42,15 +63,7 @@ onMounted(async () => {
     ])
     costs.value = c
     linkedItems.value = n
-    log.succes(
-      'Agrégats calculés : ' +
-        c.entries +
-        ' entrées de coût, total global ' +
-        c.totalOverall +
-        ', ' +
-        n +
-        ' éléments liés',
-    )
+    log.succes('Agrégats calculés : ' + c.entries + ' entrées de coût, ' + n + ' éléments liés')
   } catch (err) {
     log.erreur('Erreur pendant le calcul des agrégats : ' + messageErreur(err), err)
   } finally {
@@ -58,15 +71,18 @@ onMounted(async () => {
   }
 })
 
-const total = computed(() => tickets.value.length)
-const incidents = computed(() => tickets.value.filter((t) => t.type === 1))
-const requetes = computed(() => tickets.value.filter((t) => t.type === 2))
+// ─── L'id du statut (forme {id, name}) ───
+function idStatut(t: Ticket): number {
+  return t.status && typeof t.status === 'object' ? (t.status.id ?? 0) : 0
+}
 
-// ─── Compte les tickets par étiquette (statut, priorité...) : version simple
-function compterPar(
-  liste: Ticket[],
-  getEtiquette: (t: Ticket) => string,
-): Record<string, number> {
+// ─── Tout est calculé sur la liste FILTRÉE ───
+const total = computed(() => ticketsFiltres.value.length)
+const incidents = computed(() => ticketsFiltres.value.filter((t) => t.type === 1))
+const requetes = computed(() => ticketsFiltres.value.filter((t) => t.type === 2))
+
+// Compte les tickets par étiquette (statut, priorité...) : version simple.
+function compterPar(liste: Ticket[], getEtiquette: (t: Ticket) => string): Record<string, number> {
   const compte: Record<string, number> = {}
   for (const t of liste) {
     const e = getEtiquette(t)
@@ -76,26 +92,20 @@ function compterPar(
 }
 
 const countByStatus = computed(() =>
-  compterPar(tickets.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
+  compterPar(ticketsFiltres.value, (t) => libelleStatut(idStatut(t))),
 )
 const countByPriority = computed(() =>
-  compterPar(tickets.value, (t) => getTicketPriorityLabel(t.priority)),
+  compterPar(ticketsFiltres.value, (t) => libellePriorite(t.priority)),
 )
 const countByUrgency = computed(() =>
-  compterPar(tickets.value, (t) => getTicketUrgencyLabel(t.urgency)),
+  compterPar(ticketsFiltres.value, (t) => libelleUrgence(t.urgency)),
 )
 const countByImpact = computed(() =>
-  compterPar(tickets.value, (t) => getTicketImpactLabel(t.impact)),
+  compterPar(ticketsFiltres.value, (t) => libelleImpact(t.impact)),
 )
+const countByType = computed(() => compterPar(ticketsFiltres.value, (t) => libelleType(t.type)))
 
-const countIncidentsByStatus = computed(() =>
-  compterPar(incidents.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
-)
-const countRequetesByStatus = computed(() =>
-  compterPar(requetes.value, (t) => getTicketStatusLabel(t.status) ?? 'Inconnu'),
-)
-
-// Formatage monétaire en Ariary (séparateurs de milliers).
+// Formatage monétaire (séparateurs de milliers).
 function fmt(n: number | undefined): string {
   if (n === undefined) return '—'
   return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -110,15 +120,21 @@ function fmt(n: number | undefined): string {
   <p v-if="error">Erreur : {{ error }}</p>
 
   <div v-if="!loading && tickets.length > 0">
+    <BarreFiltres :modele="filtres" :champs="champsFiltres" @reset="reinitialiser" />
+
+    <p>
+      <strong>{{ total }}</strong> ticket(s) affiché(s) sur {{ tickets.length }} au total.
+    </p>
+
     <section>
-      <h2>Vue globale</h2>
+      <h2>Vue globale (filtrée)</h2>
       <table border="1" cellpadding="6">
         <thead>
           <tr>
             <th>Total</th>
             <th>Incidents</th>
             <th>Requêtes</th>
-            <th>Éléments liés</th>
+            <th>Éléments liés (tous tickets)</th>
           </tr>
         </thead>
         <tbody>
@@ -137,7 +153,25 @@ function fmt(n: number | undefined): string {
     </section>
 
     <section>
-      <h2>Statuts (tous types)</h2>
+      <h2>Par type</h2>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(count, label) in countByType" :key="label">
+            <td>{{ label }}</td>
+            <td>{{ count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Statuts</h2>
       <table border="1" cellpadding="6">
         <thead>
           <tr>
@@ -155,7 +189,7 @@ function fmt(n: number | undefined): string {
     </section>
 
     <section>
-      <h2>Priorités (tous types)</h2>
+      <h2>Priorités</h2>
       <table border="1" cellpadding="6">
         <thead>
           <tr>
@@ -173,7 +207,7 @@ function fmt(n: number | undefined): string {
     </section>
 
     <section>
-      <h2>Urgences (tous types)</h2>
+      <h2>Urgences</h2>
       <table border="1" cellpadding="6">
         <thead>
           <tr>
@@ -191,7 +225,7 @@ function fmt(n: number | undefined): string {
     </section>
 
     <section>
-      <h2>Impacts (tous types)</h2>
+      <h2>Impacts</h2>
       <table border="1" cellpadding="6">
         <thead>
           <tr>
@@ -209,45 +243,7 @@ function fmt(n: number | undefined): string {
     </section>
 
     <section>
-      <h2>Incidents — par statut</h2>
-      <p>Total incidents : {{ incidents.length }}</p>
-      <table border="1" cellpadding="6">
-        <thead>
-          <tr>
-            <th>Statut</th>
-            <th>Nombre</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(count, label) in countIncidentsByStatus" :key="label">
-            <td>{{ label }}</td>
-            <td>{{ count }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>Requêtes — par statut</h2>
-      <p>Total requêtes : {{ requetes.length }}</p>
-      <table border="1" cellpadding="6">
-        <thead>
-          <tr>
-            <th>Statut</th>
-            <th>Nombre</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(count, label) in countRequetesByStatus" :key="label">
-            <td>{{ label }}</td>
-            <td>{{ count }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>Coûts</h2>
+      <h2>Coûts (tous les tickets)</h2>
       <p v-if="extraLoading && !costs">Calcul des coûts en cours…</p>
       <table v-else-if="costs" border="1" cellpadding="6">
         <tbody>

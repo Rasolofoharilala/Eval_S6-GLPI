@@ -1,9 +1,11 @@
 const AUTH_TOKEN_KEY = 'backoffice_token'
 
-export function login(password: string): boolean {
-  const defaultPassword = 'pass'
+// Code d'accès unique au back office (J1 : « code unique comme mot de passe »).
+// Pré-rempli dans le formulaire de connexion. Modifier ici = modifier partout.
+export const CODE_ACCES = 'pass'
 
-  if (password !== defaultPassword) {
+export function login(password: string): boolean {
+  if (password !== CODE_ACCES) {
     return false
   }
 

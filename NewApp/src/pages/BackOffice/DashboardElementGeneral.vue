@@ -1,75 +1,108 @@
 <script setup lang="ts">
 import AppSidebar from '@/components/layout/AppSidebar.vue'
+import BarreFiltres from '@/components/BarreFiltres.vue'
 import { computed, onMounted } from 'vue'
 
 import { useParcAssets } from '@/composables/useParcAssets'
-import type { AssetParc } from '@/composables/useParcAssets'
+import { useFiltreParc, type ElementParc } from '@/composables/useFiltreParc'
+import { TYPES_PARC } from '@/config/parc'
 import { creerLogger } from '@/utils/pageLogger'
 
 const log = creerLogger('Dashboard Éléments')
 
-// ─── Le composable central charge les 5 types du parc et gère loading/error ───
-const { groupes, tousLesElements, loading, error, chargerParc } = useParcAssets()
+// ─── Le composable central charge les 5 types du parc ───
+const { groupes, loading, error, chargerParc } = useParcAssets()
+
+// ─── Filtres (recherche, type, statut, lieu, fabricant) ───
+const { filtres, elementsFiltres, optionsStatut, optionsLieu, optionsFabricant, reinitialiser } =
+  useFiltreParc(groupes)
+
+// Options du select "type" : construites depuis la config centrale du parc.
+const optionsType = TYPES_PARC.map((t) => ({ valeur: t.cle, label: t.label }))
+
+// Les champs de la barre de filtres (statut/lieu/fabricant sont dynamiques).
+const champsFiltres = computed(() => [
+  { cle: 'recherche', label: 'Recherche (nom ou n° inventaire)', type: 'texte' as const },
+  { cle: 'type', label: 'Type', type: 'select' as const, options: optionsType },
+  {
+    cle: 'statut',
+    label: 'Statut',
+    type: 'select' as const,
+    options: optionsStatut.value.map((s) => ({ valeur: s, label: s })),
+  },
+  {
+    cle: 'lieu',
+    label: 'Lieu',
+    type: 'select' as const,
+    options: optionsLieu.value.map((l) => ({ valeur: l, label: l })),
+  },
+  {
+    cle: 'fabricant',
+    label: 'Fabricant',
+    type: 'select' as const,
+    options: optionsFabricant.value.map((f) => ({ valeur: f, label: f })),
+  },
+])
 
 // Une ligne de comptage affichée dans les tableaux.
 type LigneCompte = { label: string; nombre: number }
 
-// ─── Nombre d'éléments par type (un groupe = un type du parc) ───
-const comptesParType = computed<LigneCompte[]>(() => {
-  const lignes: LigneCompte[] = []
-  for (const groupe of groupes.value) {
-    lignes.push({ label: groupe.label, nombre: groupe.elements.length })
-  }
-  return lignes
-})
+// ─── Total affiché = nombre d'éléments filtrés ───
+const totalGeneral = computed(() => elementsFiltres.value.length)
 
-// ─── Total général : somme des comptes par type ───
-const totalGeneral = computed(() => {
-  let total = 0
-  for (const ligne of comptesParType.value) {
-    total = total + ligne.nombre
+// ─── Nombre d'éléments par type (sur la liste filtrée) ───
+const comptesParType = computed<LigneCompte[]>(() => {
+  const compteur: Record<string, number> = {}
+  for (const e of elementsFiltres.value) {
+    compteur[e.typeLabel] = (compteur[e.typeLabel] ?? 0) + 1
   }
-  return total
+  return compteurVersLignes(compteur)
 })
 
 // Statut lisible d'un élément (ou "Inconnu" si absent).
-function nomStatut(element: AssetParc): string {
+function nomStatut(element: ElementParc): string {
   return element.status?.name ?? 'Inconnu'
 }
 
-// Transforme un compteur { statut: nombre } en lignes triées par effectif décroissant.
+// Transforme un compteur { étiquette: nombre } en lignes triées par effectif.
 function compteurVersLignes(compteur: Record<string, number>): LigneCompte[] {
   const lignes: LigneCompte[] = []
-  for (const statut of Object.keys(compteur)) {
-    lignes.push({ label: statut, nombre: compteur[statut] ?? 0 })
+  for (const etiquette of Object.keys(compteur)) {
+    lignes.push({ label: etiquette, nombre: compteur[etiquette] ?? 0 })
   }
   lignes.sort((a, b) => b.nombre - a.nombre)
   return lignes
 }
 
-// ─── Répartition par statut, tous types confondus ───
+// ─── Répartition par statut, sur la liste filtrée ───
 const comptesParStatut = computed<LigneCompte[]>(() => {
   const compteur: Record<string, number> = {}
-  for (const element of tousLesElements.value) {
-    const statut = nomStatut(element)
-    compteur[statut] = (compteur[statut] ?? 0) + 1
+  for (const e of elementsFiltres.value) {
+    const s = nomStatut(e)
+    compteur[s] = (compteur[s] ?? 0) + 1
   }
   return compteurVersLignes(compteur)
 })
 
-// ─── Répartition par statut, détaillée par type (on ignore les types vides) ───
+// ─── Répartition par statut, détaillée par type (liste filtrée) ───
 const statutsParType = computed<{ label: string; statuts: LigneCompte[] }[]>(() => {
+  // On regroupe les éléments filtrés par leur type.
+  const parType: Record<string, ElementParc[]> = {}
+  for (const e of elementsFiltres.value) {
+    const liste = parType[e.typeLabel] ?? []
+    liste.push(e)
+    parType[e.typeLabel] = liste
+  }
+
   const resultats: { label: string; statuts: LigneCompte[] }[] = []
-  for (const groupe of groupes.value) {
-    if (groupe.elements.length === 0) {
-      continue
-    }
+  for (const label of Object.keys(parType)) {
+    const elements = parType[label] ?? []
     const compteur: Record<string, number> = {}
-    for (const element of groupe.elements) {
-      const statut = nomStatut(element)
-      compteur[statut] = (compteur[statut] ?? 0) + 1
+    for (const e of elements) {
+      const s = nomStatut(e)
+      compteur[s] = (compteur[s] ?? 0) + 1
     }
-    resultats.push({ label: groupe.label, statuts: compteurVersLignes(compteur) })
+    resultats.push({ label, statuts: compteurVersLignes(compteur) })
   }
   return resultats
 })
@@ -83,12 +116,11 @@ onMounted(async () => {
     return
   }
 
-  // Détail par type pour le log de succès (ex : "Ordinateurs: 21, Moniteurs: 20").
   const details: string[] = []
   for (const groupe of groupes.value) {
     details.push(groupe.label + ': ' + groupe.elements.length)
   }
-  log.succes(totalGeneral.value + ' éléments chargés — ' + details.join(', '))
+  log.succes(elementsFiltres.value.length + ' éléments chargés — ' + details.join(', '))
 })
 </script>
 
@@ -101,14 +133,15 @@ onMounted(async () => {
     <p>Nombre général d’éléments avec détails par type et par statut.</p>
 
     <p v-if="loading">Chargement...</p>
-
     <p v-if="error">Erreur : {{ error }}</p>
 
     <div v-if="!loading && !error">
+      <BarreFiltres :modele="filtres" :champs="champsFiltres" @reset="reinitialiser" />
+
       <section>
         <h2>Vue globale</h2>
         <p>
-          <strong>Total général : {{ totalGeneral }}</strong>
+          <strong>Total affiché : {{ totalGeneral }}</strong>
         </p>
         <table border="1" cellpadding="6">
           <thead>

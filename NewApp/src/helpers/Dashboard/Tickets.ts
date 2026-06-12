@@ -79,53 +79,21 @@ export function getTicketAssignedName(team: TeamMemberLike[] | undefined): strin
   return getTeamMemberName(team, 'assigned')
 }
 
-// Tables de correspondance numéro GLPI → libellé français.
-// GLPI utilise 1 à 5 partout, plus 6 (« Majeure ») pour la priorité.
-
-const PRIORITY_LABELS: Record<number, string> = {
-  1: 'Très basse',
-  2: 'Basse',
-  3: 'Moyenne',
-  4: 'Haute',
-  5: 'Très haute',
-  6: 'Majeure',
-}
-
-const URGENCY_LABELS: Record<number, string> = {
-  1: 'Très basse',
-  2: 'Basse',
-  3: 'Moyenne',
-  4: 'Haute',
-  5: 'Très haute',
-}
-
-const IMPACT_LABELS: Record<number, string> = {
-  1: 'Très bas',
-  2: 'Bas',
-  3: 'Moyen',
-  4: 'Haut',
-  5: 'Très haut',
-}
+// Les libellés (statut, priorité, urgence, impact, type) sont centralisés dans
+// src/config/tickets.ts. On ne fait ici que les ré-exporter pour ne pas casser
+// les imports existants des pages.
+import { libellePriorite, libelleUrgence, libelleImpact } from '@/config/tickets'
 
 export function getTicketPriorityLabel(priority?: number): string {
-  if (!priority) {
-    return 'Non renseigné'
-  }
-  return PRIORITY_LABELS[priority] ?? `Priorité ${priority}`
+  return libellePriorite(priority)
 }
 
 export function getTicketUrgencyLabel(urgency?: number): string {
-  if (!urgency) {
-    return 'Non renseigné'
-  }
-  return URGENCY_LABELS[urgency] ?? `Urgence ${urgency}`
+  return libelleUrgence(urgency)
 }
 
 export function getTicketImpactLabel(impact?: number): string {
-  if (!impact) {
-    return 'Non renseigné'
-  }
-  return IMPACT_LABELS[impact] ?? `Impact ${impact}`
+  return libelleImpact(impact)
 }
 
 export function removeHtmlTags(value?: string | null): string {

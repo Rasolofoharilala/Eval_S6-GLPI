@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.newapp.backend.kanban.KanbanSettingService;
+import com.newapp.backend.langue.LangueService;
 
 @SpringBootApplication
 public class BackendApplication {
@@ -20,6 +21,11 @@ public class BackendApplication {
 
     @Bean
     CommandLineRunner seedKanbanSettings(KanbanSettingService service) {
+        return args -> service.seedIfEmpty();
+    }
+
+    @Bean
+    CommandLineRunner seedLangues(LangueService service) {
         return args -> service.seedIfEmpty();
     }
 }

@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { login } from '@/auth/authService'
+import { login, CODE_ACCES } from '@/auth/authService'
 import { creerLogger } from '@/utils/pageLogger'
 
 const log = creerLogger('Connexion')
 
 const router = useRouter()
 
+// Le code d'accès est pré-rempli (J1 : « mettre par défaut sur le formulaire »).
 const form = ref({
-  password: 'pass',
+  password: CODE_ACCES,
 })
 
 const error = ref('')

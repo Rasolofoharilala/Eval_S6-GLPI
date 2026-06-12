@@ -2,77 +2,102 @@
 import { onMounted, ref } from 'vue'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 import {
-  getKanbanSettings,
-  updateKanbanSettings,
-  resetKanbanSettings,
-  type KanbanSetting,
-} from '@/services/kanbanSettingsService'
+  getLangues,
+  creerLangue,
+  majLangue,
+  supprimerLangue,
+  type Langue,
+} from '@/services/langueService'
 import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
 
-// Réglages du Kanban : 3 couleurs de fond + version malgache des statuts.
-// Persistés dans SQLite via le backend Spring Boot (port 8080).
+// CRUD des langues du Kanban : chaque langue a 3 statuts (Nouveau, In progress,
+// Terminé) avec un libellé et une couleur PERSONNALISABLES par langue.
+// Stocké en SQLite via le backend Spring Boot (port 8080).
 
-const log = creerLogger('Stockage Kanban')
+const log = creerLogger('Stockage Langues')
 
-const settings = ref<KanbanSetting[]>([])
+const langues = ref<Langue[]>([])
 const loading = ref(false)
-const saving = ref(false)
 const error = ref('')
 const success = ref('')
+
+// Formulaire d'ajout d'une nouvelle langue.
+const nouvelleLangue = ref({ code: '', nom: '' })
 
 async function charger() {
   loading.value = true
   error.value = ''
-  log.info('Chargement des réglages Kanban…')
+  log.info('Chargement des langues…')
   try {
-    settings.value = await getKanbanSettings()
-    log.succes(`${settings.value.length} réglages chargés`)
+    langues.value = await getLangues()
+    log.succes(`${langues.value.length} langue(s) chargée(s)`)
   } catch (err) {
     error.value =
       'Backend injoignable. Lancez-le avec : cd Backend && mvn spring-boot:run (port 8080).'
-    log.erreur('Échec du chargement des réglages', err)
+    log.erreur('Échec du chargement des langues', err)
   } finally {
     loading.value = false
   }
 }
 
-async function sauvegarder() {
-  saving.value = true
+// ─── CRÉER une langue ───
+async function ajouter() {
   error.value = ''
   success.value = ''
+  if (!nouvelleLangue.value.code.trim() || !nouvelleLangue.value.nom.trim()) {
+    error.value = 'Code et nom obligatoires.'
+    return
+  }
   try {
-    settings.value = await updateKanbanSettings(
-      settings.value.map((s) => ({
-        statusKey: s.statusKey,
-        labelFr: s.labelFr,
-        labelMg: s.labelMg,
-        color: s.color,
-      })),
-    )
-    success.value = 'Réglages enregistrés dans SQLite.'
-    log.succes('Réglages sauvegardés dans SQLite')
+    await creerLangue(nouvelleLangue.value.code.trim(), nouvelleLangue.value.nom.trim())
+    nouvelleLangue.value = { code: '', nom: '' }
+    success.value = 'Langue ajoutée.'
+    log.succes('Langue créée')
+    await charger()
   } catch (err) {
     error.value = messageErreur(err)
-    log.erreur('Échec de la sauvegarde', err)
-  } finally {
-    saving.value = false
+    log.erreur('Échec de la création', err)
   }
 }
 
-async function restaurerDefauts() {
-  saving.value = true
+// ─── MODIFIER une langue (nom + libellés + couleurs de ses statuts) ───
+async function enregistrer(langue: Langue) {
   error.value = ''
   success.value = ''
   try {
-    settings.value = await resetKanbanSettings()
-    success.value = 'Valeurs par défaut restaurées (vaovao, efa manao, vita).'
-    log.succes('Valeurs par défaut restaurées')
+    await majLangue(langue.id, langue.nom, langue.statuts)
+    success.value = `Langue « ${langue.nom} » enregistrée.`
+    log.succes(`Langue ${langue.code} enregistrée`)
   } catch (err) {
     error.value = messageErreur(err)
-    log.erreur('Échec de la restauration', err)
-  } finally {
-    saving.value = false
+    log.erreur('Échec de la sauvegarde', err)
+  }
+}
+
+// ─── SUPPRIMER une langue ───
+async function supprimer(langue: Langue) {
+  const ok = window.confirm(`Supprimer la langue « ${langue.nom} » ?`)
+  if (!ok) return
+  error.value = ''
+  success.value = ''
+  try {
+    await supprimerLangue(langue.id)
+    success.value = `Langue « ${langue.nom} » supprimée.`
+    log.succes(`Langue ${langue.code} supprimée`)
+    await charger()
+  } catch (err) {
+    error.value = messageErreur(err)
+    log.erreur('Échec de la suppression', err)
+  }
+}
+
+// Applique la couleur du 1er statut à tous les statuts de la langue
+// (cas « même couleur partout »). L'utilisateur enregistre ensuite.
+function memeCouleurPartout(langue: Langue) {
+  const couleur = langue.statuts[0]?.color ?? '#dbeafe'
+  for (const statut of langue.statuts) {
+    statut.color = couleur
   }
 }
 
@@ -83,39 +108,64 @@ onMounted(charger)
   <AppSidebar />
 
   <main>
-    <h1>Personnalisation du Kanban</h1>
+    <h1>Langues du Kanban</h1>
     <p>
-      Couleurs de fond des 3 colonnes et version <strong>malgache</strong> des noms de statut.
-      Valeurs stockées dans <strong>SQLite</strong> via le backend Spring Boot
-      (<code>Backend/data/newapp.db</code>, échanges JSON).
+      Chaque langue définit le <strong>nom</strong> et la <strong>couleur</strong> de chaque
+      statut (Nouveau, In progress, Terminé). Tout est personnalisable : même couleur partout,
+      une couleur par statut, ou des couleurs différentes selon la langue. Stocké dans
+      <strong>SQLite</strong> via le backend Spring Boot.
     </p>
 
     <p v-if="loading">Chargement…</p>
     <p v-if="error" style="color: red">{{ error }}</p>
     <p v-if="success" style="color: green">{{ success }}</p>
 
-    <form v-if="settings.length" @submit.prevent="sauvegarder">
+    <!-- ─── Ajouter une langue ─── -->
+    <section>
+      <h2>Ajouter une langue</h2>
+      <form @submit.prevent="ajouter">
+        <label>
+          Code
+          <input v-model="nouvelleLangue.code" type="text" placeholder="ex : en" />
+        </label>
+        <label>
+          Nom
+          <input v-model="nouvelleLangue.nom" type="text" placeholder="ex : Anglais" />
+        </label>
+        <button type="submit">Ajouter</button>
+      </form>
+    </section>
+
+    <!-- ─── Une carte par langue ─── -->
+    <section v-for="langue in langues" :key="langue.id" class="carte-langue">
+      <h2>
+        {{ langue.nom }} <small>({{ langue.code }})</small>
+      </h2>
+
+      <label>
+        Nom de la langue
+        <input v-model="langue.nom" type="text" />
+      </label>
+
       <table border="1" cellpadding="6">
         <thead>
           <tr>
-            <th>Colonne</th>
-            <th>Nom (français)</th>
-            <th>Version malgache</th>
-            <th>Couleur de fond</th>
+            <th>Statut</th>
+            <th>Libellé</th>
+            <th>Couleur</th>
             <th>Aperçu</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="s in settings" :key="s.statusKey">
-            <td>{{ s.position }}</td>
-            <td><input v-model="s.labelFr" type="text" required /></td>
-            <td><input v-model="s.labelMg" type="text" placeholder="ex : vaovao" required /></td>
-            <td><input v-model="s.color" type="color" /></td>
+          <tr v-for="statut in langue.statuts" :key="statut.statusKey">
+            <td>{{ statut.statusKey }}</td>
+            <td><input v-model="statut.label" type="text" /></td>
+            <td><input v-model="statut.color" type="color" /></td>
             <td>
               <span
-                :style="`display:inline-block;padding:4px 16px;border-radius:6px;background:${s.color}`"
+                :style="`display:inline-block;padding:4px 16px;border-radius:6px;background:${statut.color}`"
               >
-                {{ s.labelMg }}
+                {{ statut.label }}
               </span>
             </td>
           </tr>
@@ -123,15 +173,25 @@ onMounted(charger)
       </table>
 
       <p>
-        <button type="submit" :disabled="saving">
-          {{ saving ? 'Enregistrement…' : 'Enregistrer dans SQLite' }}
+        <button type="button" @click="enregistrer(langue)">Enregistrer</button>
+        <button type="button" @click="memeCouleurPartout(langue)">
+          Même couleur pour tous les statuts
         </button>
-        <button type="button" :disabled="saving" @click="restaurerDefauts">
-          Restaurer les valeurs par défaut
-        </button>
+        <button type="button" style="color: red" @click="supprimer(langue)">Supprimer</button>
       </p>
-    </form>
+    </section>
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.carte-langue {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+form label,
+.carte-langue > label {
+  margin-right: 12px;
+}
+</style>
