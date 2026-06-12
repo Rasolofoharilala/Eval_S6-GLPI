@@ -59,6 +59,13 @@ export const TYPES_PARC: TypeParc[] = [
     endpoint: '/Assets/Phone',
     modelEndpoint: '/Dropdowns/PhoneModel',
   },
+  {
+    cle: 'networkequipment',
+    itemtype: 'NetworkEquipment',
+    label: 'Matériels réseau',
+    endpoint: '/Assets/NetworkEquipment',
+    modelEndpoint: '/Dropdowns/NetworkEquipmentModel',
+  },
 ]
 
 /**

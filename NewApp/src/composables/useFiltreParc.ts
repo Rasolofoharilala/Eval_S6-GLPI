@@ -27,20 +27,33 @@ export type FiltresParc = {
   statut: string // nom du statut ou '' pour tous
   lieu: string
   fabricant: string
+  utilisateur: string
 }
 
 function filtresVides(): FiltresParc {
-  return { recherche: '', type: '', statut: '', lieu: '', fabricant: '' }
+  return { recherche: '', type: '', statut: '', lieu: '', fabricant: '', utilisateur: '' }
 }
 
-function nomStatut(e: AssetParc): string {
+// Helpers d'affichage : un champ d'asset → texte lisible ('—' si vide).
+// Exportés pour que la liste affiche les mêmes valeurs que les filtres.
+export function nomStatut(e: AssetParc): string {
   return e.status?.name ?? ''
 }
-function nomLieu(e: AssetParc): string {
+export function nomLieu(e: AssetParc): string {
   return e.location?.name ?? e.location?.completename ?? ''
 }
-function nomFabricant(e: AssetParc): string {
+export function nomFabricant(e: AssetParc): string {
   return e.manufacturer?.name ?? ''
+}
+export function nomUtilisateur(e: AssetParc): string {
+  const complet = [e.user?.firstname, e.user?.realname].filter(Boolean).join(' ')
+  return complet || e.user?.name || ''
+}
+export function nomModele(e: AssetParc): string {
+  return e.model?.name ?? ''
+}
+export function numeroInventaire(e: AssetParc): string {
+  return e.otherserial ?? e.serial ?? ''
 }
 
 // Liste triée des valeurs distinctes non vides d'un champ (pour un <select>).
@@ -77,6 +90,10 @@ export function useFiltreParc(groupes: Ref<GroupeParc[]>) {
         if (!nom.includes(recherche) && !inv.includes(recherche)) {
           return false
         }
+      }
+      if (filtres.utilisateur) {
+        const user = filtres.utilisateur.trim().toLowerCase()
+        if (!nomUtilisateur(e).toLowerCase().includes(user)) return false
       }
       if (filtres.type && e.typeCle !== filtres.type) return false
       if (filtres.statut && nomStatut(e) !== filtres.statut) return false

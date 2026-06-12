@@ -1,95 +1,77 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
-import { getTickets, createTicket } from '@/services/generated/ticketService'
-import { httpClient } from '@/api/httpClient'
+import FormulaireTicket from '@/components/FormulaireTicket.vue'
+import { getTickets, getTicketById } from '@/services/generated/ticketService'
+import { creerTicketComplet, changerStatutTicket, type DonneesTicket } from '@/services/ticketActions'
 import type { Ticket } from '@/services/generated/ticketService'
-import {
-  getKanbanSettings,
-  DEFAULT_KANBAN_SETTINGS,
-  type KanbanSetting,
-  type KanbanStatusKey,
-} from '@/services/kanbanSettingsService'
+import { getLangues, LANGUES_DEFAUT, LANGUE_DEFAUT, type Langue } from '@/services/langueService'
+import { COLONNES_KANBAN, colonnePourStatut, type CleColonne } from '@/config/kanban'
+import { libelleStatut, libellePriorite } from '@/config/tickets'
 
-// ─── Statuts Kanban (3 colonnes) ─────────────────────────────────────────────
-// Couleurs et libellés (FR / Malagasy) viennent du backend Spring Boot (SQLite).
+// ─── Langues du Kanban (CRUD SQLite, page /stockage) ───
+// On lit les MÊMES langues que le CRUD : tes couleurs et libellés s'appliquent ici.
+const langues = ref<Langue[]>(LANGUES_DEFAUT)
+const codeLangue = ref('fr')
 
-type KanbanStatus = 1 | 2 | 5
-
-const STATUS_KEY_TO_COLUMN: Record<KanbanStatusKey, KanbanStatus> = {
-  nouveau: 1,
-  in_progress: 2,
-  termine: 5,
-}
-
-const kanbanSettings = ref<KanbanSetting[]>(DEFAULT_KANBAN_SETTINGS)
-const lang = ref<'fr' | 'mg'>('fr')
-
-const COLUMNS = computed<{ id: KanbanStatus; label: string; color: string }[]>(() =>
-  [...kanbanSettings.value]
-    .sort((a, b) => a.position - b.position)
-    .map((s) => ({
-      id: STATUS_KEY_TO_COLUMN[s.statusKey],
-      label: lang.value === 'mg' ? s.labelMg : s.labelFr,
-      color: s.color,
-    })),
+const langueActive = computed<Langue>(
+  () =>
+    langues.value.find((l) => l.code === codeLangue.value) ??
+    langues.value[0] ??
+    LANGUE_DEFAUT,
 )
 
-const STATUS_LABEL: Record<number, string> = {
-  1: 'Nouveau',
-  2: 'En cours (attribué)',
-  3: 'En cours (planifié)',
-  4: 'En attente',
-  5: 'Résolu',
-  6: 'Clos',
-  10: 'En cours',
-}
+// Les 3 colonnes : couleur + libellé viennent de la langue active (par statut).
+const COLONNES = computed(() =>
+  COLONNES_KANBAN.map((col) => {
+    const reglage = langueActive.value.statuts.find((s) => s.statusKey === col.cle)
+    return {
+      cle: col.cle,
+      statutCible: col.statutCible,
+      label: reglage?.label ?? col.cle,
+      color: reglage?.color ?? '#eee',
+    }
+  }),
+)
 
-// ─── État ─────────────────────────────────────────────────────────────────────
-
+// ─── État ───
 const tickets = ref<Ticket[]>([])
 const loading = ref(false)
 const error = ref('')
 
-// Dialogue détail
+// Dialogue détail (ticket complet chargé via getTicketById)
 const detailTicket = ref<Ticket | null>(null)
 
-// Dialogue création
+// Dialogue création (utilise le formulaire partagé)
 const showCreateDialog = ref(false)
-const createColumnId = ref<KanbanStatus>(1)
-const newTitle = ref('')
-const newContent = ref('')
+const createStatutId = ref(1)
 const createLoading = ref(false)
-const createError = ref('')
+const formulaire = ref<InstanceType<typeof FormulaireTicket> | null>(null)
 
 // Dialogue changement de statut
 const showStatusDialog = ref(false)
-const pendingDrop = ref<{ ticket: Ticket; newStatus: KanbanStatus } | null>(null)
+const pendingDrop = ref<{ ticket: Ticket; statutCible: number; libelle: string } | null>(null)
 const statusNote = ref('')
 const statusLoading = ref(false)
 
-// DnD
+// Glisser-déposer
 const draggingTicketId = ref<number | null>(null)
-const dragOverColumn = ref<KanbanStatus | null>(null)
+const dragOverCle = ref<CleColonne | null>(null)
 
-// ─── Computed par colonne ────────────────────────────────────────────────────
-
-function ticketsForColumn(colId: KanbanStatus): Ticket[] {
-  return tickets.value.filter((t) => {
-    const sid = t.status?.id ?? 1
-    if (colId === 1) return sid === 1
-    if (colId === 2) return sid === 2 || sid === 3 || sid === 4 || sid === 10
-    if (colId === 5) return sid === 5 || sid === 6
-    return false
-  })
+// ─── Cartes par colonne ───
+function statutDuTicket(t: Ticket): number {
+  return t.status && typeof t.status === 'object' ? (t.status.id ?? 1) : 1
 }
 
-const columnCounts = computed(() =>
-  Object.fromEntries(COLUMNS.value.map((c) => [c.id, ticketsForColumn(c.id).length])),
+function ticketsDeColonne(cle: CleColonne): Ticket[] {
+  return tickets.value.filter((t) => colonnePourStatut(statutDuTicket(t)).cle === cle)
+}
+
+const comptesColonnes = computed(() =>
+  Object.fromEntries(COLONNES.value.map((c) => [c.cle, ticketsDeColonne(c.cle).length])),
 )
 
-// ─── Chargement ──────────────────────────────────────────────────────────────
-
+// ─── Chargement ───
 async function charger() {
   loading.value = true
   error.value = ''
@@ -102,124 +84,99 @@ async function charger() {
   }
 }
 
-async function chargerReglages() {
+async function chargerLangues() {
   try {
-    kanbanSettings.value = await getKanbanSettings()
+    langues.value = await getLangues()
   } catch {
-    // backend SQLite injoignable : on garde les valeurs par défaut
+    // backend SQLite injoignable : on garde les langues par défaut
   }
 }
 
 onMounted(() => {
   void charger()
-  void chargerReglages()
+  void chargerLangues()
 })
 
-// ─── Détail ───────────────────────────────────────────────────────────────────
-
-function openDetail(ticket: Ticket) {
+// ─── Détail : on recharge le ticket complet (catégorie, lieu… absents de la liste) ───
+async function openDetail(ticket: Ticket) {
   detailTicket.value = ticket
+  if (ticket.id) {
+    try {
+      detailTicket.value = await getTicketById(ticket.id)
+    } catch {
+      // on garde la version liste si le détail échoue
+    }
+  }
 }
 
 function closeDetail() {
   detailTicket.value = null
 }
 
-// ─── Création ────────────────────────────────────────────────────────────────
-
-function openCreate(colId: KanbanStatus) {
-  createColumnId.value = colId
-  newTitle.value = ''
-  newContent.value = ''
-  createError.value = ''
+// ─── Création via le formulaire partagé ───
+function openCreate(statutCible: number) {
+  createStatutId.value = statutCible
   showCreateDialog.value = true
 }
 
-async function submitCreate() {
-  if (!newTitle.value.trim()) {
-    createError.value = 'Le titre est requis'
-    return
-  }
+async function creerDepuisFormulaire(donnees: DonneesTicket) {
   createLoading.value = true
-  createError.value = ''
   try {
-    await createTicket({
-      name: newTitle.value.trim(),
-      content: newContent.value.trim(),
-      status: { id: createColumnId.value },
-      type: 1,
-    })
+    await creerTicketComplet(donnees)
     await charger()
     showCreateDialog.value = false
   } catch (err) {
-    createError.value = err instanceof Error ? err.message : 'Erreur création'
+    error.value = err instanceof Error ? err.message : 'Erreur création'
   } finally {
     createLoading.value = false
   }
 }
 
-// ─── Drag & Drop ─────────────────────────────────────────────────────────────
-
+// ─── Glisser-déposer ───
 function onDragStart(ticket: Ticket) {
   draggingTicketId.value = ticket.id ?? null
 }
 
 function onDragEnd() {
   draggingTicketId.value = null
-  dragOverColumn.value = null
+  dragOverCle.value = null
 }
 
-function onDragOver(colId: KanbanStatus, event: DragEvent) {
+function onDragOver(cle: CleColonne, event: DragEvent) {
   event.preventDefault()
-  dragOverColumn.value = colId
+  dragOverCle.value = cle
 }
 
-function onDrop(colId: KanbanStatus) {
-  dragOverColumn.value = null
+function onDrop(cle: CleColonne) {
+  dragOverCle.value = null
   const ticket = tickets.value.find((t) => t.id === draggingTicketId.value)
   if (!ticket) return
 
-  const currentColId = getColumnForTicket(ticket)
-  if (currentColId === colId) return
+  const colonneActuelle = colonnePourStatut(statutDuTicket(ticket)).cle
+  if (colonneActuelle === cle) return
 
-  // Toujours demander confirmation / infos supplémentaires
-  pendingDrop.value = { ticket, newStatus: colId }
+  const colonne = COLONNES.value.find((c) => c.cle === cle)
+  if (!colonne) return
+
+  // Toujours demander confirmation / infos supplémentaires (sujet J2).
+  pendingDrop.value = { ticket, statutCible: colonne.statutCible, libelle: colonne.label }
   statusNote.value = ''
   showStatusDialog.value = true
 }
 
-function getColumnForTicket(ticket: Ticket): KanbanStatus {
-  const sid = ticket.status?.id ?? 1
-  if (sid === 1) return 1
-  if (sid === 2 || sid === 3 || sid === 4 || sid === 10) return 2
-  return 5
-}
-
-// ─── Changement de statut ────────────────────────────────────────────────────
-
+// ─── Changement de statut (action centralisée) ───
 async function confirmStatusChange() {
   if (!pendingDrop.value) return
-  const { ticket, newStatus } = pendingDrop.value
+  const { ticket, statutCible } = pendingDrop.value
   statusLoading.value = true
   try {
-    await httpClient.patch(`/Assistance/Ticket/${ticket.id}`, {
-      status: { id: newStatus },
-    })
-    if (statusNote.value.trim()) {
-      await httpClient.post(`/Assistance/Ticket/${ticket.id}/Timeline/Followup`, {
-        content: statusNote.value.trim(),
-        is_private: false,
-      })
-    }
-    await charger()
-    showStatusDialog.value = false
-    pendingDrop.value = null
+    await changerStatutTicket(ticket.id ?? 0, statutCible, statusNote.value)
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Échec du changement de statut'
+  } finally {
     await charger()
     showStatusDialog.value = false
     pendingDrop.value = null
-  } finally {
     statusLoading.value = false
   }
 }
@@ -229,21 +186,9 @@ function cancelStatusChange() {
   pendingDrop.value = null
 }
 
-// ─── Helpers affichage ────────────────────────────────────────────────────────
-
-function priorityLabel(p?: number) {
-  const map: Record<number, string> = {
-    1: 'Très basse',
-    2: 'Basse',
-    3: 'Moyenne',
-    4: 'Haute',
-    5: 'Très haute',
-  }
-  return p ? (map[p] ?? '') : ''
-}
-
-function priorityClass(p?: number) {
-  if (p === 5 || p === 4) return 'prio-high'
+// ─── Helpers affichage (libellés centraux) ───
+function classePriorite(p?: number) {
+  if (p === 6 || p === 5 || p === 4) return 'prio-high'
   if (p === 3) return 'prio-med'
   return 'prio-low'
 }
@@ -263,9 +208,12 @@ function formatDate(d?: string) {
       <button class="btn-reload" @click="charger" :disabled="loading">
         {{ loading ? 'Chargement…' : 'Actualiser' }}
       </button>
-      <button class="btn-reload" @click="lang = lang === 'fr' ? 'mg' : 'fr'">
-        {{ lang === 'fr' ? "Hova amin'ny teny malagasy" : 'Passer en français' }}
-      </button>
+      <label class="select-langue">
+        Langue
+        <select v-model="codeLangue">
+          <option v-for="l in langues" :key="l.code" :value="l.code">{{ l.nom }}</option>
+        </select>
+      </label>
     </header>
 
     <p v-if="error" class="kanban-error">{{ error }}</p>
@@ -273,27 +221,27 @@ function formatDate(d?: string) {
     <!-- Board -->
     <div class="kanban-board">
       <div
-        v-for="col in COLUMNS"
-        :key="col.id"
+        v-for="col in COLONNES"
+        :key="col.cle"
         class="kanban-col"
-        :class="{ 'drag-over': dragOverColumn === col.id }"
+        :class="{ 'drag-over': dragOverCle === col.cle }"
         :style="{ background: col.color }"
-        @dragover="onDragOver(col.id, $event)"
-        @dragleave="dragOverColumn = null"
-        @drop="onDrop(col.id)"
+        @dragover="onDragOver(col.cle, $event)"
+        @dragleave="dragOverCle = null"
+        @drop="onDrop(col.cle)"
       >
         <!-- En-tête colonne -->
         <div class="col-header">
           <span class="col-title">{{ col.label }}</span>
-          <span class="col-count">{{ columnCounts[col.id] }}</span>
+          <span class="col-count">{{ comptesColonnes[col.cle] }}</span>
         </div>
 
         <!-- Cartes -->
         <div
-          v-for="ticket in ticketsForColumn(col.id)"
+          v-for="ticket in ticketsDeColonne(col.cle)"
           :key="ticket.id"
           class="ticket-card"
-          :class="[priorityClass(ticket.priority), { dragging: draggingTicketId === ticket.id }]"
+          :class="[classePriorite(ticket.priority), { dragging: draggingTicketId === ticket.id }]"
           draggable="true"
           @dragstart="onDragStart(ticket)"
           @dragend="onDragEnd"
@@ -302,14 +250,14 @@ function formatDate(d?: string) {
           <div class="card-title">{{ ticket.name ?? '(sans titre)' }}</div>
           <div class="card-meta">
             <span v-if="ticket.priority" class="badge-prio">{{
-              priorityLabel(ticket.priority)
+              libellePriorite(ticket.priority)
             }}</span>
             <span class="card-date">{{ formatDate(ticket.date) }}</span>
           </div>
         </div>
 
         <!-- Ajouter un ticket -->
-        <button class="btn-add" @click="openCreate(col.id)">+ Ajouter 1 ticket</button>
+        <button class="btn-add" @click="openCreate(col.statutCible)">+ Ajouter 1 ticket</button>
       </div>
     </div>
 
@@ -326,7 +274,7 @@ function formatDate(d?: string) {
             </tr>
             <tr>
               <th>Statut</th>
-              <td>{{ STATUS_LABEL[detailTicket.status?.id ?? 0] ?? '—' }}</td>
+              <td>{{ libelleStatut(detailTicket.status?.id ?? 0) }}</td>
             </tr>
             <tr>
               <th>Type</th>
@@ -334,15 +282,15 @@ function formatDate(d?: string) {
             </tr>
             <tr>
               <th>Priorité</th>
-              <td>{{ priorityLabel(detailTicket.priority) }}</td>
+              <td>{{ libellePriorite(detailTicket.priority) }}</td>
             </tr>
             <tr>
               <th>Urgence</th>
-              <td>{{ priorityLabel(detailTicket.urgency) }}</td>
+              <td>{{ libellePriorite(detailTicket.urgency) }}</td>
             </tr>
             <tr>
               <th>Impact</th>
-              <td>{{ priorityLabel(detailTicket.impact) }}</td>
+              <td>{{ libellePriorite(detailTicket.impact) }}</td>
             </tr>
             <tr>
               <th>Catégorie</th>
@@ -375,26 +323,18 @@ function formatDate(d?: string) {
       </div>
     </div>
 
-    <!-- ─── Dialogue Création ─────────────────────────────────────────────── -->
+    <!-- ─── Dialogue Création (formulaire PARTAGÉ, version compacte) ──────── -->
     <div v-if="showCreateDialog" class="dialog-overlay" @click.self="showCreateDialog = false">
       <div class="dialog">
         <button class="dialog-close" @click="showCreateDialog = false">✕</button>
-        <h2>Nouveau ticket — {{ COLUMNS.find((c) => c.id === createColumnId)?.label }}</h2>
-        <p v-if="createError" class="dialog-error">{{ createError }}</p>
-        <div class="field">
-          <label>Titre *</label>
-          <input v-model="newTitle" type="text" placeholder="Titre du ticket" />
-        </div>
-        <div class="field">
-          <label>Description</label>
-          <textarea v-model="newContent" rows="4" placeholder="Description…" />
-        </div>
-        <div class="dialog-actions">
-          <button class="btn-cancel" @click="showCreateDialog = false">Annuler</button>
-          <button class="btn-confirm" @click="submitCreate" :disabled="createLoading">
-            {{ createLoading ? 'Création…' : 'Créer' }}
-          </button>
-        </div>
+        <h2>Nouveau ticket</h2>
+        <FormulaireTicket
+          ref="formulaire"
+          :statut-initial="createStatutId"
+          :compact="true"
+          :en-chargement="createLoading"
+          @submit="creerDepuisFormulaire"
+        />
       </div>
     </div>
 
@@ -409,7 +349,7 @@ function formatDate(d?: string) {
         <h2>Changer le statut</h2>
         <p>
           Déplacer <strong>« {{ pendingDrop.ticket.name }} »</strong> vers
-          <strong>{{ COLUMNS.find((c) => c.id === pendingDrop!.newStatus)?.label }}</strong> ?
+          <strong>{{ pendingDrop.libelle }}</strong> ?
         </p>
         <div class="field">
           <label>Note de suivi (optionnel)</label>
@@ -455,6 +395,13 @@ function formatDate(d?: string) {
   border-radius: 6px;
   background: white;
   cursor: pointer;
+}
+
+.select-langue {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
 }
 
 .kanban-error {

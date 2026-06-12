@@ -1,229 +1,128 @@
 <script setup lang="ts">
+// Page « Liste des éléments » avec recherche multi-critères.
+// Réutilise les modules centraux : useParcAssets (chargement) + useFiltreParc
+// (filtrage) + BarreFiltres (UI de filtres) — comme les dashboards.
+
+import { computed, onMounted } from 'vue'
 import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
-import { computed, onMounted, ref } from 'vue'
+import BarreFiltres from '@/components/BarreFiltres.vue'
+import { useParcAssets } from '@/composables/useParcAssets'
+import {
+  useFiltreParc,
+  nomStatut,
+  nomLieu,
+  nomFabricant,
+  nomUtilisateur,
+  nomModele,
+  numeroInventaire,
+} from '@/composables/useFiltreParc'
+import { TYPES_PARC } from '@/config/parc'
+import { creerLogger } from '@/utils/pageLogger'
 
-// Endpoints du parc : Computer, Monitor, Printer, Peripheral, Phone
-import { useComputers } from '@/composables/generated/useComputers'
-import { useMonitors } from '@/composables/generated/useMonitors'
-import { usePrinters } from '@/composables/generated/usePrinters'
-import { usePeripherals } from '@/composables/generated/usePeripherals'
-import { usePhones } from '@/composables/generated/usePhones'
+const log = creerLogger('Liste éléments')
 
-const { computers, loadComputers } = useComputers()
-const { monitors, loadMonitors } = useMonitors()
-const { printers, loadPrinters } = usePrinters()
-const { peripherals, loadPeripherals } = usePeripherals()
-const { phones, loadPhones } = usePhones()
+const { groupes, loading, error, chargerParc } = useParcAssets()
+const { filtres, elementsFiltres, optionsStatut, optionsLieu, optionsFabricant, reinitialiser } =
+  useFiltreParc(groupes)
 
-const loading = ref(false)
-const error = ref('')
+// Options du filtre type (depuis la config centrale du parc).
+const optionsType = TYPES_PARC.map((t) => ({ valeur: t.cle, label: t.label }))
 
-// ─── Filtres ─────────────────────────────────────────────────────────────────
-
-const typeFilter = ref('tous')
-const searchNom = ref('')
-const searchStatut = ref('')
-const searchLieu = ref('')
-const searchUtilisateur = ref('')
-
-const statutOptions = computed(() =>
-  [...new Set(allAssets.value.map((a) => a.statut).filter((s) => s !== '—'))].sort(),
-)
-const lieuOptions = computed(() =>
-  [...new Set(allAssets.value.map((a) => a.lieu).filter((l) => l !== '—'))].sort(),
-)
-
-const typeOptions = [
-  { value: 'tous', label: 'Tous les types' },
-  { value: 'Computer', label: 'Ordinateurs' },
-  { value: 'Monitor', label: 'Moniteurs' },
-  { value: 'Printer', label: 'Imprimantes' },
-  { value: 'Peripheral', label: 'Périphériques' },
-  { value: 'Phone', label: 'Téléphones' },
-]
-
-// ─── Liste unifiée ───────────────────────────────────────────────────────────
-
-type AssetRow = {
-  id: number
-  type: string
-  typeLabel: string
-  name: string
-  statut: string
-  lieu: string
-  utilisateur: string
-  fabricant: string
-  modele: string
-  numero: string
-}
-
-// Champs communs aux différents types d'assets retournés par l'API
-type RawAsset = {
-  id?: number
-  name?: string | null
-  status?: { name?: string | null } | null
-  location?: { completename?: string | null; name?: string | null } | null
-  user?: {
-    name?: string | null
-    firstname?: string | null
-    realname?: string | null
-    username?: string | null
-  } | null
-  manufacturer?: { name?: string | null } | null
-  model?: { name?: string | null } | null
-  otherserial?: string | null
-  serial?: string | null
-}
-
-function toRow(item: RawAsset, type: string, typeLabel: string): AssetRow {
-  return {
-    id: item.id ?? 0,
-    type,
-    typeLabel,
-    name: item.name ?? '—',
-    statut: item.status?.name ?? '—',
-    lieu: item.location?.completename ?? item.location?.name ?? '—',
-    utilisateur:
-      [item.user?.firstname, item.user?.realname].filter(Boolean).join(' ') ||
-      item.user?.name ||
-      item.user?.username ||
-      '—',
-    fabricant: item.manufacturer?.name ?? '—',
-    modele: item.model?.name ?? '—',
-    numero: item.otherserial ?? item.serial ?? '—',
-  }
-}
-
-const allAssets = computed<AssetRow[]>(() => [
-  ...computers.value.map((c) => toRow(c, 'Computer', 'Ordinateur')),
-  ...monitors.value.map((m) => toRow(m, 'Monitor', 'Moniteur')),
-  ...printers.value.map((p) => toRow(p, 'Printer', 'Imprimante')),
-  ...peripherals.value.map((p) => toRow(p, 'Peripheral', 'Périphérique')),
-  ...phones.value.map((p) => toRow(p, 'Phone', 'Téléphone')),
+// Champs de la barre de filtres (statut/lieu/fabricant sont dynamiques).
+const champsFiltres = computed(() => [
+  { cle: 'recherche', label: 'Nom ou n° inventaire', type: 'texte' as const },
+  { cle: 'type', label: 'Type', type: 'select' as const, options: optionsType },
+  {
+    cle: 'statut',
+    label: 'Statut',
+    type: 'select' as const,
+    options: optionsStatut.value.map((s) => ({ valeur: s, label: s })),
+  },
+  {
+    cle: 'lieu',
+    label: 'Lieu',
+    type: 'select' as const,
+    options: optionsLieu.value.map((l) => ({ valeur: l, label: l })),
+  },
+  {
+    cle: 'fabricant',
+    label: 'Fabricant',
+    type: 'select' as const,
+    options: optionsFabricant.value.map((f) => ({ valeur: f, label: f })),
+  },
+  { cle: 'utilisateur', label: 'Utilisateur', type: 'texte' as const },
 ])
 
-const filteredAssets = computed<AssetRow[]>(() => {
-  const nom = searchNom.value.trim().toLowerCase()
-  const statut = searchStatut.value
-  const lieu = searchLieu.value
-  const user = searchUtilisateur.value.trim().toLowerCase()
-
-  return allAssets.value.filter((row) => {
-    if (typeFilter.value !== 'tous' && row.type !== typeFilter.value) return false
-    if (nom && !row.name.toLowerCase().includes(nom)) return false
-    if (statut && row.statut !== statut) return false
-    if (lieu && row.lieu !== lieu) return false
-    if (user && !row.utilisateur.toLowerCase().includes(user)) return false
-    return true
-  })
+// Total tous types confondus (avant filtre).
+const totalAssets = computed(() => {
+  let total = 0
+  for (const g of groupes.value) total += g.elements.length
+  return total
 })
 
-// ─── Chargement ──────────────────────────────────────────────────────────────
-
-async function charger() {
-  loading.value = true
-  error.value = ''
-  try {
-    await Promise.all([
-      loadComputers(),
-      loadMonitors(),
-      loadPrinters(),
-      loadPeripherals(),
-      loadPhones(),
-    ])
-  } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Erreur inconnue'
-  } finally {
-    loading.value = false
+onMounted(async () => {
+  log.info('Chargement du parc…')
+  await chargerParc()
+  if (error.value) {
+    log.erreur('Échec du chargement', error.value)
+  } else {
+    log.succes(`${totalAssets.value} élément(s) chargé(s)`)
   }
-}
+})
 
-onMounted(charger)
+// Helpers d'affichage : '—' si vide (réutilisent les helpers centraux).
+function afficher(valeur: string): string {
+  return valeur || '—'
+}
 </script>
 
 <template>
   <AppSidebarFO />
   <main>
     <h1>Liste des éléments</h1>
+
     <p v-if="loading">Chargement…</p>
-    <p v-if="error" style="color: red">{{ error }}</p>
+    <p v-if="error" class="message-erreur">{{ error }}</p>
 
-    <!-- Filtres -->
-    <table border="0" cellpadding="4">
-      <tbody>
-        <tr>
-          <td><label>Type</label></td>
-          <td>
-            <select v-model="typeFilter">
-              <option v-for="opt in typeOptions" :key="opt.value" :value="opt.value">
-                {{ opt.label }}
-              </option>
-            </select>
-          </td>
-          <td><label>Nom</label></td>
-          <td><input v-model="searchNom" type="text" placeholder="Recherche nom…" /></td>
-        </tr>
-        <tr>
-          <td><label>Statut</label></td>
-          <td>
-            <select v-model="searchStatut">
-              <option value="">Tous les statuts</option>
-              <option v-for="s in statutOptions" :key="s" :value="s">{{ s }}</option>
-            </select>
-          </td>
-          <td><label>Lieu</label></td>
-          <td>
-            <select v-model="searchLieu">
-              <option value="">Tous les lieux</option>
-              <option v-for="l in lieuOptions" :key="l" :value="l">{{ l }}</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td><label>Utilisateur</label></td>
-          <td>
-            <input v-model="searchUtilisateur" type="text" placeholder="Recherche utilisateur…" />
-          </td>
-          <td></td>
-          <td>
-            <span>{{ filteredAssets.length }} / {{ allAssets.length }} élément(s)</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="!loading && !error">
+      <BarreFiltres :modele="filtres" :champs="champsFiltres" @reset="reinitialiser" />
 
-    <!-- Tableau des éléments -->
-    <table border="1" cellpadding="4">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Type</th>
-          <th>Nom</th>
-          <th>Statut</th>
-          <th>Lieu</th>
-          <th>Utilisateur</th>
-          <th>Fabricant</th>
-          <th>Modèle</th>
-          <th>N° inventaire</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-if="filteredAssets.length === 0">
-          <td colspan="9">Aucun élément trouvé</td>
-        </tr>
-        <tr v-for="row in filteredAssets" :key="`${row.type}-${row.id}`">
-          <td>{{ row.id }}</td>
-          <td>{{ row.typeLabel }}</td>
-          <td>{{ row.name }}</td>
-          <td>{{ row.statut }}</td>
-          <td>{{ row.lieu }}</td>
-          <td>{{ row.utilisateur }}</td>
-          <td>{{ row.fabricant }}</td>
-          <td>{{ row.modele }}</td>
-          <td>{{ row.numero }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <p>
+        <strong>{{ elementsFiltres.length }}</strong> / {{ totalAssets }} élément(s)
+      </p>
+
+      <table border="1" cellpadding="4">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Nom</th>
+            <th>Statut</th>
+            <th>Lieu</th>
+            <th>Utilisateur</th>
+            <th>Fabricant</th>
+            <th>Modèle</th>
+            <th>N° inventaire</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-if="elementsFiltres.length === 0">
+            <td colspan="9">Aucun élément trouvé</td>
+          </tr>
+          <tr v-for="row in elementsFiltres" :key="`${row.typeCle}-${row.id}`">
+            <td>{{ row.id }}</td>
+            <td>{{ row.typeLabel }}</td>
+            <td>{{ afficher(row.name ?? '') }}</td>
+            <td>{{ afficher(nomStatut(row)) }}</td>
+            <td>{{ afficher(nomLieu(row)) }}</td>
+            <td>{{ afficher(nomUtilisateur(row)) }}</td>
+            <td>{{ afficher(nomFabricant(row)) }}</td>
+            <td>{{ afficher(nomModele(row)) }}</td>
+            <td>{{ afficher(numeroInventaire(row)) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
 </template>
 

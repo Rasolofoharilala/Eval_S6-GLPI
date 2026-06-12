@@ -621,3 +621,74 @@ npm run build          # 3) le build doit passer
 
 5) Relire son diff : pas de `console.log` orphelin (toujours passer par
    `creerLogger`), pas de fichier `generated/` modifié.
+
+---
+
+## 8. FrontOffice : modules centraux (ajout)
+
+Le FrontOffice (liste éléments, création ticket, Kanban) repose sur quelques
+modules partagés. **Modifier l'un d'eux modifie les 3 pages d'un coup.**
+
+| Fichier | Rôle |
+|---|---|
+| `src/config/tickets.ts` | Libellés ET options de filtre (statut, priorité, urgence, impact, type). Source unique. |
+| `src/config/kanban.ts` | Les 3 colonnes du Kanban et quels statuts GLPI vont dans chaque colonne. |
+| `src/services/ticketActions.ts` | `creerTicketComplet()` et `changerStatutTicket()` — toutes les écritures de ticket. |
+| `src/services/langueService.ts` | CRUD des langues du Kanban (couleurs+libellés par langue, SQLite). |
+| `src/composables/useOptionsElements.ts` | Liste à plat des assets sélectionnables (pour associer au ticket). |
+| `src/composables/useFiltreParc.ts` | Filtrage du parc + helpers d'affichage (`nomStatut`, `nomLieu`…). |
+| `src/components/FormulaireTicket.vue` | **Le** formulaire de ticket, utilisé par la page Création ET le dialogue Kanban. |
+| `src/components/BarreFiltres.vue` | Barre de filtres réutilisable (dashboards + liste éléments). |
+
+Règle d'or : le formulaire de ticket n'appelle JAMAIS le réseau lui-même. Il
+émet `@submit="..."` avec un objet `DonneesTicket` ; la page appelle
+`creerTicketComplet`. C'est pourquoi le même formulaire marche partout.
+
+---
+
+## 9. Recettes FrontOffice (temps limité, sans IA)
+
+### Recette 7 : ajouter un champ au formulaire de ticket (ex : « lieu »)
+1. `FormulaireTicket.vue` → ajouter une clé dans `form` (`locationId: 0`) ;
+2. ajouter le `<label><select v-model.number="form.locationId">…</select></label>` ;
+3. ajouter la clé dans l'objet émis par `envoyer()` ;
+4. `services/ticketActions.ts` → `DonneesTicket` : ajouter `locationId?: number`,
+   et dans `creerTicketComplet` ajouter `location: relation(d.locationId)`.
+→ Le champ apparaît AUTOMATIQUEMENT dans la page Création ET le Kanban.
+
+### Recette 8 : ajouter un critère de recherche à la liste des éléments
+1. `composables/useFiltreParc.ts` → ajouter la clé dans `FiltresParc` et
+   `filtresVides()`, puis la condition dans le `.filter()` ;
+2. `pages/FrontOffice/ListeElement.vue` → ajouter une ligne dans `champsFiltres`.
+(Même procédé pour les filtres tickets via `useFiltreTickets.ts`.)
+
+### Recette 9 : changer quels statuts vont dans une colonne Kanban
+`src/config/kanban.ts` → modifier `statutsGlpi` de la colonne. Exemple : mettre
+les tickets « En attente » (4) dans la 3e colonne au lieu de la 2e. Le board, le
+comptage et le drag&drop suivent sans autre modification.
+
+### Recette 10 : ajouter une langue au Kanban
+Aucune modification de code. Page `/stockage` → « Ajouter une langue » (code +
+nom). Ses 3 statuts/couleurs sont créés et apparaissent dans le sélecteur de
+langue du Kanban. (Backend Spring doit tourner.)
+
+---
+
+## 10. Aléas probables et comment réagir (anticipation)
+
+| Symptôme | Cause probable | Réaction |
+|---|---|---|
+| Colonnes vides dans la liste des éléments | assets importés sans statut/lieu/… (CSV partiel ou import incomplet) | réimporter le CSV complet ; vérifier que `parcAssetMapper` reçoit bien les colonnes |
+| Le Kanban affiche 100 tickets max | quelqu'un a remis `getTickets` sur l'API v2 | `getTickets` DOIT passer par `v1GetAll('Ticket')` (cf. §6) |
+| Réimport → erreur 500 « doit être unique » | un dropdown (statut/lieu/fabricant) existe déjà | c'est `glpiEnsureService` qui dédoublonne : ne jamais POST un dropdown sans chercher d'abord. Sinon réinitialiser d'abord. |
+| Création de ticket : statut ignoré | `status` envoyé comme entier au lieu de `{id:N}` | toujours `status: { id: N }` (géré par `ticketActions`) |
+| Tickets « Clos » invisibles | filtre `is_deleted` mal posé | les Clos restent `is_deleted=0` ; ne pas filtrer la corbeille à l'affichage |
+| Reset laisse des éléments | suppression via DELETE v2 (corbeille seulement) | la purge passe par l'API v1 `force_purge=1` (cf. `resetService`) |
+| Couleurs/langues du Kanban figées | backend Spring éteint → valeurs de repli `LANGUES_DEFAUT` | lancer `cd Backend && mvn spring-boot:run` |
+| La page de connexion est décalée à droite | règle CSS d'offset attrape `.login-page` | le sélecteur exclut `.login-page` (cf. `assets/backoffice.css`) |
+
+### Comment ajouter une fonctionnalité vite, sans IA
+1. Chercher la **recette** la plus proche dans §4 (BackOffice) ou §9 (FrontOffice).
+2. Toujours partir d'un **module central** (`config/*`, `services/*`,
+   `composables/*`) : on modifie un seul endroit, l'effet se propage.
+3. Lancer la **checklist §7** (type-check, lint, build) avant de rendre.

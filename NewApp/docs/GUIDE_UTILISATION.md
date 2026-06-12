@@ -62,9 +62,13 @@ Les pages BackOffice demandent d'être connecté (`/login`, identifiants GLPI du
 | Route | Rôle | Actions possibles |
 | --- | --- | --- |
 | `/accueilFrontOffice` | Page d'accueil FrontOffice. | Navigation vers les autres pages. |
-| `/listeElement` | Liste des éléments du parc. | Filtres : type, nom, statut, lieu, utilisateur. |
-| `/createTicket` | Création d'un ticket. | Formulaire : ticket, acteurs, éléments associés, niveaux de service. |
-| `/kanbanTickets` | Tickets en Kanban (3 colonnes). | Drag & drop pour changer de statut, voir un ticket, créer un ticket dans une colonne. |
+| `/listeElement` | Liste des éléments du parc. | Recherche multi-critères : nom/n° inventaire, type, statut, lieu, fabricant, utilisateur. Bouton « Réinitialiser les filtres ». |
+| `/createTicket` | Création d'un ticket. | Formulaire complet : ticket, acteurs, **plusieurs éléments associés**, niveaux de service. |
+| `/kanbanTickets` | Tickets en Kanban (3 colonnes). | Drag & drop (avec confirmation + note), voir le détail d'un ticket, créer un ticket dans une colonne (**même formulaire** que `/createTicket`), changer la **langue** d'affichage des colonnes. |
+
+> Le formulaire de création est **le même** sur `/createTicket` et dans le
+> dialogue « + Ajouter 1 ticket » du Kanban (composant `FormulaireTicket`).
+> Les langues et couleurs des colonnes Kanban se gèrent dans `/stockage`.
 
 ## 3. Procédure d'import complète (l'ordre exact)
 

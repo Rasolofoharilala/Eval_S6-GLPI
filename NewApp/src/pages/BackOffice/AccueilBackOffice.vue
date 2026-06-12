@@ -1,8 +1,10 @@
 <template>
   <AppSidebar />
 
-  <h1>Accueil</h1>
-  <RouterLink to="/reinitialisationBase">Reinitialisation</RouterLink>
+  <main>
+    <h1>Accueil</h1>
+    <RouterLink to="/reinitialisationBase">Reinitialisation</RouterLink>
+  </main>
 </template>
 <script setup lang="ts">
 import AppSidebar from '@/components/layout/AppSidebar.vue'

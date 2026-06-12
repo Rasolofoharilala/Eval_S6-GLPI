@@ -35,14 +35,57 @@ const redirectFrontOffice = () => {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit">
-    <label for="passwordInput">Mot de passe :</label>
+  <div class="login-page">
+    <div class="login-card">
+      <h1>Back Office</h1>
+      <p class="sous-titre">Saisissez le code d'accès</p>
 
-    <input id="passwordInput" v-model="form.password" type="password" />
+      <form @submit.prevent="handleSubmit">
+        <label for="passwordInput">Code d'accès</label>
+        <input id="passwordInput" v-model="form.password" type="password" />
 
-    <button type="submit">Connexion</button>
+        <button type="submit">Connexion</button>
+        <p v-if="error" class="message-erreur">{{ error }}</p>
+      </form>
 
-    <p v-if="error" style="color: red">{{ error }}</p>
-  </form>
-  <button @click="redirectFrontOffice">Front office</button>
+      <button class="lien-fo" @click="redirectFrontOffice">Aller au Front Office →</button>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.login-card {
+  width: 320px;
+  padding: 28px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+.login-card h1 {
+  margin: 0 0 4px;
+}
+.sous-titre {
+  margin: 0 0 18px;
+  color: #6b7280;
+}
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.lien-fo {
+  margin-top: 16px;
+  background: transparent;
+  color: #2563eb;
+  border: none;
+}
+</style>

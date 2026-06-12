@@ -63,19 +63,16 @@ aside ul ul {
 }
 
 /* ─── Contenu : décalé à droite de la barre ─── */
+/* Toutes les pages affichent <AppSidebar/> (barre fixe) + leur contenu.
+   On décale le contenu, SAUF la page de connexion (.login-page) qui n'a pas
+   de barre et se centre elle-même. */
 main,
-body > h1,
-#app > h1 {
-  margin-left: var(--bo-largeur-sidebar);
-  padding: 24px;
-}
-/* Les pages qui ne mettent pas tout dans <main> : on décale aussi leurs blocs. */
-#app > div,
+#app > h1,
+#app > div:not(.login-page),
 #app > p,
 #app > section {
   margin-left: var(--bo-largeur-sidebar);
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 24px;
 }
 
 h1 {

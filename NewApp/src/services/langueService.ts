@@ -31,6 +31,33 @@ export type Langue = {
 const backendUrl = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8080'
 const URL = `${backendUrl}/api/langues`
 
+// Langue de repli (toujours définie) si le backend SQLite est injoignable.
+export const LANGUE_DEFAUT: Langue = {
+  id: 0,
+  code: 'fr',
+  nom: 'Français',
+  statuts: [
+    { statusKey: 'nouveau', position: 1, label: 'Nouveau', color: '#dbeafe' },
+    { statusKey: 'in_progress', position: 2, label: 'In progress', color: '#ffedd5' },
+    { statusKey: 'termine', position: 3, label: 'Terminé', color: '#dcfce7' },
+  ],
+}
+
+// Liste de repli (le Kanban reste utilisable hors-ligne).
+export const LANGUES_DEFAUT: Langue[] = [
+  LANGUE_DEFAUT,
+  {
+    id: 0,
+    code: 'mg',
+    nom: 'Malgache',
+    statuts: [
+      { statusKey: 'nouveau', position: 1, label: 'Vaovao', color: '#dbeafe' },
+      { statusKey: 'in_progress', position: 2, label: 'Efa manao', color: '#ffedd5' },
+      { statusKey: 'termine', position: 3, label: 'Vita', color: '#dcfce7' },
+    ],
+  },
+]
+
 export async function getLangues(): Promise<Langue[]> {
   const res = await axios.get<Langue[]>(URL)
   return res.data
