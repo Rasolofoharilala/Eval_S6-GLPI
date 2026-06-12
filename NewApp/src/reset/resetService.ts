@@ -2,41 +2,40 @@
 // SERVICE DE RÉINITIALISATION
 //
 // Vide les endpoints autorisés (voir resetEndpointPolicy.ts) :
-// on liste les éléments actifs (GET v2, corbeille exclue) puis on les PURGE
-// un par un via l'API v1 (force_purge=1).
+//   1. on liste tous les éléments (actifs + corbeille) via l'API v1,
+//   2. on retire les éléments protégés (ex : utilisateurs id ≤ 6),
+//   3. on PURGE le reste en UNE seule requête « bulk » par endpoint.
 //
-// POURQUOI v1 POUR LA SUPPRESSION : l'API v2 (DELETE) ne fait que mettre en
-// corbeille (is_deleted=true) — elle ne purge JAMAIS, même avec force_purge.
-// Les éléments réapparaissent donc à chaque rechargement. Seule l'API v1 avec
-// force_purge=1 supprime réellement de la base.
+// POURQUOI v1 : l'API v2 (DELETE) ne fait que mettre en corbeille
+// (is_deleted=true), elle ne purge JAMAIS. Seule l'API v1 avec force_purge=1
+// supprime réellement de la base. La v1 sait aussi lister la corbeille.
 //
-// Les éléments protégés (ex : utilisateurs id ≤ 6) ne sont jamais supprimés.
+// POURQUOI bulk : 1 requête purge tous les ids d'un type d'un coup (rapide),
+// au lieu d'une requête par élément.
+//
+// POURQUOI par lots parallèles : on vide plusieurs endpoints en même temps
+// (mais par paquets) pour aller vite sans saturer le serveur.
 // ═════════════════════════════════════════════════════════════════════════════
 
-import axios from 'axios'
-import { v1Purge, v1GetAllIncludingDeleted } from '@/api/glpiV1Client'
+import { v1BulkPurge, v1GetAllIncludingDeleted } from '@/api/glpiV1Client'
 import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
+import { executerParLots } from '@/utils/executerParLots'
 import { RESETTABLE_ENDPOINTS } from './resetEndpointPolicy'
 
 const log = creerLogger('Réinitialisation')
 
-/** Résultat de la suppression d'UN élément. */
-export type ResetItemResult = {
-  id: number
-  status: 'deleted' | 'failed'
-  error?: string
-}
+// Nombre d'endpoints vidés en parallèle dans un même lot.
+const TAILLE_LOT = 5
 
 /** Résultat de la réinitialisation d'UN endpoint (utilisé par la page). */
 export type ResetResult = {
   endpoint: string
   success: boolean
-  total: number
+  total: number // nombre d'éléments trouvés (hors protégés)
   deleted: number
   failed: number
   protected: number
-  results: ResetItemResult[]
   error?: string
 }
 
@@ -51,8 +50,7 @@ function getResetPolicy(endpoint: string) {
 }
 
 // Convertit un endpoint v2 ("/Assets/Computer", "/Assistance/Ticket"…) en
-// classe GLPI v1 utilisée pour la purge ("Computer", "Ticket"…).
-// La classe v1 est simplement le dernier segment du chemin.
+// classe GLPI v1 ("Computer", "Ticket"…) : le dernier segment du chemin.
 function versItemtypeV1(endpoint: string): string {
   const segments = endpoint.split('/').filter(Boolean)
   return segments[segments.length - 1] ?? endpoint
@@ -60,63 +58,44 @@ function versItemtypeV1(endpoint: string): string {
 
 /**
  * Liste TOUS les éléments à purger : actifs ET en corbeille.
- *
- * On passe par l'API v1 : elle pagine correctement et permet de lister la
- * corbeille (is_deleted=1). Sans ça, les éléments déjà en corbeille (ex :
- * tickets soft-deleted) échappent au reset et s'accumulent à chaque import.
+ * Sans la corbeille, les éléments déjà soft-deleted échappent au reset et
+ * s'accumulent à chaque import.
  */
 export async function previewReset(endpoint: string) {
   const itemtype = versItemtypeV1(endpoint)
   return v1GetAllIncludingDeleted<{ id?: number }>(itemtype)
 }
 
-/** Purge DÉFINITIVEMENT un élément via l'API v1 (404 = déjà supprimé, ignoré). */
-export async function resetOneItem(endpoint: string, id: number) {
-  const itemtype = versItemtypeV1(endpoint)
-
-  try {
-    await v1Purge(itemtype, id)
-  } catch (err) {
-    // 404 = élément déjà supprimé entre le GET et le DELETE : on l'ignore
-    if (axios.isAxiosError(err) && err.response?.status === 404) {
-      return { id, status: 'deleted' as const }
-    }
-    throw err
-  }
-
-  return { id, status: 'deleted' as const }
-}
-
-/** Vide UN endpoint : liste les actifs puis purge chaque élément non protégé. */
+/** Vide UN endpoint : liste, retire les protégés, purge le reste en bulk. */
 export async function resetEndpoint(endpoint: string): Promise<ResetResult> {
   try {
     const policy = getResetPolicy(endpoint)
+    const itemtype = versItemtypeV1(endpoint)
+
     const items = await previewReset(endpoint)
-    log.info(`${endpoint} : ${items.length} élément(s) actif(s) trouvé(s)`)
+    log.info(`${endpoint} : ${items.length} élément(s) trouvé(s)`)
 
-    const results: ResetItemResult[] = []
+    // Séparer les ids à purger des ids protégés (ex : utilisateurs id ≤ 6).
+    const idsAPurger: number[] = []
     let protectedCount = 0
-
     for (const item of items) {
       if (!item.id) {
         continue
       }
-
-      // Comptes/éléments par défaut protégés (ex : utilisateurs id ≤ 6)
-      if (policy.protectIdsUpTo && Number(item.id) <= policy.protectIdsUpTo) {
+      if (policy.protectIdsUpTo && item.id <= policy.protectIdsUpTo) {
         protectedCount++
-        continue
-      }
-
-      try {
-        results.push(await resetOneItem(endpoint, Number(item.id)))
-      } catch (error) {
-        results.push({ id: item.id, status: 'failed', error: messageErreur(error) })
+      } else {
+        idsAPurger.push(item.id)
       }
     }
 
-    const deleted = results.filter((item) => item.status === 'deleted').length
-    const failed = results.filter((item) => item.status === 'failed').length
+    if (idsAPurger.length === 0) {
+      log.succes(`${endpoint} : rien à purger (${protectedCount} protégé(s))`)
+      return { endpoint, success: true, total: 0, deleted: 0, failed: 0, protected: protectedCount }
+    }
+
+    // Une seule requête purge tous les ids de ce type.
+    const { deleted, failed } = await v1BulkPurge(itemtype, idsAPurger)
 
     if (failed > 0) {
       log.attention(`${endpoint} : ${deleted} purgé(s), ${failed} échec(s)`)
@@ -127,11 +106,10 @@ export async function resetEndpoint(endpoint: string): Promise<ResetResult> {
     return {
       endpoint,
       success: true,
-      total: results.length,
+      total: idsAPurger.length,
       deleted,
       failed,
       protected: protectedCount,
-      results,
     }
   } catch (error) {
     const message = messageErreur(error)
@@ -144,20 +122,21 @@ export async function resetEndpoint(endpoint: string): Promise<ResetResult> {
       deleted: 0,
       failed: 1,
       protected: 0,
-      results: [],
       error: message,
     }
   }
 }
 
-/** Vide plusieurs endpoints, l'un après l'autre. */
+/** Vide plusieurs endpoints, par lots parallèles. */
 export async function resetSelectedEndpoints(endpoints: string[]): Promise<ResetResult[]> {
   log.info(`Début — ${endpoints.length} endpoint(s) à vider`)
 
+  // On remplit le tableau de résultats au fur et à mesure (même ordre que l'entrée).
   const results: ResetResult[] = []
-  for (const endpoint of endpoints) {
-    results.push(await resetEndpoint(endpoint))
-  }
+  await executerParLots(endpoints, TAILLE_LOT, async (endpoint) => {
+    const resultat = await resetEndpoint(endpoint)
+    results.push(resultat)
+  })
 
   log.succes('Réinitialisation terminée')
   return results

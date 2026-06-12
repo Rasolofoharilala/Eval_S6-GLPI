@@ -114,18 +114,64 @@ export async function v1Post<T = { id: number }>(path: string, input: unknown): 
   })
 }
 
+/** Résultat d'une purge en masse. */
+export type BulkPurgeResult = {
+  deleted: number
+  failed: number
+}
+
 /**
- * Supprime DÉFINITIVEMENT un élément (force_purge=1).
- * L'API v2 (DELETE) ne fait que mettre en corbeille (is_deleted=true) sans jamais
- * purger ; seule l'API v1 avec force_purge=1 supprime réellement de la base.
+ * Supprime DÉFINITIVEMENT plusieurs éléments en UNE seule requête (bulk).
+ *
+ * L'API v2 (DELETE) ne fait que mettre en corbeille (is_deleted=true) sans
+ * jamais purger ; seule l'API v1 avec force_purge=1 supprime réellement.
+ * Le bulk évite N requêtes (1 seule pour tous les ids d'un type).
+ *
+ * Réponse GLPI :
+ *  - succès total : HTTP 200, body [{ "12": true }, ...]
+ *  - succès partiel : HTTP 207, body ["ERROR_GLPI_PARTIAL_DELETE", [{ "12": true }, { "99": false }]]
+ * On compte donc les true / false pour renvoyer { deleted, failed }.
+ *
  * @param itemtype classe GLPI v1 (ex: "Computer", "Ticket", "Document", "User")
+ * @param ids identifiants à purger (si vide : ne fait rien, GLPI renverrait 400)
  */
-export async function v1Purge(itemtype: string, id: number): Promise<void> {
+export async function v1BulkPurge(itemtype: string, ids: number[]): Promise<BulkPurgeResult> {
+  if (ids.length === 0) {
+    return { deleted: 0, failed: 0 }
+  }
+
   return withSession(async (token) => {
-    await axios.delete(`${v1Url}/${itemtype}/${id}`, {
-      headers: { 'Session-Token': token },
+    const res = await axios.delete(`${v1Url}/${itemtype}`, {
+      headers: { 'Session-Token': token, 'Content-Type': 'application/json' },
       params: { force_purge: true },
+      data: { input: ids.map((id) => ({ id })) },
     })
+
+    // GLPI renvoie soit [{id:true}, …], soit ["ERROR_GLPI_PARTIAL_DELETE", [{id:true}, …]].
+    // On récupère le tableau des résultats individuels dans les deux cas.
+    let resultats: Record<string, unknown>[] = []
+    if (Array.isArray(res.data)) {
+      if (Array.isArray(res.data[1])) {
+        resultats = res.data[1]
+      } else {
+        resultats = res.data
+      }
+    }
+
+    let deleted = 0
+    let failed = 0
+    for (const ligne of resultats) {
+      // chaque ligne ressemble à { "12": true, "message": "" } : on lit le booléen
+      const valeurs = Object.values(ligne)
+      const ok = valeurs.some((v) => v === true)
+      if (ok) {
+        deleted++
+      } else {
+        failed++
+      }
+    }
+
+    return { deleted, failed }
   })
 }
 
