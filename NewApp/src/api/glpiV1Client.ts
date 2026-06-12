@@ -71,6 +71,36 @@ export async function v1GetAll<T = unknown>(itemtype: string): Promise<T[]> {
   })
 }
 
+/**
+ * Liste TOUS les éléments d'un itemtype, ACTIFS ET EN CORBEILLE (is_deleted 0 et 1).
+ * Indispensable pour la réinitialisation : un ticket peut être en corbeille
+ * (is_deleted=1) sans être purgé, et le reset doit aussi le supprimer
+ * définitivement, sinon il s'accumule à chaque import.
+ */
+export async function v1GetAllIncludingDeleted<T = unknown>(itemtype: string): Promise<T[]> {
+  return withSession(async (token) => {
+    const PAGE = 100
+    const parId = new Map<number, T>()
+    for (const deleted of [0, 1]) {
+      let start = 0
+      for (let page = 0; page < 100; page++) {
+        const res = await axios.get<T[]>(`${v1Url}/${itemtype}`, {
+          headers: { 'Session-Token': token },
+          params: { is_deleted: deleted, range: `${start}-${start + PAGE - 1}` },
+        })
+        const chunk = Array.isArray(res.data) ? res.data : []
+        for (const item of chunk) {
+          const id = (item as { id?: number }).id
+          if (typeof id === 'number') parId.set(id, item)
+        }
+        if (chunk.length < PAGE) break
+        start += PAGE
+      }
+    }
+    return Array.from(parId.values())
+  })
+}
+
 export async function v1Post<T = { id: number }>(path: string, input: unknown): Promise<T> {
   return withSession(async (token) => {
     const res = await axios.post<T>(

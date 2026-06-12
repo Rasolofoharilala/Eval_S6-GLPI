@@ -14,8 +14,7 @@
 // ═════════════════════════════════════════════════════════════════════════════
 
 import axios from 'axios'
-import { getAllActifs } from '@/api/crudClient'
-import { v1Purge } from '@/api/glpiV1Client'
+import { v1Purge, v1GetAllIncludingDeleted } from '@/api/glpiV1Client'
 import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
 import { RESETTABLE_ENDPOINTS } from './resetEndpointPolicy'
@@ -59,9 +58,16 @@ function versItemtypeV1(endpoint: string): string {
   return segments[segments.length - 1] ?? endpoint
 }
 
-/** Liste TOUS les éléments actifs d'un endpoint (paginé, corbeille exclue). */
+/**
+ * Liste TOUS les éléments à purger : actifs ET en corbeille.
+ *
+ * On passe par l'API v1 : elle pagine correctement et permet de lister la
+ * corbeille (is_deleted=1). Sans ça, les éléments déjà en corbeille (ex :
+ * tickets soft-deleted) échappent au reset et s'accumulent à chaque import.
+ */
 export async function previewReset(endpoint: string) {
-  return getAllActifs<{ id?: number }>(endpoint)
+  const itemtype = versItemtypeV1(endpoint)
+  return v1GetAllIncludingDeleted<{ id?: number }>(itemtype)
 }
 
 /** Purge DÉFINITIVEMENT un élément via l'API v1 (404 = déjà supprimé, ignoré). */
