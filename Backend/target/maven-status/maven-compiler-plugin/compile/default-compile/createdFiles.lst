@@ -1,0 +1,7 @@
+com/newapp/backend/kanban/KanbanSettingUpdate.class
+com/newapp/backend/BackendApplication.class
+com/newapp/backend/config/CorsConfig.class
+com/newapp/backend/kanban/KanbanSetting.class
+com/newapp/backend/kanban/KanbanSettingRepository.class
+com/newapp/backend/kanban/KanbanSettingService.class
+com/newapp/backend/kanban/KanbanSettingController.class

@@ -1,0 +1,14 @@
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/BackendApplication.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/config/CorsConfig.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/kanban/KanbanSetting.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/kanban/KanbanSettingController.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/kanban/KanbanSettingRepository.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/kanban/KanbanSettingService.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/kanban/KanbanSettingUpdate.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/langue/Langue.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/langue/LangueController.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/langue/LangueDtos.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/langue/LangueRepository.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/langue/LangueService.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/langue/StatutLangue.java
+/home/manoa/Documents/Github/Eval_S6-GLPI/Backend/src/main/java/com/newapp/backend/langue/StatutLangueRepository.java
