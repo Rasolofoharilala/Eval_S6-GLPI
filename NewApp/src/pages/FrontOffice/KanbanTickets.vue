@@ -8,11 +8,14 @@ import type { Ticket } from '@/services/generated/ticketService'
 import { getLangues, LANGUES_DEFAUT, LANGUE_DEFAUT, type Langue } from '@/services/langueService'
 import { COLONNES_KANBAN, colonnePourStatut, type CleColonne } from '@/config/kanban'
 import { libelleStatut, libellePriorite } from '@/config/tickets'
+import { v1GetTicketItems } from '@/api/glpiV1Client'
+import { enregistrerNouveauCout } from '@/services/nouveauCoutService'
 
 // ─── Langues du Kanban (CRUD SQLite, page /stockage) ───
 // On lit les MÊMES langues que le CRUD : tes couleurs et libellés s'appliquent ici.
 const langues = ref<Langue[]>(LANGUES_DEFAUT)
 const codeLangue = ref('fr')
+const newCost = ref<number | null>(null)
 
 const langueActive = computed<Langue>(
   () =>
@@ -161,6 +164,7 @@ function onDrop(cle: CleColonne) {
   // Toujours demander confirmation / infos supplémentaires (sujet J2).
   pendingDrop.value = { ticket, statutCible: colonne.statutCible, libelle: colonne.label }
   statusNote.value = ''
+  newCost.value = null
   showStatusDialog.value = true
 }
 
@@ -168,9 +172,27 @@ function onDrop(cle: CleColonne) {
 async function confirmStatusChange() {
   if (!pendingDrop.value) return
   const { ticket, statutCible } = pendingDrop.value
+  const ticketId = ticket.id
+  const coutTotal = newCost.value
+
+  if (!ticketId) {
+    error.value = 'Le ticket sélectionné ne possède pas d’identifiant.'
+    return
+  }
+  if (coutTotal === null || !Number.isFinite(coutTotal) || coutTotal < 0) {
+    error.value = 'Saisissez un nouveau coût positif ou nul.'
+    return
+  }
+
   statusLoading.value = true
   try {
-    await changerStatutTicket(ticket.id ?? 0, statutCible, statusNote.value)
+    const items = await v1GetTicketItems(ticketId)
+    if (items.length === 0) {
+      throw new Error('Ce ticket ne possède aucun item lié : le coût ne peut pas être réparti.')
+    }
+
+    await changerStatutTicket(ticketId, statutCible, statusNote.value)
+    await enregistrerNouveauCout(ticketId, coutTotal, items)
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Échec du changement de statut'
   } finally {
@@ -184,6 +206,7 @@ async function confirmStatusChange() {
 function cancelStatusChange() {
   showStatusDialog.value = false
   pendingDrop.value = null
+  newCost.value = null
 }
 
 // ─── Helpers affichage (libellés centraux) ───
@@ -357,6 +380,15 @@ function formatDate(d?: string) {
             v-model="statusNote"
             rows="3"
             placeholder="Raison du changement, informations complémentaires…"
+          />
+          <label for="inputCout">Nouveau coût total</label>
+          <input
+            id="inputCout"
+            v-model.number="newCost"
+            type="number"
+            min="0"
+            step="0.01"
+            required
           />
         </div>
         <div class="dialog-actions">

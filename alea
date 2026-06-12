@@ -1,0 +1,15 @@
+Changement de kanban vers termine 
+    Affichage Boite de dialogue avec input number, 
+    De misy vidiny vaovao ampidirina oa de ampidirina any aminy sqlite
+    Inserer nouvaux prix dans sqlite    
+        Cout vaovao atsofoka any aminy SQLite
+            Cout fixe
+
+Creation d'une nouvelle page avec les couts, 
+    Liste des items et prix
+        Cout total pour chaque objet dans le parc
+        Le prix se divise si il y a deux pc 
+            Repartir pour chaque sous items dans le parc
+
+            4 colomnes
+            pc,... - cout glpi - super post(SQLite) - total
