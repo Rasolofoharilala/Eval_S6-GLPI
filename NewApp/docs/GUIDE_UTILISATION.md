@@ -1,5 +1,11 @@
 # Guide d'utilisation — NewApp GLPI
 
+> **Les 4 guides du projet :**
+> - `GUIDE_UTILISATION.md` (ce fichier) — comment se servir de l'appli.
+> - `GUIDE_BACKOFFICE.md` — par thématique/page : modifier ou créer une page BackOffice.
+> - `GUIDE_FRONTOFFICE.md` — par thématique/page : modifier ou créer une page FrontOffice.
+> - `GUIDE_MAINTENANCE.md` — mini-cours TS/Vue, architecture, recettes, pièges GLPI.
+
 ## 1. Démarrage rapide
 
 Prérequis :
