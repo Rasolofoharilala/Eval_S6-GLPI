@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.newapp.backend.nouveauCout.CoutDTO.CreerCout;
 import com.newapp.backend.nouveauCout.CoutDTO.CoutCree;
 import com.newapp.backend.nouveauCout.CoutDTO.CoutParItem;
+import com.newapp.backend.nouveauCout.CoutDTO.Reouverture;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/couts")
@@ -54,14 +57,37 @@ public class CoutController {
         service.supprimerTout();
     }
 
-    // @DeleteMapping("/idTicketsDelete/{id}")
-    // public void supprimerById(@RequestBody Integer id){
-    //     service.supprimerById(id);
-    // }
+    /** Coûts ACTIFS d'un ticket (annulés exclus). */
+    @GetMapping("/ticket/{ticketId}/actifs")
+    public List<CoutCree> getActifsByTicketId(@PathVariable Integer ticketId) {
+        return service.getActifsByTicketId(ticketId);
+    }
 
-    @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable("id") Long id) {
-        return "Delete by id called";
+    /** Dernier coût total actif d'un ticket (base du calcul de réouverture). */
+    @GetMapping("/ticket/{ticketId}/dernier")
+    public Map<String, BigDecimal> dernierCoutActif(@PathVariable Integer ticketId) {
+        return Map.of("dernierCout", service.dernierCoutTotalActif(ticketId));
+    }
+
+    /**
+     * RÉOUVERTURE (Terminé → In progress) : majore la dernière valeur de X %,
+     * annule les coûts actifs et réinsère la nouvelle valeur.
+     */
+    @PostMapping("/reouverture")
+    public List<CoutCree> reouvrir(@RequestBody Reouverture corps) {
+        return service.reouvrir(corps);
+    }
+
+    /** Annule (sans réinsérer) les coûts actifs d'un ticket. */
+    @PostMapping("/ticket/{ticketId}/annuler")
+    public void annuler(@PathVariable Integer ticketId) {
+        service.annulerActifs(ticketId);
+    }
+
+    /** Supprime physiquement tous les coûts d'un ticket. */
+    @DeleteMapping("/ticket/{ticketId}")
+    public void supprimerTicket(@PathVariable Integer ticketId) {
+        service.supprimerByTicketId(ticketId);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

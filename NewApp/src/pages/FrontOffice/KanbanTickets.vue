@@ -13,7 +13,17 @@ import { getLangues, LANGUES_DEFAUT, LANGUE_DEFAUT, type Langue } from '@/servic
 import { COLONNES_KANBAN, colonnePourStatut, type CleColonne } from '@/config/kanban'
 import { libelleStatut, libellePriorite } from '@/config/tickets'
 import { v1GetTicketItems } from '@/api/glpiV1Client'
-import { enregistrerNouveauCout, supprimerCoutByIdTickets } from '@/services/nouveauCoutService'
+import {
+  enregistrerNouveauCout,
+  reouvrirTicket,
+  annulerCoutsDuTicket,
+  getDernierCout,
+} from '@/services/nouveauCoutService'
+
+// Ordre des colonnes (pour savoir si on AVANCE ou si on RECULE/réouvre).
+function indexColonne(cle: CleColonne): number {
+  return COLONNES_KANBAN.findIndex((c) => c.cle === cle)
+}
 
 // ─── Langues du Kanban (CRUD SQLite, page /stockage) ───
 // On lit les MÊMES langues que le CRUD : tes couleurs et libellés s'appliquent ici.
@@ -52,12 +62,18 @@ const createStatutId = ref(1)
 const createLoading = ref(false)
 const formulaire = ref<InstanceType<typeof FormulaireTicket> | null>(null)
 
-// Dialogue changement de statut
+// Dialogue changement de statut (vers l'avant : on saisit un nouveau coût)
 const showReverseStatutDialog = ref(false)
 const showStatusDialog = ref(false)
 const pendingDrop = ref<{ ticket: Ticket; statutCible: number; libelle: string } | null>(null)
 const statusNote = ref('')
 const statusLoading = ref(false)
+
+// Dialogue de RÉOUVERTURE (Terminé → colonne antérieure) :
+//   l'utilisateur choisit soit « Annuler le dernier coût », soit saisit un
+//   pourcentage de réouverture (majore la dernière valeur de X %).
+const pourcentageReouverture = ref<number | null>(null)
+const dernierCoutTicket = ref<number>(0)
 
 // Glisser-déposer
 const draggingTicketId = ref<number | null>(null)
@@ -152,35 +168,34 @@ function onDragOver(cle: CleColonne, event: DragEvent) {
   dragOverCle.value = cle
 }
 
-function onDrop(cle: CleColonne) {
+async function onDrop(cle: CleColonne) {
   dragOverCle.value = null
   const ticket = tickets.value.find((t) => t.id === draggingTicketId.value)
   if (!ticket) return
 
-  const colonneActuelle = colonnePourStatut(statutDuTicket(ticket)).cle
-  console.log('Colomnes actuelle: ' + colonneActuelle)
+  const cleActuelle = colonnePourStatut(statutDuTicket(ticket)).cle
+  if (cleActuelle === cle) return // même colonne : rien à faire
 
-  if (colonneActuelle > cle) {
-    pendingDrop.value = {
-      ticket,
-      statutCible: colonnePourStatut(statutDuTicket(ticket)).statutCible,
-      libelle: '',
-    }
+  const colonneCible = COLONNES.value.find((c) => c.cle === cle)
+  if (!colonneCible) return
+
+  // On RECULE (réouverture) si la colonne cible est avant l'actuelle.
+  const reculer = indexColonne(cle) < indexColonne(cleActuelle)
+
+  pendingDrop.value = { ticket, statutCible: colonneCible.statutCible, libelle: colonneCible.label }
+
+  if (reculer) {
+    // Réouverture : on récupère la dernière valeur en base pour le calcul du %.
+    pourcentageReouverture.value = null
+    dernierCoutTicket.value = ticket.id ? await getDernierCout(ticket.id) : 0
     showReverseStatutDialog.value = true
     showStatusDialog.value = false
-    console.log('Reverse value true')
   } else {
-    if (colonneActuelle === cle) return
-
-    const colonne = COLONNES.value.find((c) => c.cle === cle)
-
-    if (!colonne) return
-
-    // Toujours demander confirmation / infos supplémentaires (sujet J2).
-    pendingDrop.value = { ticket, statutCible: colonne.statutCible, libelle: colonne.label }
+    // Avancée : on saisit un nouveau coût.
     statusNote.value = ''
     newCost.value = null
     showStatusDialog.value = true
+    showReverseStatutDialog.value = false
   }
 }
 
@@ -237,20 +252,63 @@ function formatDate(d?: string) {
   return d.slice(0, 10)
 }
 
-function annulerAction() {
+// Ferme le dialogue de réouverture sans rien changer.
+function fermerReouverture() {
   showReverseStatutDialog.value = false
+  pendingDrop.value = null
+  pourcentageReouverture.value = null
 }
 
-async function executeReverse(ticketId: number) {
-  console.log(ticketId);
-  
-  console.log('Execute reverse: ')
-  await supprimerCoutByIdTickets(ticketId)
-  // if (confirmStatusChange()) {
-  //   console.log('Appel confirmStatusChange true')    
-  // } else {
-  //   console.log("Pas d'appel")
-  // }
+// ACTION 1 — « Annuler » : le dernier coût du ticket est marqué annulé
+// (et ses lignes-enfants), puis on applique le changement de statut.
+async function annulerEtChangerStatut() {
+  if (!pendingDrop.value) return
+  const { ticket, statutCible } = pendingDrop.value
+  const ticketId = ticket.id ?? 0
+  if (!ticketId) return
+
+  statusLoading.value = true
+  try {
+    await annulerCoutsDuTicket(ticketId) // marque annule=true (historique gardé)
+    await changerStatutTicket(ticketId, statutCible)
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Échec de l’annulation'
+  } finally {
+    await charger()
+    fermerReouverture()
+    statusLoading.value = false
+  }
+}
+
+// ACTION 2 — « Coût de réouverture » : on majore la dernière valeur de X %,
+// on annule l'ancien coût, on réinsère le nouveau, puis on change le statut.
+async function appliquerReouverture() {
+  if (!pendingDrop.value) return
+  const { ticket, statutCible } = pendingDrop.value
+  const ticketId = ticket.id ?? 0
+  const pourcent = pourcentageReouverture.value
+
+  if (!ticketId) return
+  if (pourcent === null || !Number.isFinite(pourcent) || pourcent < 0) {
+    error.value = 'Saisissez un pourcentage de réouverture positif ou nul.'
+    return
+  }
+
+  statusLoading.value = true
+  try {
+    const items = await v1GetTicketItems(ticketId)
+    if (items.length === 0) {
+      throw new Error('Ce ticket ne possède aucun item lié : impossible de répartir le coût.')
+    }
+    await reouvrirTicket(ticketId, pourcent, items) // annule l'ancien + insère le nouveau
+    await changerStatutTicket(ticketId, statutCible)
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Échec de la réouverture'
+  } finally {
+    await charger()
+    fermerReouverture()
+    statusLoading.value = false
+  }
 }
 </script>
 
@@ -393,14 +451,47 @@ async function executeReverse(ticketId: number) {
       </div>
     </div>
 
-    <!-- ─── Dialogue Inversion de statut ────────────────────────────────── -->
-    <div v-if="showReverseStatutDialog" class="dialog-overlay" @click.self="annulerAction">
+    <!-- ─── Dialogue RÉOUVERTURE (recul de statut) ──────────────────────── -->
+    <div
+      v-if="showReverseStatutDialog && pendingDrop"
+      class="dialog-overlay"
+      @click.self="fermerReouverture"
+    >
       <div class="dialog">
-        <p>Reverse du statut:</p>
-        <button class="dialog-close" @click="annulerAction">✕</button>
+        <button class="dialog-close" @click="fermerReouverture">✕</button>
+        <h2>Réouverture du ticket</h2>
+        <p>
+          Rouvrir <strong>« {{ pendingDrop.ticket.name }} »</strong> vers
+          <strong>{{ pendingDrop.libelle }}</strong>.
+        </p>
+        <p class="info-dernier">
+          Dernier coût enregistré : <strong>{{ dernierCoutTicket.toFixed(2) }}</strong>
+        </p>
+
+        <!-- Choix : annuler le dernier coût, OU saisir un coût de réouverture -->
+        <div class="field">
+          <label>Pourcentage de réouverture (%)</label>
+          <input
+            v-model.number="pourcentageReouverture"
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="ex : 10  → +10% sur le dernier coût"
+          />
+          <small v-if="pourcentageReouverture !== null && pourcentageReouverture >= 0">
+            Nouveau coût =
+            {{ (dernierCoutTicket * (1 + pourcentageReouverture / 100)).toFixed(2) }}
+          </small>
+        </div>
+
         <div class="dialog-actions">
-          <button class="btn-cancel" @click="annulerAction">Annuler</button>
-          <button class="btn-confirm" @click="executeReverse(pendingDrop?.ticket.id ?? 0)">Confirmer</button>
+          <button class="btn-cancel" @click="fermerReouverture">Fermer</button>
+          <button class="btn-cancel" :disabled="statusLoading" @click="annulerEtChangerStatut">
+            Annuler le dernier coût
+          </button>
+          <button class="btn-confirm" :disabled="statusLoading" @click="appliquerReouverture">
+            {{ statusLoading ? 'Traitement…' : 'Coût de réouverture' }}
+          </button>
         </div>
       </div>
     </div>
@@ -640,6 +731,13 @@ async function executeReverse(ticketId: number) {
 .dialog-error {
   color: #c0392b;
   margin-bottom: 0.75rem;
+}
+
+.info-dernier {
+  padding: 0.5rem 0.75rem;
+  background: #f1f5f9;
+  border-radius: 6px;
+  font-size: 0.9rem;
 }
 
 .field {
