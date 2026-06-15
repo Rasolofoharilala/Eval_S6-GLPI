@@ -462,7 +462,8 @@ async function appliquerReouverture() {
         <h2>Réouverture du ticket</h2>
         <p>
           Rouvrir <strong>« {{ pendingDrop.ticket.name }} »</strong> vers
-          <strong>{{ pendingDrop.libelle }}</strong>.
+          <strong>{{ pendingDrop.libelle }}</strong
+          >.
         </p>
         <p class="info-dernier">
           Dernier coût enregistré : <strong>{{ dernierCoutTicket.toFixed(2) }}</strong>
@@ -486,7 +487,7 @@ async function appliquerReouverture() {
 
         <div class="dialog-actions">
           <button class="btn-cancel" @click="fermerReouverture">Fermer</button>
-          <button class="btn-cancel" :disabled="statusLoading" @click="annulerEtChangerStatut">
+          <button class="btn-danger" :disabled="statusLoading" @click="annulerEtChangerStatut">
             Annuler le dernier coût
           </button>
           <button class="btn-confirm" :disabled="statusLoading" @click="appliquerReouverture">
@@ -558,10 +559,21 @@ async function appliquerReouverture() {
 
 .btn-reload {
   padding: 0.4rem 0.9rem;
-  border: 1px solid #ccc;
+  border: 1px solid #7a8694;
   border-radius: 6px;
   background: white;
+  color: #1f2937;
+  font-weight: 600;
   cursor: pointer;
+}
+
+.btn-reload:hover:not(:disabled) {
+  background: #eef2f7;
+}
+
+.btn-reload:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .select-langue {
@@ -606,14 +618,16 @@ async function appliquerReouverture() {
 }
 
 .col-title {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.95rem;
+  color: #1f2937;
 }
 
 .col-count {
-  background: #c5cfd9;
+  background: #1f2937;
+  color: white;
   border-radius: 999px;
-  padding: 0 0.5rem;
+  padding: 0.05rem 0.55rem;
   font-size: 0.8rem;
   font-weight: 700;
 }
@@ -667,26 +681,32 @@ async function appliquerReouverture() {
 }
 
 .badge-prio {
-  background: #eee;
+  background: #e2e8f0;
+  color: #1f2937;
   border-radius: 4px;
   padding: 0 0.4rem;
+  font-weight: 600;
 }
 
 .btn-add {
   width: 100%;
   margin-top: 0.5rem;
   padding: 0.45rem;
-  border: 1px dashed #aaa;
+  border: 1px dashed #5b6573;
   border-radius: 6px;
-  background: transparent;
-  color: #555;
+  background: rgba(255, 255, 255, 0.85);
+  color: #1f2937;
+  font-weight: 600;
   cursor: pointer;
   font-size: 0.85rem;
-  transition: background 0.1s;
+  transition:
+    background 0.1s,
+    border-color 0.1s;
 }
 
 .btn-add:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border-color: #1f2937;
 }
 
 /* ─── Dialogues ─────────────────────────────────────────────────────────────── */
@@ -725,7 +745,11 @@ async function appliquerReouverture() {
   border: none;
   font-size: 1.1rem;
   cursor: pointer;
-  color: #888;
+  color: #4b5563;
+}
+
+.dialog-close:hover {
+  color: #1f2937;
 }
 
 .dialog-error {
@@ -771,20 +795,55 @@ async function appliquerReouverture() {
 
 .btn-cancel {
   padding: 0.45rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #7a8694;
   border-radius: 6px;
   background: white;
+  color: #1f2937;
+  font-weight: 600;
   cursor: pointer;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background: #eef2f7;
+}
+
+.btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Action destructive : annuler le dernier coût (réouverture). */
+.btn-danger {
+  padding: 0.45rem 1rem;
+  border: 1px solid #b91c1c;
+  border-radius: 6px;
+  background: #fef2f2;
+  color: #991b1b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #fee2e2;
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-confirm {
   padding: 0.45rem 1rem;
   border: none;
   border-radius: 6px;
-  background: #3a86d4;
+  background: #1d6fc0;
   color: white;
   cursor: pointer;
   font-weight: 600;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  background: #185a9c;
 }
 
 .btn-confirm:disabled {

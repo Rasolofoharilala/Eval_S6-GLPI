@@ -13,7 +13,7 @@ import { messageErreur } from '@/utils/messageErreur'
 
 // CRUD des langues du Kanban : chaque langue a 3 statuts (Nouveau, In progress,
 // Terminé) avec un libellé et une couleur PERSONNALISABLES par langue.
-// Stocké en SQLite via le backend Spring Boot (port 8080).
+// Stocké en SQLite local (sql.js + IndexedDB), sans backend.
 
 const log = creerLogger('Stockage Langues')
 
@@ -33,8 +33,7 @@ async function charger() {
     langues.value = await getLangues()
     log.succes(`${langues.value.length} langue(s) chargée(s)`)
   } catch (err) {
-    error.value =
-      'Backend injoignable. Lancez-le avec : cd Backend && mvn spring-boot:run (port 8080).'
+    error.value = 'Impossible de charger la base SQLite locale.'
     log.erreur('Échec du chargement des langues', err)
   } finally {
     loading.value = false
@@ -144,7 +143,7 @@ onMounted(charger)
       Chaque langue définit le <strong>nom</strong> et la <strong>couleur</strong> de chaque statut
       (Nouveau, In progress, Terminé). Tout est personnalisable : même couleur partout, une couleur
       par statut, ou des couleurs différentes selon la langue. Stocké dans
-      <strong>SQLite</strong> via le backend Spring Boot.
+      <strong>SQLite</strong> local (sql.js), directement dans le navigateur.
     </p>
 
     <p v-if="loading">Chargement…</p>
