@@ -4,10 +4,10 @@
 // « On me dit de modifier juste le statut / la priorité / le titre d'un ticket »
 //   → il y a UNE fonction pour chaque cas, pas besoin de réfléchir au payload.
 //
-// Import : import * as Tickets from '@/crud/crudTickets'  (ou via '@/crud')
+// Import : import * as Tickets from '@/services/crud/crudTickets'  (ou via '@/crud')
 // ═════════════════════════════════════════════════════════════════════════════
 
-import { httpClient } from '@/api/httpClient'
+import { httpClient } from '@/services/api/httpClient'
 import { getTickets, getTicketById } from '@/services/generated/ticketService'
 import type { Ticket } from '@/services/generated/ticketService'
 import {
@@ -16,7 +16,7 @@ import {
   type DonneesTicket,
   type ElementLie,
 } from '@/services/ticketActions'
-import { v1LinkItemToTicket, v1GetTicketItems } from '@/api/glpiV1Client'
+import { v1LinkItemToTicket, v1GetTicketItems } from '@/services/api/glpiV1Client'
 import { modifierUnChamp, parId } from './crudGenerique'
 
 const ENDPOINT = '/Assistance/Ticket'

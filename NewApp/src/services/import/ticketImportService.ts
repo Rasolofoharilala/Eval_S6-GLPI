@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { httpClient } from '@/api/httpClient'
+import { httpClient } from '@/services/api/httpClient'
 import {
   v1UploadDocument,
   v1LinkDocumentToItem,
   v1LinkItemToTicket,
   v1GetTicketItems,
-} from '@/api/glpiV1Client'
+} from '@/services/api/glpiV1Client'
 import { versItemtypeGlpi } from '@/config/parc'
 import { messageErreur } from '@/utils/messageErreur'
 import { importLogger } from './importLogger'

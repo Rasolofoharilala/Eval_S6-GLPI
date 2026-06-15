@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import AppSidebar from '@/components/layout/AppSidebar.vue'
+import AppSidebar from '@/layouts/AppSidebar.vue'
 import {
   getLangues,
   creerLangue,

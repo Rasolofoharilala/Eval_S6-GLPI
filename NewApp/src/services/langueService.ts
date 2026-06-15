@@ -3,7 +3,7 @@
 //
 // Chaque langue a 3 statuts (nouveau, in_progress, termine), chacun avec son
 // libellé et sa couleur. Stocké en SQLite local (sql.js + IndexedDB) via le
-// module @/sqlite/localDb — il n'y a plus de backend Spring Boot.
+// module @/services/sqlite/localDb — il n'y a plus de backend Spring Boot.
 //
 //   getLangues()                  → toutes les langues
 //   creerLangue(code, nom)        → créer une langue (+ 3 statuts par défaut)
@@ -11,8 +11,8 @@
 //   supprimerLangue(id)           → supprimer une langue
 // ═════════════════════════════════════════════════════════════════════════════
 
-import * as localDb from '@/sqlite/localDb'
-import type { Langue, StatutLangue } from '@/sqlite/localDb'
+import * as localDb from '@/services/sqlite/localDb'
+import type { Langue, StatutLangue } from '@/services/sqlite/localDb'
 
 export type { Langue, StatutLangue }
 

@@ -1,8 +1,8 @@
 // Auto-generated file. Do not edit manually.
 // Service generated for /Setup/LDAPDirectory.
 
-import { getAll, getById } from '@/api/crudClient'
-import { ENDPOINTS } from '@/generated/endpoints'
+import { getAll, getById } from '@/services/api/crudClient'
+import { ENDPOINTS } from '@/services/generated/endpoints'
 import type { LDAPDirectory } from '@/types/generated'
 
 export type { LDAPDirectory } from '@/types/generated'

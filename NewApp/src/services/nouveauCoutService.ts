@@ -1,9 +1,9 @@
-import type { ItemTicketLink } from '@/api/glpiV1Client'
-import * as localDb from '@/sqlite/localDb'
-import type { CoutCree, CoutParItem, ItemLie } from '@/sqlite/localDb'
+import type { ItemTicketLink } from '@/services/api/glpiV1Client'
+import * as localDb from '@/services/sqlite/localDb'
+import type { CoutCree, CoutParItem, ItemLie } from '@/services/sqlite/localDb'
 
 // ═════════════════════════════════════════════════════════════════════════════
-// SERVICE « NOUVEAUX COÛTS » (table SQLite locale via @/sqlite/localDb)
+// SERVICE « NOUVEAUX COÛTS » (table SQLite locale via @/services/sqlite/localDb)
 //
 // Toutes les opérations sur la table `nouveau_cout` sont déléguées au module
 // SQLite local (sql.js + IndexedDB). Il n'y a plus de backend Spring Boot.

@@ -1,4 +1,4 @@
-import { httpClient } from '@/api/httpClient'
+import { httpClient } from '@/services/api/httpClient'
 
 export type ExistingAsset = {
   id: number

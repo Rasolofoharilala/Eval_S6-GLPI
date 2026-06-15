@@ -1,6 +1,6 @@
-import { create, getById } from '@/api/crudClient'
-import { v1GetAll } from '@/api/glpiV1Client'
-import { ENDPOINTS } from '@/generated/endpoints'
+import { create, getById } from '@/services/api/crudClient'
+import { v1GetAll } from '@/services/api/glpiV1Client'
+import { ENDPOINTS } from '@/services/generated/endpoints'
 import type { Ticket, TicketInput } from '@/types/generated'
 
 export type { Ticket, TicketInput } from '@/types/generated'

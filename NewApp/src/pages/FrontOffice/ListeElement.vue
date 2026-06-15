@@ -4,7 +4,7 @@
 // (filtrage) + BarreFiltres (UI de filtres) — comme les dashboards.
 
 import { computed, onMounted } from 'vue'
-import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
+import AppSidebarFO from '@/layouts/AppSidebarFO.vue'
 import BarreFiltres from '@/components/BarreFiltres.vue'
 import { useParcAssets } from '@/composables/useParcAssets'
 import {

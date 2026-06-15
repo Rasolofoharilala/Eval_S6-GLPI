@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
+import AppSidebarFO from '@/layouts/AppSidebarFO.vue'
 </script>
 <template>
   <AppSidebarFO />

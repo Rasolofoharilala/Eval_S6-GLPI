@@ -1,8 +1,8 @@
 // Auto-generated file. Do not edit manually.
 // Service generated for /Administration/User/Me/Preference.
 
-import { getAll } from '@/api/crudClient'
-import { ENDPOINTS } from '@/generated/endpoints'
+import { getAll } from '@/services/api/crudClient'
+import { ENDPOINTS } from '@/services/generated/endpoints'
 import type { UserPreferences } from '@/types/generated'
 
 export type { UserPreferences } from '@/types/generated'

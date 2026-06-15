@@ -1,8 +1,8 @@
 // Auto-generated file. Do not edit manually.
 // Service generated for /Setup/SLA.
 
-import { getAll, getById } from '@/api/crudClient'
-import { ENDPOINTS } from '@/generated/endpoints'
+import { getAll, getById } from '@/services/api/crudClient'
+import { ENDPOINTS } from '@/services/generated/endpoints'
 import type { SLA } from '@/types/generated'
 
 export type { SLA } from '@/types/generated'

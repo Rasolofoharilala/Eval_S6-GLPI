@@ -1,8 +1,8 @@
 // Auto-generated file. Do not edit manually.
 // Service generated for /Dropdowns/PrinterModel.
 
-import { getAll, getById } from '@/api/crudClient'
-import { ENDPOINTS } from '@/generated/endpoints'
+import { getAll, getById } from '@/services/api/crudClient'
+import { ENDPOINTS } from '@/services/generated/endpoints'
 import type { PrinterModel } from '@/types/generated'
 
 export type { PrinterModel } from '@/types/generated'

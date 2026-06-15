@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RESETTABLE_ENDPOINTS } from '@/reset/resetEndpointPolicy'
-import { resetSelectedEndpoints, type ResetResult } from '@/reset/resetService'
+import { RESETTABLE_ENDPOINTS } from '@/services/reset/resetEndpointPolicy'
+import { resetSelectedEndpoints, type ResetResult } from '@/services/reset/resetService'
 import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
 
-import AppSidebar from '@/components/layout/AppSidebar.vue'
+import AppSidebar from '@/layouts/AppSidebar.vue'
 
 const log = creerLogger('Réinitialisation Page')
 

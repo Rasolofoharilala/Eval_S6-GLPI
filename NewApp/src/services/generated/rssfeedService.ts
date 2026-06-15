@@ -1,8 +1,8 @@
 // Auto-generated file. Do not edit manually.
 // Service generated for /Tools/RSSFeed.
 
-import { getAll, getById } from '@/api/crudClient'
-import { ENDPOINTS } from '@/generated/endpoints'
+import { getAll, getById } from '@/services/api/crudClient'
+import { ENDPOINTS } from '@/services/generated/endpoints'
 import type { RSSFeed } from '@/types/generated'
 
 export type { RSSFeed } from '@/types/generated'

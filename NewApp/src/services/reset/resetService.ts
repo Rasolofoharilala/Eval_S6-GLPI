@@ -17,7 +17,7 @@
 // (mais par paquets) pour aller vite sans saturer le serveur.
 // ═════════════════════════════════════════════════════════════════════════════
 
-import { v1BulkPurge, v1GetAllIncludingDeleted } from '@/api/glpiV1Client'
+import { v1BulkPurge, v1GetAllIncludingDeleted } from '@/services/api/glpiV1Client'
 import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
 import { executerParLots } from '@/utils/executerParLots'

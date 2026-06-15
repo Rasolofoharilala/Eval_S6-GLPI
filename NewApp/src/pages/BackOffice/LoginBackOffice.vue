@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { login, CODE_ACCES } from '@/auth/authService'
+import { login, CODE_ACCES } from '@/services/auth/authService'
 import { creerLogger } from '@/utils/pageLogger'
 
 const log = creerLogger('Connexion')

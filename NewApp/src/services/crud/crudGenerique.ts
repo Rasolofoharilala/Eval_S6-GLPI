@@ -14,8 +14,8 @@
 //   - l'API v2 DELETE ne fait que mettre en CORBEILLE → la vraie purge passe v1
 // ═════════════════════════════════════════════════════════════════════════════
 
-import { getAll, getAllActifs, getById, create, update, remove } from '@/api/crudClient'
-import { v1BulkPurge } from '@/api/glpiV1Client'
+import { getAll, getAllActifs, getById, create, update, remove } from '@/services/api/crudClient'
+import { v1BulkPurge } from '@/services/api/glpiV1Client'
 
 // Élément GLPI minimal : il a au moins un id.
 export type ElementGlpi = { id?: number; name?: string | null }

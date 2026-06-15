@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 // CSS global minimaliste (layout barre latérale + contenu, tableaux, boutons).
-import './assets/backoffice.css'
+import './styles/backoffice.css'
 
 const app = createApp(App)
 

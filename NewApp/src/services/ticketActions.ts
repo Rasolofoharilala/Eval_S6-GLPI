@@ -12,9 +12,9 @@
 //   - la durée totale : une tâche Timeline (actiontime est en lecture seule)
 // ═════════════════════════════════════════════════════════════════════════════
 
-import { httpClient } from '@/api/httpClient'
+import { httpClient } from '@/services/api/httpClient'
 import { createTicket } from '@/services/generated/ticketService'
-import { v1LinkItemToTicket } from '@/api/glpiV1Client'
+import { v1LinkItemToTicket } from '@/services/api/glpiV1Client'
 
 // Un élément (asset) à associer au ticket.
 export type ElementLie = {

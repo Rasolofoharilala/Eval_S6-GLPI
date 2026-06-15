@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
+import AppSidebarFO from '@/layouts/AppSidebarFO.vue'
 import { useParcAssets } from '@/composables/useParcAssets'
 import { construireCoutsParc, type LigneCoutParc } from '@/services/coutsParcService'
 

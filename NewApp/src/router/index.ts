@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { isAuthenticated } from '@/auth/authService'
+import { isAuthenticated } from '@/services/auth/authService'
 
 import login from '@/pages/BackOffice/LoginBackOffice.vue'
 import accueil from '@/pages/BackOffice/AccueilBackOffice.vue'

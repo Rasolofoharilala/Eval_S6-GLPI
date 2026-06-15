@@ -4,7 +4,7 @@
 // qu'appeler creerTicketComplet à la soumission.
 
 import { ref } from 'vue'
-import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
+import AppSidebarFO from '@/layouts/AppSidebarFO.vue'
 import FormulaireTicket from '@/components/FormulaireTicket.vue'
 import { creerTicketComplet, type DonneesTicket } from '@/services/ticketActions'
 import { creerLogger } from '@/utils/pageLogger'

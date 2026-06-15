@@ -1,6 +1,6 @@
-import { getAll, getById, create, update, remove } from '@/api/crudClient'
+import { getAll, getById, create, update, remove } from '@/services/api/crudClient'
 
-import { ENDPOINTS } from '@/generated/endpoints'
+import { ENDPOINTS } from '@/services/generated/endpoints'
 
 import type { Computer, ComputerInput } from '@/types/generated'
 

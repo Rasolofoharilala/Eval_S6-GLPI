@@ -1,7 +1,7 @@
 import type { GroupeParc } from '@/composables/useParcAssets'
 import { getTickets, type Ticket } from '@/services/generated/ticketService'
 import { getTousLesCouts } from '@/services/nouveauCoutService'
-import { httpClient } from '@/api/httpClient'
+import { httpClient } from '@/services/api/httpClient'
 
 // ═════════════════════════════════════════════════════════════════════════════
 // COÛTS PAR ITEM

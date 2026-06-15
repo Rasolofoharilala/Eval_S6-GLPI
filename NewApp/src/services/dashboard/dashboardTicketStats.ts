@@ -1,5 +1,5 @@
-import { httpClient } from '@/api/httpClient'
-import { v1GetTicketItems } from '@/api/glpiV1Client'
+import { httpClient } from '@/services/api/httpClient'
+import { v1GetTicketItems } from '@/services/api/glpiV1Client'
 import type { Ticket } from '@/services/generated/ticketService'
 
 // Agrégats du dashboard Tickets nécessitant des requêtes complémentaires :

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import JSZip from 'jszip'
-import AppSidebar from '@/components/layout/AppSidebar.vue'
+import AppSidebar from '@/layouts/AppSidebar.vue'
 
 import { parseCsvFile } from '@/services/csv/csvParser'
 import { hasRequiredHeaders } from '@/services/csv/csvValidator'

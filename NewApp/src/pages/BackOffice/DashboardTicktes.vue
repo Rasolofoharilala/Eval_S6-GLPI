@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import AppSidebar from '@/components/layout/AppSidebar.vue'
+import AppSidebar from '@/layouts/AppSidebar.vue'
 import BarreFiltres from '@/components/BarreFiltres.vue'
 import { useTickets } from '@/composables/generated/useTickets'
 import { useFiltreTickets } from '@/composables/useFiltreTickets'

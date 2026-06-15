@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
+import AppSidebarFO from '@/layouts/AppSidebarFO.vue'
 import FormulaireTicket from '@/components/FormulaireTicket.vue'
 import { getTickets, getTicketById } from '@/services/generated/ticketService'
 import {
@@ -12,7 +12,7 @@ import type { Ticket } from '@/services/generated/ticketService'
 import { getLangues, LANGUES_DEFAUT, LANGUE_DEFAUT, type Langue } from '@/services/langueService'
 import { COLONNES_KANBAN, colonnePourStatut, type CleColonne } from '@/config/kanban'
 import { libelleStatut, libellePriorite } from '@/config/tickets'
-import { v1GetTicketItems } from '@/api/glpiV1Client'
+import { v1GetTicketItems } from '@/services/api/glpiV1Client'
 import {
   enregistrerNouveauCout,
   reouvrirTicket,

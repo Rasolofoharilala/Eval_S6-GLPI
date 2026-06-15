@@ -7,6 +7,6 @@
   </main>
 </template>
 <script setup lang="ts">
-import AppSidebar from '@/components/layout/AppSidebar.vue'
+import AppSidebar from '@/layouts/AppSidebar.vue'
 </script>
 <style scoped></style>

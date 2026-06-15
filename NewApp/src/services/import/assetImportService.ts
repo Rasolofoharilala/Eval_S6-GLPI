@@ -1,4 +1,4 @@
-import { httpClient } from '@/api/httpClient'
+import { httpClient } from '@/services/api/httpClient'
 import { trouverTypeParc } from '@/config/parc'
 import { messageErreur } from '@/utils/messageErreur'
 

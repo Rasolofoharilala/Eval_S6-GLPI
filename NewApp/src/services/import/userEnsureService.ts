@@ -1,4 +1,4 @@
-import { httpClient } from '@/api/httpClient'
+import { httpClient } from '@/services/api/httpClient'
 import type { GlpiReferenceItem } from './glpiReferenceTypes'
 
 // Le CSV 1 contient des noms complets (« Rakoto Jean »). On recherche

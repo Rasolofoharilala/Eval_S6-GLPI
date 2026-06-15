@@ -11,7 +11,7 @@
 // ═════════════════════════════════════════════════════════════════════════════
 
 import { computed, ref } from 'vue'
-import { getAllActifs } from '@/api/crudClient'
+import { getAllActifs } from '@/services/api/crudClient'
 import { TYPES_PARC } from '@/config/parc'
 import { messageErreur } from '@/utils/messageErreur'
 
