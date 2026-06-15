@@ -21,6 +21,7 @@ import { v1BulkPurge, v1GetAllIncludingDeleted } from '@/api/glpiV1Client'
 import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
 import { executerParLots } from '@/utils/executerParLots'
+import { supprimerTousLesCouts } from '@/services/nouveauCoutService'
 import { RESETTABLE_ENDPOINTS } from './resetEndpointPolicy'
 
 const log = creerLogger('Réinitialisation')
@@ -137,6 +138,16 @@ export async function resetSelectedEndpoints(endpoints: string[]): Promise<Reset
     const resultat = await resetEndpoint(endpoint)
     results.push(resultat)
   })
+
+  // Vider aussi la table SQLite des « nouveaux coûts » (backend Spring) : sinon
+  // d'anciens coûts pointent vers des tickets supprimés → erreurs sur /coutsParc.
+  try {
+    await supprimerTousLesCouts()
+    log.succes('Table des nouveaux coûts vidée (SQLite)')
+  } catch (err) {
+    // Backend injoignable : non bloquant pour la réinitialisation GLPI.
+    log.attention(`Table des nouveaux coûts non vidée : ${messageErreur(err)}`)
+  }
 
   log.succes('Réinitialisation terminée')
   return results

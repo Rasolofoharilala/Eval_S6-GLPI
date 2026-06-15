@@ -3,13 +3,17 @@ import { ref, computed, onMounted } from 'vue'
 import AppSidebarFO from '@/components/layout/AppSidebarFO.vue'
 import FormulaireTicket from '@/components/FormulaireTicket.vue'
 import { getTickets, getTicketById } from '@/services/generated/ticketService'
-import { creerTicketComplet, changerStatutTicket, type DonneesTicket } from '@/services/ticketActions'
+import {
+  creerTicketComplet,
+  changerStatutTicket,
+  type DonneesTicket,
+} from '@/services/ticketActions'
 import type { Ticket } from '@/services/generated/ticketService'
 import { getLangues, LANGUES_DEFAUT, LANGUE_DEFAUT, type Langue } from '@/services/langueService'
 import { COLONNES_KANBAN, colonnePourStatut, type CleColonne } from '@/config/kanban'
 import { libelleStatut, libellePriorite } from '@/config/tickets'
 import { v1GetTicketItems } from '@/api/glpiV1Client'
-import { enregistrerNouveauCout } from '@/services/nouveauCoutService'
+import { enregistrerNouveauCout, supprimerCoutByIdTickets } from '@/services/nouveauCoutService'
 
 // ─── Langues du Kanban (CRUD SQLite, page /stockage) ───
 // On lit les MÊMES langues que le CRUD : tes couleurs et libellés s'appliquent ici.
@@ -18,10 +22,7 @@ const codeLangue = ref('fr')
 const newCost = ref<number | null>(null)
 
 const langueActive = computed<Langue>(
-  () =>
-    langues.value.find((l) => l.code === codeLangue.value) ??
-    langues.value[0] ??
-    LANGUE_DEFAUT,
+  () => langues.value.find((l) => l.code === codeLangue.value) ?? langues.value[0] ?? LANGUE_DEFAUT,
 )
 
 // Les 3 colonnes : couleur + libellé viennent de la langue active (par statut).
@@ -52,6 +53,7 @@ const createLoading = ref(false)
 const formulaire = ref<InstanceType<typeof FormulaireTicket> | null>(null)
 
 // Dialogue changement de statut
+const showReverseStatutDialog = ref(false)
 const showStatusDialog = ref(false)
 const pendingDrop = ref<{ ticket: Ticket; statutCible: number; libelle: string } | null>(null)
 const statusNote = ref('')
@@ -156,16 +158,30 @@ function onDrop(cle: CleColonne) {
   if (!ticket) return
 
   const colonneActuelle = colonnePourStatut(statutDuTicket(ticket)).cle
-  if (colonneActuelle === cle) return
+  console.log('Colomnes actuelle: ' + colonneActuelle)
 
-  const colonne = COLONNES.value.find((c) => c.cle === cle)
-  if (!colonne) return
+  if (colonneActuelle > cle) {
+    pendingDrop.value = {
+      ticket,
+      statutCible: colonnePourStatut(statutDuTicket(ticket)).statutCible,
+      libelle: '',
+    }
+    showReverseStatutDialog.value = true
+    showStatusDialog.value = false
+    console.log('Reverse value true')
+  } else {
+    if (colonneActuelle === cle) return
 
-  // Toujours demander confirmation / infos supplémentaires (sujet J2).
-  pendingDrop.value = { ticket, statutCible: colonne.statutCible, libelle: colonne.label }
-  statusNote.value = ''
-  newCost.value = null
-  showStatusDialog.value = true
+    const colonne = COLONNES.value.find((c) => c.cle === cle)
+
+    if (!colonne) return
+
+    // Toujours demander confirmation / infos supplémentaires (sujet J2).
+    pendingDrop.value = { ticket, statutCible: colonne.statutCible, libelle: colonne.label }
+    statusNote.value = ''
+    newCost.value = null
+    showStatusDialog.value = true
+  }
 }
 
 // ─── Changement de statut (action centralisée) ───
@@ -219,6 +235,22 @@ function classePriorite(p?: number) {
 function formatDate(d?: string) {
   if (!d) return '—'
   return d.slice(0, 10)
+}
+
+function annulerAction() {
+  showReverseStatutDialog.value = false
+}
+
+async function executeReverse(ticketId: number) {
+  console.log(ticketId);
+  
+  console.log('Execute reverse: ')
+  await supprimerCoutByIdTickets(ticketId)
+  // if (confirmStatusChange()) {
+  //   console.log('Appel confirmStatusChange true')    
+  // } else {
+  //   console.log("Pas d'appel")
+  // }
 }
 </script>
 
@@ -358,6 +390,18 @@ function formatDate(d?: string) {
           :en-chargement="createLoading"
           @submit="creerDepuisFormulaire"
         />
+      </div>
+    </div>
+
+    <!-- ─── Dialogue Inversion de statut ────────────────────────────────── -->
+    <div v-if="showReverseStatutDialog" class="dialog-overlay" @click.self="annulerAction">
+      <div class="dialog">
+        <p>Reverse du statut:</p>
+        <button class="dialog-close" @click="annulerAction">✕</button>
+        <div class="dialog-actions">
+          <button class="btn-cancel" @click="annulerAction">Annuler</button>
+          <button class="btn-confirm" @click="executeReverse(pendingDrop?.ticket.id ?? 0)">Confirmer</button>
+        </div>
       </div>
     </div>
 

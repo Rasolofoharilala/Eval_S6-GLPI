@@ -28,6 +28,10 @@ public class Cout {
     @Column(name = "cout", nullable = false, precision = 19, scale = 4)
     private BigDecimal cout;
 
+    /** true = coût annulé (réouverture) : conservé en historique, exclu des totaux. */
+    @Column(name = "annule", nullable = false)
+    private boolean annule = false;
+
     protected Cout() {
     }
 
@@ -36,6 +40,15 @@ public class Cout {
         this.itemId = itemId;
         this.itemType = itemType;
         this.cout = cout;
+        this.annule = false;
+    }
+
+    public boolean isAnnule() {
+        return annule;
+    }
+
+    public void setAnnule(boolean annule) {
+        this.annule = annule;
     }
 
     public BigDecimal getCout() {

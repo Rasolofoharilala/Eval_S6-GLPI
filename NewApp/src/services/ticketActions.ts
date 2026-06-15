@@ -121,7 +121,7 @@ export async function creerTicketComplet(d: DonneesTicket): Promise<number> {
     name: d.name.trim(),
     content: d.content.trim(),
     date: d.date || undefined,
-    type: (d.type === 2 ? 2 : 1),
+    type: d.type === 2 ? 2 : 1,
     status: relation(d.statutId),
     category: relation(d.categoryId),
     location: relation(d.locationId),

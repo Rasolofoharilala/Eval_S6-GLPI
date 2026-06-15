@@ -28,7 +28,7 @@ async function lancerReset(endpoints: string[]) {
 
   // Sécurité : confirmation obligatoire car la suppression est définitive
   const confirme = window.confirm(
-    `Supprimer définitivement les éléments de ${endpoints.length} endpoint(s) ? Cette action est irréversible.`
+    `Supprimer définitivement les éléments de ${endpoints.length} endpoint(s) ? Cette action est irréversible.`,
   )
   if (!confirme) {
     return

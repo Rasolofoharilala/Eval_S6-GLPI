@@ -50,5 +50,9 @@ const menus: MenuEntry[] = [
     label: 'Kanban tickets',
     path: '/kanbanTickets',
   },
+  {
+    label: 'Coûts du parc',
+    path: '/coutsParc',
+  },
 ]
 </script>

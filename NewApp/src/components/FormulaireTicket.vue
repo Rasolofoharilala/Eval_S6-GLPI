@@ -49,8 +49,12 @@ const { itilcategories, loadItilcategories } = useItilcategories()
 const { locations, loadLocations } = useLocations()
 const { requesttypes, loadRequesttypes } = useRequesttypes()
 const { users, loadUsers } = useUsers()
-const { options: elements, optionsType, loading: chargementElements, chargerOptions } =
-  useOptionsElements()
+const {
+  options: elements,
+  optionsType,
+  loading: chargementElements,
+  chargerOptions,
+} = useOptionsElements()
 
 // ─── État du formulaire ───
 const form = reactive({
@@ -314,7 +318,9 @@ onMounted(() => {
         <label>
           Type
           <select v-model="typeElement">
-            <option v-for="o in optionsType" :key="o.valeur" :value="o.valeur">{{ o.label }}</option>
+            <option v-for="o in optionsType" :key="o.valeur" :value="o.valeur">
+              {{ o.label }}
+            </option>
           </select>
         </label>
         <label>

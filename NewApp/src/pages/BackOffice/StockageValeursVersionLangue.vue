@@ -141,9 +141,9 @@ onMounted(charger)
   <main>
     <h1>Langues du Kanban</h1>
     <p>
-      Chaque langue définit le <strong>nom</strong> et la <strong>couleur</strong> de chaque
-      statut (Nouveau, In progress, Terminé). Tout est personnalisable : même couleur partout,
-      une couleur par statut, ou des couleurs différentes selon la langue. Stocké dans
+      Chaque langue définit le <strong>nom</strong> et la <strong>couleur</strong> de chaque statut
+      (Nouveau, In progress, Terminé). Tout est personnalisable : même couleur partout, une couleur
+      par statut, ou des couleurs différentes selon la langue. Stocké dans
       <strong>SQLite</strong> via le backend Spring Boot.
     </p>
 
@@ -155,8 +155,8 @@ onMounted(charger)
     <section>
       <h2>Couleur par statut (toutes les langues)</h2>
       <p>
-        Choisissez une couleur par statut, puis appliquez-la à toutes les langues d'un coup.
-        Ex : statut 1 rouge, statut 2 bleu, statut 3 violet — quelle que soit la langue.
+        Choisissez une couleur par statut, puis appliquez-la à toutes les langues d'un coup. Ex :
+        statut 1 rouge, statut 2 bleu, statut 3 violet — quelle que soit la langue.
       </p>
       <div class="ligne-couleurs">
         <label v-for="c in couleursParStatut" :key="c.statusKey">

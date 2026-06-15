@@ -77,9 +77,7 @@ function idStatut(t: Ticket): number {
     <BarreFiltres :modele="filtres" :champs="champsFiltres" @reset="reinitialiser" />
 
     <section>
-      <h2>
-        Liste des tickets ({{ ticketsFiltres.length }} affiché(s) sur {{ tickets.length }})
-      </h2>
+      <h2>Liste des tickets ({{ ticketsFiltres.length }} affiché(s) sur {{ tickets.length }})</h2>
       <p v-if="ticketsFiltres.length === 0">Aucun ticket ne correspond aux filtres.</p>
       <table v-else border="1" cellpadding="6">
         <thead>

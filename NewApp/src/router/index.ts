@@ -13,6 +13,7 @@ import accueilFrontOffice from '@/pages/FrontOffice/AccueilFrontOffice.vue'
 import listeElement from '@/pages/FrontOffice/ListeElement.vue'
 import createTicket from '@/pages/FrontOffice/CreateTickets.vue'
 import kanbanTickets from '@/pages/FrontOffice/KanbanTickets.vue'
+import coutsParc from '@/pages/FrontOffice/CoutsParc.vue'
 import focusTickets from '@/pages/BackOffice/FocusTickets.vue'
 
 import stockage from '@/pages/BackOffice/StockageValeursVersionLangue.vue'
@@ -107,6 +108,14 @@ const router = createRouter({
       component: kanbanTickets,
       meta: {
         title: 'Kanban Tickets Front Office',
+      },
+    },
+    {
+      path: '/coutsParc',
+      name: 'coutsParc',
+      component: coutsParc,
+      meta: {
+        title: 'Coûts du parc',
       },
     },
     {

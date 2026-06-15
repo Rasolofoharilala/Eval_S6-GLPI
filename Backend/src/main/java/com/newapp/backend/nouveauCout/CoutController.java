@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.newapp.backend.nouveauCout.CoutDTO.CreerCout;
 import com.newapp.backend.nouveauCout.CoutDTO.CoutCree;
+import com.newapp.backend.nouveauCout.CoutDTO.CoutParItem;
 
 @RestController
 @RequestMapping("/api/couts")
@@ -34,6 +36,32 @@ public class CoutController {
     @GetMapping("/ticket/{ticketId}")
     public List<CoutCree> getByTicketId(@PathVariable Integer ticketId) {
         return service.getByTicketId(ticketId);
+    }
+
+    @GetMapping
+    public List<CoutCree> getAll() {
+        return service.getAll();
+    }
+
+    @GetMapping("/items")
+    public List<CoutParItem> getCoutsParItem() {
+        return service.getCoutsParItem();
+    }
+
+    /** Vide la table des nouveaux coûts (réinitialisation). */
+    @DeleteMapping
+    public void supprimerTout() {
+        service.supprimerTout();
+    }
+
+    // @DeleteMapping("/idTicketsDelete/{id}")
+    // public void supprimerById(@RequestBody Integer id){
+    //     service.supprimerById(id);
+    // }
+
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable("id") Long id) {
+        return "Delete by id called";
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

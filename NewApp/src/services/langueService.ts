@@ -68,11 +68,7 @@ export async function creerLangue(code: string, nom: string): Promise<Langue> {
   return res.data
 }
 
-export async function majLangue(
-  id: number,
-  nom: string,
-  statuts: StatutLangue[],
-): Promise<Langue> {
+export async function majLangue(id: number, nom: string, statuts: StatutLangue[]): Promise<Langue> {
   const res = await axios.put<Langue>(`${URL}/${id}`, { nom, statuts })
   return res.data
 }

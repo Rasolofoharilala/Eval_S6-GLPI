@@ -13,3 +13,23 @@ Creation d'une nouvelle page avec les couts,
 
             4 colomnes
             pc,... - cout glpi - super post(SQLite) - total
+
+
+Les tickets deja fermer peuvent revenir vers in progress 
+Affichage de Boite de dialogue
+    Affichage de bouton annulation
+    Suppression de nouveau cout Inserer (annulation): fafana ilay nataony farany
+
+Reouverture, 
+    Champ en pourcentage: ex -> 10% 
+        pourcentage aminy ilay cout farany, tsy nety ilay ordy fa havereno ampidirina (Tsy super post)
+    
+    Rehefa mamerina miala ao aminy claused
+        pourcentage par rapport taminy cout farany
+            Tsy miala ilay cout farany
+                Ex frais de retrait
+                    Tsy miova fa miampy
+                    Miverina miditra any aminy SQLite
+
+Sarahana ny coup GLPI sy ilay super post ao anaty base frais d'ouverture
+        
