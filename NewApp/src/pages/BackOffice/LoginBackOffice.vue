@@ -48,7 +48,9 @@ const redirectFrontOffice = () => {
         <p v-if="error" class="message-erreur">{{ error }}</p>
       </form>
 
-      <button class="lien-fo" @click="redirectFrontOffice">Aller au Front Office →</button>
+      <button class="btn-ghost lien-fo" @click="redirectFrontOffice">
+        Aller au Front Office →
+      </button>
     </div>
   </div>
 </template>
@@ -84,8 +86,5 @@ const redirectFrontOffice = () => {
 }
 .lien-fo {
   margin-top: 16px;
-  background: transparent;
-  color: #2563eb;
-  border: none;
 }
 </style>

@@ -101,21 +101,79 @@ th {
 }
 
 /* ─── Boutons ─── */
+/* Bouton par défaut : bleu accent, texte blanc (contraste AA : 5.17:1). */
 button {
   padding: 6px 12px;
   margin: 2px 4px 2px 0;
-  border: 1px solid var(--bo-bordure);
+  border: 1px solid var(--bo-accent);
   border-radius: 6px;
   background: var(--bo-accent);
   color: #fff;
+  font-weight: 600;
   cursor: pointer;
 }
-button:hover {
-  opacity: 0.9;
+button:hover:not(:disabled) {
+  background: #1d4fd7;
+  border-color: #1d4fd7;
 }
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Variantes de boutons — toutes vérifiées pour le contraste AA.
+   Elles posent leur PROPRE fond, donc elles annulent le bleu par défaut
+   (indispensable : un `style="color:red"` sur fond bleu est illisible). */
+
+/* Secondaire : neutre, texte foncé sur fond blanc. */
+button.btn-secondary,
+.btn-secondary {
+  background: #fff;
+  color: #1f2937;
+  border-color: #7a8694;
+}
+button.btn-secondary:hover:not(:disabled),
+.btn-secondary:hover:not(:disabled) {
+  background: #eef2f7;
+}
+
+/* Destructif : rouge plein, texte blanc (6.4:1). */
+button.btn-danger,
+.btn-danger {
+  background: #b91c1c;
+  color: #fff;
+  border-color: #b91c1c;
+}
+button.btn-danger:hover:not(:disabled),
+.btn-danger:hover:not(:disabled) {
+  background: #991b1b;
+  border-color: #991b1b;
+}
+
+/* Succès / validation : vert plein, texte blanc. */
+button.btn-success,
+.btn-success {
+  background: #15803d;
+  color: #fff;
+  border-color: #15803d;
+}
+button.btn-success:hover:not(:disabled),
+.btn-success:hover:not(:disabled) {
+  background: #126b33;
+  border-color: #126b33;
+}
+
+/* Lien : sans fond, texte bleu accent (5.17:1). */
+button.btn-ghost,
+.btn-ghost {
+  background: transparent;
+  color: var(--bo-accent);
+  border-color: transparent;
+}
+button.btn-ghost:hover:not(:disabled),
+.btn-ghost:hover:not(:disabled) {
+  background: #eef2f7;
+  border-color: transparent;
 }
 
 /* ─── Champs ─── */

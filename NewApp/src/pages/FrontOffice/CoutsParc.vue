@@ -191,10 +191,16 @@ onMounted(() => {
 
 .panel-header button {
   padding: 0.55rem 0.9rem;
-  border: 1px solid #cdd3da;
+  border: 1px solid #7a8694;
   border-radius: 6px;
   background: white;
+  color: #1f2937;
+  font-weight: 600;
   cursor: pointer;
+}
+
+.panel-header button:hover:not(:disabled) {
+  background: #eef2f7;
 }
 
 .table-wrapper {

@@ -221,11 +221,11 @@ onMounted(charger)
       </table>
 
       <p>
-        <button type="button" @click="enregistrer(langue)">Enregistrer</button>
-        <button type="button" @click="memeCouleurPartout(langue)">
+        <button type="button" class="btn-success" @click="enregistrer(langue)">Enregistrer</button>
+        <button type="button" class="btn-secondary" @click="memeCouleurPartout(langue)">
           Même couleur pour tous les statuts
         </button>
-        <button type="button" style="color: red" @click="supprimer(langue)">Supprimer</button>
+        <button type="button" class="btn-danger" @click="supprimer(langue)">Supprimer</button>
       </p>
     </section>
   </main>

@@ -76,14 +76,14 @@ async function resetAll() {
   <main>
     <h1>Réinitialisation GLPI</h1>
 
-    <button :disabled="enCours" @click="reset">
+    <button class="btn-danger" :disabled="enCours" @click="reset">
       {{ enCours ? 'Suppression en cours…' : 'Réinitialiser' }}
     </button>
-    <button :disabled="enCours" @click="resetAll">
+    <button class="btn-danger" :disabled="enCours" @click="resetAll">
       {{ enCours ? 'Suppression en cours…' : 'Tout réinitialiser' }}
     </button>
 
-    <p v-if="erreur" style="color: red">{{ erreur }}</p>
+    <p v-if="erreur" class="message-erreur">{{ erreur }}</p>
 
     <div v-if="results.length > 0">
       <h2>Résultats</h2>

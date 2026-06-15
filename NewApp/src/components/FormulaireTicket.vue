@@ -310,7 +310,9 @@ onMounted(() => {
       <ul v-if="elementsChoisis.length" class="choisis">
         <li v-for="e in elementsChoisis" :key="`c-${e.itemtype}-${e.id}`">
           {{ e.typeLabel }} : {{ e.name }}
-          <button type="button" @click="basculerElement(e)">✕</button>
+          <button type="button" class="btn-danger btn-retirer" @click="basculerElement(e)">
+            ✕
+          </button>
         </li>
       </ul>
 
@@ -398,5 +400,10 @@ fieldset {
 }
 .erreur {
   color: #b91c1c;
+}
+/* Bouton ✕ compact pour retirer un élément choisi. */
+.btn-retirer {
+  padding: 2px 8px;
+  line-height: 1.2;
 }
 </style>
