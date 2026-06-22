@@ -1,0 +1,13 @@
+Nouveau mode de calcul pour la reouverture:
+    Mode 1:
+        Recuperation du dernier cout
+    Mode 2:
+        Recuperation du premier cout
+    Mode 3: 
+        moyenne de tous les couts
+    mode 4:
+        Somme de tous les cout
+
+    Ajoute d'un zone pour choisir quelle mode choisir pour la reouverture
+    
+    Ajoute d'une 4 eme colomnes pour y mettre les id lors de la reouverture n

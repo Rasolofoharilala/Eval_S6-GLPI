@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -m 5 -o /dev/null -w \"GLPI v1 HTTP %{http_code}\\\\n\" \"http://localhost/apirest.php\")",
+      "Bash(curl -s -m 5 -o /dev/null -w \"GLPI v2 HTTP %{http_code}\\\\n\" \"http://localhost/api.php/v2.3\")"
+    ]
+  }
+}

@@ -67,7 +67,11 @@ type TicketV1 = {
 // Convertit un ticket v1 (status entier) vers la forme v2 attendue par les
 // dashboards (status objet {id, name}). Les autres champs sont déjà compatibles.
 function v1VersTicket(brut: TicketV1): Ticket {
-  const statusId = brut.status ?? 1
+  // GLPI peut renvoyer `status` en nombre OU en chaîne ("5") selon la version /
+  // config. On le force en nombre : sinon les comparaisons strictes du Kanban
+  // (`[5,6].includes("5")` → false) renverraient la carte dans la mauvaise
+  // colonne (« Nouveau » par défaut) à chaque rechargement.
+  const statusId = Number(brut.status) || 1
   return {
     ...brut,
     status: { id: statusId as 1 | 2 | 3 | 4 | 5 | 6, name: STATUS_LABELS[statusId] ?? '' },

@@ -78,7 +78,8 @@ CREATE TABLE IF NOT EXISTS nouveau_cout (
   item_type TEXT NOT NULL,
   cout      REAL NOT NULL,
   annule    INTEGER NOT NULL DEFAULT 0,
-  lot       INTEGER NOT NULL DEFAULT 1
+  lot       INTEGER NOT NULL DEFAULT 1,
+  type      TEXT NOT NULL DEFAULT 'supercost'
 );
 CREATE TABLE IF NOT EXISTS ref_ticket (
   ref        TEXT PRIMARY KEY,
@@ -108,6 +109,13 @@ async function getDb(): Promise<Database> {
       db.run('ALTER TABLE nouveau_cout ADD COLUMN lot INTEGER NOT NULL DEFAULT 1')
     } catch {
       // la colonne lot existe déjà : rien à faire
+    }
+    // colonne `type` : 'supercost' (clôture / nouveau coût) ou 'reouverture'.
+    // Sert à exclure les lots de réouverture du calcul de la base (cf. coutSelonMode).
+    try {
+      db.run("ALTER TABLE nouveau_cout ADD COLUMN type TEXT NOT NULL DEFAULT 'supercost'")
+    } catch {
+      // la colonne type existe déjà : rien à faire
     }
     seedIfEmpty(db)
     await persister(db)
@@ -280,6 +288,10 @@ export async function supprimerLangue(id: number): Promise<void> {
 // NOUVEAUX COÛTS (ex-CoutService)
 // ═════════════════════════════════════════════════════════════════════════════
 
+// Nature d'un coût : 'supercost' = clôture (nouveau coût total),
+// 'reouverture' = incrément ajouté lors d'une réouverture (base × %).
+export type TypeCout = 'supercost' | 'reouverture'
+
 export type CoutCree = {
   id: number
   ticketId: number
@@ -287,6 +299,7 @@ export type CoutCree = {
   itemType: string
   cout: number
   annule: boolean
+  type: TypeCout
 }
 
 export type CoutParItem = {
@@ -313,6 +326,7 @@ function coutVersDto(row: Record<string, unknown>): CoutCree {
     itemType: String(row.item_type),
     cout: Number(row.cout),
     annule: Number(row.annule) === 1,
+    type: (String(row.type) === 'reouverture' ? 'reouverture' : 'supercost') as TypeCout,
   }
 }
 
@@ -331,12 +345,13 @@ function insererCouts(
   items: ItemLie[],
   coutParItem: number,
   lot: number,
+  type: TypeCout = 'supercost',
 ): CoutCree[] {
   const crees: CoutCree[] = []
   for (const item of items) {
     db.run(
-      'INSERT INTO nouveau_cout (ticket_id, item_id, item_type, cout, annule, lot) VALUES (?, ?, ?, ?, 0, ?)',
-      [ticketId, item.itemId, item.itemType.trim(), coutParItem, lot],
+      'INSERT INTO nouveau_cout (ticket_id, item_id, item_type, cout, annule, lot, type) VALUES (?, ?, ?, ?, 0, ?, ?)',
+      [ticketId, item.itemId, item.itemType.trim(), coutParItem, lot, type],
     )
     const id = unNombre(db, 'SELECT last_insert_rowid()')
     crees.push(coutVersDto(lignes(db, 'SELECT * FROM nouveau_cout WHERE id = ?', [id])[0]!))
@@ -400,13 +415,25 @@ export async function dernierCoutTotalActif(ticketId: number): Promise<number> {
  *   mode 2 = premier coût   (le tout premier)
  *   mode 3 = moyenne des coûts
  *   mode 4 = total des coûts (tout additionné)
+ *
+ * IMPORTANT : la base est PAR ITEM (et non le total du ticket). Comme chaque
+ * lot stocke déjà le coût réparti par item (150 sur 2 items → 75/item), on prend
+ * `SUM(cout)/COUNT(*)` = la valeur d'UN item du lot. Ainsi un ticket à 2 items
+ * clôturé à 150 donne une base de 75, et +10 % ajoute 7,5 par item (cf. tableau).
+ *
+ * Seuls les lots de CLÔTURE (`type = 'supercost'`) entrent dans la base : les
+ * lots de réouverture ne sont QUE des incréments et ne servent pas de base à une
+ * réouverture ultérieure.
  */
 export async function coutSelonMode(ticketId: number, mode: number): Promise<number> {
   const db = await getDb()
-  // total de chaque lot, du plus ancien au plus récent
+  // base PAR ITEM de chaque lot de clôture, du plus ancien au plus récent
   const vidiny = lignes(
     db,
-    'SELECT lot, SUM(cout) AS total FROM nouveau_cout WHERE ticket_id = ? GROUP BY lot ORDER BY lot ASC',
+    `SELECT lot, SUM(cout) / COUNT(*) AS total
+       FROM nouveau_cout
+      WHERE ticket_id = ? AND type = 'supercost'
+      GROUP BY lot ORDER BY lot ASC`,
     [ticketId],
   ).map((r) => Number(r.total) || 0)
 
@@ -428,8 +455,16 @@ export async function coutSelonMode(ticketId: number, mode: number): Promise<num
 
 /**
  * RÉOUVERTURE (Terminé → In progress) avec un pourcentage :
- *   nouvelle valeur = coût de base (selon le mode) + (pourcentage % × coût de base).
- * On annule les coûts actifs puis on réinsère la nouvelle valeur sur les items.
+ *   incrément ajouté = coût de base (selon le mode) × (pourcentage % / 100).
+ *
+ * La base renvoyée par coutSelonMode est DÉJÀ par item, donc l'incrément
+ * `base × %` est lui aussi par item : on le stocke tel quel sur CHAQUE item
+ * (sans re-diviser par le nombre d'items).
+ *
+ * On AJOUTE seulement cet incrément (un nouveau lot tagué `reouverture`) : les
+ * coûts précédents NE SONT PAS annulés, et l'incrément ne sert pas de base aux
+ * réouvertures suivantes (cf. coutSelonMode, qui ignore les lots `reouverture`).
+ * Exemple : base 50, +5 % → on stocke 2,5 (et non 52,5).
  */
 export async function reouvrir(
   ticketId: number,
@@ -448,14 +483,11 @@ export async function reouvrir(
     throw new Error('Le ticket doit avoir au moins un item lié.')
   }
 
-  const base = await coutSelonMode(ticketId, mode)
-  const nouvelle = base + base * (pourcentage / 100)
+  const base = await coutSelonMode(ticketId, mode) // déjà par item
+  const incrementParItem = arrondi4(base * (pourcentage / 100))
 
-  db.run('UPDATE nouveau_cout SET annule = 1 WHERE ticket_id = ? AND annule = 0', [ticketId])
-
-  const coutParItem = arrondi4(nouvelle / items.length)
   const lot = prochainLot(db, ticketId)
-  const crees = insererCouts(db, ticketId, items, coutParItem, lot)
+  const crees = insererCouts(db, ticketId, items, incrementParItem, lot, 'reouverture')
   await persister(db)
   return crees
 }

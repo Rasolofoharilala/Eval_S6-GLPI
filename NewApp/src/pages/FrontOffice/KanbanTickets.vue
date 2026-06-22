@@ -17,7 +17,6 @@ import {
   enregistrerNouveauCout,
   reouvrirTicket,
   annulerCoutsDuTicket,
-  getDernierCout,
   getCoutSelonMode,
 } from '@/services/nouveauCoutService'
 import { getRefsTickets } from '@/services/sqlite/localDb'
@@ -95,7 +94,11 @@ function refDuTicket(t: Ticket): string {
 
 // ─── Cartes par colonne ───
 function statutDuTicket(t: Ticket): number {
-  return t.status && typeof t.status === 'object' ? (t.status.id ?? 1) : 1
+  // `status` peut être un objet {id}, un nombre, ou une chaîne selon l'API :
+  // on coerce en nombre pour que colonnePourStatut (comparaisons strictes)
+  // place toujours la carte dans la bonne colonne.
+  const brut = t.status && typeof t.status === 'object' ? t.status.id : t.status
+  return Number(brut) || 1
 }
 
 function ticketsDeColonne(cle: CleColonne): Ticket[] {
@@ -202,10 +205,12 @@ async function onDrop(cle: CleColonne) {
   pendingDrop.value = { ticket, statutCible: colonneCible.statutCible, libelle: colonneCible.label }
 
   if (reculer) {
-    // Réouverture : on récupère la valeur de base en base pour le calcul du %.
+    // Réouverture : base PAR ITEM selon le mode (1 par défaut), cohérente avec
+    // le calcul appliqué (cf. coutSelonMode). getDernierCout = total actif, à
+    // éviter ici car il additionne tous les items et les réouvertures.
     pourcentageReouverture.value = null
     safidyMode.value = 1
-    dernierCoutTicket.value = ticket.id ? await getDernierCout(ticket.id) : 0
+    dernierCoutTicket.value = ticket.id ? await getCoutSelonMode(ticket.id, 1) : 0
     showReverseStatutDialog.value = true
     showStatusDialog.value = false
   } else {
@@ -236,10 +241,6 @@ async function confirmStatusChange() {
   statusLoading.value = true
   try {
     const items = await v1GetTicketItems(ticketId)
-
-    console.log('Valeur de ticket id: ' + ticketId)
-    console.log('Cout total: ' + coutTotal)
-    console.log('Liste des items: ' + items)
 
     if (items.length === 0) {
       throw new Error('Ce ticket ne possède aucun item lié : le coût ne peut pas être réparti.')
@@ -528,8 +529,8 @@ async function appliquerReouverture() {
             placeholder="ex : 10  → +10% sur le dernier coût"
           />
           <small v-if="pourcentageReouverture !== null && pourcentageReouverture >= 0">
-            Nouveau coût =
-            {{ (dernierCoutTicket * (1 + pourcentageReouverture / 100)).toFixed(2) }}
+            Coût de réouverture ajouté =
+            {{ (dernierCoutTicket * (pourcentageReouverture / 100)).toFixed(2) }}
           </small>
         </div>
 
