@@ -64,7 +64,16 @@ const menus = [
   },
   {
     label: 'Import',
-    path: '/importFichier',
+    children: [
+      {
+        label: 'Import de fichiers (inventaire, tickets…)',
+        path: '/importFichier',
+      },
+      {
+        label: 'Import de mouvements (à la main)',
+        path: '/importMouvements',
+      },
+    ],
   },
   {
     label: 'Dashboard',

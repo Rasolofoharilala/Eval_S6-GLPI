@@ -6,6 +6,7 @@ import login from '@/pages/BackOffice/LoginBackOffice.vue'
 import accueil from '@/pages/BackOffice/AccueilBackOffice.vue'
 import reinitialisationBase from '@/pages/BackOffice/ReinitialisationBackOffice.vue'
 import importPages from '@/pages/BackOffice/ImportBackOffice.vue'
+import importMouvements from '@/pages/BackOffice/ImportMouvements.vue'
 import dashboardGeneral from '@/pages/BackOffice/DashboardElementGeneral.vue'
 import dashboardTickets from '@/pages/BackOffice/DashboardTicktes.vue'
 
@@ -57,6 +58,15 @@ const router = createRouter({
       component: importPages,
       meta: {
         title: 'importPages',
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/importMouvements',
+      name: 'importMouvements',
+      component: importMouvements,
+      meta: {
+        title: 'Import de mouvements',
         requiresAuth: true,
       },
     },

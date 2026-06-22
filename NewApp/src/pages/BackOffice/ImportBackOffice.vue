@@ -14,6 +14,7 @@ import {
   importImageFiles,
 } from '@/services/import/ticketImportService'
 import { importLogger } from '@/services/import/importLogger'
+import { enregistrerRefsTickets } from '@/services/sqlite/localDb'
 import { messageErreur } from '@/utils/messageErreur'
 
 import type { AssetCsvRow, ImportResult } from '@/services/import/assetImportTypes'
@@ -239,6 +240,10 @@ async function toutImporter() {
     )
     csv2Results.value = ticketRes
     ticketRegistry.value = { ...ticketRegistry.value, ...reg }
+
+    // Mémorise la correspondance Ref_Ticket → id GLPI en SQLite, pour que
+    // l'import de mouvements (qui utilise les Ref 1,2,3…) retrouve le bon id.
+    await enregistrerRefsTickets(reg)
 
     // Étape 3 — Coûts
     csv3Results.value = await importCoutRows(csv3Rows.value, ticketRegistry.value)

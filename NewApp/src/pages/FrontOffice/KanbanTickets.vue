@@ -18,9 +18,11 @@ import {
   reouvrirTicket,
   annulerCoutsDuTicket,
   getDernierCout,
+  getCoutSelonMode,
 } from '@/services/nouveauCoutService'
+import { getRefsTickets } from '@/services/sqlite/localDb'
 
-// Ordre des colonnes (pour savoir si on AVANCE ou si on RECULE/réouvre).
+// Ordre des colonnes (pour savoir si on AVANCE ou si on RECULE/réouvre)..
 function indexColonne(cle: CleColonne): number {
   return COLONNES_KANBAN.findIndex((c) => c.cle === cle)
 }
@@ -74,10 +76,22 @@ const statusLoading = ref(false)
 //   pourcentage de réouverture (majore la dernière valeur de X %).
 const pourcentageReouverture = ref<number | null>(null)
 const dernierCoutTicket = ref<number>(0)
+// mode de calcul choisi pour la réouverture (1=dernier, 2=premier, 3=moyenne, 4=total)
+const safidyMode = ref<number>(1)
 
 // Glisser-déposer
 const draggingTicketId = ref<number | null>(null)
 const dragOverCle = ref<CleColonne | null>(null)
+
+// ─── Correspondance id GLPI → Ref_Ticket (1, 2, 3…) ───
+// Map inverse de la table SQLite ref_ticket (remplie à l'import des tickets).
+// Permet d'afficher le Ref logique au lieu de l'id GLPI à 4 chiffres.
+const refParId = ref<Map<number, string>>(new Map())
+
+/** Ref logique du ticket si connue, sinon son id GLPI en repli. */
+function refDuTicket(t: Ticket): string {
+  return (t.id != null && refParId.value.get(t.id)) || String(t.id ?? '?')
+}
 
 // ─── Cartes par colonne ───
 function statutDuTicket(t: Ticket): number {
@@ -97,7 +111,10 @@ async function charger() {
   loading.value = true
   error.value = ''
   try {
-    tickets.value = await getTickets()
+    const [liste, refs] = await Promise.all([getTickets(), getRefsTickets()])
+    tickets.value = liste
+    // refs = { ref → idGLPI } ; on construit la map inverse idGLPI → ref.
+    refParId.value = new Map(Object.entries(refs).map(([ref, id]) => [id, ref]))
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Erreur inconnue'
   } finally {
@@ -185,8 +202,9 @@ async function onDrop(cle: CleColonne) {
   pendingDrop.value = { ticket, statutCible: colonneCible.statutCible, libelle: colonneCible.label }
 
   if (reculer) {
-    // Réouverture : on récupère la dernière valeur en base pour le calcul du %.
+    // Réouverture : on récupère la valeur de base en base pour le calcul du %.
     pourcentageReouverture.value = null
+    safidyMode.value = 1
     dernierCoutTicket.value = ticket.id ? await getDernierCout(ticket.id) : 0
     showReverseStatutDialog.value = true
     showStatusDialog.value = false
@@ -218,6 +236,11 @@ async function confirmStatusChange() {
   statusLoading.value = true
   try {
     const items = await v1GetTicketItems(ticketId)
+
+    console.log('Valeur de ticket id: ' + ticketId)
+    console.log('Cout total: ' + coutTotal)
+    console.log('Liste des items: ' + items)
+
     if (items.length === 0) {
       throw new Error('Ce ticket ne possède aucun item lié : le coût ne peut pas être réparti.')
     }
@@ -252,11 +275,18 @@ function formatDate(d?: string) {
   return d.slice(0, 10)
 }
 
+async function recalculerBase() {
+  const ticketId = pendingDrop.value?.ticket.id
+  if (!ticketId) return
+  dernierCoutTicket.value = await getCoutSelonMode(ticketId, safidyMode.value)
+}
+
 // Ferme le dialogue de réouverture sans rien changer.
 function fermerReouverture() {
   showReverseStatutDialog.value = false
   pendingDrop.value = null
   pourcentageReouverture.value = null
+  safidyMode.value = 1
 }
 
 // ACTION 1 — « Annuler » : le dernier coût du ticket est marqué annulé
@@ -300,7 +330,7 @@ async function appliquerReouverture() {
     if (items.length === 0) {
       throw new Error('Ce ticket ne possède aucun item lié : impossible de répartir le coût.')
     }
-    await reouvrirTicket(ticketId, pourcent, items) // annule l'ancien + insère le nouveau
+    await reouvrirTicket(ticketId, pourcent, items, safidyMode.value) // annule l'ancien + insère le nouveau
     await changerStatutTicket(ticketId, statutCible)
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Échec de la réouverture'
@@ -360,6 +390,10 @@ async function appliquerReouverture() {
           @dragend="onDragEnd"
           @click="openDetail(ticket)"
         >
+          <div class="card-id">
+            #{{ refDuTicket(ticket) }}
+            <span class="card-id-glpi">(GLPI #{{ ticket.id }})</span>
+          </div>
           <div class="card-title">{{ ticket.name ?? '(sans titre)' }}</div>
           <div class="card-meta">
             <span v-if="ticket.priority" class="badge-prio">{{
@@ -378,7 +412,10 @@ async function appliquerReouverture() {
     <div v-if="detailTicket" class="dialog-overlay" @click.self="closeDetail">
       <div class="dialog">
         <button class="dialog-close" @click="closeDetail">✕</button>
-        <h2>Ticket #{{ detailTicket.id }}</h2>
+        <h2>
+          Ticket #{{ refDuTicket(detailTicket) }}
+          <small class="titre-glpi">(GLPI #{{ detailTicket.id }})</small>
+        </h2>
         <table class="detail-table">
           <tbody>
             <tr>
@@ -465,8 +502,19 @@ async function appliquerReouverture() {
           <strong>{{ pendingDrop.libelle }}</strong
           >.
         </p>
+
+        <div class="field">
+          <label>Mode de calcul</label>
+          <select v-model.number="safidyMode" @change="recalculerBase">
+            <option :value="1">Recuperation du dernier cout</option>
+            <option :value="2">Recuperation du premier cout</option>
+            <option :value="3">Moyenne de tous les couts</option>
+            <option :value="4">Somme de tous les couts</option>
+          </select>
+        </div>
+
         <p class="info-dernier">
-          Dernier coût enregistré : <strong>{{ dernierCoutTicket.toFixed(2) }}</strong>
+          Coût de base (mode {{ safidyMode }}) : <strong>{{ dernierCoutTicket.toFixed(2) }}</strong>
         </p>
 
         <!-- Choix : annuler le dernier coût, OU saisir un coût de réouverture -->
@@ -663,6 +711,25 @@ async function appliquerReouverture() {
 }
 .ticket-card.prio-low {
   border-left-color: #2ecc71;
+}
+
+.card-id {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.2rem;
+}
+
+.card-id-glpi {
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: #9aa3ad;
+}
+
+.titre-glpi {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #9aa3ad;
 }
 
 .card-title {

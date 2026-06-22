@@ -15,19 +15,30 @@ const lignesFiltrees = computed(() => {
   if (!texte) return lignes.value
 
   return lignes.value.filter((ligne) =>
-    [ligne.ticketNom, ligne.ticketId, ligne.itemType, ligne.itemId, ligne.nomItem].some((valeur) =>
-      String(valeur).toLowerCase().includes(texte),
-    ),
+    [
+      ligne.ticketNom,
+      ligne.ticketId,
+      ...ligne.items.flatMap((i) => [i.itemType, i.itemId, i.nomItem]),
+    ].some((valeur) => String(valeur).toLowerCase().includes(texte)),
   )
 })
 
 const totalGeneral = computed(() =>
-  lignesFiltrees.value.reduce((total, ligne) => total + ligne.totalParItem, 0),
+  lignesFiltrees.value.reduce((total, ligne) => total + ligne.total, 0),
 )
 
 const totalSansHoraire = computed(() =>
-  lignesFiltrees.value.reduce((total, ligne) => total + ligne.totalSansHoraireParItem, 0),
+  lignesFiltrees.value.reduce((total, ligne) => total + ligne.totalSansHoraire, 0),
 )
+
+// Tickets dépliés (détail visible). On stocke les ticketId ouverts.
+const ouverts = ref<Set<number>>(new Set())
+function basculerDetail(ticketId: number) {
+  const copie = new Set(ouverts.value)
+  if (copie.has(ticketId)) copie.delete(ticketId)
+  else copie.add(ticketId)
+  ouverts.value = copie
+}
 
 function formatMontant(montant: number): string {
   return `${new Intl.NumberFormat('fr-FR', {
@@ -86,42 +97,112 @@ onMounted(() => {
 
       <p v-if="error" class="message-erreur">{{ error }}</p>
 
-      <div v-else class="table-wrapper">
+      <div class="table-wrapper">
         <table>
           <thead>
             <tr>
+              <th class="col-expand"></th>
               <th>Ticket</th>
-              <th>Type Item</th>
-              <th>ID Item</th>
+              <th>Items</th>
               <th>Nb Items liés</th>
-              <th>Coût fixe / Item</th>
-              <th>Coût horaire / Item</th>
-              <th>Nouveau prix / Item</th>
-              <th>Total / Item</th>
-              <th>Total sans horaire / Item</th>
+              <th>Coût fixe</th>
+              <th>Coût horaire</th>
+              <th>Nouveau prix</th>
+              <th>Total</th>
+              <th>Total sans horaire</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-if="!loading && lignesFiltrees.length === 0">
+            <tr v-if="loading">
+              <td colspan="9" class="empty">Chargement…</td>
+            </tr>
+            <tr v-else-if="lignesFiltrees.length === 0">
               <td colspan="9" class="empty">Aucun coût trouvé.</td>
             </tr>
-            <tr v-for="ligne in lignesFiltrees" :key="ligne.allocationId">
-              <td>
-                <strong>#{{ ligne.ticketId }}</strong>
-                <span>{{ ligne.ticketNom }}</span>
-              </td>
-              <td>
-                <strong>{{ ligne.itemType }}</strong>
-                <span>{{ ligne.nomItem }}</span>
-              </td>
-              <td>#{{ ligne.itemId }}</td>
-              <td>{{ ligne.nbItemsLies }}</td>
-              <td class="montant">{{ formatMontant(ligne.coutFixeParItem) }}</td>
-              <td class="montant">{{ formatMontant(ligne.coutHoraireParItem) }}</td>
-              <td class="montant">{{ formatMontant(ligne.nouveauPrixParItem) }}</td>
-              <td class="montant total">{{ formatMontant(ligne.totalParItem) }}</td>
-              <td class="montant">{{ formatMontant(ligne.totalSansHoraireParItem) }}</td>
-            </tr>
+            <template v-for="ligne in lignesFiltrees" :key="ligne.allocationId">
+              <tr class="ligne-ticket" @click="basculerDetail(ligne.ticketId)">
+                <td class="col-expand">
+                  <span class="chevron" :class="{ ouvert: ouverts.has(ligne.ticketId) }">▸</span>
+                </td>
+                <td>
+                  <strong>#{{ ligne.ticketId }}</strong>
+                  <span>{{ ligne.ticketNom }}</span>
+                </td>
+                <td class="cellule-items">
+                  <div
+                    v-for="item in ligne.items"
+                    :key="`${item.itemType}:${item.itemId}`"
+                    class="item-ligne"
+                  >
+                    <strong>{{ item.itemType }}</strong>
+                    <span>{{ item.nomItem }} — #{{ item.itemId }}</span>
+                  </div>
+                </td>
+                <td>{{ ligne.nbItemsLies }}</td>
+                <td class="montant">{{ formatMontant(ligne.coutFixe) }}</td>
+                <td class="montant">{{ formatMontant(ligne.coutHoraire) }}</td>
+                <td class="montant">{{ formatMontant(ligne.nouveauPrix) }}</td>
+                <td class="montant total">{{ formatMontant(ligne.total) }}</td>
+                <td class="montant">{{ formatMontant(ligne.totalSansHoraire) }}</td>
+              </tr>
+
+              <tr v-if="ouverts.has(ligne.ticketId)" class="ligne-detail">
+                <td></td>
+                <td colspan="8">
+                  <div class="detail">
+                    <!-- Un bloc par item (asset) avec ses propres détails. -->
+                    <article
+                      v-for="item in ligne.items"
+                      :key="`i-${item.itemType}:${item.itemId}`"
+                      class="item-detail"
+                    >
+                      <header class="item-detail-head">
+                        <div>
+                          <strong>{{ item.itemType }} — {{ item.nomItem }}</strong>
+                          <span>#{{ item.itemId }}</span>
+                        </div>
+                        <span class="montant total">{{
+                          formatMontant(item.nouveauPrixParItem)
+                        }}</span>
+                      </header>
+
+                      <p v-if="item.coutsSqlite.length === 0" class="vide">
+                        Aucun coût enregistré en base pour cet item.
+                      </p>
+                      <ul v-else>
+                        <li
+                          v-for="c in item.coutsSqlite"
+                          :key="`s-${c.id}`"
+                          :class="{ annule: c.annule }"
+                        >
+                          <span> #{{ c.id }} <em v-if="c.annule">(annulé)</em> </span>
+                          <strong>{{ formatMontant(c.cout) }}</strong>
+                        </li>
+                      </ul>
+                    </article>
+
+                    <!-- Coûts GLPI : propres au ticket, pas à un item. -->
+                    <article class="item-detail">
+                      <header class="item-detail-head">
+                        <strong>Coûts GLPI du ticket</strong>
+                      </header>
+                      <p v-if="ligne.detail.coutsGlpi.length === 0" class="vide">
+                        Aucun coût GLPI.
+                      </p>
+                      <ul v-else>
+                        <li v-for="(c, i) in ligne.detail.coutsGlpi" :key="`g-${i}`">
+                          <span>Ligne {{ i + 1 }}</span>
+                          <span>
+                            Fixe {{ formatMontant(c.fixe) }} · Matériel
+                            {{ formatMontant(c.materiel) }} · Horaire {{ formatMontant(c.horaire) }}
+                          </span>
+                        </li>
+                      </ul>
+                    </article>
+                  </div>
+                </td>
+              </tr>
+            </template>
           </tbody>
           <tfoot>
             <tr>
@@ -252,5 +333,122 @@ tfoot {
 
 .message-erreur {
   color: #b42318;
+}
+
+/* ── Ligne ticket cliquable ────────────────────────────────────────────── */
+.ligne-ticket {
+  cursor: pointer;
+}
+
+.ligne-ticket:hover {
+  background: #f5f8fc;
+}
+
+.col-expand {
+  width: 1.8rem;
+  text-align: center;
+}
+
+.chevron {
+  display: inline-block;
+  color: #7a8490;
+  transition: transform 0.15s ease;
+}
+
+.chevron.ouvert {
+  transform: rotate(90deg);
+}
+
+.cellule-items {
+  white-space: normal;
+}
+
+.item-ligne {
+  padding: 0.15rem 0;
+}
+
+.item-ligne + .item-ligne {
+  border-top: 1px dashed #eef0f3;
+}
+
+.item-ligne strong {
+  font-size: 0.9rem;
+}
+
+/* ── Sous-ligne de détail dépliable ────────────────────────────────────── */
+.ligne-detail > td {
+  background: #fafbfc;
+  padding: 0;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+}
+
+.item-detail {
+  background: white;
+  border: 1px solid #e6e9ed;
+  border-radius: 7px;
+  padding: 0.75rem 0.9rem;
+}
+
+.item-detail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.item-detail-head strong {
+  font-size: 0.9rem;
+}
+
+.item-detail-head span {
+  color: #7a8490;
+  font-size: 0.8rem;
+}
+
+.item-detail-head .montant {
+  color: #1f2937;
+  font-size: 0.95rem;
+}
+
+.detail ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.detail li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #eef0f3;
+  font-size: 0.85rem;
+  white-space: normal;
+}
+
+.detail li.annule {
+  color: #9aa3ad;
+  text-decoration: line-through;
+}
+
+.detail .vide {
+  margin: 0;
+  color: #9aa3ad;
+  font-size: 0.85rem;
+}
+
+.detail em {
+  color: #b42318;
+  font-style: normal;
+  font-size: 0.78rem;
 }
 </style>

@@ -46,8 +46,16 @@ export function reouvrirTicket(
   ticketId: number,
   pourcentage: number,
   items: ItemTicketLink[],
+  mode: number = 1,
 ): Promise<CoutCree[]> {
-  return localDb.reouvrir(ticketId, pourcentage, versItems(items))
+  return localDb.reouvrir(ticketId, pourcentage, versItems(items), mode)
+}
+
+
+
+/** Coût de base selon le mode choisi (1=dernier, 2=premier, 3=moyenne, 4=total). */
+export function getCoutSelonMode(ticketId: number, mode: number): Promise<number> {
+  return localDb.coutSelonMode(ticketId, mode)
 }
 
 // ─── READ ───────────────────────────────────────────────────────────────────
@@ -72,6 +80,7 @@ export function getCoutsActifsDuTicket(ticketId: number): Promise<CoutCree[]> {
   return localDb.getActifsByTicketId(ticketId)
 }
 
+// id Ticket a recuperer dans le kanban
 /** Dernier coût total actif d'un ticket (base du calcul de réouverture). */
 export function getDernierCout(ticketId: number): Promise<number> {
   return localDb.dernierCoutTotalActif(ticketId)

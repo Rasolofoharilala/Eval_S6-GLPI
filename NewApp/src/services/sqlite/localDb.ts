@@ -77,7 +77,12 @@ CREATE TABLE IF NOT EXISTS nouveau_cout (
   item_id   INTEGER NOT NULL,
   item_type TEXT NOT NULL,
   cout      REAL NOT NULL,
-  annule    INTEGER NOT NULL DEFAULT 0
+  annule    INTEGER NOT NULL DEFAULT 0,
+  lot       INTEGER NOT NULL DEFAULT 1
+);
+CREATE TABLE IF NOT EXISTS ref_ticket (
+  ref        TEXT PRIMARY KEY,
+  glpi_id    INTEGER NOT NULL
 );
 `
 
@@ -98,6 +103,12 @@ async function getDb(): Promise<Database> {
     const bytes = await lireBytes()
     const db = bytes ? new SQL.Database(bytes) : new SQL.Database()
     db.run(SCHEMA)
+    // si la base existait déjà sans la colonne lot, on l'ajoute (sinon erreur ignorée)
+    try {
+      db.run('ALTER TABLE nouveau_cout ADD COLUMN lot INTEGER NOT NULL DEFAULT 1')
+    } catch {
+      // la colonne lot existe déjà : rien à faire
+    }
     seedIfEmpty(db)
     await persister(db)
     return db
@@ -163,7 +174,7 @@ export type Langue = {
 
 function creerLangueAvecLabels(db: Database, code: string, nom: string, labels: string[]): number {
   db.run('INSERT INTO langue (code, nom) VALUES (?, ?)', [code, nom])
-  const langueId = unNombre(db, 'SELECT last_insert_rowid()')
+  const langueId = unNombre(db, 'SELECT * last_insert_rowid()')
   for (let i = 0; i < STATUS_KEYS.length; i++) {
     db.run(
       'INSERT INTO statut_langue (langue_id, status_key, position, label, color) VALUES (?, ?, ?, ?, ?)',
@@ -213,11 +224,7 @@ export async function creerLangue(code: string, nom: string): Promise<Langue> {
 }
 
 /** Met à jour le nom de la langue et les libellés/couleurs de ses statuts. */
-export async function majLangue(
-  id: number,
-  nom: string,
-  statuts: StatutLangue[],
-): Promise<Langue> {
+export async function majLangue(id: number, nom: string, statuts: StatutLangue[]): Promise<Langue> {
   const db = await getDb()
   if (unNombre(db, 'SELECT COUNT(*) FROM langue WHERE id = ?', [id]) === 0) {
     throw new Error('Langue introuvable : ' + id)
@@ -309,12 +316,27 @@ function coutVersDto(row: Record<string, unknown>): CoutCree {
   }
 }
 
-function insererCouts(db: Database, ticketId: number, items: ItemLie[], coutParItem: number): CoutCree[] {
+// Numéro du prochain lot pour un ticket (un lot = une création OU une réouverture).
+// Sert à séparer les coûts dans le temps pour le calcul des modes (premier, dernier…).
+function prochainLot(db: Database, ticketId: number): number {
+  return (
+    unNombre(db, 'SELECT COALESCE(MAX(lot), 0) FROM nouveau_cout WHERE ticket_id = ?', [ticketId]) +
+    1
+  )
+}
+
+function insererCouts(
+  db: Database,
+  ticketId: number,
+  items: ItemLie[],
+  coutParItem: number,
+  lot: number,
+): CoutCree[] {
   const crees: CoutCree[] = []
   for (const item of items) {
     db.run(
-      'INSERT INTO nouveau_cout (ticket_id, item_id, item_type, cout, annule) VALUES (?, ?, ?, ?, 0)',
-      [ticketId, item.itemId, item.itemType.trim(), coutParItem],
+      'INSERT INTO nouveau_cout (ticket_id, item_id, item_type, cout, annule, lot) VALUES (?, ?, ?, ?, 0, ?)',
+      [ticketId, item.itemId, item.itemType.trim(), coutParItem, lot],
     )
     const id = unNombre(db, 'SELECT last_insert_rowid()')
     crees.push(coutVersDto(lignes(db, 'SELECT * FROM nouveau_cout WHERE id = ?', [id])[0]!))
@@ -339,12 +361,19 @@ export async function creerCout(
     throw new Error('Le ticket doit avoir au moins un item lié.')
   }
   for (const item of items) {
-    if (!item || item.itemId == null || item.itemId <= 0 || !item.itemType || !item.itemType.trim()) {
+    if (
+      !item ||
+      item.itemId == null ||
+      item.itemId <= 0 ||
+      !item.itemType ||
+      !item.itemType.trim()
+    ) {
       throw new Error('Chaque item doit avoir un id et un type valides.')
     }
   }
   const coutParItem = arrondi4(nouveauCout / items.length)
-  const crees = insererCouts(db, ticketId, items, coutParItem)
+  const lot = prochainLot(db, ticketId)
+  const crees = insererCouts(db, ticketId, items, coutParItem, lot)
   await persister(db)
   return crees
 }
@@ -364,14 +393,49 @@ export async function dernierCoutTotalActif(ticketId: number): Promise<number> {
 }
 
 /**
+ * Coût de base utilisé pour la réouverture, selon le mode choisi.
+ * On regarde le total de CHAQUE lot du ticket (un lot = un coût enregistré),
+ * puis :
+ *   mode 1 = dernier coût   (le plus récent)
+ *   mode 2 = premier coût   (le tout premier)
+ *   mode 3 = moyenne des coûts
+ *   mode 4 = total des coûts (tout additionné)
+ */
+export async function coutSelonMode(ticketId: number, mode: number): Promise<number> {
+  const db = await getDb()
+  // total de chaque lot, du plus ancien au plus récent
+  const vidiny = lignes(
+    db,
+    'SELECT lot, SUM(cout) AS total FROM nouveau_cout WHERE ticket_id = ? GROUP BY lot ORDER BY lot ASC',
+    [ticketId],
+  ).map((r) => Number(r.total) || 0)
+
+  if (vidiny.length === 0) {
+    return 0
+  }
+  if (mode === 2) {
+    return vidiny[0]! // premier
+  }
+  if (mode === 3) {
+    const somme = vidiny.reduce((a, b) => a + b, 0)
+    return arrondi4(somme / vidiny.length) // moyenne
+  }
+  if (mode === 4) {
+    return vidiny.reduce((a, b) => a + b, 0) // total
+  }
+  return vidiny[vidiny.length - 1]! // mode 1 (défaut) : dernier
+}
+
+/**
  * RÉOUVERTURE (Terminé → In progress) avec un pourcentage :
- *   nouvelle valeur = dernière valeur + (pourcentage % × dernière valeur).
+ *   nouvelle valeur = coût de base (selon le mode) + (pourcentage % × coût de base).
  * On annule les coûts actifs puis on réinsère la nouvelle valeur sur les items.
  */
 export async function reouvrir(
   ticketId: number,
   pourcentage: number,
   items: ItemLie[],
+  mode: number = 1,
 ): Promise<CoutCree[]> {
   const db = await getDb()
   if (ticketId == null || ticketId <= 0) {
@@ -384,13 +448,14 @@ export async function reouvrir(
     throw new Error('Le ticket doit avoir au moins un item lié.')
   }
 
-  const derniere = await dernierCoutTotalActif(ticketId)
-  const nouvelle = derniere + derniere * (pourcentage / 100)
+  const base = await coutSelonMode(ticketId, mode)
+  const nouvelle = base + base * (pourcentage / 100)
 
   db.run('UPDATE nouveau_cout SET annule = 1 WHERE ticket_id = ? AND annule = 0', [ticketId])
 
   const coutParItem = arrondi4(nouvelle / items.length)
-  const crees = insererCouts(db, ticketId, items, coutParItem)
+  const lot = prochainLot(db, ticketId)
+  const crees = insererCouts(db, ticketId, items, coutParItem, lot)
   await persister(db)
   return crees
 }
@@ -426,7 +491,7 @@ export async function getActifsByTicketId(ticketId: number): Promise<CoutCree[]>
   ]).map(coutVersDto)
 }
 
-/** Tous les coûts ACTIFS (annulés exclus) — utilisé par /coutsParc. */
+/** Tous les coûts ACTIFS (annulés exclus) — utilisé par /coutsParc. .*/
 export async function getAllCouts(): Promise<CoutCree[]> {
   const db = await getDb()
   return lignes(db, 'SELECT * FROM nouveau_cout WHERE annule = 0').map(coutVersDto)
@@ -448,9 +513,51 @@ export async function getCoutsParItem(): Promise<CoutParItem[]> {
   }))
 }
 
-/** Vide la table des nouveaux coûts (appelé à la réinitialisation). */
+/**
+ * Vide la table des nouveaux coûts (appelé à la réinitialisation).
+ * On remet aussi le compteur AUTOINCREMENT à zéro pour que les prochains
+ * coûts repartent de l'id 1 (sinon SQLite conserve le dernier id atteint
+ * dans la table interne `sqlite_sequence`).
+ */
 export async function supprimerTousLesCouts(): Promise<void> {
   const db = await getDb()
   db.run('DELETE FROM nouveau_cout')
+  db.run("DELETE FROM sqlite_sequence WHERE name = 'nouveau_cout'")
+  await persister(db)
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// CORRESPONDANCE Ref_Ticket (1, 2, 3…) → id GLPI réel (2968…)
+//
+// Les CSV d'import utilisent un Ref_Ticket logique (1, 2, 3) tandis que GLPI
+// attribue ses propres id auto-incrémentés. On mémorise ce lien à l'import des
+// tickets pour que l'import de mouvements retrouve le bon id GLPI à partir du
+// numéro logique du fichier.
+// ═════════════════════════════════════════════════════════════════════════════
+
+/** Enregistre (ou met à jour) plusieurs correspondances ref → id GLPI. */
+export async function enregistrerRefsTickets(mapping: Record<string, number>): Promise<void> {
+  const db = await getDb()
+  for (const [ref, glpiId] of Object.entries(mapping)) {
+    if (!ref?.trim() || !glpiId) continue
+    db.run('INSERT OR REPLACE INTO ref_ticket (ref, glpi_id) VALUES (?, ?)', [ref.trim(), glpiId])
+  }
+  await persister(db)
+}
+
+/** Renvoie tout le mapping ref → id GLPI (objet). */
+export async function getRefsTickets(): Promise<Record<string, number>> {
+  const db = await getDb()
+  const out: Record<string, number> = {}
+  for (const r of lignes(db, 'SELECT ref, glpi_id FROM ref_ticket')) {
+    out[String(r.ref)] = Number(r.glpi_id)
+  }
+  return out
+}
+
+/** Vide la table de correspondance (réinitialisation). */
+export async function supprimerRefsTickets(): Promise<void> {
+  const db = await getDb()
+  db.run('DELETE FROM ref_ticket')
   await persister(db)
 }

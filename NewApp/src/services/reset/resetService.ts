@@ -22,6 +22,7 @@ import { creerLogger } from '@/utils/pageLogger'
 import { messageErreur } from '@/utils/messageErreur'
 import { executerParLots } from '@/utils/executerParLots'
 import { supprimerTousLesCouts } from '@/services/nouveauCoutService'
+import { supprimerRefsTickets } from '@/services/sqlite/localDb'
 import { RESETTABLE_ENDPOINTS } from './resetEndpointPolicy'
 
 const log = creerLogger('Réinitialisation')
@@ -143,10 +144,11 @@ export async function resetSelectedEndpoints(endpoints: string[]): Promise<Reset
   // d'anciens coûts pointent vers des tickets supprimés → erreurs sur /coutsParc.
   try {
     await supprimerTousLesCouts()
-    log.succes('Table des nouveaux coûts vidée (SQLite)')
+    await supprimerRefsTickets()
+    log.succes('Table des nouveaux coûts + correspondance Ref_Ticket vidées (SQLite)')
   } catch (err) {
     // Backend injoignable : non bloquant pour la réinitialisation GLPI.
-    log.attention(`Table des nouveaux coûts non vidée : ${messageErreur(err)}`)
+    log.attention(`Tables SQLite non vidées : ${messageErreur(err)}`)
   }
 
   log.succes('Réinitialisation terminée')
