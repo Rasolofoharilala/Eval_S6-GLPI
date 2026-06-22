@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppSidebarFO from '@/layouts/AppSidebarFO.vue'
 import { computed, onMounted, ref } from 'vue'
 import {
   getReouvertures,
@@ -92,6 +93,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <AppSidebarFO />
   <div class="liste-couts">
     <h3>Ouverture (Supercost)</h3>
     <table border="1">
