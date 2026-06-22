@@ -57,8 +57,6 @@ export function reouvrirTicket(
   return localDb.reouvrir(ticketId, pourcentage, versItems(items), mode)
 }
 
-
-
 /** Coût de base selon le mode choisi (1=dernier, 2=premier, 3=moyenne, 4=total). */
 export function getCoutSelonMode(ticketId: number, mode: number): Promise<number> {
   return localDb.coutSelonMode(ticketId, mode)

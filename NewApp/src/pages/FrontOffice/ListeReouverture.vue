@@ -7,7 +7,6 @@ import {
   getSupercosts,
   modifierSupercost,
   supprimerSupercost,
-  getCoutSelonMode,
   type Reouverture,
   type Supercost,
 } from '@/services/nouveauCoutService'
@@ -20,80 +19,70 @@ const MODES = [
   { value: 4, label: 'Total' },
 ]
 
-// Une ligne unifiée : soit une Ouverture (supercost), soit une Réouverture.
-// On garde tout sur une seule ligne pour manipuler facilement pendant l'alea.
-type Ligne =
-  | { type: 'ouverture'; ticketId: number; lot: number; valeur: number }
-  | {
-      type: 'reouverture'
-      ticketId: number
-      lot: number
-      pourcentage: number
-      mode: number
-      base: number
-      valeur: number
-    }
+// listany = la liste des reouverture
+const listany = ref<Reouverture[]>([])
+// listanyOuverture = la liste des ouverture (supercost)
+const listanyOuverture = ref<Supercost[]>([])
 
-const lignes = ref<Ligne[]>([])
+function cle(ticketId: number, lot: number): string {
+  return ticketId + '-' + lot
+}
 
-// Une seule liste, triée par ticket puis lot (ouverture avant réouverture).
-const liste = computed(() =>
-  [...lignes.value].sort(
-    (a, b) => a.ticketId - b.ticketId || a.lot - b.lot || a.type.localeCompare(b.type),
-  ),
+// Tous les supercosts (lots de clôture) d'un ticket, triés par lot croissant.
+// `valeur` = total du lot (SUM(cout) sur les items). Sert à calculer la base.
+function supercostsDuTicket(ticketId: number): Supercost[] {
+  return listanyOuverture.value
+    .filter((s) => s.ticketId === ticketId)
+    .sort((a, b) => a.lot - b.lot)
+}
+
+// Base TOTALE (somme sur les items) selon le mode — même logique que coutSelonMode
+// côté DB, mais en total ticket et recalculée en direct depuis la liste affichée.
+function baseSelonMode(ticketId: number, mode: number): number {
+  const valeurs = supercostsDuTicket(ticketId).map((s) => s.valeur)
+  if (valeurs.length === 0) return 0
+  if (mode === 2) return valeurs[0]! // premier
+  if (mode === 3) return valeurs.reduce((a, b) => a + b, 0) / valeurs.length // moyenne
+  if (mode === 4) return valeurs.reduce((a, b) => a + b, 0) // total
+  return valeurs[valeurs.length - 1]! // mode 1 : dernier
+}
+
+// Coût de réouverture recalculé EN DIRECT = base (selon le mode courant) × %.
+// Toujours cohérent avec la colonne base, sans avoir à cliquer Modifier.
+function coutReouverture(ligne: Reouverture): number {
+  return Math.round(baseSelonMode(ligne.ticketId, ligne.mode) * (ligne.pourcentage / 100) * 100) / 100
+}
+
+// Total général de tous les coûts de réouverture (pour comparer à la cible).
+const totalReouverture = computed(() =>
+  listany.value.reduce((t, l) => t + coutReouverture(l), 0),
 )
 
-function cle(l: Ligne): string {
-  return `${l.type}-${l.ticketId}-${l.lot}`
-}
-
-// alao ny listany (recuperer + fusionner les deux listes)
+// alao ny listany (recuperer les listes)
 async function alaoListany() {
-  const [reouvertures, supercosts]: [Reouverture[], Supercost[]] = await Promise.all([
-    getReouvertures(),
-    getSupercosts(),
-  ])
-
-  const ouvertures: Ligne[] = supercosts.map((s) => ({
-    type: 'ouverture',
-    ticketId: s.ticketId,
-    lot: s.lot,
-    valeur: s.valeur,
-  }))
-
-  // Pour chaque réouverture, on récupère aussi sa base (supercost selon le mode).
-  const reouv: Ligne[] = await Promise.all(
-    reouvertures.map(async (r) => ({
-      type: 'reouverture' as const,
-      ticketId: r.ticketId,
-      lot: r.lot,
-      pourcentage: r.pourcentage,
-      mode: r.mode,
-      base: await getCoutSelonMode(r.ticketId, r.mode),
-      valeur: r.valeur,
-    })),
-  )
-
-  lignes.value = [...ouvertures, ...reouv]
+  listany.value = await getReouvertures()
+  listanyOuverture.value = await getSupercosts()
 }
 
-// Modifier : route vers la bonne fonction selon le type de la ligne.
-async function modifier(l: Ligne) {
-  if (l.type === 'ouverture') {
-    await modifierSupercost(l.ticketId, l.lot, l.valeur)
-  } else {
-    await modifierReouverture(l.ticketId, l.lot, l.pourcentage, l.mode)
-  }
+// --- reouverture ---
+async function modifier(ligne: Reouverture) {
+  await modifierReouverture(ligne.ticketId, ligne.lot, ligne.pourcentage, ligne.mode)
   await alaoListany()
 }
 
-// Supprimer : idem.
-async function supprimer(l: Ligne) {
-  if (l.type === 'ouverture') {
-    await supprimerSupercost(l.ticketId, l.lot)
-  } else {
-    await supprimerReouverture(l.ticketId, l.lot)
-  }
+async function supprimer(ligne: Reouverture) {
+  await supprimerReouverture(ligne.ticketId, ligne.lot)
+  await alaoListany()
+}
+
+// --- ouverture (supercost) ---
+async function modifierOuverture(ligne: Supercost) {
+  await modifierSupercost(ligne.ticketId, ligne.lot, ligne.valeur)
+  await alaoListany()
+}
+
+async function supprimerOuverture(ligne: Supercost) {
+  await supprimerSupercost(ligne.ticketId, ligne.lot)
   await alaoListany()
 }
 
@@ -104,64 +93,74 @@ onMounted(() => {
 
 <template>
   <div class="liste-couts">
-    <h3>Coûts : ouvertures (supercost) &amp; réouvertures</h3>
+    <h3>Ouverture (Supercost)</h3>
     <table border="1">
       <thead>
         <tr>
           <th>Ticket</th>
           <th>Lot</th>
-          <th>Type</th>
-          <th>Mode</th>
-          <th>Base (supercost)</th>
-          <th>Pourcentage</th>
-          <th>Valeur</th>
+          <th>Supercost</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="l in liste" :key="cle(l)">
-          <td>{{ l.ticketId }}</td>
-          <td>{{ l.lot }}</td>
+        <tr v-for="ligne in listanyOuverture" :key="cle(ligne.ticketId, ligne.lot)">
+          <td>{{ ligne.ticketId }}</td>
+          <td>{{ ligne.lot }}</td>
+          <td><input type="number" v-model.number="ligne.valeur" /></td>
+          <td><button @click="modifierOuverture(ligne)">Modifier</button></td>
+          <td><button @click="supprimerOuverture(ligne)">Supprimer</button></td>
+        </tr>
+        <tr v-if="listanyOuverture.length === 0">
+          <td colspan="5">Aucune ouverture.</td>
+        </tr>
+      </tbody>
+    </table>
 
-          <!-- Type -->
-          <td>{{ l.type === 'ouverture' ? 'Ouverture' : 'Réouverture' }}</td>
-
-          <!-- Mode (réouverture seulement) -->
+    <h3>Reouverture</h3>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Ticket</th>
+          <th>Lot</th>
+          <th>Mode</th>
+          <th>Supercost (base)</th>
+          <th>Pourcentage</th>
+          <th>Coût réouverture</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="ligne in listany" :key="cle(ligne.ticketId, ligne.lot)">
+          <td>{{ ligne.ticketId }}</td>
+          <td>{{ ligne.lot }}</td>
           <td>
-            <select v-if="l.type === 'reouverture'" v-model.number="l.mode">
+            <select v-model.number="ligne.mode">
               <option v-for="m in MODES" :key="m.value" :value="m.value">
                 {{ m.value }} — {{ m.label }}
               </option>
             </select>
-            <span v-else>—</span>
           </td>
-
-          <!-- Base : pour une ouverture, la base EST sa valeur ; pour une
-               réouverture, c'est le supercost selon le mode. -->
-          <td>{{ l.type === 'reouverture' ? l.base : l.valeur }}</td>
-
-          <!-- Pourcentage (réouverture seulement) -->
-          <td>
-            <template v-if="l.type === 'reouverture'">
-              <input type="number" v-model.number="l.pourcentage" /> %
-            </template>
-            <span v-else>—</span>
-          </td>
-
-          <!-- Valeur : ouverture éditable (supercost) ; réouverture calculée. -->
-          <td>
-            <input v-if="l.type === 'ouverture'" type="number" v-model.number="l.valeur" />
-            <span v-else>{{ l.valeur }}</span>
-          </td>
-
-          <td><button @click="modifier(l)">Modifier</button></td>
-          <td><button @click="supprimer(l)">Supprimer</button></td>
+          <td>{{ baseSelonMode(ligne.ticketId, ligne.mode) }}</td>
+          <td><input type="number" v-model.number="ligne.pourcentage" /> %</td>
+          <td>{{ coutReouverture(ligne) }}</td>
+          <td><button @click="modifier(ligne)">Modifier</button></td>
+          <td><button @click="supprimer(ligne)">Supprimer</button></td>
         </tr>
-        <tr v-if="liste.length === 0">
-          <td colspan="9">Aucun coût.</td>
+        <tr v-if="listany.length === 0">
+          <td colspan="8">Aucune réouverture.</td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="5">Total réouverture</th>
+          <th>{{ totalReouverture }}</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </template>

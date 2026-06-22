@@ -169,13 +169,15 @@ export async function construireCoutsParc(groupes: GroupeParc[]): Promise<LigneC
   )
   for (const groupe of liensParTicket) liens.push(...groupe)
 
-  // Nouveau prix SQLite indexé par (ticket:item) — vient se superposer aux liens.
-  // On conserve aussi tous les coûts bruts par ticket pour le détail dépliable.
+  // Nouveau prix SQLite indexé par ITEM (itemType:itemId), SANS le ticket : le
+  // coût d'un item = somme de TOUTES ses lignes, à travers TOUS les tickets.
+  // (Un même item physique peut être lié à plusieurs tickets ; ses coûts ne
+  // doivent être comptés qu'une fois — cf. déduplication des liens plus bas.)
   const prixParCle = new Map<string, number>()
   const coutsSqliteParCle = new Map<string, DetailCoutSqlite[]>()
   for (const a of allocations) {
     if (!ticketsParId.has(a.ticketId)) continue // coût orphelin (ticket purgé)
-    const cle = `${a.ticketId}:${a.itemType.toLowerCase()}:${a.itemId}`
+    const cle = `${a.itemType.toLowerCase()}:${a.itemId}`
     if (!a.annule) prixParCle.set(cle, (prixParCle.get(cle) ?? 0) + (Number(a.cout) || 0))
     const liste = coutsSqliteParCle.get(cle) ?? []
     liste.push({
@@ -198,8 +200,16 @@ export async function construireCoutsParc(groupes: GroupeParc[]): Promise<LigneC
   )
 
   // Regroupe les liens (ticket × item) par ticket → une ligne par ticket.
+  // DÉDUPLICATION : un même item physique peut être lié à plusieurs tickets.
+  // Pour ne pas compter ses coûts deux fois, on l'attribue UNIQUEMENT au premier
+  // ticket qui le référence (tickets parcourus par id croissant).
   const liensParTicketId = new Map<number, LienTicketItem[]>()
-  for (const lien of liens) {
+  const itemsDejaAttribues = new Set<string>()
+  const liensTries = [...liens].sort((a, b) => a.ticketId - b.ticketId)
+  for (const lien of liensTries) {
+    const cleItem = `${lien.itemType.toLowerCase()}:${lien.itemId}`
+    if (itemsDejaAttribues.has(cleItem)) continue // déjà compté sur un ticket antérieur
+    itemsDejaAttribues.add(cleItem)
     const liste = liensParTicketId.get(lien.ticketId) ?? []
     liste.push(lien)
     liensParTicketId.set(lien.ticketId, liste)
@@ -211,7 +221,7 @@ export async function construireCoutsParc(groupes: GroupeParc[]): Promise<LigneC
       const coutsGlpi = coutsGlpiParTicket.get(ticketId) ?? { fixe: 0, horaire: 0, detail: [] }
 
       const items: ItemCout[] = liensTicket.map((lien) => {
-        const cle = `${ticketId}:${lien.itemType.toLowerCase()}:${lien.itemId}`
+        const cle = `${lien.itemType.toLowerCase()}:${lien.itemId}`
         const asset = assets.get(`${lien.itemType.toLowerCase()}:${lien.itemId}`)
         return {
           itemId: lien.itemId,

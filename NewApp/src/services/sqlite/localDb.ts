@@ -649,11 +649,10 @@ export async function updateSupercost(
     return
   }
   const coutParItem = arrondi4(valeur / isanyItem)
-  db.run("UPDATE nouveau_cout SET cout = ? WHERE ticket_id = ? AND lot = ? AND type = 'supercost'", [
-    coutParItem,
-    ticketId,
-    lot,
-  ])
+  db.run(
+    "UPDATE nouveau_cout SET cout = ? WHERE ticket_id = ? AND lot = ? AND type = 'supercost'",
+    [coutParItem, ticketId, lot],
+  )
   // La base ayant changé, on réaligne les réouvertures qui en dépendent.
   await recalculerReouvertures(db, ticketId)
   await persister(db)
@@ -772,3 +771,4 @@ export async function supprimerRefsTickets(): Promise<void> {
   db.run('DELETE FROM ref_ticket')
   await persister(db)
 }
+
