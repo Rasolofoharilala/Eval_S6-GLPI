@@ -11,6 +11,7 @@ import {
   type Reouverture,
   type Supercost,
 } from '@/services/nouveauCoutService'
+import { getRefsTickets } from '@/services/sqlite/localDb'
 
 // Libellés des modes de calcul de la base (cf. coutSelonMode dans localDb).
 const MODES = [
@@ -24,6 +25,15 @@ const MODES = [
 const listany = ref<Reouverture[]>([])
 // listanyOuverture = la liste des ouverture (supercost)
 const listanyOuverture = ref<Supercost[]>([])
+// Correspondance inverse id GLPI → Ref_Ticket logique (1, 2, 3…), pour afficher
+// la référence du ticket au lieu de son id GLPI auto-incrémenté.
+const refParId = ref<Record<number, string>>({})
+
+// Référence à afficher pour un ticket : son Ref_Ticket logique si connu, sinon
+// l'id GLPI brut (faute de mieux).
+function refTicket(ticketId: number): string {
+  return refParId.value[ticketId] ?? String(ticketId)
+}
 
 function cle(ticketId: number, lot: number): string {
   return ticketId + '-' + lot
@@ -37,10 +47,13 @@ function supercostsDuTicket(ticketId: number): Supercost[] {
     .sort((a, b) => a.lot - b.lot)
 }
 
-// Base TOTALE (somme sur les items) selon le mode — même logique que coutSelonMode
-// côté DB, mais en total ticket et recalculée en direct depuis la liste affichée.
-function baseSelonMode(ticketId: number, mode: number): number {
-  const valeurs = supercostsDuTicket(ticketId).map((s) => s.valeur)
+// Base (total ticket) selon le mode — même logique que coutSelonMode côté DB.
+// `lotMax` : ne garder que les clôtures ANTÉRIEURES (lot <) à la réouverture,
+// car une réouverture se base sur les clôtures déjà faites à son instant.
+function baseSelonMode(ticketId: number, mode: number, lotMax?: number): number {
+  const valeurs = supercostsDuTicket(ticketId)
+    .filter((s) => lotMax == null || s.lot < lotMax)
+    .map((s) => s.valeur)
   if (valeurs.length === 0) return 0
   if (mode === 2) return valeurs[0]! // premier
   if (mode === 3) return valeurs.reduce((a, b) => a + b, 0) / valeurs.length // moyenne
@@ -48,10 +61,11 @@ function baseSelonMode(ticketId: number, mode: number): number {
   return valeurs[valeurs.length - 1]! // mode 1 : dernier
 }
 
-// Coût de réouverture recalculé EN DIRECT = base (selon le mode courant) × %.
+// Coût de réouverture recalculé EN DIRECT = base (clôtures antérieures × mode) × %.
 // Toujours cohérent avec la colonne base, sans avoir à cliquer Modifier.
 function coutReouverture(ligne: Reouverture): number {
-  return Math.round(baseSelonMode(ligne.ticketId, ligne.mode) * (ligne.pourcentage / 100) * 100) / 100
+  const base = baseSelonMode(ligne.ticketId, ligne.mode, ligne.lot)
+  return Math.round(base * (ligne.pourcentage / 100) * 100) / 100
 }
 
 // Total général de tous les coûts de réouverture (pour comparer à la cible).
@@ -63,6 +77,13 @@ const totalReouverture = computed(() =>
 async function alaoListany() {
   listany.value = await getReouvertures()
   listanyOuverture.value = await getSupercosts()
+  // getRefsTickets() renvoie ref → id GLPI ; on inverse pour obtenir id → ref.
+  const refs = await getRefsTickets()
+  const inverse: Record<number, string> = {}
+  for (const [ref, glpiId] of Object.entries(refs)) {
+    inverse[glpiId] = ref
+  }
+  refParId.value = inverse
 }
 
 // --- reouverture ---
@@ -108,7 +129,7 @@ onMounted(() => {
       </thead>
       <tbody>
         <tr v-for="ligne in listanyOuverture" :key="cle(ligne.ticketId, ligne.lot)">
-          <td>{{ ligne.ticketId }}</td>
+          <td>{{ refTicket(ligne.ticketId) }}</td>
           <td>{{ ligne.lot }}</td>
           <td><input type="number" v-model.number="ligne.valeur" /></td>
           <td><button @click="modifierOuverture(ligne)">Modifier</button></td>
@@ -136,7 +157,7 @@ onMounted(() => {
       </thead>
       <tbody>
         <tr v-for="ligne in listany" :key="cle(ligne.ticketId, ligne.lot)">
-          <td>{{ ligne.ticketId }}</td>
+          <td>{{ refTicket(ligne.ticketId) }}</td>
           <td>{{ ligne.lot }}</td>
           <td>
             <select v-model.number="ligne.mode">
@@ -145,7 +166,7 @@ onMounted(() => {
               </option>
             </select>
           </td>
-          <td>{{ baseSelonMode(ligne.ticketId, ligne.mode) }}</td>
+          <td>{{ baseSelonMode(ligne.ticketId, ligne.mode, ligne.lot) }}</td>
           <td><input type="number" v-model.number="ligne.pourcentage" /> %</td>
           <td>{{ coutReouverture(ligne) }}</td>
           <td><button @click="modifier(ligne)">Modifier</button></td>

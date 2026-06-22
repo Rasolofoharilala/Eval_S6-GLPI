@@ -441,16 +441,25 @@ export async function dernierCoutTotalActif(ticketId: number): Promise<number> {
  * lots de réouverture ne sont QUE des incréments et ne servent pas de base à une
  * réouverture ultérieure.
  */
-export async function coutSelonMode(ticketId: number, mode: number): Promise<number> {
+export async function coutSelonMode(
+  ticketId: number,
+  mode: number,
+  lotMax?: number,
+): Promise<number> {
   const db = await getDb()
-  // base PAR ITEM de chaque lot de clôture, du plus ancien au plus récent
+  // base PAR ITEM de chaque lot de clôture, du plus ancien au plus récent.
+  // `lotMax` (optionnel) : ne garder que les clôtures ANTÉRIEURES à ce lot, pour
+  // qu'une réouverture se base uniquement sur les clôtures déjà faites à son
+  // instant (et pas sur des clôtures postérieures). Sans lotMax → toutes.
+  const filtreLot = lotMax != null ? ' AND lot < ?' : ''
+  const params = lotMax != null ? [ticketId, lotMax] : [ticketId]
   const vidiny = lignes(
     db,
     `SELECT lot, SUM(cout) / COUNT(*) AS total
        FROM nouveau_cout
-      WHERE ticket_id = ? AND type = 'supercost'
+      WHERE ticket_id = ? AND type = 'supercost'${filtreLot}
       GROUP BY lot ORDER BY lot ASC`,
-    [ticketId],
+    params,
   ).map((r) => Number(r.total) || 0)
 
   if (vidiny.length === 0) {
@@ -499,10 +508,11 @@ export async function reouvrir(
     throw new Error('Le ticket doit avoir au moins un item lié.')
   }
 
-  const base = await coutSelonMode(ticketId, mode) // déjà par item
+  // La réouverture prend le prochain lot ; sa base = clôtures ANTÉRIEURES (lot <).
+  const lot = prochainLot(db, ticketId)
+  const base = await coutSelonMode(ticketId, mode, lot) // déjà par item
   const incrementParItem = arrondi4(base * (pourcentage / 100))
 
-  const lot = prochainLot(db, ticketId)
   const crees = insererCouts(
     db,
     ticketId,
@@ -558,7 +568,8 @@ export async function updateReouverture(
   mode: number,
 ): Promise<void> {
   const db = await getDb()
-  const base = await coutSelonMode(ticketId, mode) // base par item selon le mode
+  // base = clôtures ANTÉRIEURES à cette réouverture (lot <), selon le mode.
+  const base = await coutSelonMode(ticketId, mode, lot)
   const vaovaoValue = arrondi4(base * (pourcentage / 100))
   db.run(
     "UPDATE nouveau_cout SET cout = ?, pourcentage = ?, mode = ? WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
@@ -597,13 +608,32 @@ async function recalculerReouvertures(db: Database, ticketId: number) {
   for (const r of lots) {
     const mode = Number(r.mode)
     const pourcentage = Number(r.pourcentage)
-    const base = await coutSelonMode(ticketId, mode)
+    const lot = Number(r.lot)
+    // base = clôtures ANTÉRIEURES à cette réouverture (lot <), selon son mode.
+    const base = await coutSelonMode(ticketId, mode, lot)
     const valeurParItem = arrondi4(base * (pourcentage / 100))
     db.run(
       "UPDATE nouveau_cout SET cout = ? WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
-      [valeurParItem, ticketId, Number(r.lot)],
+      [valeurParItem, ticketId, lot],
     )
   }
+}
+
+/**
+ * Recalcule les réouvertures de TOUS les tickets selon le modèle courant
+ * (base = clôtures antérieures). Sert à migrer des données importées avec un
+ * ancien calcul, sans tout réimporter.
+ */
+export async function recalculerToutesReouvertures(): Promise<void> {
+  const db = await getDb()
+  const ticketIds = lignes(
+    db,
+    "SELECT DISTINCT ticket_id FROM nouveau_cout WHERE type = 'reouverture'",
+  ).map((r) => Number(r.ticket_id))
+  for (const ticketId of ticketIds) {
+    await recalculerReouvertures(db, ticketId)
+  }
+  await persister(db)
 }
 
 // ─── LISTE DES OUVERTURES / SUPERCOST (Alea 2) ────────────────────────────────
@@ -770,5 +800,32 @@ export async function supprimerRefsTickets(): Promise<void> {
   const db = await getDb()
   db.run('DELETE FROM ref_ticket')
   await persister(db)
+}
+
+// ─── DEBUG ────────────────────────────────────────────────────────────────────
+// Dump complet de nouveau_cout + mapping ref→id. Console (F12) : __dumpCouts().
+export async function __dumpCouts(): Promise<void> {
+  const db = await getDb()
+  const couts = lignes(
+    db,
+    `SELECT id, ticket_id, item_id, item_type, cout, annule, lot, type, pourcentage, mode
+       FROM nouveau_cout ORDER BY ticket_id, lot, id`,
+  )
+  const refs = lignes(db, 'SELECT ref, glpi_id FROM ref_ticket ORDER BY ref')
+  console.log('=== ref_ticket (Ref logique → id GLPI) ===')
+  console.table(refs)
+  console.log('=== nouveau_cout ===')
+  console.table(couts)
+}
+
+if (typeof window !== 'undefined') {
+  const w = window as unknown as Record<string, unknown>
+  w.__dumpCouts = __dumpCouts
+  // Migre les réouvertures existantes vers le modèle « base = clôtures antérieures ».
+  w.__recalcReouv = async () => {
+    await recalculerToutesReouvertures()
+    console.log('Réouvertures recalculées. Recharge /coutsParc.')
+    await __dumpCouts()
+  }
 }
 
