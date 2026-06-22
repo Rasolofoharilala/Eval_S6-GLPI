@@ -15,6 +15,7 @@ import listeElement from '@/pages/FrontOffice/ListeElement.vue'
 import createTicket from '@/pages/FrontOffice/CreateTickets.vue'
 import kanbanTickets from '@/pages/FrontOffice/KanbanTickets.vue'
 import coutsParc from '@/pages/FrontOffice/CoutsParc.vue'
+import listeReouverture from '@/pages/FrontOffice/ListeReouverture.vue'
 import focusTickets from '@/pages/BackOffice/FocusTickets.vue'
 
 import stockage from '@/pages/BackOffice/StockageValeursVersionLangue.vue'
@@ -126,6 +127,14 @@ const router = createRouter({
       component: coutsParc,
       meta: {
         title: 'Coûts du parc',
+      },
+    },
+    {
+      path: '/listeReouverture',
+      name: 'listeReouverture',
+      component: listeReouverture,
+      meta: {
+        title: 'Liste des reouverture',
       },
     },
     {

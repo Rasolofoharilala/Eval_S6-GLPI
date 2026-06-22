@@ -1,5 +1,4 @@
 <template>
-  <div class=""></div>
   <aside>
     <h3>FRONT OFFICE</h3>
 
@@ -53,6 +52,10 @@ const menus: MenuEntry[] = [
   {
     label: 'Coûts du parc',
     path: '/coutsParc',
+  },
+  {
+    label: 'Liste des reouverture',
+    path: '/listeReouverture',
   },
 ]
 </script>

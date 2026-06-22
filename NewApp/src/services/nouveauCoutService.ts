@@ -1,6 +1,12 @@
 import type { ItemTicketLink } from '@/services/api/glpiV1Client'
 import * as localDb from '@/services/sqlite/localDb'
-import type { CoutCree, CoutParItem, ItemLie } from '@/services/sqlite/localDb'
+import type {
+  CoutCree,
+  CoutParItem,
+  ItemLie,
+  Reouverture,
+  Supercost,
+} from '@/services/sqlite/localDb'
 
 // ═════════════════════════════════════════════════════════════════════════════
 // SERVICE « NOUVEAUX COÛTS » (table SQLite locale via @/services/sqlite/localDb)
@@ -20,7 +26,7 @@ import type { CoutCree, CoutParItem, ItemLie } from '@/services/sqlite/localDb'
 //   supprimerCoutsDuTicket(id)        → supprimer les coûts d'un ticket
 // ═════════════════════════════════════════════════════════════════════════════
 
-export type { CoutCree, CoutParItem }
+export type { CoutCree, CoutParItem, Reouverture, Supercost }
 
 // Transforme des liens Item_Ticket (API v1) en items pour la base locale.
 function versItems(items: ItemTicketLink[]): ItemLie[] {
@@ -56,6 +62,45 @@ export function reouvrirTicket(
 /** Coût de base selon le mode choisi (1=dernier, 2=premier, 3=moyenne, 4=total). */
 export function getCoutSelonMode(ticketId: number, mode: number): Promise<number> {
   return localDb.coutSelonMode(ticketId, mode)
+}
+
+// ─── LISTE DES RÉOUVERTURES (Alea 1 & 2) ──────────────────────────────────────
+
+/** Toutes les réouvertures faites (une par lot). */
+export function getReouvertures(): Promise<Reouverture[]> {
+  return localDb.findAllReouverture()
+}
+
+/** Modifie une réouverture (nouveau % et/ou mode) puis recalcule sa valeur. */
+export function modifierReouverture(
+  ticketId: number,
+  lot: number,
+  pourcentage: number,
+  mode: number,
+): Promise<void> {
+  return localDb.updateReouverture(ticketId, lot, pourcentage, mode)
+}
+
+/** Supprime une réouverture. */
+export function supprimerReouverture(ticketId: number, lot: number): Promise<void> {
+  return localDb.deleteReouverture(ticketId, lot)
+}
+
+// ─── LISTE DES OUVERTURES / SUPERCOST (Alea 2) ────────────────────────────────
+
+/** Toutes les ouvertures faites (une par lot). */
+export function getSupercosts(): Promise<Supercost[]> {
+  return localDb.findAllSupercost()
+}
+
+/** Modifie la valeur d'une ouverture (répartie sur ses items). */
+export function modifierSupercost(ticketId: number, lot: number, valeur: number): Promise<void> {
+  return localDb.updateSupercost(ticketId, lot, valeur)
+}
+
+/** Supprime une ouverture. */
+export function supprimerSupercost(ticketId: number, lot: number): Promise<void> {
+  return localDb.deleteSupercost(ticketId, lot)
 }
 
 // ─── READ ───────────────────────────────────────────────────────────────────

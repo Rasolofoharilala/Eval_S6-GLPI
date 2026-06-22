@@ -1,0 +1,16 @@
+Alefa ny code source sy ilay video 
+
+Alea 1:
+Page vaovao miliste ny ouverture rehetra natao
+    Ouverture ihany - liste ana reouverture
+
+Contenue:
+    Bouton pour modifier la liste des reouverture
+        Modifier: Changer le chiffre: pourcentages et le mode (valeur: pourcentage ou/et mode)
+        Apres validation: recalcule (10 mode 1 -> 20 mode 4 => changement de la valeur du reouverture)
+
+Valeur ihany no hovaina sy mode
+(pas de changement de logic de reouverture, l'ordre ne change pas mais la valeur si)
+
+Alea 2:
+Possibilite de supprimer "l'ouverture"

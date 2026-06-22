@@ -79,7 +79,9 @@ CREATE TABLE IF NOT EXISTS nouveau_cout (
   cout      REAL NOT NULL,
   annule    INTEGER NOT NULL DEFAULT 0,
   lot       INTEGER NOT NULL DEFAULT 1,
-  type      TEXT NOT NULL DEFAULT 'supercost'
+  type      TEXT NOT NULL DEFAULT 'supercost',
+  pourcentage REAL NOT NULL DEFAULT 0,
+  mode      INTEGER NOT NULL DEFAULT 1
 );
 CREATE TABLE IF NOT EXISTS ref_ticket (
   ref        TEXT PRIMARY KEY,
@@ -116,6 +118,18 @@ async function getDb(): Promise<Database> {
       db.run("ALTER TABLE nouveau_cout ADD COLUMN type TEXT NOT NULL DEFAULT 'supercost'")
     } catch {
       // la colonne type existe déjà : rien à faire
+    }
+    // colonnes pourcentage + mode : on garde le % et le mode utilisés lors d'une
+    // réouverture, pour pouvoir la modifier (et la recalculer) plus tard.
+    try {
+      db.run('ALTER TABLE nouveau_cout ADD COLUMN pourcentage REAL NOT NULL DEFAULT 0')
+    } catch {
+      // la colonne pourcentage existe déjà : rien à faire
+    }
+    try {
+      db.run('ALTER TABLE nouveau_cout ADD COLUMN mode INTEGER NOT NULL DEFAULT 1')
+    } catch {
+      // la colonne mode existe déjà : rien à faire
     }
     seedIfEmpty(db)
     await persister(db)
@@ -346,12 +360,14 @@ function insererCouts(
   coutParItem: number,
   lot: number,
   type: TypeCout = 'supercost',
+  pourcentage: number = 0,
+  mode: number = 1,
 ): CoutCree[] {
   const crees: CoutCree[] = []
   for (const item of items) {
     db.run(
-      'INSERT INTO nouveau_cout (ticket_id, item_id, item_type, cout, annule, lot, type) VALUES (?, ?, ?, ?, 0, ?, ?)',
-      [ticketId, item.itemId, item.itemType.trim(), coutParItem, lot, type],
+      'INSERT INTO nouveau_cout (ticket_id, item_id, item_type, cout, annule, lot, type, pourcentage, mode) VALUES (?, ?, ?, ?, 0, ?, ?, ?, ?)',
+      [ticketId, item.itemId, item.itemType.trim(), coutParItem, lot, type, pourcentage, mode],
     )
     const id = unNombre(db, 'SELECT last_insert_rowid()')
     crees.push(coutVersDto(lignes(db, 'SELECT * FROM nouveau_cout WHERE id = ?', [id])[0]!))
@@ -487,9 +503,172 @@ export async function reouvrir(
   const incrementParItem = arrondi4(base * (pourcentage / 100))
 
   const lot = prochainLot(db, ticketId)
-  const crees = insererCouts(db, ticketId, items, incrementParItem, lot, 'reouverture')
+  const crees = insererCouts(
+    db,
+    ticketId,
+    items,
+    incrementParItem,
+    lot,
+    'reouverture',
+    pourcentage,
+    mode,
+  )
   await persister(db)
   return crees
+}
+
+// ─── LISTE DES RÉOUVERTURES (Alea 1 & 2) ──────────────────────────────────────
+
+// Une réouverture = un lot de lignes type='reouverture' sur un ticket.
+export type Reouverture = {
+  ticketId: number
+  lot: number
+  pourcentage: number
+  mode: number
+  valeur: number
+}
+
+/** Liste toutes les réouvertures (une ligne par lot de réouverture). */
+export async function findAllReouverture(): Promise<Reouverture[]> {
+  const db = await getDb()
+  return lignes(
+    db,
+    `SELECT ticket_id, lot, pourcentage, mode, SUM(cout) AS valeur
+       FROM nouveau_cout
+      WHERE type = 'reouverture'
+      GROUP BY ticket_id, lot
+      ORDER BY ticket_id ASC, lot ASC`,
+  ).map((r) => ({
+    ticketId: Number(r.ticket_id),
+    lot: Number(r.lot),
+    pourcentage: Number(r.pourcentage),
+    mode: Number(r.mode),
+    valeur: Number(r.valeur) || 0,
+  }))
+}
+
+/**
+ * Modifie une réouverture : on change le pourcentage et/ou le mode, puis on
+ * recalcule la valeur (base selon le mode × % ). L'ordre (le lot) ne change pas.
+ */
+export async function updateReouverture(
+  ticketId: number,
+  lot: number,
+  pourcentage: number,
+  mode: number,
+): Promise<void> {
+  const db = await getDb()
+  const base = await coutSelonMode(ticketId, mode) // base par item selon le mode
+  const vaovaoValue = arrondi4(base * (pourcentage / 100))
+  db.run(
+    "UPDATE nouveau_cout SET cout = ?, pourcentage = ?, mode = ? WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
+    [vaovaoValue, pourcentage, mode, ticketId, lot],
+  )
+  await persister(db)
+}
+
+/** Supprime une réouverture (toutes les lignes de son lot). */
+export async function deleteReouverture(ticketId: number, lot: number): Promise<void> {
+  const db = await getDb()
+  db.run("DELETE FROM nouveau_cout WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'", [
+    ticketId,
+    lot,
+  ])
+  await persister(db)
+}
+
+/**
+ * Recalcule toutes les réouvertures d'un ticket à partir de la base supercost
+ * courante (selon leur mode et pourcentage stockés). À appeler après tout
+ * changement de supercost, sinon /coutsParc somme une nouvelle base avec une
+ * ancienne réouverture figée → totaux incohérents. NE persiste PAS (l'appelant
+ * persiste une seule fois).
+ */
+async function recalculerReouvertures(db: Database, ticketId: number) {
+  // (lot, pourcentage, mode) de chaque lot de réouverture du ticket.
+  const lots = lignes(
+    db,
+    `SELECT lot, pourcentage, mode
+       FROM nouveau_cout
+      WHERE ticket_id = ? AND type = 'reouverture'
+      GROUP BY lot`,
+    [ticketId],
+  )
+  for (const r of lots) {
+    const mode = Number(r.mode)
+    const pourcentage = Number(r.pourcentage)
+    const base = await coutSelonMode(ticketId, mode)
+    const valeurParItem = arrondi4(base * (pourcentage / 100))
+    db.run(
+      "UPDATE nouveau_cout SET cout = ? WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
+      [valeurParItem, ticketId, Number(r.lot)],
+    )
+  }
+}
+
+// ─── LISTE DES OUVERTURES / SUPERCOST (Alea 2) ────────────────────────────────
+
+// Une ouverture = un lot de lignes type='supercost' (le coût de base d'un ticket).
+export type Supercost = {
+  ticketId: number
+  lot: number
+  valeur: number
+}
+
+/** Liste toutes les ouvertures (lots supercost actifs). */
+export async function findAllSupercost(): Promise<Supercost[]> {
+  const db = await getDb()
+  return lignes(
+    db,
+    `SELECT ticket_id, lot, SUM(cout) AS valeur
+       FROM nouveau_cout
+      WHERE type = 'supercost' AND annule = 0
+      GROUP BY ticket_id, lot
+      ORDER BY ticket_id ASC, lot ASC`,
+  ).map((r) => ({
+    ticketId: Number(r.ticket_id),
+    lot: Number(r.lot),
+    valeur: Number(r.valeur) || 0,
+  }))
+}
+
+/** Modifie une ouverture : nouvelle valeur totale, répartie sur les items du lot. */
+export async function updateSupercost(
+  ticketId: number,
+  lot: number,
+  valeur: number,
+): Promise<void> {
+  const db = await getDb()
+  // isanyItem = combien d'items dans ce lot (pour répartir la valeur)
+  const isanyItem = unNombre(
+    db,
+    "SELECT COUNT(*) FROM nouveau_cout WHERE ticket_id = ? AND lot = ? AND type = 'supercost'",
+    [ticketId, lot],
+  )
+  if (isanyItem === 0) {
+    return
+  }
+  const coutParItem = arrondi4(valeur / isanyItem)
+  db.run("UPDATE nouveau_cout SET cout = ? WHERE ticket_id = ? AND lot = ? AND type = 'supercost'", [
+    coutParItem,
+    ticketId,
+    lot,
+  ])
+  // La base ayant changé, on réaligne les réouvertures qui en dépendent.
+  await recalculerReouvertures(db, ticketId)
+  await persister(db)
+}
+
+/** Supprime une ouverture (toutes les lignes de son lot). */
+export async function deleteSupercost(ticketId: number, lot: number): Promise<void> {
+  const db = await getDb()
+  db.run("DELETE FROM nouveau_cout WHERE ticket_id = ? AND lot = ? AND type = 'supercost'", [
+    ticketId,
+    lot,
+  ])
+  // La base ayant changé, on réaligne les réouvertures qui en dépendent.
+  await recalculerReouvertures(db, ticketId)
+  await persister(db)
 }
 
 /** Annule (sans réinsérer) les coûts actifs d'un ticket. */
