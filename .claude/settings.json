@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(curl -s -m 5 -o /dev/null -w \"GLPI v1 HTTP %{http_code}\\\\n\" \"http://localhost/apirest.php\")",
-      "Bash(curl -s -m 5 -o /dev/null -w \"GLPI v2 HTTP %{http_code}\\\\n\" \"http://localhost/api.php/v2.3\")"
+      "Bash(curl -s -m 5 -o /dev/null -w \"GLPI v2 HTTP %{http_code}\\\\n\" \"http://localhost/api.php/v2.3\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/listeReouverture)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"http://localhost:5173/src/services/sqlite/localDb.ts\")",
+      "Bash(ls -la import/)",
+      "Bash(ls import/202600605-J1)",
+      "Bash(ls import/*J1*)",
+      "Bash(find import *)",
+      "Bash(node /tmp/sim_parc2.mjs)"
     ]
   }
 }

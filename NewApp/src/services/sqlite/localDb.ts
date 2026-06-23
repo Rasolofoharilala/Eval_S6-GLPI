@@ -87,6 +87,10 @@ CREATE TABLE IF NOT EXISTS ref_ticket (
   ref        TEXT PRIMARY KEY,
   glpi_id    INTEGER NOT NULL
 );
+CREATE TABLE IF NOT EXISTS parametre (
+  cle    TEXT PRIMARY KEY,
+  valeur TEXT NOT NULL
+);
 `
 
 // Les 3 statuts fixes, dans l'ordre d'affichage (identique à l'ancien backend).
@@ -457,7 +461,7 @@ export async function coutSelonMode(
     db,
     `SELECT lot, SUM(cout) / COUNT(*) AS total
        FROM nouveau_cout
-      WHERE ticket_id = ? AND type = 'supercost'${filtreLot}
+      WHERE ticket_id = ? AND type = 'supercost' AND annule = 0${filtreLot}
       GROUP BY lot ORDER BY lot ASC`,
     params,
   ).map((r) => Number(r.total) || 0)
@@ -476,6 +480,77 @@ export async function coutSelonMode(
     return vidiny.reduce((a, b) => a + b, 0) // total
   }
   return vidiny[vidiny.length - 1]! // mode 1 (défaut) : dernier
+}
+
+// ─── PLAFOND DE RÉOUVERTURE (Alea 2) ──────────────────────────────────────────
+//
+// Le pourcentage de plafond est COMMUN à tous les tickets (ex : 80 %), mais les
+// dépenses sont DISTINCTES : chaque ticket a sa propre enveloppe. Pour un ticket,
+// le total cumulé de ses réouvertures ne dépasse jamais
+//   (somme des Super Cost de CE ticket) × pourcentage.
+// On stocke le pourcentage dans la table `parametre` (clé 'plafond_reouverture').
+// Les coûts annulés (annule = 1, négligeables) ne comptent pas.
+
+// Lit le plafond en % (0 = pas de plafond défini).
+function lirePlafond(db: Database): number {
+  const r = lignes(db, "SELECT valeur FROM parametre WHERE cle = 'plafond_reouverture'")[0]
+  return r ? Number(r.valeur) || 0 : 0
+}
+
+// Somme des Super Cost actifs d'UN ticket (base de son enveloppe de plafond).
+function sommeSupercosts(db: Database, ticketId: number): number {
+  return unNombre(
+    db,
+    "SELECT COALESCE(SUM(cout), 0) FROM nouveau_cout WHERE type = 'supercost' AND annule = 0 AND ticket_id = ?",
+    [ticketId],
+  )
+}
+
+// Total des réouvertures actives d'UN ticket, en excluant le lot en cours de calcul.
+function totalReouvertures(db: Database, ticketId: number, exclLot?: number): number {
+  let sql =
+    "SELECT COALESCE(SUM(cout), 0) FROM nouveau_cout WHERE type = 'reouverture' AND annule = 0 AND ticket_id = ?"
+  const params: unknown[] = [ticketId]
+  if (exclLot != null) {
+    sql += ' AND lot <> ?'
+    params.push(exclLot)
+  }
+  return unNombre(db, sql, params)
+}
+
+// Limite un total de réouverture voulu au plafond encore disponible POUR CE TICKET.
+// Renvoie le total autorisé (jamais négatif). Sans plafond défini → total voulu.
+function limiterAuPlafond(
+  db: Database,
+  ticketId: number,
+  totalVoulu: number,
+  exclLot?: number,
+): number {
+  const pourcentage = lirePlafond(db)
+  if (pourcentage <= 0) {
+    return totalVoulu
+  }
+  const max = sommeSupercosts(db, ticketId) * (pourcentage / 100)
+  const dispo = max - totalReouvertures(db, ticketId, exclLot)
+  if (dispo <= 0) {
+    return 0
+  }
+  return totalVoulu > dispo ? dispo : totalVoulu
+}
+
+/** Plafond de réouverture en % (0 si non défini). */
+export async function getPlafond(): Promise<number> {
+  const db = await getDb()
+  return lirePlafond(db)
+}
+
+/** Enregistre le plafond de réouverture (en %). */
+export async function setPlafond(valeur: number): Promise<void> {
+  const db = await getDb()
+  db.run("INSERT OR REPLACE INTO parametre (cle, valeur) VALUES ('plafond_reouverture', ?)", [
+    String(valeur),
+  ])
+  await persister(db)
 }
 
 /**
@@ -511,7 +586,12 @@ export async function reouvrir(
   // La réouverture prend le prochain lot ; sa base = clôtures ANTÉRIEURES (lot <).
   const lot = prochainLot(db, ticketId)
   const base = await coutSelonMode(ticketId, mode, lot) // déjà par item
-  const incrementParItem = arrondi4(base * (pourcentage / 100))
+  let incrementParItem = arrondi4(base * (pourcentage / 100))
+
+  // Alea 2 : on ne dépasse jamais le plafond de réouverture (enveloppe du ticket).
+  const totalVoulu = incrementParItem * items.length
+  const totalAutorise = limiterAuPlafond(db, ticketId, totalVoulu, lot)
+  incrementParItem = arrondi4(totalAutorise / items.length)
 
   const crees = insererCouts(
     db,
@@ -536,6 +616,10 @@ export type Reouverture = {
   pourcentage: number
   mode: number
   valeur: number
+  // type du lot annulé : 'reouverture' (incrément) ou 'supercost' (clôture).
+  // Toujours 'reouverture' pour les réouvertures actives ; renseigné par
+  // findAnnulations pour distinguer les deux dans la liste des annulations.
+  type?: TypeCout
 }
 
 /** Liste toutes les réouvertures (une ligne par lot de réouverture). */
@@ -545,7 +629,7 @@ export async function findAllReouverture(): Promise<Reouverture[]> {
     db,
     `SELECT ticket_id, lot, pourcentage, mode, SUM(cout) AS valeur
        FROM nouveau_cout
-      WHERE type = 'reouverture'
+      WHERE type = 'reouverture' AND annule = 0
       GROUP BY ticket_id, lot
       ORDER BY ticket_id ASC, lot ASC`,
   ).map((r) => ({
@@ -570,7 +654,19 @@ export async function updateReouverture(
   const db = await getDb()
   // base = clôtures ANTÉRIEURES à cette réouverture (lot <), selon le mode.
   const base = await coutSelonMode(ticketId, mode, lot)
-  const vaovaoValue = arrondi4(base * (pourcentage / 100))
+  let vaovaoValue = arrondi4(base * (pourcentage / 100))
+
+  // Alea 2 : on limite le total de cette réouverture au plafond disponible.
+  const isany = unNombre(
+    db,
+    "SELECT COUNT(*) FROM nouveau_cout WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
+    [ticketId, lot],
+  )
+  if (isany > 0) {
+    const totalAutorise = limiterAuPlafond(db, ticketId, vaovaoValue * isany, lot)
+    vaovaoValue = arrondi4(totalAutorise / isany)
+  }
+
   db.run(
     "UPDATE nouveau_cout SET cout = ?, pourcentage = ?, mode = ? WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
     [vaovaoValue, pourcentage, mode, ticketId, lot],
@@ -588,6 +684,72 @@ export async function deleteReouverture(ticketId: number, lot: number): Promise<
   await persister(db)
 }
 
+// ─── ANNULATIONS DE RÉOUVERTURE (Alea 1) ──────────────────────────────────────
+//
+// « Annuler le dernier coût » marque la dernière réouverture comme annulée
+// (annule = 1) sans la supprimer : elle quitte la liste des réouvertures et
+// apparaît dans la liste des annulations. « Rétablir » la remet active (annule = 0)
+// exactement à sa position d'origine (son `lot` n'a jamais changé).
+
+/** Annule le dernier coût de réouverture appliqué (le plus récent). */
+export async function annulerDerniereReouverture(): Promise<void> {
+  const db = await getDb()
+  // dernière réouverture active = la ligne au plus grand id
+  const r = lignes(
+    db,
+    "SELECT ticket_id, lot FROM nouveau_cout WHERE type = 'reouverture' AND annule = 0 ORDER BY id DESC LIMIT 1",
+  )[0]
+  if (!r) {
+    return
+  }
+  const ticketId = Number(r.ticket_id)
+  const lot = Number(r.lot)
+  db.run(
+    "UPDATE nouveau_cout SET annule = 1 WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
+    [ticketId, lot],
+  )
+  // Le total des réouvertures a baissé : on recalcule (le plafond se libère).
+  await recalculerReouvertures(db, ticketId)
+  await persister(db)
+}
+
+/**
+ * Liste des coûts annulés (le tableau « Liste des annulations »).
+ * Inclut les réouvertures ET les supercosts annulés (annule = 1) : annuler le
+ * dernier coût d'un ticket depuis le Kanban peut porter sur l'un ou l'autre.
+ * Le `type` permet de les distinguer dans la liste.
+ */
+export async function findAnnulations(): Promise<Reouverture[]> {
+  const db = await getDb()
+  return lignes(
+    db,
+    `SELECT ticket_id, lot, type, pourcentage, mode, SUM(cout) AS valeur
+       FROM nouveau_cout
+      WHERE annule = 1
+      GROUP BY ticket_id, lot, type
+      ORDER BY ticket_id ASC, lot ASC`,
+  ).map((r) => ({
+    ticketId: Number(r.ticket_id),
+    lot: Number(r.lot),
+    type: (String(r.type) === 'reouverture' ? 'reouverture' : 'supercost') as TypeCout,
+    pourcentage: Number(r.pourcentage),
+    mode: Number(r.mode),
+    valeur: Number(r.valeur) || 0,
+  }))
+}
+
+/** Rétablit une réouverture annulée (remise active à sa position d'origine). */
+export async function retablirReouverture(ticketId: number, lot: number): Promise<void> {
+  const db = await getDb()
+  db.run(
+    "UPDATE nouveau_cout SET annule = 0 WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
+    [ticketId, lot],
+  )
+  // Réouverture de nouveau active : on recalcule sa valeur (base × %, plafonnée).
+  await recalculerReouvertures(db, ticketId)
+  await persister(db)
+}
+
 /**
  * Recalcule toutes les réouvertures d'un ticket à partir de la base supercost
  * courante (selon leur mode et pourcentage stockés). À appeler après tout
@@ -599,9 +761,9 @@ async function recalculerReouvertures(db: Database, ticketId: number) {
   // (lot, pourcentage, mode) de chaque lot de réouverture du ticket.
   const lots = lignes(
     db,
-    `SELECT lot, pourcentage, mode
+    `SELECT lot, pourcentage, mode, COUNT(*) AS nb
        FROM nouveau_cout
-      WHERE ticket_id = ? AND type = 'reouverture'
+      WHERE ticket_id = ? AND type = 'reouverture' AND annule = 0
       GROUP BY lot`,
     [ticketId],
   )
@@ -609,9 +771,12 @@ async function recalculerReouvertures(db: Database, ticketId: number) {
     const mode = Number(r.mode)
     const pourcentage = Number(r.pourcentage)
     const lot = Number(r.lot)
+    const nb = Number(r.nb) || 1
     // base = clôtures ANTÉRIEURES à cette réouverture (lot <), selon son mode.
     const base = await coutSelonMode(ticketId, mode, lot)
-    const valeurParItem = arrondi4(base * (pourcentage / 100))
+    // Alea 2 : on recalcule en respectant le plafond disponible du ticket.
+    const totalAutorise = limiterAuPlafond(db, ticketId, arrondi4(base * (pourcentage / 100)) * nb, lot)
+    const valeurParItem = arrondi4(totalAutorise / nb)
     db.run(
       "UPDATE nouveau_cout SET cout = ? WHERE ticket_id = ? AND lot = ? AND type = 'reouverture'",
       [valeurParItem, ticketId, lot],
@@ -704,6 +869,44 @@ export async function deleteSupercost(ticketId: number, lot: number): Promise<vo
 export async function annulerActifs(ticketId: number): Promise<void> {
   const db = await getDb()
   db.run('UPDATE nouveau_cout SET annule = 1 WHERE ticket_id = ? AND annule = 0', [ticketId])
+  await persister(db)
+}
+
+/**
+ * Annule UNIQUEMENT le dernier lot actif d'un ticket (le plus récent : réouverture
+ * ou supercost), sans toucher au reste de l'historique. Le lot annulé (annule = 1)
+ * apparaît alors dans la « Liste des annulations » et peut être rétabli.
+ * Après annulation on recalcule les réouvertures du ticket pour que le plafond
+ * libéré soit pris en compte.
+ */
+export async function annulerDernierLot(ticketId: number): Promise<void> {
+  const db = await getDb()
+  // dernier lot actif = celui au plus grand numéro de lot encore actif
+  const lot = unNombre(
+    db,
+    'SELECT COALESCE(MAX(lot), 0) FROM nouveau_cout WHERE ticket_id = ? AND annule = 0',
+    [ticketId],
+  )
+  if (lot === 0) {
+    return
+  }
+  db.run('UPDATE nouveau_cout SET annule = 1 WHERE ticket_id = ? AND lot = ? AND annule = 0', [
+    ticketId,
+    lot,
+  ])
+  // Le total des réouvertures a pu baisser : on recalcule (le plafond se libère).
+  await recalculerReouvertures(db, ticketId)
+  await persister(db)
+}
+
+/**
+ * Rétablit un lot annulé (réouverture OU supercost) à sa position d'origine.
+ * Pendant du bouton « Rétablir » de la liste des annulations.
+ */
+export async function retablirLot(ticketId: number, lot: number): Promise<void> {
+  const db = await getDb()
+  db.run('UPDATE nouveau_cout SET annule = 0 WHERE ticket_id = ? AND lot = ?', [ticketId, lot])
+  await recalculerReouvertures(db, ticketId)
   await persister(db)
 }
 

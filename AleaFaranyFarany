@@ -1,0 +1,54 @@
+Alea 1
+Nouveaux tableaux dans liste des reouverture
+    Liste des annuler: en rapport avec kanban "annuler le derniers cout"
+        Retablir les annuler
+        Retour a la place initial
+
+Annuler: supprimer le dernier couts
+Retablir: reprendre 
+
+Alea 2
+Creation de nouveau parametres:
+    input: en pourcentage
+    Plafond de reouverture
+        Stocker SQLite
+
+Super-cost: 100
+Plafond: 30%
+Le cout de reouverture ne doit pas depasser le Plafond
+
+(mode negligeble) lors du calcule du plafond  
+
+Le doit de reouverture ne doit pas depasser 30% (si debordement retourner en 30%: pas de debordement) pour tous les tickets 
+
+Tickets < 30 (30% de 100)
+
+Reouverture: recalcule du plafond avant ???
+
+Cost1: 100
+Plafond: 30%
+Reouverture ne doit pas depasser 30
+
+40 sortie hors ca depasse 30 donc retourne a 30 car plafond
+
+Cost2: 50
+donc 45 (30% de 150)
+
+Donc ne doit pas depasser 15
+
+Donc cout 
+
+"Total des ouvertures ne doit pas depasser le % de tous les sommes de tous les supercost avant (teo aloha)"
+
+Lors d'un debordement retour au plafond max
+En dessous on change rien
+
+--
+100.000 ar 10% ihany no mahazo lalina
+
+3000ar varotra 1
+12000ar varotra 2: efa niaotra donc mijanona 7000ar max
+tsy afaka: varotra 3 car plafond atteind plus de solde
+
+Super cost vaovao: manome vola vaovao dada ohatre oe 5000ar
+Donc afaka manampy indray

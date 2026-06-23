@@ -84,6 +84,36 @@ export function supprimerReouverture(ticketId: number, lot: number): Promise<voi
   return localDb.deleteReouverture(ticketId, lot)
 }
 
+// ─── ANNULATIONS DE RÉOUVERTURE (Alea 1) ──────────────────────────────────────
+
+/** Annule le dernier coût de réouverture appliqué. */
+export function annulerDerniereReouverture(): Promise<void> {
+  return localDb.annulerDerniereReouverture()
+}
+
+/** Liste des réouvertures annulées. */
+export function getAnnulations(): Promise<Reouverture[]> {
+  return localDb.findAnnulations()
+}
+
+/** Rétablit un coût annulé (réouverture ou supercost) à sa position d'origine. */
+export function retablirReouverture(ticketId: number, lot: number): Promise<void> {
+  return localDb.retablirLot(ticketId, lot)
+}
+
+// ─── PLAFOND DE RÉOUVERTURE (Alea 2) ──────────────────────────────────────────
+
+/** Lit le plafond de réouverture (en %). */
+export function getPlafond(): Promise<number> {
+  return localDb.getPlafond()
+}
+
+/** Enregistre le plafond de réouverture (en %) puis recalcule les réouvertures. */
+export async function setPlafond(valeur: number): Promise<void> {
+  await localDb.setPlafond(valeur)
+  await localDb.recalculerToutesReouvertures()
+}
+
 // ─── LISTE DES OUVERTURES / SUPERCOST (Alea 2) ────────────────────────────────
 
 /** Toutes les ouvertures faites (une par lot). */
@@ -131,9 +161,13 @@ export function getDernierCout(ticketId: number): Promise<number> {
 
 // ─── DELETE / ANNULATION ─────────────────────────────────────────────────────
 
-/** Annule (sans réinsérer) les coûts actifs d'un ticket. */
+/**
+ * Annule le dernier coût d'un ticket (« Annuler le dernier coût » du Kanban) :
+ * seul le dernier lot actif est marqué annulé, il apparaît alors dans la liste
+ * des annulations et reste rétablissable. L'historique antérieur est conservé.
+ */
 export function annulerCoutsDuTicket(ticketId: number): Promise<void> {
-  return localDb.annulerActifs(ticketId)
+  return localDb.annulerDernierLot(ticketId)
 }
 
 /** Supprime physiquement les coûts d'un ticket. */
